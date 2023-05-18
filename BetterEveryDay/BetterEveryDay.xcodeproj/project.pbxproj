@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
+		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
+		B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479AC2A16742C00C0CE3E /* Assets.xcassets */; };
+		B9C479B12A16742C00C0CE3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479B02A16742C00C0CE3E /* Preview Assets.xcassets */; };
+		B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */; };
+		B9C479C52A16742D00C0CE3E /* BetterEveryDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479C42A16742D00C0CE3E /* BetterEveryDayUITests.swift */; };
+		B9C479C72A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479C62A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9C479B72A16742C00C0CE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C4799D2A16742900C0CE3E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C479A42A16742900C0CE3E;
+			remoteInfo = BetterEveryDay;
+		};
+		B9C479C12A16742D00C0CE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C4799D2A16742900C0CE3E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C479A42A16742900C0CE3E;
+			remoteInfo = BetterEveryDay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
+		B9C479AA2A16742900C0CE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B9C479AC2A16742C00C0CE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9C479AE2A16742C00C0CE3E /* BetterEveryDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterEveryDay.entitlements; sourceTree = "<group>"; };
+		B9C479B02A16742C00C0CE3E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B9C479B62A16742C00C0CE3E /* BetterEveryDayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterEveryDayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayTests.swift; sourceTree = "<group>"; };
+		B9C479C02A16742D00C0CE3E /* BetterEveryDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterEveryDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C479C42A16742D00C0CE3E /* BetterEveryDayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayUITests.swift; sourceTree = "<group>"; };
+		B9C479C62A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9C479A22A16742900C0CE3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479B32A16742C00C0CE3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479BD2A16742D00C0CE3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9C4799C2A16742900C0CE3E = {
+			isa = PBXGroup;
+			children = (
+				B9C479A72A16742900C0CE3E /* BetterEveryDay */,
+				B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */,
+				B9C479C32A16742D00C0CE3E /* BetterEveryDayUITests */,
+				B9C479A62A16742900C0CE3E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9C479A62A16742900C0CE3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479A52A16742900C0CE3E /* BetterEveryDay.app */,
+				B9C479B62A16742C00C0CE3E /* BetterEveryDayTests.xctest */,
+				B9C479C02A16742D00C0CE3E /* BetterEveryDayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9C479A72A16742900C0CE3E /* BetterEveryDay */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */,
+				B9C479AA2A16742900C0CE3E /* ContentView.swift */,
+				B9C479AC2A16742C00C0CE3E /* Assets.xcassets */,
+				B9C479AE2A16742C00C0CE3E /* BetterEveryDay.entitlements */,
+				B9C479AF2A16742C00C0CE3E /* Preview Content */,
+			);
+			path = BetterEveryDay;
+			sourceTree = "<group>";
+		};
+		B9C479AF2A16742C00C0CE3E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479B02A16742C00C0CE3E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
+			);
+			path = BetterEveryDayTests;
+			sourceTree = "<group>";
+		};
+		B9C479C32A16742D00C0CE3E /* BetterEveryDayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479C42A16742D00C0CE3E /* BetterEveryDayUITests.swift */,
+				B9C479C62A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift */,
+			);
+			path = BetterEveryDayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B9C479A42A16742900C0CE3E /* BetterEveryDay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C479CA2A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDay" */;
+			buildPhases = (
+				B9C479A12A16742900C0CE3E /* Sources */,
+				B9C479A22A16742900C0CE3E /* Frameworks */,
+				B9C479A32A16742900C0CE3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BetterEveryDay;
+			productName = BetterEveryDay;
+			productReference = B9C479A52A16742900C0CE3E /* BetterEveryDay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B9C479B52A16742C00C0CE3E /* BetterEveryDayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C479CD2A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDayTests" */;
+			buildPhases = (
+				B9C479B22A16742C00C0CE3E /* Sources */,
+				B9C479B32A16742C00C0CE3E /* Frameworks */,
+				B9C479B42A16742C00C0CE3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C479B82A16742C00C0CE3E /* PBXTargetDependency */,
+			);
+			name = BetterEveryDayTests;
+			productName = BetterEveryDayTests;
+			productReference = B9C479B62A16742C00C0CE3E /* BetterEveryDayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B9C479BF2A16742D00C0CE3E /* BetterEveryDayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C479D02A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDayUITests" */;
+			buildPhases = (
+				B9C479BC2A16742D00C0CE3E /* Sources */,
+				B9C479BD2A16742D00C0CE3E /* Frameworks */,
+				B9C479BE2A16742D00C0CE3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C479C22A16742D00C0CE3E /* PBXTargetDependency */,
+			);
+			name = BetterEveryDayUITests;
+			productName = BetterEveryDayUITests;
+			productReference = B9C479C02A16742D00C0CE3E /* BetterEveryDayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9C4799D2A16742900C0CE3E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B9C479A42A16742900C0CE3E = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					B9C479B52A16742C00C0CE3E = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = B9C479A42A16742900C0CE3E;
+					};
+					B9C479BF2A16742D00C0CE3E = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = B9C479A42A16742900C0CE3E;
+					};
+				};
+			};
+			buildConfigurationList = B9C479A02A16742900C0CE3E /* Build configuration list for PBXProject "BetterEveryDay" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B9C4799C2A16742900C0CE3E;
+			productRefGroup = B9C479A62A16742900C0CE3E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9C479A42A16742900C0CE3E /* BetterEveryDay */,
+				B9C479B52A16742C00C0CE3E /* BetterEveryDayTests */,
+				B9C479BF2A16742D00C0CE3E /* BetterEveryDayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9C479A32A16742900C0CE3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C479B12A16742C00C0CE3E /* Preview Assets.xcassets in Resources */,
+				B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479B42A16742C00C0CE3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479BE2A16742D00C0CE3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9C479A12A16742900C0CE3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
+				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479B22A16742C00C0CE3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C479BC2A16742D00C0CE3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C479C52A16742D00C0CE3E /* BetterEveryDayUITests.swift in Sources */,
+				B9C479C72A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9C479B82A16742C00C0CE3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C479A42A16742900C0CE3E /* BetterEveryDay */;
+			targetProxy = B9C479B72A16742C00C0CE3E /* PBXContainerItemProxy */;
+		};
+		B9C479C22A16742D00C0CE3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C479A42A16742900C0CE3E /* BetterEveryDay */;
+			targetProxy = B9C479C12A16742D00C0CE3E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B9C479C82A16742D00C0CE3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B9C479C92A16742D00C0CE3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		B9C479CB2A16742D00C0CE3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BetterEveryDay/BetterEveryDay.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BetterEveryDay/Preview Content\"";
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9C479CC2A16742D00C0CE3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BetterEveryDay/BetterEveryDay.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BetterEveryDay/Preview Content\"";
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B9C479CE2A16742D00C0CE3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BetterEveryDay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BetterEveryDay";
+			};
+			name = Debug;
+		};
+		B9C479CF2A16742D00C0CE3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BetterEveryDay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BetterEveryDay";
+			};
+			name = Release;
+		};
+		B9C479D12A16742D00C0CE3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BetterEveryDay;
+			};
+			name = Debug;
+		};
+		B9C479D22A16742D00C0CE3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8MD4CZRYZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jschenkemeyer.BetterEveryDayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BetterEveryDay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9C479A02A16742900C0CE3E /* Build configuration list for PBXProject "BetterEveryDay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C479C82A16742D00C0CE3E /* Debug */,
+				B9C479C92A16742D00C0CE3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9C479CA2A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C479CB2A16742D00C0CE3E /* Debug */,
+				B9C479CC2A16742D00C0CE3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9C479CD2A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C479CE2A16742D00C0CE3E /* Debug */,
+				B9C479CF2A16742D00C0CE3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9C479D02A16742D00C0CE3E /* Build configuration list for PBXNativeTarget "BetterEveryDayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C479D12A16742D00C0CE3E /* Debug */,
+				B9C479D22A16742D00C0CE3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9C4799D2A16742900C0CE3E /* Project object */;
+}
