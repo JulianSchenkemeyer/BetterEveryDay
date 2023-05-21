@@ -14,10 +14,10 @@ class TimerViewModel: ObservableObject {
 
 	private var startingDate = Date()
 	private var timeLeftInSeconds: Int
+	private var timerIsRunning = false
 
 	@Published var countdown: Int {
 		didSet {
-			print(countdown)
 			if countdown <= 0 {
 				stop()
 			}
@@ -31,6 +31,8 @@ class TimerViewModel: ObservableObject {
 
 
 	func start() {
+		guard !timerIsRunning else { return }
+
 		startingDate = Date()
 		timerSubscription = timer
 			.map({ [self] time in
@@ -44,6 +46,16 @@ class TimerViewModel: ObservableObject {
 
 	func stop() {
 		timerSubscription = nil
+		timeLeftInSeconds = countdown
+		timerIsRunning = false
+	}
+
+	func reset(timeLeftInSeconds: Int) {
+		stop()
+		self.timeLeftInSeconds = timeLeftInSeconds
+		self.countdown = timeLeftInSeconds
+
+		start()
 	}
 }
 
@@ -67,6 +79,14 @@ struct ContentView: View {
 				Text("stop")
 			}
 			.padding()
+
+			Button {
+				viewModel.reset(timeLeftInSeconds: 10)
+			} label: {
+				Text("reset")
+			}
+			.padding()
+
 		}
 	}
 }
