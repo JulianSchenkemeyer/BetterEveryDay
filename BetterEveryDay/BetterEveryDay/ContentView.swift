@@ -12,11 +12,34 @@ class TimerViewModel: ObservableObject {
 	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	private var timerSubscription: Cancellable?
 
-	@Published var time = Date()
+	private var startingDate = Date()
+	private var timeLeftInSeconds: Int
+
+	@Published var countdown: Int {
+		didSet {
+			print(countdown)
+			if countdown <= 0 {
+				stop()
+			}
+		}
+	}
+
+	init(timeLeftInSeconds: Int) {
+		self.timeLeftInSeconds = timeLeftInSeconds
+		self.countdown = timeLeftInSeconds
+	}
 
 
 	func start() {
-		timerSubscription = timer.assign(to: \.time, on: self)
+		startingDate = Date()
+		timerSubscription = timer
+			.map({ [self] time in
+				Int(time.timeIntervalSince1970 - startingDate.timeIntervalSince1970)
+			})
+			.map({ [self] time in
+				self.timeLeftInSeconds - time
+			})
+			.assign(to: \.countdown, on: self)
 	}
 
 	func stop() {
@@ -25,11 +48,11 @@ class TimerViewModel: ObservableObject {
 }
 
 struct ContentView: View {
-	@ObservedObject var viewModel: TimerViewModel = TimerViewModel()
+	@ObservedObject var viewModel: TimerViewModel = TimerViewModel(timeLeftInSeconds: 10)
 
 	var body: some View {
 		VStack {
-			Text(viewModel.time.formatted(.dateTime.minute(.twoDigits).second(.twoDigits)))
+			Text("\(viewModel.countdown)")
 
 			Button {
 				viewModel.start()
