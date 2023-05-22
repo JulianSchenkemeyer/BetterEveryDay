@@ -12,7 +12,7 @@ struct TimerView: View {
 
 	var body: some View {
 		VStack {
-			Text("\(viewModel.countdown)")
+			CountdownView(progress: $viewModel.countdown, frame: 350)
 
 			Button {
 				viewModel.start()
