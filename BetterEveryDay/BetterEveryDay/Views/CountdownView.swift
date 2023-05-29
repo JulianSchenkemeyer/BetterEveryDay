@@ -7,31 +7,30 @@
 
 import SwiftUI
 
-struct PieProgressStyle: ProgressViewStyle {
+struct WatchProgressStyle: ProgressViewStyle {
 	var tint: Color = .accentColor
 
 	func makeBody(configuration: Configuration) -> some View {
-		let degrees = configuration.fractionCompleted! * 360
+		let degrees = configuration.fractionCompleted!
 
-		return PieChartPiece(startAngle: .degrees(degrees), endAngle: .degrees(0))
-			.rotation(.degrees(-90))
-			.foregroundColor(tint)
-	}
-}
+		return ZStack {
+			Circle()
+				.stroke(.gray, lineWidth: 10)
+				.shadow(color: .gray, radius: 2)
+				.shadow(color: .gray, radius: 6)
+				.shadow(color: .gray, radius: 10)
+				.opacity(0.2)
+				.padding()
 
-struct PieChartPiece: Shape {
-	var startAngle: Angle
-	var endAngle: Angle
 
-	func path(in rect: CGRect) -> Path {
-		var path = Path()
-		path.addArc(center: CGPoint(x: rect.midX, y: rect.midY),
-					radius: (rect.width / 2) - 20,
-					startAngle: startAngle,
-					endAngle: endAngle,
-					clockwise: false)
 
-		return path.strokedPath(.init(lineWidth: 10))
+			Circle()
+				.trim(from: degrees, to: 1)
+				.rotation(Angle(degrees: 270))
+				.stroke(.blue, lineWidth: 10)
+				.shadow(color: .blue, radius: 3)
+				.padding()
+		}
 	}
 }
 
@@ -41,8 +40,14 @@ struct CountdownView: View {
 
     var body: some View {
 		ZStack {
-			ProgressView("", value: convertToPercent(progress), total: 10)
-				.progressViewStyle(PieProgressStyle(tint: .green))
+			ProgressView(
+				"test",
+				value: Double(progress),
+				total: 10
+			)
+				.progressViewStyle(
+					WatchProgressStyle()
+				)
 				.padding()
 				.frame(width: frame, height: frame)
 
