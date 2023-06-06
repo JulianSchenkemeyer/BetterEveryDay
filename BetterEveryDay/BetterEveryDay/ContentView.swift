@@ -14,6 +14,7 @@ struct ContentView: View {
 		NavigationStack {
 			TimerView()
 				.navigationTitle("Timer")
+				.navigationBarTitleDisplayMode(.inline)
 		}
 	}
 }
