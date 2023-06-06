@@ -31,6 +31,7 @@ struct CircleProgressStyle: ProgressViewStyle {
 				.stroke(.blue, lineWidth: 10)
 				.shadow(color: .blue, radius: 3)
 				.padding()
+				.animation(.easeInOut, value: degrees)
 		}
 	}
 }
