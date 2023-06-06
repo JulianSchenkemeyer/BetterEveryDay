@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B96F70932A2DBC3600D64D84 /* CircleProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F70922A2DBC3600D64D84 /* CircleProgressStyle.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
 		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
 		B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479AC2A16742C00C0CE3E /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B96F70922A2DBC3600D64D84 /* CircleProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressStyle.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
 		B9C479AA2A16742900C0CE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C479D92A1A63D400C0CE3E /* CountdownView.swift */,
+				B96F70922A2DBC3600D64D84 /* CircleProgressStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				B9C479D72A1A62A600C0CE3E /* TimerViewModel.swift in Sources */,
 				B9C479DA2A1A63D400C0CE3E /* CountdownView.swift in Sources */,
+				B96F70932A2DBC3600D64D84 /* CircleProgressStyle.swift in Sources */,
 				B9C479D52A1A629400C0CE3E /* TimerView.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,

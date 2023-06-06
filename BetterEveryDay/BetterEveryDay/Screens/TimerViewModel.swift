@@ -29,8 +29,10 @@ class TimerViewModel: ObservableObject {
 		self.countdown = timeLeftInSeconds
 	}
 
+	
 
 	func start() {
+		guard timeLeftInSeconds > 0 else { return }
 		guard !timerIsRunning else { return }
 
 		startingDate = Date()

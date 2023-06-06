@@ -18,29 +18,38 @@ struct TimerView: View {
 				viewModel.start()
 			} label: {
 				Text("start")
+					.frame(width: 200, height: 50)
 			}
-			.padding()
+			.buttonStyle(.borderedProminent)
+			.buttonBorderShape(.capsule)
 
 			Button {
 				viewModel.stop()
 			} label: {
 				Text("stop")
+					.frame(width: 200, height: 50)
 			}
-			.padding()
+			.buttonStyle(.borderedProminent)
+			.tint(.red)
+			.buttonBorderShape(.capsule)
 
-			Button {
-				viewModel.reset(timeLeftInSeconds: 10)
-			} label: {
-				Text("reset")
+		}
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button {
+					viewModel.reset(timeLeftInSeconds: 10)
+				} label: {
+					Label("Reset", systemImage: "arrow.counterclockwise")
+				}
 			}
-			.padding()
-
 		}
 	}
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+		NavigationStack {
+			TimerView()
+		}
     }
 }
