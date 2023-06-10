@@ -80,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B96F70942A2F0E4A00D64D84 /* TimerView */ = {
+			isa = PBXGroup;
+			children = (
+				B9C479D42A1A629400C0CE3E /* TimerView.swift */,
+				B9C479D62A1A62A600C0CE3E /* TimerViewModel.swift */,
+			);
+			path = TimerView;
+			sourceTree = "<group>";
+		};
 		B9C4799C2A16742900C0CE3E = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +151,7 @@
 		B9C479D32A1A627C00C0CE3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B9C479D42A1A629400C0CE3E /* TimerView.swift */,
-				B9C479D62A1A62A600C0CE3E /* TimerViewModel.swift */,
+				B96F70942A2F0E4A00D64D84 /* TimerView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

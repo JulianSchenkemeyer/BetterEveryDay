@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct TimerView: View {
-	@ObservedObject var viewModel: TimerViewModel = TimerViewModel(timeLeftInSeconds: 10)
+	@ObservedObject var viewModel: TimerViewModel
+
+	init(viewModel: TimerViewModel) {
+		self.viewModel = viewModel
+	}
 
 	var body: some View {
 		VStack {
-			CountdownView(progress: $viewModel.countdown, frame: 350)
+			CountdownView(progress: $viewModel.countdown,
+						  endValue: viewModel.initialTimeLeft,
+						  frame: 350)
 
 			Button {
 				viewModel.start()
@@ -48,8 +54,10 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
+
+		let vm = TimerViewModel(timeLeftInSeconds: 10)
 		NavigationStack {
-			TimerView()
+			TimerView(viewModel: vm)
 		}
     }
 }

@@ -12,7 +12,7 @@ struct ContentView: View {
 
 	var body: some View {
 		NavigationStack {
-			TimerView()
+			TimerView(viewModel: TimerViewModel(timeLeftInSeconds: 60))
 				.navigationTitle("Timer")
 				.navigationBarTitleDisplayMode(.inline)
 		}

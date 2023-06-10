@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CountdownView: View {
 	@Binding var progress: Int
+	var endValue: Int
 	var frame: CGFloat = .infinity
 
     var body: some View {
@@ -16,7 +17,7 @@ struct CountdownView: View {
 			ProgressView(
 				"test",
 				value: Double(progress),
-				total: 10
+				total: Double(endValue)
 			)
 				.progressViewStyle(
 					CircleProgressStyle()
@@ -33,6 +34,6 @@ struct CountdownView: View {
 
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some View {
-		CountdownView(progress: .constant(10))
+		CountdownView(progress: .constant(10), endValue: 10)
     }
 }

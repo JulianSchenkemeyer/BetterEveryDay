@@ -13,6 +13,7 @@ class TimerViewModel: ObservableObject {
 	private var timerSubscription: Cancellable?
 
 	private var startingDate = Date()
+	var initialTimeLeft: Int
 	private var timeLeftInSeconds: Int
 	private var timerIsRunning = false
 
@@ -25,6 +26,7 @@ class TimerViewModel: ObservableObject {
 	}
 
 	init(timeLeftInSeconds: Int) {
+		self.initialTimeLeft = timeLeftInSeconds
 		self.timeLeftInSeconds = timeLeftInSeconds
 		self.countdown = timeLeftInSeconds
 	}
