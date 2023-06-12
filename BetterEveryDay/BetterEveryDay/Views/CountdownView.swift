@@ -15,7 +15,7 @@ struct CountdownView: View {
     var body: some View {
 		ZStack {
 			ProgressView(
-				"test",
+				"Timer Progress",
 				value: Double(progress),
 				total: Double(endValue)
 			)

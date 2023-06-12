@@ -12,9 +12,10 @@ struct ContentView: View {
 
 	var body: some View {
 		NavigationStack {
-			TimerView(viewModel: TimerViewModel(timeLeftInSeconds: 60))
-				.navigationTitle("Timer")
-				.navigationBarTitleDisplayMode(.inline)
+//			TimerView(viewModel: TimerViewModel(timeLeftInSeconds: 60))
+//				.navigationTitle("Timer")
+//				.navigationBarTitleDisplayMode(.inline)
+			ConfigurationView()
 		}
 	}
 }
