@@ -24,10 +24,6 @@ struct CountdownView: View {
 				)
 				.padding()
 				.frame(width: frame, height: frame)
-
-			Text("\(progress)")
-				.font(.title)
-				.bold()
 		}
     }
 }

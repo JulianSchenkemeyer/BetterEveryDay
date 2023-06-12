@@ -16,11 +16,21 @@ struct TimerView: View {
 
 	var body: some View {
 		VStack(spacing: 50) {
-			CountdownView(progress: $viewModel.countdown,
-						  endValue: viewModel.initialTimeLeft,
-						  frame: 350)
-			.tint(.cyan)
 
+			ZStack {
+				CountdownView(progress: $viewModel.countdown,
+							  endValue: viewModel.initialTimeLeft,
+							  frame: 350)
+
+
+				Text(
+					Duration
+						.seconds(viewModel.countdown),
+					format:
+							.time(pattern: .hourMinuteSecond))
+					.font(.title)
+					.bold()
+			}
 
 
 			Button {
