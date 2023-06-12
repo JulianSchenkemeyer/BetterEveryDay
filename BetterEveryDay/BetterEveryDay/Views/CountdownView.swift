@@ -20,7 +20,7 @@ struct CountdownView: View {
 				total: Double(endValue)
 			)
 				.progressViewStyle(
-					CircleProgressStyle()
+					CircleProgressStyle(tint: .cyan)
 				)
 				.padding()
 				.frame(width: frame, height: frame)

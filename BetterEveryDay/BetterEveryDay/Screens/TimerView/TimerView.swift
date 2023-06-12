@@ -15,30 +15,24 @@ struct TimerView: View {
 	}
 
 	var body: some View {
-		VStack {
+		VStack(spacing: 50) {
 			CountdownView(progress: $viewModel.countdown,
 						  endValue: viewModel.initialTimeLeft,
 						  frame: 350)
+			.tint(.cyan)
+
+
 
 			Button {
 				viewModel.start()
 			} label: {
-				Text("start")
-					.frame(width: 200, height: 50)
+				Label("Start", systemImage: "play.fill")
+					.font(.title3.bold())
+					.frame(width: 200, height: 44)
 			}
 			.buttonStyle(.borderedProminent)
 			.buttonBorderShape(.capsule)
-
-			Button {
-				viewModel.stop()
-			} label: {
-				Text("stop")
-					.frame(width: 200, height: 50)
-			}
-			.buttonStyle(.borderedProminent)
-			.tint(.red)
-			.buttonBorderShape(.capsule)
-
+			.tint(.cyan)
 		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarTrailing) {

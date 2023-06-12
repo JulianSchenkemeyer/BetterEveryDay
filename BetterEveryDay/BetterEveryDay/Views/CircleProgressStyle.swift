@@ -28,8 +28,8 @@ struct CircleProgressStyle: ProgressViewStyle {
 			Circle()
 				.trim(from: degrees, to: 1)
 				.rotation(Angle(degrees: 270))
-				.stroke(.blue, lineWidth: 10)
-				.shadow(color: .blue, radius: 3)
+				.stroke(tint, lineWidth: 10)
+				.shadow(color: tint, radius: 3)
 				.padding()
 				.animation(.easeInOut, value: degrees)
 		}
