@@ -18,11 +18,6 @@ struct TimerView: View {
 		VStack(spacing: 50) {
 
 			ZStack {
-				CountdownView(progress: $viewModel.countdown,
-							  endValue: viewModel.initialTimeLeft,
-							  frame: 350)
-
-
 				Text(
 					Duration
 						.seconds(viewModel.countdown),
