@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B91C208E2A34C7BE001A7288 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C208D2A34C7BE001A7288 /* ConfigurationView.swift */; };
+		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
 		B96F70932A2DBC3600D64D84 /* CircleProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F70922A2DBC3600D64D84 /* CircleProgressStyle.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
 		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B91C208D2A34C7BE001A7288 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
 		B96F70922A2DBC3600D64D84 /* CircleProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressStyle.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
@@ -82,12 +82,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B91C208C2A34C78B001A7288 /* ConfigurationView */ = {
+		242068A22A4025B400AA3494 /* ThirdTimeView */ = {
 			isa = PBXGroup;
 			children = (
-				B91C208D2A34C7BE001A7288 /* ConfigurationView.swift */,
+				242068A32A4025D000AA3494 /* ThirdTimeView.swift */,
 			);
-			path = ConfigurationView;
+			path = ThirdTimeView;
 			sourceTree = "<group>";
 		};
 		B96F70942A2F0E4A00D64D84 /* TimerView */ = {
@@ -161,7 +161,7 @@
 		B9C479D32A1A627C00C0CE3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B91C208C2A34C78B001A7288 /* ConfigurationView */,
+				242068A22A4025B400AA3494 /* ThirdTimeView */,
 				B96F70942A2F0E4A00D64D84 /* TimerView */,
 			);
 			path = Screens;
@@ -307,8 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C479D72A1A62A600C0CE3E /* TimerViewModel.swift in Sources */,
-				B91C208E2A34C7BE001A7288 /* ConfigurationView.swift in Sources */,
 				B9C479DA2A1A63D400C0CE3E /* CountdownView.swift in Sources */,
+				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
 				B96F70932A2DBC3600D64D84 /* CircleProgressStyle.swift in Sources */,
 				B9C479D52A1A629400C0CE3E /* TimerView.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
