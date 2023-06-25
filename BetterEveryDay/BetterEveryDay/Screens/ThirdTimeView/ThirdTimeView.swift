@@ -34,8 +34,7 @@ struct ThirdTimeView: View {
                 switch status {
                 case .Initial:
                     Text("SET A GOAL")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        .modifier(PhaseLabelModifier())
                     
                     Text("🤔")
                         .font(.system(size: 80))
@@ -47,8 +46,7 @@ struct ThirdTimeView: View {
 
                 case .FocusSession:
                     Text("FOCUS")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        .modifier(PhaseLabelModifier())
                     
                     TimerView(date: marker)
                     
@@ -60,8 +58,7 @@ struct ThirdTimeView: View {
 //                    }
                 case .PauseSession:
                     Text("PAUSE")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        .modifier(PhaseLabelModifier())
                         .foregroundColor(pauseIsOver ? .red : .black)
                     
                     TimerView(date: marker)
