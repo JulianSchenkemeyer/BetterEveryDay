@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
+		246D6C2E2A48990300E5B39B /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerView.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -18,8 +19,6 @@
 		B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */; };
 		B9C479C52A16742D00C0CE3E /* BetterEveryDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479C42A16742D00C0CE3E /* BetterEveryDayUITests.swift */; };
 		B9C479C72A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479C62A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift */; };
-		B9C479D52A1A629400C0CE3E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479D42A1A629400C0CE3E /* TimerView.swift */; };
-		B9C479D72A1A62A600C0CE3E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479D62A1A62A600C0CE3E /* TimerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
+		246D6C2D2A48990300E5B39B /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -55,8 +55,6 @@
 		B9C479C02A16742D00C0CE3E /* BetterEveryDayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterEveryDayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479C42A16742D00C0CE3E /* BetterEveryDayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayUITests.swift; sourceTree = "<group>"; };
 		B9C479C62A16742D00C0CE3E /* BetterEveryDayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B9C479D42A1A629400C0CE3E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		B9C479D62A1A62A600C0CE3E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +90,14 @@
 			path = ThirdTimeView;
 			sourceTree = "<group>";
 		};
+		246D6C2C2A48985B00E5B39B /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				246D6C2D2A48990300E5B39B /* TimerView.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		24E924302A44D295002CA7F8 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,15 +106,6 @@
 				24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		B96F70942A2F0E4A00D64D84 /* TimerView */ = {
-			isa = PBXGroup;
-			children = (
-				B9C479D42A1A629400C0CE3E /* TimerView.swift */,
-				B9C479D62A1A62A600C0CE3E /* TimerViewModel.swift */,
-			);
-			path = TimerView;
 			sourceTree = "<group>";
 		};
 		B9C4799C2A16742900C0CE3E = {
@@ -174,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				242068A22A4025B400AA3494 /* ThirdTimeView */,
-				B96F70942A2F0E4A00D64D84 /* TimerView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -182,6 +178,7 @@
 		B9C479D82A1A63B100C0CE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				246D6C2C2A48985B00E5B39B /* Labels */,
 				24E924302A44D295002CA7F8 /* Buttons */,
 			);
 			path = Views;
@@ -317,9 +314,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9C479D72A1A62A600C0CE3E /* TimerViewModel.swift in Sources */,
+				246D6C2E2A48990300E5B39B /* TimerView.swift in Sources */,
 				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
-				B9C479D52A1A629400C0CE3E /* TimerView.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,

@@ -11,16 +11,6 @@ enum ThirdTimeState {
     case FocusSession, PauseSession, Initial
 }
 
-struct TimerText: View {
-    var date: Date
-    
-    var body: some View {
-        Text(date, style: .timer)
-            .font(.system(size: 80))
-            .fontWeight(.bold)
-    }
-}
-
 struct ThirdTimeView: View {
     
     @State private var marker: Date = Date.now
@@ -60,7 +50,7 @@ struct ThirdTimeView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    TimerText(date: marker)
+                    TimerView(date: marker)
                     
 //                    BEDButton(label: "Pause Session", systemImage: "pause") {
 //                        status = .PauseSession
@@ -74,7 +64,7 @@ struct ThirdTimeView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(pauseIsOver ? .red : .black)
                     
-                    TimerText(date: marker)
+                    TimerView(date: marker)
                         .foregroundColor(pauseIsOver ? .red : .black)
                         
                     
