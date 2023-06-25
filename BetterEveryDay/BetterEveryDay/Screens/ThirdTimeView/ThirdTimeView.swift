@@ -21,22 +21,6 @@ struct TimerText: View {
     }
 }
 
-struct BEDButton: View {
-    var label: String
-    var systemImage: String
-    var action: () -> Void
-    
-    var body: some View {
-        Button {
-            action()
-        } label: {
-            Label(label, systemImage: systemImage)
-                .frame(width: 200, height: 44)
-        }
-        .buttonStyle(.borderedProminent)
-    }
-}
-
 struct ThirdTimeView: View {
     
     @State private var marker: Date = Date.now
@@ -66,10 +50,10 @@ struct ThirdTimeView: View {
                     Text("🤔")
                         .font(.system(size: 80))
                     
-                    BEDButton(label: "Start Session", systemImage: "play") {
-                        status = .FocusSession
-                        marker = Date.now
-                    }
+//                    BEDButton(label: "Start Session", systemImage: "play") {
+//                        status = .FocusSession
+//                        marker = Date.now
+//                    }
 
                 case .FocusSession:
                     Text("FOCUS")
@@ -78,12 +62,12 @@ struct ThirdTimeView: View {
                     
                     TimerText(date: marker)
                     
-                    BEDButton(label: "Pause Session", systemImage: "pause") {
-                        status = .PauseSession
-                        marker = calculatePause(for: marker)
-                        pauseIsOver = false
+//                    BEDButton(label: "Pause Session", systemImage: "pause") {
+//                        status = .PauseSession
+//                        marker = calculatePause(for: marker)
+//                        pauseIsOver = false
                         
-                    }
+//                    }
                 case .PauseSession:
                     Text("PAUSE")
                         .font(.title3)
@@ -94,12 +78,12 @@ struct ThirdTimeView: View {
                         .foregroundColor(pauseIsOver ? .red : .black)
                         
                     
-                    BEDButton(label: "Continue Session", systemImage: "play") {
-                        status = .FocusSession
-                        marker = Date.now
+//                    BEDButton(label: "Continue Session", systemImage: "play") {
+//                        status = .FocusSession
+//                        marker = Date.now
                         
 
-                    }
+//                    }
                 }
                 
                 Spacer()
