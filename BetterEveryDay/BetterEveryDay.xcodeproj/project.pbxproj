@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
-		246D6C2E2A48990300E5B39B /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerView.swift */; };
+		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
+		246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C322A4C019500E5B39B /* PrepareSessionView.swift */; };
+		246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */; };
+		246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C362A4C024800E5B39B /* PauseSessionView.swift */; };
+		246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -41,8 +45,12 @@
 
 /* Begin PBXFileReference section */
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
-		246D6C2D2A48990300E5B39B /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
+		246D6C322A4C019500E5B39B /* PrepareSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionView.swift; sourceTree = "<group>"; };
+		246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSessionView.swift; sourceTree = "<group>"; };
+		246D6C362A4C024800E5B39B /* PauseSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSessionView.swift; sourceTree = "<group>"; };
+		246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectSessionView.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -95,10 +103,28 @@
 		246D6C2C2A48985B00E5B39B /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				246D6C2D2A48990300E5B39B /* TimerView.swift */,
+				246D6C2D2A48990300E5B39B /* TimerLabelView.swift */,
 				246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		246D6C312A4C015B00E5B39B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				246D6C322A4C019500E5B39B /* PrepareSessionView.swift */,
+				246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */,
+				246D6C362A4C024800E5B39B /* PauseSessionView.swift */,
+				246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		246D6C3A2A4C041600E5B39B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		24E924302A44D295002CA7F8 /* Buttons */ = {
@@ -134,6 +160,7 @@
 		B9C479A72A16742900C0CE3E /* BetterEveryDay */ = {
 			isa = PBXGroup;
 			children = (
+				246D6C3A2A4C041600E5B39B /* Model */,
 				B9C479D82A1A63B100C0CE3E /* Views */,
 				B9C479D32A1A627C00C0CE3E /* Screens */,
 				B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */,
@@ -181,6 +208,7 @@
 		B9C479D82A1A63B100C0CE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				246D6C312A4C015B00E5B39B /* Components */,
 				246D6C2C2A48985B00E5B39B /* Labels */,
 				24E924302A44D295002CA7F8 /* Buttons */,
 			);
@@ -317,10 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				246D6C2E2A48990300E5B39B /* TimerView.swift in Sources */,
+				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
+				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
+				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
 				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
+				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
+				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
