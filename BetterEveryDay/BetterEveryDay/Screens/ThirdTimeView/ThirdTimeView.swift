@@ -16,7 +16,7 @@ final class ThirdTimeViewModel: ObservableObject {
     @Published var totalFocusLength = 0.0
     @Published var totalBreakLength = 0.0
     
-    var lengthOfLastFocusSession = 0.0
+    var startOfLastFocusSession: Date?
     @Published var availableBreakTime = 0.0
     
     
@@ -24,12 +24,14 @@ final class ThirdTimeViewModel: ObservableObject {
         didSet {
             switch state {
             case .FocusSession:
+                startOfLastFocusSession = Date.now
                 totalBreakLength = calculateTimeProgressed()
                 timerStart = continuePreviousTimer(with: totalFocusLength)
                 
             case .PauseSession:
                 totalFocusLength = calculateTimeProgressed()
-                timerStart = Date.now
+                availableBreakTime = calculateAvailableBreakTime()
+                timerStart = setBreakTimer()
                 
             case .ReflectSession:
                 totalBreakLength = 0.0
@@ -40,7 +42,20 @@ final class ThirdTimeViewModel: ObservableObject {
         }
     }
     
-    private func calculateTimeProgressed() -> Double {
+    private func calculateAvailableBreakTime() -> TimeInterval {
+        guard let startOfLastFocusSession else { return 0.0 }
+        
+        let lengthOfLastFocusSession = Date.now.timeIntervalSince1970 - startOfLastFocusSession.timeIntervalSince1970
+        
+        return ceil(lengthOfLastFocusSession / 3)
+    }
+    
+    private func setBreakTimer() -> Date {
+        let modifiedStartDate = Date.now.timeIntervalSince1970 + availableBreakTime
+        return Date(timeIntervalSince1970: modifiedStartDate)
+    }
+    
+    private func calculateTimeProgressed() -> TimeInterval {
         Date.now.timeIntervalSince1970 - timerStart.timeIntervalSince1970
     }
     
@@ -48,7 +63,7 @@ final class ThirdTimeViewModel: ObservableObject {
         let modifiedStartDate = Date.now.timeIntervalSince1970 - offset
         print("continue from \(modifiedStartDate)")
         
-        return Date(timeIntervalSince1970: offset)
+        return Date(timeIntervalSince1970: modifiedStartDate)
     }
     
     private func calculateMaxBreakTime() {
