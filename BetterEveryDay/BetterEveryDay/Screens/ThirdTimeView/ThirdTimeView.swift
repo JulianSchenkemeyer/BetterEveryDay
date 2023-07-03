@@ -18,6 +18,7 @@ final class ThirdTimeViewModel: ObservableObject {
     
     var startOfLastFocusSession: Date?
     @Published var availableBreakTime = 0.0
+    @Published var breakIsOverdrawn = false
     
     
     @Published var state: ThirdTimeState = .PrepareSession {
@@ -85,12 +86,10 @@ struct ThirdTimeView: View {
                                  start: $viewModel.timerStart)
             case .PauseSession:
                 PauseSessionView(state: $viewModel.state,
-                                 start: $viewModel.timerStart)
+                                 start: $viewModel.timerStart,
+                                 breakIsOverdrawn: $viewModel.breakIsOverdrawn)
             case .ReflectSession:
                 ReflectSessionView(state: $viewModel.state)
-                    .onAppear {
-                        viewModel.timerStart = .now
-                    }
             }
         }
     }
