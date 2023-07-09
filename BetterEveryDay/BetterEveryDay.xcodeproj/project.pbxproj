@@ -14,6 +14,8 @@
 		246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */; };
 		246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C362A4C024800E5B39B /* PauseSessionView.swift */; };
 		246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */; };
+		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
+		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -51,6 +53,8 @@
 		246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSessionView.swift; sourceTree = "<group>"; };
 		246D6C362A4C024800E5B39B /* PauseSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSessionView.swift; sourceTree = "<group>"; };
 		246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectSessionView.swift; sourceTree = "<group>"; };
+		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
+		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				242068A32A4025D000AA3494 /* ThirdTimeView.swift */,
+				246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */,
 			);
 			path = ThirdTimeView;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
+				246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */,
 			);
 			path = BetterEveryDayTests;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */,
 				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
@@ -365,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
+				246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

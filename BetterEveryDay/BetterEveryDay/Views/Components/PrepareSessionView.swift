@@ -16,7 +16,7 @@ struct PrepareSessionView: View {
                 .modifier(PhaseLabelModifier())
             
             Button {
-                state = .FocusSession
+                state = .Focus
             } label: {
                 Label("Start", systemImage: "play")
             }
@@ -27,6 +27,6 @@ struct PrepareSessionView: View {
 
 struct PrepareSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        PrepareSessionView(state: .constant(.PrepareSession))
+        PrepareSessionView(state: .constant(.Prepare))
     }
 }

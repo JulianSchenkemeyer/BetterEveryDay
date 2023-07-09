@@ -20,14 +20,14 @@ struct FocusSessionView: View {
             
             HStack {
                 Button {
-                    state = .PauseSession
+                    state = .Pause
                 } label: {
                     Label("Pause", systemImage: "pause")
                 }
                 .primaryButtonStyle()
                 
                 Button {
-                    state = .ReflectSession
+                    state = .Reflect
                 } label: {
                     Label("Finish", systemImage: "stop.fill")
                 }
@@ -40,7 +40,7 @@ struct FocusSessionView: View {
 struct FocusSessionView_Previews: PreviewProvider {
     static var previews: some View {
         FocusSessionView(
-            state: .constant(.FocusSession),
+            state: .constant(.Focus),
             start: .constant(.now))
     }
 }

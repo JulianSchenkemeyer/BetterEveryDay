@@ -16,7 +16,7 @@ struct ReflectSessionView: View {
                 .modifier(PhaseLabelModifier())
             
             Button {
-                state = .PrepareSession
+                state = .Prepare
             } label: {
                 Label("Restart", systemImage: "play")
             }
@@ -27,6 +27,6 @@ struct ReflectSessionView: View {
 
 struct ReflectSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReflectSessionView(state: .constant(.ReflectSession))
+        ReflectSessionView(state: .constant(.Reflect))
     }
 }

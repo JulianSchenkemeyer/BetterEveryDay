@@ -23,14 +23,14 @@ struct PauseSessionView: View {
             
             HStack {
                 Button {
-                    state = .FocusSession
+                    state = .Focus
                 } label: {
                     Label("Continue", systemImage: "play")
                 }
                 .primaryButtonStyle()
                 
                 Button {
-                    state = .ReflectSession
+                    state = .Reflect
                 } label: {
                     Label("Finish", systemImage: "stop.fill")
                 }
@@ -42,7 +42,7 @@ struct PauseSessionView: View {
 
 struct PauseSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        PauseSessionView(state: .constant(.PauseSession),
+        PauseSessionView(state: .constant(.Pause),
                          start: .constant(.now),
                          breakIsOverdrawn: .constant(false))
     }

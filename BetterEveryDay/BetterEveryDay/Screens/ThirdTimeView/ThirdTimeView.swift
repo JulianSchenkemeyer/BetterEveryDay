@@ -8,68 +8,7 @@
 import SwiftUI
 
 enum ThirdTimeState {
-    case FocusSession, PauseSession, PrepareSession, ReflectSession
-}
-
-final class ThirdTimeViewModel: ObservableObject {
-    @Published var timerStart = Date.now
-    @Published var totalFocusLength = 0.0
-    @Published var totalBreakLength = 0.0
-    
-    var startOfLastFocusSession: Date?
-    @Published var availableBreakTime = 0.0
-    @Published var breakIsOverdrawn = false
-    
-    
-    @Published var state: ThirdTimeState = .PrepareSession {
-        didSet {
-            switch state {
-            case .FocusSession:
-                startOfLastFocusSession = Date.now
-                totalBreakLength = calculateTimeProgressed()
-                timerStart = continuePreviousTimer(with: totalFocusLength)
-                
-            case .PauseSession:
-                totalFocusLength = calculateTimeProgressed()
-                availableBreakTime = calculateAvailableBreakTime()
-                timerStart = setBreakTimer()
-                
-            case .ReflectSession:
-                totalBreakLength = 0.0
-                totalFocusLength = 0.0
-            default:
-                break
-            }
-        }
-    }
-    
-    private func calculateAvailableBreakTime() -> TimeInterval {
-        guard let startOfLastFocusSession else { return 0.0 }
-        
-        let lengthOfLastFocusSession = Date.now.timeIntervalSince1970 - startOfLastFocusSession.timeIntervalSince1970
-        
-        return ceil(lengthOfLastFocusSession / 3)
-    }
-    
-    private func setBreakTimer() -> Date {
-        let modifiedStartDate = Date.now.timeIntervalSince1970 + availableBreakTime
-        return Date(timeIntervalSince1970: modifiedStartDate)
-    }
-    
-    private func calculateTimeProgressed() -> TimeInterval {
-        Date.now.timeIntervalSince1970 - timerStart.timeIntervalSince1970
-    }
-    
-    private func continuePreviousTimer(with offset: Double) -> Date {
-        let modifiedStartDate = Date.now.timeIntervalSince1970 - offset
-        print("continue from \(modifiedStartDate)")
-        
-        return Date(timeIntervalSince1970: modifiedStartDate)
-    }
-    
-    private func calculateMaxBreakTime() {
-        
-    }
+    case Focus, Pause, Prepare, Reflect
 }
 
 struct ThirdTimeView: View {
@@ -78,18 +17,21 @@ struct ThirdTimeView: View {
     
     var body: some View {
         VStack {
-            switch viewModel.state {
-            case .PrepareSession:
-                PrepareSessionView(state: $viewModel.state)
-            case .FocusSession:
-                FocusSessionView(state: $viewModel.state,
-                                 start: $viewModel.timerStart)
-            case .PauseSession:
-                PauseSessionView(state: $viewModel.state,
-                                 start: $viewModel.timerStart,
-                                 breakIsOverdrawn: $viewModel.breakIsOverdrawn)
-            case .ReflectSession:
-                ReflectSessionView(state: $viewModel.state)
+            switch viewModel.phase {
+            case .Prepare:
+                PrepareSessionView(state: $viewModel.phase)
+            case .Focus:
+                FocusSessionView(state: $viewModel.phase,
+                                 start: .constant(Date.now))
+            case .Pause:
+//                PauseSessionView(state: $viewModel.phase,
+//                                 start: $viewModel.phaseTimer!.displayStart,
+//                                 breakIsOverdrawn:
+//                $viewModel.breakIsOverdrawn)
+                FocusSessionView(state: $viewModel.phase,
+                                 start: .constant(Date.now))
+            case .Reflect:
+                ReflectSessionView(state: $viewModel.phase)
             }
         }
     }
