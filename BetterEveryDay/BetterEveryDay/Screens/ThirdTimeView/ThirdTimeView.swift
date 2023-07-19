@@ -22,14 +22,10 @@ struct ThirdTimeView: View {
                 PrepareSessionView(state: $viewModel.phase)
             case .Focus:
                 FocusSessionView(state: $viewModel.phase,
-                                 start: .constant(Date.now))
+                                 start: viewModel.phaseTimer)
             case .Pause:
-//                PauseSessionView(state: $viewModel.phase,
-//                                 start: $viewModel.phaseTimer!.displayStart,
-//                                 breakIsOverdrawn:
-//                $viewModel.breakIsOverdrawn)
-                FocusSessionView(state: $viewModel.phase,
-                                 start: .constant(Date.now))
+                PauseSessionView(state: $viewModel.phase,
+                                 start: viewModel.phaseTimer)
             case .Reflect:
                 ReflectSessionView(state: $viewModel.phase)
             }

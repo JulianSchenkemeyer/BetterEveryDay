@@ -42,6 +42,7 @@ struct PhaseMarker {
 final class ThirdTimeViewModel: ObservableObject {
     
     var phaseTimer: PhaseTimer?
+    var availableBreakTime = 0.0
     var focusPhaseHistory: [PhaseMarker] = []
     var pausePhaseHistory: [PhaseMarker] = []
 
@@ -56,12 +57,15 @@ final class ThirdTimeViewModel: ObservableObject {
             case .Focus:
                 appendPreviousPhaseTo(&pausePhaseHistory)
                 
+                availableBreakTime = updateAvailableBreakTime()
+                
                 phaseTimer = PhaseTimer(displayStart: Date.now)
              
             case .Pause:
                 appendPreviousPhaseTo(&focusPhaseHistory)
+
+                availableBreakTime += calculateBreakTime()
                 
-                let availableBreakTime = calculateBreakTime()
                 phaseTimer = PhaseTimer(add: availableBreakTime)
                 
             case .Reflect:
@@ -94,35 +98,14 @@ final class ThirdTimeViewModel: ObservableObject {
             return 0
         }
         
-        return lastFocusPhase.length / 3
+        return (lastFocusPhase.length / 3)
     }
 
-    
-//    private func calculateAvailableBreakTime() -> TimeInterval {
-//        guard let startOfLastFocusSession else { return 0.0 }
-//
-//        let lengthOfLastFocusSession = Date.now.timeIntervalSince1970 - startOfLastFocusSession.timeIntervalSince1970
-//
-//        return ceil(lengthOfLastFocusSession / 3)
-//    }
-//
-//    private func setBreakTimer() -> Date {
-//        let modifiedStartDate = Date.now.timeIntervalSince1970 + availableBreakTime
-//        return Date(timeIntervalSince1970: modifiedStartDate)
-//    }
-//
-//    private func calculateTimeProgressed() -> TimeInterval {
-//        Date.now.timeIntervalSince1970 - timerStart.timeIntervalSince1970
-//    }
-//
-//    private func continuePreviousTimer(with offset: Double) -> Date {
-//        let modifiedStartDate = Date.now.timeIntervalSince1970 - offset
-//        print("continue from \(modifiedStartDate)")
-//
-//        return Date(timeIntervalSince1970: modifiedStartDate)
-//    }
-//
-//    private func calculateMaxBreakTime() {
-//
-//    }
+    private func updateAvailableBreakTime() -> TimeInterval {
+        guard let lastPausePhase = pausePhaseHistory.last else {
+            return 0
+        }
+        
+        return availableBreakTime - lastPausePhase.length
+    }
 }

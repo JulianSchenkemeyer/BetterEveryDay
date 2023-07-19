@@ -9,14 +9,15 @@ import SwiftUI
 
 struct FocusSessionView: View {
     @Binding var state: ThirdTimeState
-    @Binding var start: Date
+    var start: PhaseTimer?
     
     var body: some View {
         VStack {
             Text("FOCUS")
                 .modifier(PhaseLabelModifier())
-            
-            TimerLabelView(date: start)
+            if let start {
+                TimerLabelView(date: start.displayStart)
+            }
             
             HStack {
                 Button {
@@ -41,6 +42,6 @@ struct FocusSessionView_Previews: PreviewProvider {
     static var previews: some View {
         FocusSessionView(
             state: .constant(.Focus),
-            start: .constant(.now))
+            start: PhaseTimer(displayStart: .now))
     }
 }
