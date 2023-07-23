@@ -48,30 +48,35 @@ final class ThirdTimeViewModel: ObservableObject {
 
     
     @Published var phase: ThirdTimeState {
+        willSet(newValue) {
+            // Finish previous phase
+            appendPhaseToHistory()
+            phaseTimer = nil
+        }
         didSet {
+            // Setup new phase
             switch phase {
             case .Prepare:
                 phaseTimer = nil
                 focusPhaseHistory = []
                 pausePhaseHistory = []
             case .Focus:
-                appendPreviousPhaseTo(&pausePhaseHistory)
-                
                 availableBreakTime = updateAvailableBreakTime()
-                
                 phaseTimer = PhaseTimer(displayStart: Date.now)
              
             case .Pause:
-                appendPreviousPhaseTo(&focusPhaseHistory)
-
                 availableBreakTime += calculateBreakTime()
-                
                 phaseTimer = PhaseTimer(add: availableBreakTime)
                 
             case .Reflect:
-                break
-//                totalBreakLength = 0.0
-//                totalFocusLength = 0.0
+                let totalFocusTime = focusPhaseHistory.reduce(into: 0.0) { partialResult, phase in
+                    partialResult = partialResult + phase.length
+                }
+                print("Focus: \(totalFocusTime)")
+                let totalBreakTime = pausePhaseHistory.reduce(into: 0.0) { partialResult, phase in
+                    partialResult = partialResult + phase.length
+                }
+                print("Pause: \(totalBreakTime)")
             }
         }
     }
@@ -86,7 +91,15 @@ final class ThirdTimeViewModel: ObservableObject {
         }
     }
     
-    private func appendPreviousPhaseTo(_ history: inout [PhaseMarker]) {
+    private func appendPhaseToHistory() {
+        if phase == .Focus {
+            appendPhaseTo(&focusPhaseHistory)
+        } else if phase == .Pause {
+            appendPhaseTo(&pausePhaseHistory)
+        }
+    }
+    
+    private func appendPhaseTo(_ history: inout [PhaseMarker]) {
         if let previousTimer = phaseTimer {
             let marker = PhaseMarker(previousTimer)
             history.append(marker)
