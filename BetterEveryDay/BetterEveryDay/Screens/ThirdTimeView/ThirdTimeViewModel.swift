@@ -45,6 +45,8 @@ final class ThirdTimeViewModel: ObservableObject {
     var availableBreakTime = 0.0
     var focusPhaseHistory: [PhaseMarker] = []
     var pausePhaseHistory: [PhaseMarker] = []
+    var totalFocusTime = 0.0
+    var totalBreakTime = 0.0
 
     
     @Published var phase: ThirdTimeState {
@@ -57,9 +59,7 @@ final class ThirdTimeViewModel: ObservableObject {
             // Setup new phase
             switch phase {
             case .Prepare:
-                phaseTimer = nil
-                focusPhaseHistory = []
-                pausePhaseHistory = []
+                reset()
             case .Focus:
                 availableBreakTime = updateAvailableBreakTime()
                 phaseTimer = PhaseTimer(displayStart: Date.now)
@@ -69,14 +69,12 @@ final class ThirdTimeViewModel: ObservableObject {
                 phaseTimer = PhaseTimer(add: availableBreakTime)
                 
             case .Reflect:
-                let totalFocusTime = focusPhaseHistory.reduce(into: 0.0) { partialResult, phase in
+                totalFocusTime = focusPhaseHistory.reduce(into: 0.0) { partialResult, phase in
                     partialResult = partialResult + phase.length
                 }
-                print("Focus: \(totalFocusTime)")
-                let totalBreakTime = pausePhaseHistory.reduce(into: 0.0) { partialResult, phase in
+                totalBreakTime = pausePhaseHistory.reduce(into: 0.0) { partialResult, phase in
                     partialResult = partialResult + phase.length
                 }
-                print("Pause: \(totalBreakTime)")
             }
         }
     }
@@ -89,6 +87,15 @@ final class ThirdTimeViewModel: ObservableObject {
         case .Focus, .Pause:
             phaseTimer = PhaseTimer(displayStart: Date.now)
         }
+    }
+    
+    private func reset() {
+        phaseTimer = nil
+        focusPhaseHistory = []
+        pausePhaseHistory = []
+        totalBreakTime = 0.0
+        totalFocusTime = 0.0
+        availableBreakTime = 0.0
     }
     
     private func appendPhaseToHistory() {

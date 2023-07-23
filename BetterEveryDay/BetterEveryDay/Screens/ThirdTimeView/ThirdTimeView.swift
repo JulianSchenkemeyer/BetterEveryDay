@@ -27,7 +27,9 @@ struct ThirdTimeView: View {
                 PauseSessionView(state: $viewModel.phase,
                                  start: viewModel.phaseTimer)
             case .Reflect:
-                ReflectSessionView(state: $viewModel.phase)
+                ReflectSessionView(state: $viewModel.phase,
+                                   totalFocusTime: viewModel.totalFocusTime,
+                                   totalBreakTime: viewModel.totalBreakTime)
             }
         }
     }
