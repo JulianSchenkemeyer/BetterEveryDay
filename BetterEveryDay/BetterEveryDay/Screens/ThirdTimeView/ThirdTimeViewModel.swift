@@ -41,6 +41,8 @@ struct PhaseMarker {
 
 final class ThirdTimeViewModel: ObservableObject {
     
+    var pauseIsLimited = false
+    
     var phaseTimer: PhaseTimer?
     var availableBreakTime = 0.0
     var focusPhaseHistory: [PhaseMarker] = []
@@ -61,11 +63,11 @@ final class ThirdTimeViewModel: ObservableObject {
             case .Prepare:
                 reset()
             case .Focus:
-                availableBreakTime = updateAvailableBreakTime()
+                availableBreakTime = subtractFromBreakTime()
                 phaseTimer = PhaseTimer(displayStart: Date.now)
              
             case .Pause:
-                availableBreakTime += calculateBreakTime()
+                availableBreakTime = addToBreakTime()
                 phaseTimer = PhaseTimer(add: availableBreakTime)
                 
             case .Reflect:
@@ -113,15 +115,20 @@ final class ThirdTimeViewModel: ObservableObject {
         }
     }
     
-    private func calculateBreakTime() -> TimeInterval {
+    private func addToBreakTime() -> TimeInterval {
         guard let lastFocusPhase = focusPhaseHistory.last else {
             return 0
         }
+        let updatedBreaktime = (lastFocusPhase.length / 3) + availableBreakTime
         
-        return (lastFocusPhase.length / 3)
+        if (pauseIsLimited) {
+            return min(updatedBreaktime, 6)
+        } else {
+            return updatedBreaktime
+        }
     }
 
-    private func updateAvailableBreakTime() -> TimeInterval {
+    private func subtractFromBreakTime() -> TimeInterval {
         guard let lastPausePhase = pausePhaseHistory.last else {
             return 0
         }

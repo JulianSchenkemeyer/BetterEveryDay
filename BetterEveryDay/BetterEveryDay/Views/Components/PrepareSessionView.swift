@@ -9,11 +9,15 @@ import SwiftUI
 
 struct PrepareSessionView: View {
     @Binding var state: ThirdTimeState
+    @Binding var isLimited: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text("PREPARE")
                 .modifier(PhaseLabelModifier())
+     
+            Toggle("limit max pause", isOn: $isLimited)
+                .padding(.horizontal, 80)
             
             Button {
                 state = .Focus
@@ -27,6 +31,6 @@ struct PrepareSessionView: View {
 
 struct PrepareSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        PrepareSessionView(state: .constant(.Prepare))
+        PrepareSessionView(state: .constant(.Prepare), isLimited: .constant(false))
     }
 }
