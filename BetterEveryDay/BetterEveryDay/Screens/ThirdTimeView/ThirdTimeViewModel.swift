@@ -52,10 +52,21 @@ final class ThirdTimeViewModel: ObservableObject {
 
     
     @Published var phase: ThirdTimeState {
-        willSet(newValue) {
+        willSet(newPhase) {
             // Finish previous phase
             appendPhaseToHistory()
             phaseTimer = nil
+            
+            if phase == .Focus && newPhase == .Pause {
+                print("Focus -> Pause")
+                availableBreakTime = addToBreakTime()
+                print(availableBreakTime)
+            }
+            if phase == .Pause && newPhase == .Focus {
+                print("Pause -> Focus")
+                availableBreakTime = subtractFromBreakTime()
+                print(availableBreakTime)
+            }
         }
         didSet {
             // Setup new phase
@@ -63,11 +74,9 @@ final class ThirdTimeViewModel: ObservableObject {
             case .Prepare:
                 reset()
             case .Focus:
-                availableBreakTime = subtractFromBreakTime()
                 phaseTimer = PhaseTimer(displayStart: Date.now)
              
             case .Pause:
-                availableBreakTime = addToBreakTime()
                 phaseTimer = PhaseTimer(add: availableBreakTime)
                 
             case .Reflect:

@@ -32,6 +32,7 @@ struct ReflectSessionView: View {
     
     let totalFocusTime: TimeInterval
     let totalBreakTime: TimeInterval
+    let restBreakTime: TimeInterval
     
     
     var body: some View {
@@ -56,6 +57,14 @@ struct ReflectSessionView: View {
                     HourMinutesDurationTextView(timeInterval: totalBreakTime)
                 }
                 
+                HStack {
+                    Text("Rest Break Time:")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    Spacer()
+                    HourMinutesDurationTextView(timeInterval: restBreakTime)
+                }
+                
             }.padding(.horizontal, 80)
             
             
@@ -73,6 +82,7 @@ struct ReflectSessionView_Previews: PreviewProvider {
     static var previews: some View {
         ReflectSessionView(state: .constant(.Reflect),
                            totalFocusTime: 21.46406602859497,
-                           totalBreakTime: 5.301582098007202)
+                           totalBreakTime: 5.301582098007202,
+                           restBreakTime: 1.37322195370992)
     }
 }
