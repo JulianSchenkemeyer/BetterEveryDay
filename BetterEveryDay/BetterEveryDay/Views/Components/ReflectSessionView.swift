@@ -6,77 +6,6 @@
 //
 
 import SwiftUI
-import Charts
-
-struct HourMinutesDurationTextView: View {
-    
-    let formatter: DateComponentsFormatter
-    let timeInterval: TimeInterval
-    
-    init(timeInterval: TimeInterval) {
-        self.timeInterval = timeInterval
-        
-        self.formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.zeroFormattingBehavior = .dropAll
-        formatter.maximumUnitCount = 2
-        formatter.unitsStyle = .abbreviated
-    }
-    
-    var body: some View {
-        Text(formatter.string(from: timeInterval) ?? "")
-    }
-}
-
-struct TimeSpentData: Identifiable {
-    let id = UUID()
-    
-    let part: Double
-    let category: String
-}
-
-struct TimeSpentView: View {
-    var data: [TimeSpentData] = []
-    var total: TimeInterval
-    
-    init(totalFocusTime: TimeInterval, totalBreakTime: TimeInterval, restBreakTime: TimeInterval) {
-        total = totalFocusTime + totalBreakTime + restBreakTime
-        
-        data.append(.init(part: (totalFocusTime / total), category: "Focus"))
-        data.append(.init(part: (totalBreakTime / total), category: "Break taken"))
-        data.append(.init(part: (restBreakTime / total), category: "Break not taken"))
-        
-        data.forEach { item in
-            print(item.part, item.category, total)
-        }
-        print(data.count)
-    }
-    
-    var body: some View {
-        Chart(data) { item in
-            Plot {
-                BarMark(x: .value("Time", item.part))
-                    .foregroundStyle(by: .value("Phase", item.category))
-            }
-        }
-        .chartPlotStyle { plotArea in
-            plotArea
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(20)
-        
-        }
-        .chartForegroundStyleScale([
-            "Focus": .blue,
-            "Break taken": .orange,
-            "Break not taken": .gray.opacity(0.5)
-        ])
-        .chartXScale(domain: 0...1)
-        .chartXAxis(.hidden)
-        .chartLegend(alignment: .center)
-        .frame(height: 80)
-        .padding(.horizontal, 20)
-    }
-}
 
 struct ReflectSessionView: View {
     @Binding var state: ThirdTimeState
@@ -91,7 +20,7 @@ struct ReflectSessionView: View {
             Text("REFLECT")
                 .modifier(PhaseLabelModifier())
             
-            TimeSpentView(totalFocusTime: totalFocusTime,
+            TimeSpendView(totalFocusTime: totalFocusTime,
                           totalBreakTime: totalBreakTime,
                           restBreakTime: restBreakTime)
             

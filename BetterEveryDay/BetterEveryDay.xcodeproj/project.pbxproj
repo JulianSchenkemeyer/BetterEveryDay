@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2406EB142A70F2E200E3FF6A /* TimeSpendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB132A70F2E200E3FF6A /* TimeSpendData.swift */; };
+		2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */; };
+		2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB192A70F3AD00E3FF6A /* TimeSpendView.swift */; };
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2406EB132A70F2E200E3FF6A /* TimeSpendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSpendData.swift; sourceTree = "<group>"; };
+		2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutesDurationTextView.swift; sourceTree = "<group>"; };
+		2406EB192A70F3AD00E3FF6A /* TimeSpendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSpendView.swift; sourceTree = "<group>"; };
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
@@ -96,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2406EB182A70F39300E3FF6A /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				2406EB192A70F3AD00E3FF6A /* TimeSpendView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		242068A22A4025B400AA3494 /* ThirdTimeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +124,7 @@
 			children = (
 				246D6C2D2A48990300E5B39B /* TimerLabelView.swift */,
 				246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */,
+				2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -128,6 +143,7 @@
 		246D6C3A2A4C041600E5B39B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2406EB132A70F2E200E3FF6A /* TimeSpendData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,6 +230,7 @@
 		B9C479D82A1A63B100C0CE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2406EB182A70F39300E3FF6A /* Charts */,
 				246D6C312A4C015B00E5B39B /* Components */,
 				246D6C2C2A48985B00E5B39B /* Labels */,
 				24E924302A44D295002CA7F8 /* Buttons */,
@@ -353,14 +370,17 @@
 			files = (
 				246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */,
 				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
+				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
 				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
+				2406EB142A70F2E200E3FF6A /* TimeSpendData.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
+				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
