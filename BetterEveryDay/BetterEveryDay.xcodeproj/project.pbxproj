@@ -153,6 +153,28 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		2406EB292A7FE2C300E3FF6A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2406EB2A2A7FE2E000E3FF6A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2406EB2B2A7FE2F900E3FF6A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		242068A22A4025B400AA3494 /* ThirdTimeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,8 +273,10 @@
 		B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */ = {
 			isa = PBXGroup;
 			children = (
+				2406EB2B2A7FE2F900E3FF6A /* Manager */,
+				2406EB2A2A7FE2E000E3FF6A /* Services */,
+				2406EB292A7FE2C300E3FF6A /* ViewModels */,
 				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
-				246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */,
 			);
 			path = BetterEveryDayTests;
 			sourceTree = "<group>";
