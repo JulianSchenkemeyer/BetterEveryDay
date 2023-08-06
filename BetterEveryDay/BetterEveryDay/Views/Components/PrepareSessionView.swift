@@ -16,6 +16,8 @@ struct PrepareSessionView: View {
             Text("PREPARE")
                 .modifier(PhaseLabelModifier())
      
+            RequestNotificationView()
+            
             Toggle("limit max pause", isOn: $isLimited)
                 .padding(.horizontal, 80)
             

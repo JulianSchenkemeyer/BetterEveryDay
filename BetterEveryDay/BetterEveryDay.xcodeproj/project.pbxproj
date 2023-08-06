@@ -15,6 +15,8 @@
 		2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB222A76BEEF00E3FF6A /* NotificationService.swift */; };
 		2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB242A76E6FF00E3FF6A /* BEDNotification.swift */; };
 		2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */; };
+		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
+		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
@@ -62,6 +64,8 @@
 		2406EB222A76BEEF00E3FF6A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2406EB242A76E6FF00E3FF6A /* BEDNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEDNotification.swift; sourceTree = "<group>"; };
 		2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
+		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				246D6C2D2A48990300E5B39B /* TimerLabelView.swift */,
 				246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */,
 				2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */,
+				2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */,
 				246D6C362A4C024800E5B39B /* PauseSessionView.swift */,
 				246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */,
+				2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -450,11 +456,13 @@
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
 				2406EB142A70F2E200E3FF6A /* TimeSpendData.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
+				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
+				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
