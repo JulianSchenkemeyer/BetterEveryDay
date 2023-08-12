@@ -62,7 +62,7 @@ final class ThirdTimeViewModel: ObservableObject {
                 availableBreakTime = addToBreakTime()
                 print(availableBreakTime)
             }
-            if phase == .Pause && newPhase == .Focus {
+            if phase == .Pause && newPhase == .Focus || newPhase == .Reflect {
                 print("Pause -> Focus")
                 availableBreakTime = subtractFromBreakTime()
                 print(availableBreakTime)
