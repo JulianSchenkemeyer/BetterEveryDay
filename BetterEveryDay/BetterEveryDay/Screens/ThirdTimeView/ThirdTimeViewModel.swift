@@ -64,7 +64,7 @@ final class ThirdTimeViewModel: ObservableObject {
                 availableBreakTime = addToBreakTime()
                 print(availableBreakTime)
             }
-            if phase == .Pause && newPhase == .Focus || newPhase == .Reflect {
+            if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
                 print("Pause -> Focus")
                 availableBreakTime = subtractFromBreakTime()
                 notificationManager.removeScheduledNotifications()
