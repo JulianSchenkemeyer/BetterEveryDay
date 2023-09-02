@@ -13,7 +13,14 @@ enum ThirdTimeState {
 
 struct ThirdTimeView: View {
     
-    @StateObject private var viewModel = ThirdTimeViewModel()
+    @ObservedObject private var viewModel: ThirdTimeViewModel
+    
+    init(notificationService: NotificationServiceProtocol) {
+        
+        let notificationManager = NotificationManager(notificationService: notificationService)
+        self.viewModel = ThirdTimeViewModel(notificationManager: notificationManager)
+        
+    }
     
     var body: some View {
         VStack {
@@ -39,6 +46,6 @@ struct ThirdTimeView: View {
 
 struct ThirdTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThirdTimeView()
+        ThirdTimeView(notificationService: NotificationService(notificationCenter: .current()))
     }
 }

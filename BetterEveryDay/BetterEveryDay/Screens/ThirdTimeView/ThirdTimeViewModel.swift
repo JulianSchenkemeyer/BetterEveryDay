@@ -41,6 +41,8 @@ struct PhaseMarker {
 
 final class ThirdTimeViewModel: ObservableObject {
     
+    let notificationManager: NotificationManagerProtocol
+    
     var pauseIsLimited = false
     
     var phaseTimer: PhaseTimer?
@@ -65,6 +67,7 @@ final class ThirdTimeViewModel: ObservableObject {
             if phase == .Pause && newPhase == .Focus || newPhase == .Reflect {
                 print("Pause -> Focus")
                 availableBreakTime = subtractFromBreakTime()
+                notificationManager.removeScheduledNotifications()
                 print(availableBreakTime)
             }
         }
@@ -78,6 +81,7 @@ final class ThirdTimeViewModel: ObservableObject {
              
             case .Pause:
                 phaseTimer = PhaseTimer(add: availableBreakTime)
+                scheduleNotifications()
                 
             case .Reflect:
                 totalFocusTime = focusPhaseHistory.reduce(into: 0.0) { partialResult, phase in
@@ -90,8 +94,10 @@ final class ThirdTimeViewModel: ObservableObject {
         }
     }
     
-    init(phase: ThirdTimeState = .Prepare) {
+    init(phase: ThirdTimeState = .Prepare, notificationManager: NotificationManagerProtocol) {
         self.phase = phase
+        self.notificationManager = notificationManager
+        
         switch phase {
         case .Prepare, .Reflect:
             break
@@ -143,5 +149,13 @@ final class ThirdTimeViewModel: ObservableObject {
         }
         
         return availableBreakTime - lastPausePhase.length
+    }
+    
+    private func scheduleNotifications() {
+        guard availableBreakTime > 0 else { return }
+        
+        let pauseEnds = Date.now.addingTimeInterval(availableBreakTime)
+        let notification = PauseEndedNotification(triggerAt: pauseEnds)
+        notificationManager.schedule(notification: notification)
     }
 }

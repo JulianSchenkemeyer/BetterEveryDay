@@ -24,3 +24,4 @@ BetterEveryDay is currently in its prototype phase. During this stage my goal is
 * Option to limit the max length of a pause (currently hardcoded to 10min)
 * Summary (Reflect) screen, showing the total focus time and break time (separated in used and unused), also shown in a simple bar chart
 * Local notifications, to indicate when the pause quota is used up
+
