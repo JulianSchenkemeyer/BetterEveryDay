@@ -7,37 +7,6 @@
 
 import SwiftUI
 
-struct PhaseTimer {
-    let start: Date
-    let displayStart: Date
-    
-    var length: TimeInterval {
-        Date.now.timeIntervalSince1970 - start.timeIntervalSince1970
-    }
-    
-    init(displayStart: Date) {
-        self.displayStart = displayStart
-        self.start = Date.now
-    }
-    
-    init(add timeInterval: TimeInterval) {
-        let now = Date.now
-        let modifiedDate = now.timeIntervalSince1970 + timeInterval
-        
-        self.displayStart = Date(timeIntervalSince1970: modifiedDate)
-        self.start = now
-    }
-}
-
-struct PhaseMarker {
-    let start: Date
-    let length: TimeInterval
-    
-    init(_ phaseTimer: PhaseTimer) {
-        self.start = phaseTimer.start
-        self.length = phaseTimer.length
-    }
-}
 
 final class ThirdTimeViewModel: ObservableObject {
     
@@ -60,15 +29,11 @@ final class ThirdTimeViewModel: ObservableObject {
             phaseTimer = nil
             
             if phase == .Focus && newPhase == .Pause {
-                print("Focus -> Pause")
                 availableBreakTime = addToBreakTime()
-                print(availableBreakTime)
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
-                print("Pause -> Focus")
                 availableBreakTime = subtractFromBreakTime()
                 notificationManager.removeScheduledNotifications()
-                print(availableBreakTime)
             }
         }
         didSet {
