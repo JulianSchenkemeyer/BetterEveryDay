@@ -9,11 +9,13 @@ import Foundation
 
 
 struct PhaseMarker {
+    let name: ThirdTimeState
     let start: Date
     let length: TimeInterval
     
-    init(_ phaseTimer: PhaseTimer) {
+    init(_ phaseTimer: PhaseTimer, phase: ThirdTimeState) {
         self.start = phaseTimer.start
         self.length = phaseTimer.length
+        self.name = phase
     }
 }

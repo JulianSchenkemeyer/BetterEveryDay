@@ -15,13 +15,9 @@ final class ThirdTimeViewModel: ObservableObject {
     var pauseIsLimited = false
     
     var phaseTimer: PhaseTimer?
-    var availableBreakTime = 0.0
-    var focusPhaseHistory: [PhaseMarker] = []
-    var pausePhaseHistory: [PhaseMarker] = []
-    var totalFocusTime = 0.0
-    var totalBreakTime = 0.0
+    var session: Session
 
-    
+    @Published var availableBreakTime = 0.0
     @Published var phase: ThirdTimeState {
         willSet(newPhase) {
             // Finish previous phase
@@ -29,10 +25,10 @@ final class ThirdTimeViewModel: ObservableObject {
             phaseTimer = nil
             
             if phase == .Focus && newPhase == .Pause {
-                availableBreakTime = addToBreakTime()
+                availableBreakTime = session.availableBreaktime
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
-                availableBreakTime = subtractFromBreakTime()
+                availableBreakTime = session.availableBreaktime
                 notificationManager.removeScheduledNotifications()
             }
         }
@@ -49,12 +45,7 @@ final class ThirdTimeViewModel: ObservableObject {
                 scheduleNotifications()
                 
             case .Reflect:
-                totalFocusTime = focusPhaseHistory.reduce(into: 0.0) { partialResult, phase in
-                    partialResult = partialResult + phase.length
-                }
-                totalBreakTime = pausePhaseHistory.reduce(into: 0.0) { partialResult, phase in
-                    partialResult = partialResult + phase.length
-                }
+                session.setToFinish()
             }
         }
     }
@@ -62,6 +53,7 @@ final class ThirdTimeViewModel: ObservableObject {
     init(phase: ThirdTimeState = .Prepare, notificationManager: NotificationManagerProtocol) {
         self.phase = phase
         self.notificationManager = notificationManager
+        self.session = Session()
         
         switch phase {
         case .Prepare, .Reflect:
@@ -73,47 +65,14 @@ final class ThirdTimeViewModel: ObservableObject {
     
     private func reset() {
         phaseTimer = nil
-        focusPhaseHistory = []
-        pausePhaseHistory = []
-        totalBreakTime = 0.0
-        totalFocusTime = 0.0
-        availableBreakTime = 0.0
+        session = Session()
     }
     
     private func appendPhaseToHistory() {
-        if phase == .Focus {
-            appendPhaseTo(&focusPhaseHistory)
-        } else if phase == .Pause {
-            appendPhaseTo(&pausePhaseHistory)
-        }
-    }
-    
-    private func appendPhaseTo(_ history: inout [PhaseMarker]) {
         if let previousTimer = phaseTimer {
-            let marker = PhaseMarker(previousTimer)
-            history.append(marker)
+            let marker = PhaseMarker(previousTimer, phase: phase)
+            session.append(phase: marker)
         }
-    }
-    
-    private func addToBreakTime() -> TimeInterval {
-        guard let lastFocusPhase = focusPhaseHistory.last else {
-            return 0
-        }
-        let updatedBreaktime = (lastFocusPhase.length / 3) + availableBreakTime
-        
-        if (pauseIsLimited) {
-            return min(updatedBreaktime, 6)
-        } else {
-            return updatedBreaktime
-        }
-    }
-
-    private func subtractFromBreakTime() -> TimeInterval {
-        guard let lastPausePhase = pausePhaseHistory.last else {
-            return 0
-        }
-        
-        return availableBreakTime - lastPausePhase.length
     }
     
     private func scheduleNotifications() {

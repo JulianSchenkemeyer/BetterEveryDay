@@ -10,9 +10,7 @@ import SwiftUI
 struct ReflectSessionView: View {
     @Binding var state: ThirdTimeState
     
-    let totalFocusTime: TimeInterval
-    let totalBreakTime: TimeInterval
-    let restBreakTime: TimeInterval
+    let session: Session
     
     
     var body: some View {
@@ -20,9 +18,9 @@ struct ReflectSessionView: View {
             Text("REFLECT")
                 .modifier(PhaseLabelModifier())
             
-            TimeSpendView(totalFocusTime: totalFocusTime,
-                          totalBreakTime: totalBreakTime,
-                          restBreakTime: restBreakTime)
+            TimeSpendView(totalFocusTime: session.total.focus,
+                          totalBreakTime: session.total.break,
+                          restBreakTime: session.availableBreaktime)
             
             VStack(spacing: 10) {
                 HStack {
@@ -30,7 +28,7 @@ struct ReflectSessionView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                     Spacer()
-                    HourMinutesDurationTextView(timeInterval: totalFocusTime)
+                    HourMinutesDurationTextView(timeInterval: session.total.focus)
                 }
                 
                 HStack {
@@ -38,7 +36,7 @@ struct ReflectSessionView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                     Spacer()
-                    HourMinutesDurationTextView(timeInterval: totalBreakTime)
+                    HourMinutesDurationTextView(timeInterval: session.total.break)
                 }
                 
                 HStack {
@@ -46,7 +44,7 @@ struct ReflectSessionView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                     Spacer()
-                    HourMinutesDurationTextView(timeInterval: restBreakTime)
+                    HourMinutesDurationTextView(timeInterval: session.availableBreaktime)
                 }
                 
             }.padding(.horizontal, 80)
@@ -62,11 +60,11 @@ struct ReflectSessionView: View {
     }
 }
 
-struct ReflectSessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReflectSessionView(state: .constant(.Reflect),
-                           totalFocusTime: 21.46406602859497,
-                           totalBreakTime: 5.301582098007202,
-                           restBreakTime: 1.37322195370992)
-    }
-}
+//struct ReflectSessionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReflectSessionView(state: .constant(.Reflect),
+//                           totalFocusTime: 21.46406602859497,
+//                           totalBreakTime: 5.301582098007202,
+//                           restBreakTime: 1.37322195370992)
+//    }
+//}
