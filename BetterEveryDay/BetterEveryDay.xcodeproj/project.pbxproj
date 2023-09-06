@@ -28,7 +28,11 @@
 		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* PhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */; };
 		24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */; };
-		24DF29822AA4D30900DC40D6 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29812AA4D30900DC40D6 /* Session.swift */; };
+		24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */; };
+		24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */; };
+		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
+		24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */; };
+		24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29892AA5E42000DC40D6 /* SessionFactory.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -80,7 +84,11 @@
 		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimer.swift; sourceTree = "<group>"; };
 		24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarker.swift; sourceTree = "<group>"; };
-		24DF29812AA4D30900DC40D6 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithoutLimit.swift; sourceTree = "<group>"; };
+		24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
+		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
+		24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithLimit.swift; sourceTree = "<group>"; };
+		24DF29892AA5E42000DC40D6 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -240,7 +248,11 @@
 		24DF29802AA4D2EE00DC40D6 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				24DF29812AA4D30900DC40D6 /* Session.swift */,
+				24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */,
+				24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */,
+				24DF29852AA5E3B400DC40D6 /* SessionState.swift */,
+				24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */,
+				24DF29892AA5E42000DC40D6 /* SessionFactory.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -472,6 +484,8 @@
 			files = (
 				246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */,
 				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
+				24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */,
+				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
@@ -490,12 +504,14 @@
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
-				24DF29822AA4D30900DC40D6 /* Session.swift in Sources */,
+				24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
+				24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */,
 				24DF297C2AA4A8F100DC40D6 /* PhaseTimer.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
+				24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

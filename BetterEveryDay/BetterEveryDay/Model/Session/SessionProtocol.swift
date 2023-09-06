@@ -1,22 +1,22 @@
 //
-//  Session.swift
+//  SessionProtocol.swift
 //  BetterEveryDay
 //
-//  Created by Julian Schenkemeyer on 03.09.23.
+//  Created by Julian Schenkemeyer on 04.09.23.
 //
 
 import Foundation
 
 
-enum SessionState {
-    case RUNNING, FINISHED
+protocol SessionProtocol {
+    var state: SessionState { get set }
+    var history: [PhaseMarker] { get set }
+    var started: Date { get }
+    
+    var availableBreakTime: TimeInterval { get }
 }
 
-struct Session {
-    private var state: SessionState
-    private var history: [PhaseMarker]
-    private var started: Date
-    
+extension SessionProtocol {
     var total: (focus: TimeInterval, break: TimeInterval) {
         return history.reduce(into: (focus: 0.0, break: 0.0)) { partialResult, phase in
             if phase.name == .Focus {
@@ -33,21 +33,11 @@ struct Session {
         }
     }
     
-    var availableBreaktime: TimeInterval {
-        total.focus / 3 - total.break
-    }
-    
     mutating func setToFinish() {
         state = .FINISHED
     }
     
     mutating func append(phase: PhaseMarker) {
         history.append(phase)
-    }
-    
-    init() {
-        state = .RUNNING
-        history = []
-        started = .now
     }
 }
