@@ -10,7 +10,7 @@ import SwiftUI
 struct ReflectSessionView: View {
     @Binding var state: ThirdTimeState
     
-    let session: Session
+    let session: SessionProtocol
     
     
     var body: some View {
@@ -19,8 +19,7 @@ struct ReflectSessionView: View {
                 .modifier(PhaseLabelModifier())
             
             TimeSpendView(totalFocusTime: session.total.focus,
-                          totalBreakTime: session.total.break,
-                          restBreakTime: session.availableBreaktime)
+                          totalBreakTime: session.total.break)
             
             VStack(spacing: 10) {
                 HStack {
@@ -44,7 +43,7 @@ struct ReflectSessionView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                     Spacer()
-                    HourMinutesDurationTextView(timeInterval: session.availableBreaktime)
+                    HourMinutesDurationTextView(timeInterval: session.availableBreakTime)
                 }
                 
             }.padding(.horizontal, 80)

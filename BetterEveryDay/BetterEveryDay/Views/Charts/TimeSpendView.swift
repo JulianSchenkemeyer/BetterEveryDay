@@ -12,12 +12,11 @@ struct TimeSpendView: View {
     var data: [TimeSpendData] = []
     var total: TimeInterval
     
-    init(totalFocusTime: TimeInterval, totalBreakTime: TimeInterval, restBreakTime: TimeInterval) {
-        total = totalFocusTime + totalBreakTime + restBreakTime
+    init(totalFocusTime: TimeInterval, totalBreakTime: TimeInterval) {
+        total = totalFocusTime + totalBreakTime
         
         data.append(.init(part: (totalFocusTime / total), category: "Focus"))
         data.append(.init(part: (totalBreakTime / total), category: "Break taken"))
-        data.append(.init(part: (restBreakTime / total), category: "Break not taken"))
         
         data.forEach { item in
             print(item.part, item.category, total)
@@ -54,7 +53,6 @@ struct TimeSpendView: View {
 struct TimeSpendView_Previews: PreviewProvider {
     static var previews: some View {
         TimeSpendView(totalFocusTime: 21.46406602859497,
-                      totalBreakTime: 5.301582098007202,
-                      restBreakTime: 1.37322195370992)
+                      totalBreakTime: 5.301582098007202)
     }
 }
