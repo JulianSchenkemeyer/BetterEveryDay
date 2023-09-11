@@ -10,12 +10,34 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @StateObject var notificationManager = EnvironmentManager.setupNotifications()
+    
     var body: some View {
         
-        NavigationStack {
-            ThirdTimeView(notificationService: NotificationService(notificationCenter: .current()))
-                .navigationTitle("Session")
+        TabView {
+            NavigationStack {
+                ThirdTimeView()
+                    .navigationTitle("Session")
+            }
+            .tabItem {
+                Label("Timer", systemImage: "house")
+            }
+            NavigationStack {
+                Text("Settings")
+                    .navigationTitle("Settings")
+            }
+            .tabItem {
+                Label("Settings", systemImage: "gear")
+            }
         }
+        .environmentObject(notificationManager)
+    }
+}
+
+enum EnvironmentManager {
+    static func setupNotifications() -> NotificationManager {
+        let service = NotificationService(notificationCenter: .current())
+        return NotificationManager(notificationService: service)
     }
 }
 
