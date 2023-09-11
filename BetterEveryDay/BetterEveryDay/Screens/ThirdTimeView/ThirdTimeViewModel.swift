@@ -10,7 +10,6 @@ import SwiftUI
 
 final class ThirdTimeViewModel: ObservableObject {
     
-    private let notificationManager: NotificationManagerProtocol
     private let sessionFactory: SessionFactory
     
     var pauseIsLimited = false
@@ -30,7 +29,6 @@ final class ThirdTimeViewModel: ObservableObject {
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
                 availableBreakTime = session.availableBreakTime
-                notificationManager.removeScheduledNotifications()
             }
         }
         didSet {
@@ -51,9 +49,8 @@ final class ThirdTimeViewModel: ObservableObject {
         }
     }
     
-    init(phase: ThirdTimeState = .Prepare, notificationManager: NotificationManagerProtocol) {
+    init(phase: ThirdTimeState = .Prepare) {
         self.phase = phase
-        self.notificationManager = notificationManager
         self.sessionFactory = SessionFactory()
         self.session = sessionFactory.createSession(withLimit: self.pauseIsLimited)
         
@@ -82,6 +79,5 @@ final class ThirdTimeViewModel: ObservableObject {
         
         let pauseEnds = Date.now.addingTimeInterval(availableBreakTime)
         let notification = PauseEndedNotification(triggerAt: pauseEnds)
-        notificationManager.schedule(notification: notification)
     }
 }
