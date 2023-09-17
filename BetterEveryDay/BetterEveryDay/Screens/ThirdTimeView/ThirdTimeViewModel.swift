@@ -41,7 +41,6 @@ final class ThirdTimeViewModel: ObservableObject {
              
             case .Pause:
                 phaseTimer = PhaseTimer(add: availableBreakTime)
-                scheduleNotifications()
                 
             case .Reflect:
                 session.setToFinish()
@@ -72,12 +71,5 @@ final class ThirdTimeViewModel: ObservableObject {
             let marker = PhaseMarker(previousTimer, phase: phase)
             session.append(phase: marker)
         }
-    }
-    
-    private func scheduleNotifications() {
-        guard availableBreakTime > 0 else { return }
-        
-        let pauseEnds = Date.now.addingTimeInterval(availableBreakTime)
-        let notification = PauseEndedNotification(triggerAt: pauseEnds)
     }
 }
