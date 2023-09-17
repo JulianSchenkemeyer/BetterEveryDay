@@ -18,6 +18,7 @@
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
+		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
 		246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C322A4C019500E5B39B /* PrepareSessionView.swift */; };
@@ -33,6 +34,7 @@
 		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
 		24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */; };
 		24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29892AA5E42000DC40D6 /* SessionFactory.swift */; };
+		24DF298E2AA8500C00DC40D6 /* PhaseTimerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF298D2AA8500C00DC40D6 /* PhaseTimerTest.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -74,6 +76,7 @@
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
+		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
 		246D6C322A4C019500E5B39B /* PrepareSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionView.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
 		24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithLimit.swift; sourceTree = "<group>"; };
 		24DF29892AA5E42000DC40D6 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
+		24DF298D2AA8500C00DC40D6 /* PhaseTimerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimerTest.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -202,6 +206,14 @@
 			path = ThirdTimeView;
 			sourceTree = "<group>";
 		};
+		2433A0972AAFA54A00621188 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				2433A0952AAFA54200621188 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 		246D6C2C2A48985B00E5B39B /* Labels */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +267,22 @@
 				24DF29892AA5E42000DC40D6 /* SessionFactory.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		24DF298B2AA84F9900DC40D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24DF298C2AA84FE000DC40D6 /* Phases */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24DF298C2AA84FE000DC40D6 /* Phases */ = {
+			isa = PBXGroup;
+			children = (
+				24DF298D2AA8500C00DC40D6 /* PhaseTimerTest.swift */,
+			);
+			path = Phases;
 			sourceTree = "<group>";
 		};
 		24E924302A44D295002CA7F8 /* Buttons */ = {
@@ -316,6 +344,7 @@
 		B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */ = {
 			isa = PBXGroup;
 			children = (
+				24DF298B2AA84F9900DC40D6 /* Model */,
 				2406EB2B2A7FE2F900E3FF6A /* Manager */,
 				2406EB2A2A7FE2E000E3FF6A /* Services */,
 				2406EB292A7FE2C300E3FF6A /* ViewModels */,
@@ -337,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				242068A22A4025B400AA3494 /* ThirdTimeView */,
+				2433A0972AAFA54A00621188 /* SettingsView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -511,6 +541,7 @@
 				24DF297C2AA4A8F100DC40D6 /* PhaseTimer.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
+				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
 				24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
+				24DF298E2AA8500C00DC40D6 /* PhaseTimerTest.swift in Sources */,
 				246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
