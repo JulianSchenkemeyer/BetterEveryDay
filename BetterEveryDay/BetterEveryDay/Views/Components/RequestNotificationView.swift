@@ -18,8 +18,6 @@ struct RequestNotificationView: View {
     var body: some View {
         HStack {
             Label("Notifications", systemImage: "envelope")
-                .font(.title3)
-                .fontWeight(.semibold)
             Spacer()
             if isPermissionGranted {
                 BadgeLabelView(text: "Allowed", tint: .green)
@@ -34,12 +32,6 @@ struct RequestNotificationView: View {
 
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.gray.opacity(0.2))
-        )
-        .padding(.horizontal, 20)
         .task {
             await getPermissionStatus()
         }

@@ -16,8 +16,8 @@ struct BadgeLabelView: View {
             .font(.callout)
             .fontWeight(.semibold)
             .foregroundColor(tint)
-            .padding(.vertical, 10)
-            .padding(.horizontal, 15)
+            .padding(.vertical, 15)
+            .padding(.horizontal, 20)
             .background(
                 RoundedRectangle(cornerRadius: 8)
                     .fill(tint.opacity(0.1))

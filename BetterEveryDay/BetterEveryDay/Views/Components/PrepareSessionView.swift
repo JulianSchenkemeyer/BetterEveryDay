@@ -15,11 +15,6 @@ struct PrepareSessionView: View {
         VStack(spacing: 20) {
             Text("PREPARE")
                 .modifier(PhaseLabelModifier())
-     
-            RequestNotificationView()
-            
-            Toggle("limit max pause", isOn: $isLimited)
-                .padding(.horizontal, 80)
             
             Button {
                 state = .Focus
