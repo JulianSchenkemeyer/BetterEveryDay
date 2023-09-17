@@ -23,7 +23,7 @@ struct ContentView: View {
                 Label("Timer", systemImage: "house")
             }
             NavigationStack {
-                Text("Settings")
+                SettingsView()
                     .navigationTitle("Settings")
             }
             .tabItem {
