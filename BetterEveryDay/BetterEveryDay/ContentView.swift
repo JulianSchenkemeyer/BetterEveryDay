@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var notificationManager = EnvironmentManager.setupNotifications()
+    @StateObject private var notificationManager = EnvironmentManager.setupNotifications()
+    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     
     var body: some View {
         
@@ -23,7 +24,7 @@ struct ContentView: View {
                 Label("Timer", systemImage: "house")
             }
             NavigationStack {
-                SettingsView()
+                SettingsView(selectedLimit: $breaktimeLimit)
                     .navigationTitle("Settings")
             }
             .tabItem {

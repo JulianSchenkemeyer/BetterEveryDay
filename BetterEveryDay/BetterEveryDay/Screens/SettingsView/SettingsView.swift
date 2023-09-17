@@ -10,13 +10,13 @@ import SwiftUI
 struct SettingsView: View {
     
     let limits = [0, 3, 4, 5, 6, 7, 8, 9, 10]
-    @State var selectedLimit = 3
+    @Binding var selectedLimit: Int
     
     var body: some View {
         Form {
             Section {
                 
-                Picker("Options for Limit", selection: $selectedLimit) {
+                Picker("Limit Breaktime", selection: $selectedLimit) {
                     ForEach(limits, id: \.self) {
                         LimitOptionsLabel(value: $0)
                     }
@@ -47,6 +47,6 @@ struct LimitOptionsLabel: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(selectedLimit: .constant(3))
     }
 }
