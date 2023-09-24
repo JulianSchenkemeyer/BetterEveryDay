@@ -10,9 +10,9 @@ import Foundation
 
 struct SessionFactory {
     
-    func createSession(withLimit : Bool) -> SessionProtocol {
-        if withLimit {
-            return SessionWithLimit(breakLimit: 10.0)
+    func createSession(with limit: TimeInterval) -> SessionProtocol {
+        if limit > 0 {
+            return SessionWithLimit(breakLimit: limit)
         }
         
         return SessionWithoutLimit()

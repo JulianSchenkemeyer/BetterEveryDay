@@ -17,7 +17,7 @@ struct ContentView: View {
         
         TabView {
             NavigationStack {
-                ThirdTimeView()
+                ThirdTimeView(breaktimeLimit: $breaktimeLimit)
                     .navigationTitle("Session")
             }
             .tabItem {

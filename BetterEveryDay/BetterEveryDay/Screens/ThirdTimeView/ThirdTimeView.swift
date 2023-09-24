@@ -14,6 +14,7 @@ enum ThirdTimeState {
 struct ThirdTimeView: View {
     
     @EnvironmentObject var notificationManager: NotificationManager
+    @Binding var breaktimeLimit: Int
     @StateObject private var viewModel = ThirdTimeViewModel()
     
     
@@ -21,8 +22,7 @@ struct ThirdTimeView: View {
         VStack {
             switch viewModel.phase {
             case .Prepare:
-                PrepareSessionView(state: $viewModel.phase,
-                                   isLimited: $viewModel.pauseIsLimited)
+                PrepareSessionView(state: $viewModel.phase)
             case .Focus:
                 FocusSessionView(state: $viewModel.phase,
                                  start: viewModel.phaseTimer)
@@ -34,11 +34,19 @@ struct ThirdTimeView: View {
                                    session: viewModel.session)
             }
         }
+        .onChange(of: breaktimeLimit) {
+            print("--- Update breaktime to \($0) ---")
+            viewModel.limit = $0
+        }
+        .onAppear {
+            print("--- Set initial breaktime to \(breaktimeLimit)")
+            viewModel.limit = breaktimeLimit
+        }
     }
 }
 
 struct ThirdTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThirdTimeView()
+        ThirdTimeView(breaktimeLimit: .constant(0))
     }
 }

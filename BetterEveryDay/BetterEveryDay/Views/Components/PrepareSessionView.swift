@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PrepareSessionView: View {
     @Binding var state: ThirdTimeState
-    @Binding var isLimited: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -28,6 +27,6 @@ struct PrepareSessionView: View {
 
 struct PrepareSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        PrepareSessionView(state: .constant(.Prepare), isLimited: .constant(false))
+        PrepareSessionView(state: .constant(.Prepare))
     }
 }

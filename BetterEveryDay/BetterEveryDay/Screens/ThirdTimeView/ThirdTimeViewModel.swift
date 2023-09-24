@@ -12,10 +12,9 @@ final class ThirdTimeViewModel: ObservableObject {
     
     private let sessionFactory: SessionFactory
     
-    var pauseIsLimited = false
-    
     var phaseTimer: PhaseTimer?
     var session: SessionProtocol
+    var limit: Int = 0
 
     @Published var availableBreakTime = 0.0
     @Published var phase: ThirdTimeState {
@@ -23,6 +22,10 @@ final class ThirdTimeViewModel: ObservableObject {
             // Finish previous phase
             appendPhaseToHistory()
             phaseTimer = nil
+            
+            if phase == .Prepare {
+                self.session = sessionFactory.createSession(with: Double(limit))
+            }
             
             if phase == .Focus && newPhase == .Pause {
                 availableBreakTime = session.availableBreakTime
@@ -51,7 +54,7 @@ final class ThirdTimeViewModel: ObservableObject {
     init(phase: ThirdTimeState = .Prepare) {
         self.phase = phase
         self.sessionFactory = SessionFactory()
-        self.session = sessionFactory.createSession(withLimit: self.pauseIsLimited)
+        self.session = sessionFactory.createSession(with: 0)
         
         switch phase {
         case .Prepare, .Reflect:
@@ -63,7 +66,6 @@ final class ThirdTimeViewModel: ObservableObject {
     
     private func reset() {
         phaseTimer = nil
-        session = SessionWithoutLimit()
     }
     
     private func appendPhaseToHistory() {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let limits = [0, 3, 4, 5, 6, 7, 8, 9, 10]
+    let limits = [0, 180, 240, 300, 360, 420, 480, 540, 600]
     @Binding var selectedLimit: Int
     
     var body: some View {
@@ -18,7 +18,7 @@ struct SettingsView: View {
                 
                 Picker("Limit Breaktime", selection: $selectedLimit) {
                     ForEach(limits, id: \.self) {
-                        LimitOptionsLabel(value: $0)
+                        LimitOptionsLabel(value: ($0 / 60))
                     }
                 }
                 .padding(.vertical, 10)
