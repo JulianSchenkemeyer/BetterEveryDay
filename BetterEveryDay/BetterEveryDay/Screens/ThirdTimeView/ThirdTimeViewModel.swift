@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-final class ThirdTimeViewModel: ObservableObject {
+@MainActor final class ThirdTimeViewModel: ObservableObject {
     
     private let sessionFactory: SessionFactory
     
@@ -16,6 +16,7 @@ final class ThirdTimeViewModel: ObservableObject {
     var session: SessionProtocol
     var limit: Int = 0
 
+    @Published var goingIntoOvertime = false
     @Published var availableBreakTime = 0.0
     @Published var phase: ThirdTimeState {
         willSet(newPhase) {
@@ -29,9 +30,12 @@ final class ThirdTimeViewModel: ObservableObject {
             
             if phase == .Focus && newPhase == .Pause {
                 availableBreakTime = session.availableBreakTime
+                scheduleOvertime()
+                
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
                 availableBreakTime = session.availableBreakTime
+                goingIntoOvertime = false
             }
         }
         didSet {
@@ -72,6 +76,18 @@ final class ThirdTimeViewModel: ObservableObject {
         if let previousTimer = phaseTimer {
             let marker = PhaseMarker(previousTimer, phase: phase)
             session.append(phase: marker)
+        }
+    }
+    
+    private func scheduleOvertime() {
+        Task {
+            guard availableBreakTime > 0 else {
+                goingIntoOvertime = true
+                return
+            }
+            try? await waitFor(seconds: availableBreakTime)
+            self.goingIntoOvertime = true
+            print("Gone into overtime")
         }
     }
 }

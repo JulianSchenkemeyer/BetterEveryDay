@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct PauseSessionView: View {
-    @State private var breakIsOverdrawn = false
-    
     @Binding var state: ThirdTimeState
-    var start: PhaseTimer?
-
+    @Binding var goneIntoOvertime: Bool
     
+    var start: PhaseTimer?
     
     var body: some View {
         VStack {
             Text("PAUSE")
                 .modifier(PhaseLabelModifier())
-                .foregroundColor(breakIsOverdrawn ? .red : .primary)
+                .foregroundColor(goneIntoOvertime ? .red : .primary)
             
             if let start {
                 TimerLabelView(date: start.displayStart)
-                    .foregroundColor(breakIsOverdrawn ? .red : .primary)
+                    .foregroundColor(goneIntoOvertime ? .red : .primary)
             }
             
             HStack {
@@ -42,26 +40,13 @@ struct PauseSessionView: View {
                 .secondaryButtonStyle()
             }
         }
-        .task(goIntoOvertime)
-    }
-    
-    @Sendable private func goIntoOvertime() async {
-        guard let start else { return }
-        let seconds = start.displayStart.timeIntervalSince1970 - Date.now.timeIntervalSince1970
-        
-        guard seconds > 0 else {
-            breakIsOverdrawn = true
-            return
-        }
-        
-        try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
-        breakIsOverdrawn = true
     }
 }
 
 struct PauseSessionView_Previews: PreviewProvider {
     static var previews: some View {
         PauseSessionView(state: .constant(.Pause),
+                         goneIntoOvertime: .constant(false),
                          start: PhaseTimer(displayStart: .now))
     }
 }

@@ -27,6 +27,7 @@
 		246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */; };
 		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
 		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
+		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* PhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */; };
 		24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */; };
 		24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */; };
@@ -85,6 +86,7 @@
 		246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectSessionView.swift; sourceTree = "<group>"; };
 		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
 		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
+		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimer.swift; sourceTree = "<group>"; };
 		24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarker.swift; sourceTree = "<group>"; };
 		24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithoutLimit.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2406EB1C2A76B4A200E3FF6A /* NotificationHelper.swift */,
+				24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -446,7 +449,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					B9C479A42A16742900C0CE3E = {
 						CreatedOnToolsVersion = 14.3;
@@ -516,6 +519,7 @@
 				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
 				24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
+				24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
@@ -614,9 +618,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -672,9 +678,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -698,6 +706,7 @@
 				CODE_SIGN_ENTITLEMENTS = BetterEveryDay/BetterEveryDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterEveryDay/Preview Content\"";
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -736,6 +745,7 @@
 				CODE_SIGN_ENTITLEMENTS = BetterEveryDay/BetterEveryDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterEveryDay/Preview Content\"";
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -773,6 +783,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -796,6 +807,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -818,6 +830,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -840,6 +853,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;

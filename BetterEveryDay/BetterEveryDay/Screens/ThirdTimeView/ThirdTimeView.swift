@@ -28,11 +28,23 @@ struct ThirdTimeView: View {
                                  start: viewModel.phaseTimer)
             case .Pause:
                 PauseSessionView(state: $viewModel.phase,
+                                 goneIntoOvertime: $viewModel.goingIntoOvertime,
                                  start: viewModel.phaseTimer)
             case .Reflect:
                 ReflectSessionView(state: $viewModel.phase,
                                    session: viewModel.session)
             }
+        }
+        .onChange(of: viewModel.phase) {
+            if ($0 == .Pause) {
+                guard viewModel.availableBreakTime > 0 else { return }
+                schedulePauseEndedNotification()
+            }
+            
+            if ($0 == .Focus) {
+                removeScheduledNotifications()
+            }
+            
         }
         .onChange(of: breaktimeLimit) {
             print("--- Update breaktime to \($0) ---")
@@ -42,6 +54,18 @@ struct ThirdTimeView: View {
             print("--- Set initial breaktime to \(breaktimeLimit)")
             viewModel.limit = breaktimeLimit
         }
+    }
+    
+    private func schedulePauseEndedNotification() {
+        let breaktime = viewModel.availableBreakTime
+        
+        let triggerDate = Date.now.addingTimeInterval(breaktime)
+        let notification = PauseEndedNotification(triggerAt: triggerDate)
+        notificationManager.schedule(notification: notification)
+    }
+    
+    private func removeScheduledNotifications() {
+        notificationManager.removeScheduledNotifications()
     }
 }
 
