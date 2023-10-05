@@ -8,27 +8,28 @@
 import XCTest
 @testable import BetterEveryDay
 
-final class ThirdTimeViewModelTests: XCTestCase {
+
+@MainActor final class ThirdTimeViewModelTests: XCTestCase {
     
     func testModelInit() {
-        var prepare = ThirdTimeViewModel(phase: .Prepare)
+        let prepare = ThirdTimeViewModel(phase: .Prepare)
         XCTAssertEqual(prepare.phase, .Prepare, "view model was not initialised in the prepare phase")
         XCTAssertNil(prepare.phaseTimer, "phaseTimer is not nil")
         
-        var focus = ThirdTimeViewModel(phase: .Focus)
+        let focus = ThirdTimeViewModel(phase: .Focus)
         XCTAssertEqual(focus.phase, .Focus, "view model was not initialised in the focus phase")
         XCTAssertNotNil(focus.phaseTimer, "phaseTimer is nil")
         
-        var pause = ThirdTimeViewModel(phase: .Pause)
+        let pause = ThirdTimeViewModel(phase: .Pause)
         XCTAssertEqual(pause.phase, .Pause, "view model was not initialised in the pause phase")
         XCTAssertNotNil(pause.phaseTimer, "phaseTimer is nil")
         
-        var reflect = ThirdTimeViewModel(phase: .Reflect)
+        let reflect = ThirdTimeViewModel(phase: .Reflect)
         XCTAssertEqual(reflect.phase, .Reflect, "view model was not initialised in the reflect phase")
     }
     
     func testSwitchFromPrepareToFocusSession() {
-        var model = ThirdTimeViewModel()
+        let model = ThirdTimeViewModel()
         XCTAssertEqual(model.phase, .Prepare, "view model was not initialised in the prepare phase")
         XCTAssertNil(model.phaseTimer, "phaseTimer is not nil")
         
@@ -36,69 +37,80 @@ final class ThirdTimeViewModelTests: XCTestCase {
         
         XCTAssertEqual(model.phase, .Focus, "view model was not switched to focus phase")
         XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
-        XCTAssertEqual(model.focusPhaseHistory.count, 0)
-        XCTAssertEqual(model.pausePhaseHistory.count, 0)
+        XCTAssertEqual(model.availableBreakTime, 0.0)
+        XCTAssertEqual(model.session.history.count, 0)
     }
 
     func testSwitchFromFocusToPauseSession() {
-        var model = ThirdTimeViewModel(phase: .Focus)
-        
-        XCTAssertEqual(model.phase, .Focus, "view model was not initialised in the focus phase")
-        XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
-        XCTAssertEqual(model.focusPhaseHistory.count, 0)
-        XCTAssertEqual(model.pausePhaseHistory.count, 0)
+        let model = ThirdTimeViewModel(phase: .Focus)
+        validateInitialPhase(.Focus, for: model)
         
         model.phase = .Pause
         
         XCTAssertEqual(model.phase, .Pause, "view model was not switched to pause phase")
         XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
-        XCTAssertEqual(model.focusPhaseHistory.count, 1)
-        XCTAssertEqual(model.pausePhaseHistory.count, 0)
+        // AvailableBreaktime increases
+        XCTAssert(model.availableBreakTime > 0)
+        XCTAssertEqual(model.session.history.count, 1)
     }
     
     func testSwitchFromPauseToFocusSession() {
-        var model = ThirdTimeViewModel(phase: .Pause)
-        
-        XCTAssertEqual(model.phase, .Pause, "view model was not initialised in the pause phase")
-        XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
-        XCTAssertEqual(model.focusPhaseHistory.count, 0)
-        XCTAssertEqual(model.pausePhaseHistory.count, 0)
+        let model = ThirdTimeViewModel(phase: .Pause)
+        validateInitialPhase(.Pause, for: model)
+
         
         model.phase = .Focus
         
         XCTAssertEqual(model.phase, .Focus, "view model was not switched to focus phase")
         XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
-        XCTAssertEqual(model.focusPhaseHistory.count, 0)
-        XCTAssertEqual(model.pausePhaseHistory.count, 1)
+        // AvailableBreaktime decreases, because we start with pause and
+        // go directly into overtime
+        XCTAssert(model.availableBreakTime < 0)
+        XCTAssertEqual(model.session.history.count, 1)
     }
     
     func testSwitchFromFocusToReflectSession() {
-        var model = ThirdTimeViewModel(phase: .Focus)
-        
-        XCTAssertEqual(model.phase, .Focus, "view model was not initialised in the focus phase")
+        let model = ThirdTimeViewModel(phase: .Focus)
+        validateInitialPhase(.Focus, for: model)
         
         model.phase = .Reflect
         
         XCTAssertEqual(model.phase, .Reflect, "view model was not switched to reflect phase")
+        XCTAssert(model.session.length > 0)
+        XCTAssert(model.availableBreakTime == 0)
+        XCTAssertEqual(model.session.history.count, 1)
+        XCTAssertNil(model.phaseTimer, "remove phasetimer")
     }
     
     func testSwitchFromPauseToReflectSession() {
-        var model = ThirdTimeViewModel(phase: .Pause)
-        
-        XCTAssertEqual(model.phase, .Pause, "view model was not initialised in the pause phase")
+        let model = ThirdTimeViewModel(phase: .Pause)
+        validateInitialPhase(.Pause, for: model)
         
         model.phase = .Reflect
         
         XCTAssertEqual(model.phase, .Reflect, "view model was not switched to reflect phase")
+        XCTAssert(model.session.length > 0)
+        XCTAssert(model.availableBreakTime < 0)
+        XCTAssertEqual(model.session.history.count, 1)
+        XCTAssertNil(model.phaseTimer, "remove phasetimer")
     }
     
     func testSwitchFromReflectToPrepareSession() {
-        var model = ThirdTimeViewModel(phase: .Reflect)
+        let model = ThirdTimeViewModel(phase: .Reflect)
+//        validateInitialPhase(.Reflect, for: model)
         
         XCTAssertEqual(model.phase, .Reflect, "view model was not initialised in the reflect phase")
         
         model.phase = .Prepare
         
         XCTAssertEqual(model.phase, .Prepare, "view model was not switched to prepare phase")
+    }
+    
+    //MARK: Helper
+    private func validateInitialPhase(_ phase: ThirdTimeState, for model: ThirdTimeViewModel) {
+        XCTAssertEqual(model.phase, phase, "view model was not initialised in the \(phase) phase")
+        XCTAssertNotNil(model.phaseTimer, "phaseTimer is nil")
+        XCTAssertEqual(model.availableBreakTime, 0.0)
+        XCTAssertEqual(model.session.history.count, 0)
     }
 }
