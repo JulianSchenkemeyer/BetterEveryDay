@@ -7,8 +7,18 @@
 
 import Foundation
 
+protocol PhaseTimerProtocol {
+    var start: Date { get }
+    var displayStart: Date { get }
+    
+    var length: TimeInterval { get }
+    
+    init(displayStart: Date)
+    
+    init(add timeInterval: TimeInterval)
+}
 
-struct PhaseTimer {
+struct PhaseTimer: PhaseTimerProtocol {
     let start: Date
     let displayStart: Date
     

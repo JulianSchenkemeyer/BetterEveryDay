@@ -12,7 +12,7 @@ import SwiftUI
     
     private let sessionFactory: SessionFactory
     
-    var phaseTimer: PhaseTimer?
+    var phaseTimer: PhaseTimerProtocol?
     var session: SessionProtocol
     var limit: Int = 0
 

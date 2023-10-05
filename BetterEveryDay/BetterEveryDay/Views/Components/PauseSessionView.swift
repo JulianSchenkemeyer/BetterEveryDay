@@ -11,7 +11,7 @@ struct PauseSessionView: View {
     @Binding var state: ThirdTimeState
     @Binding var goneIntoOvertime: Bool
     
-    var start: PhaseTimer?
+    var start: PhaseTimerProtocol?
     
     var body: some View {
         VStack {

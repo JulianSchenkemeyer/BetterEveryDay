@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FocusSessionView: View {
     @Binding var state: ThirdTimeState
-    var start: PhaseTimer?
+    var start: PhaseTimerProtocol?
     
     var body: some View {
         VStack {
