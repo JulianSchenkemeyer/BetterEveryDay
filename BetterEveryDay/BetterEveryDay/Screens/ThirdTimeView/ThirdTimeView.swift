@@ -22,7 +22,7 @@ struct ThirdTimeView: View {
         VStack {
             switch viewModel.phase {
             case .Prepare:
-                PrepareSessionView(state: $viewModel.phase)
+                PrepareSessionView(state: $viewModel.phase, goal: $viewModel.sessionGoal)
             case .Focus:
                 FocusSessionView(state: $viewModel.phase,
                                  start: viewModel.phaseTimer)

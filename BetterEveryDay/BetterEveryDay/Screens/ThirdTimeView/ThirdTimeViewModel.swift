@@ -16,6 +16,7 @@ import SwiftUI
     var session: SessionProtocol
     var limit: Int = 0
 
+    @Published var sessionGoal = ""
     @Published var goingIntoOvertime = false
     @Published var availableBreakTime = 0.0
     @Published var phase: ThirdTimeState {
