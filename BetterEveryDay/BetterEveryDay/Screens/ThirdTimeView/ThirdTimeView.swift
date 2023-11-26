@@ -22,9 +22,14 @@ struct ThirdTimeView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             Text(viewModel.phase.rawValue)
                 .modifier(PhaseLabelModifier())
+            
+            if (viewModel.phase != .Prepare) {
+                Text(viewModel.sessionGoal)
+                    .font(.title3)
+            }
             
             
             switch viewModel.phase {
