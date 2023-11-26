@@ -7,8 +7,11 @@
 
 import SwiftUI
 
-enum ThirdTimeState {
-    case Focus, Pause, Prepare, Reflect
+enum ThirdTimeState: String {
+    case Focus = "Focus"
+    case Pause = "Pause"
+    case Prepare = "Prepare"
+    case Reflect = "Reflect"
 }
 
 struct ThirdTimeView: View {
@@ -20,6 +23,10 @@ struct ThirdTimeView: View {
     
     var body: some View {
         VStack {
+            Text(viewModel.phase.rawValue)
+                .modifier(PhaseLabelModifier())
+            
+            
             switch viewModel.phase {
             case .Prepare:
                 PrepareSessionView(state: $viewModel.phase, goal: $viewModel.sessionGoal)

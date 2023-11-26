@@ -13,9 +13,6 @@ struct PrepareSessionView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("PREPARE")
-                .modifier(PhaseLabelModifier())
-            
             TextField("What do you want to work on?", text: $goal,
                       axis: .vertical)
                 .multilineTextAlignment(.center)

@@ -13,8 +13,6 @@ struct FocusSessionView: View {
     
     var body: some View {
         VStack {
-            Text("FOCUS")
-                .modifier(PhaseLabelModifier())
             if let start {
                 TimerLabelView(date: start.displayStart)
             }

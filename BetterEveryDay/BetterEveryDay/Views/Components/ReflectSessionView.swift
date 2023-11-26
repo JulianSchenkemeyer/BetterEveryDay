@@ -15,9 +15,6 @@ struct ReflectSessionView: View {
     
     var body: some View {
         VStack(spacing: 40) {
-            Text("REFLECT")
-                .modifier(PhaseLabelModifier())
-            
             TimeSpendView(totalFocusTime: session.total.focus,
                           totalBreakTime: session.total.break)
             

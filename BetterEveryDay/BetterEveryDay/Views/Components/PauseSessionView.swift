@@ -15,10 +15,6 @@ struct PauseSessionView: View {
     
     var body: some View {
         VStack {
-            Text("PAUSE")
-                .modifier(PhaseLabelModifier())
-                .foregroundColor(goneIntoOvertime ? .red : .primary)
-            
             if let start {
                 TimerLabelView(date: start.displayStart)
                     .foregroundColor(goneIntoOvertime ? .red : .primary)

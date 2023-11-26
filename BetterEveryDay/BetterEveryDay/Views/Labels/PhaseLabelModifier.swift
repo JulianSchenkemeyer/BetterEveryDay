@@ -10,7 +10,7 @@ import SwiftUI
 struct PhaseLabelModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.title3)
+            .font(.title2)
             .fontWeight(.semibold)
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
     }
