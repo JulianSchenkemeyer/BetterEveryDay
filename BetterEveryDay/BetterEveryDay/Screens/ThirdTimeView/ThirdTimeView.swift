@@ -17,7 +17,7 @@ enum ThirdTimeState: String {
 struct ThirdTimeView: View {
     
     @EnvironmentObject var notificationManager: NotificationManager
-    @Binding var breaktimeLimit: Int
+    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @StateObject private var viewModel = ThirdTimeViewModel()
     
     
@@ -59,11 +59,9 @@ struct ThirdTimeView: View {
             
         }
         .onChange(of: breaktimeLimit) {
-            print("--- Update breaktime to \($0) ---")
             viewModel.limit = $0
         }
         .onAppear {
-            print("--- Set initial breaktime to \(breaktimeLimit)")
             viewModel.limit = breaktimeLimit
         }
     }
@@ -83,6 +81,6 @@ struct ThirdTimeView: View {
 
 struct ThirdTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThirdTimeView(breaktimeLimit: .constant(0))
+        ThirdTimeView()
     }
 }
