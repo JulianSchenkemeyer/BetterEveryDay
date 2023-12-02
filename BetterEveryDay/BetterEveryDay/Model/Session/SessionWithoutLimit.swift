@@ -9,6 +9,8 @@ import Foundation
 
 
 struct SessionWithoutLimit: SessionProtocol {
+    var type: SessionType = .limitless
+    var goal: String = ""
     var state: SessionState
     var history: [PhaseMarker]
     var started: Date

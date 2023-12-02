@@ -27,6 +27,8 @@ final class BreaktimeTracker {
 }
 
 struct SessionWithLimit: SessionProtocol {
+    let type: SessionType = .withLimit
+    var goal: String = ""
     var state: SessionState
     var history: [PhaseMarker] {
         didSet {
