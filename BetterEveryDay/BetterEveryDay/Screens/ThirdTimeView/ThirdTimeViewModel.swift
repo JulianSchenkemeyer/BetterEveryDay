@@ -27,6 +27,7 @@ import SwiftUI
             
             if phase == .Prepare {
                 self.session = sessionFactory.createSession(with: Double(limit))
+                self.session.goal = sessionGoal
             }
             
             if phase == .Focus && newPhase == .Pause {
