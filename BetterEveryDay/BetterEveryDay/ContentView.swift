@@ -10,8 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject private var notificationManager = EnvironmentManager.setupNotifications()
-    
     var body: some View {
         
         TabView {
