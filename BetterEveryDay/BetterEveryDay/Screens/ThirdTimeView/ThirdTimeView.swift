@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum ThirdTimeState: String {
+enum ThirdTimeState: String, Codable {
     case Focus = "Focus"
     case Pause = "Pause"
     case Prepare = "Prepare"

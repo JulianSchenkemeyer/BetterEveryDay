@@ -10,7 +10,7 @@ import Foundation
 
 protocol SessionProtocol {
     var type: SessionType { get }
-    var goal: String { get }
+    var goal: String { get set }
     var state: SessionState { get set }
     var history: [PhaseMarker] { get set }
     var started: Date { get }

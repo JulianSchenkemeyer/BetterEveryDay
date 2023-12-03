@@ -8,6 +8,7 @@
 import Foundation
 
 
-enum SessionState {
-    case RUNNING, FINISHED
+enum SessionState: String, Codable {
+    case RUNNING = "Running"
+    case FINISHED = "Finished"
 }
