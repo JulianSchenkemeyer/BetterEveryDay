@@ -29,16 +29,10 @@ struct ContentView: View {
                 Label("Settings", systemImage: "gear")
             }
         }
-        .environmentObject(notificationManager)
     }
 }
 
-enum EnvironmentManager {
-    static func setupNotifications() -> NotificationManager {
-        let service = NotificationService(notificationCenter: .current())
-        return NotificationManager(notificationService: service)
-    }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
