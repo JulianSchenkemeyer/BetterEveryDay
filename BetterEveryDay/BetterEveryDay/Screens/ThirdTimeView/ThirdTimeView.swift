@@ -18,6 +18,7 @@ enum ThirdTimeState: String, Codable {
 struct ThirdTimeView: View {
     
     @EnvironmentObject var notificationManager: NotificationManager
+    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @StateObject private var viewModel = ThirdTimeViewModel()
     
@@ -48,19 +49,28 @@ struct ThirdTimeView: View {
                                    session: viewModel.session)
             }
         }
-        .onChange(of: viewModel.phase) {
-            if ($0 == .Pause) {
+        .onChange(of: viewModel.phase) { old, new in
+            if (new == .Pause) {
                 guard viewModel.availableBreakTime > 0 else { return }
                 schedulePauseEndedNotification()
             }
+            print(new, old)
+            print(viewModel.session.state)
+            print( viewModel.session.history.count)
             
-            if ($0 == .Focus) {
+            if (new == .Focus) {
                 removeScheduledNotifications()
             }
             
+            if (old == .Prepare) {
+                persistenceManager.createNewSession(session: viewModel.session)
+            }
+            if (new == .Reflect) {
+                persistenceManager.finishRunningSession()
+            }
         }
-        .onChange(of: breaktimeLimit) {
-            viewModel.limit = $0
+        .onChange(of: breaktimeLimit) { old, new in
+            viewModel.limit = new
         }
         .onAppear {
             viewModel.limit = breaktimeLimit
