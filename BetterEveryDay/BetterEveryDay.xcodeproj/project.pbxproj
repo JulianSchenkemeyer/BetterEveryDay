@@ -41,6 +41,8 @@
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
+		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
+		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
 		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
 		B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479AC2A16742C00C0CE3E /* Assets.xcassets */; };
@@ -102,6 +104,8 @@
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
 		B9C479AA2A16742900C0CE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */,
+				24F3F2922B19F766008063B2 /* PersistenceManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 		246D6C3A2A4C041600E5B39B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24F3F2942B1A3994008063B2 /* Data */,
 				24DF29802AA4D2EE00DC40D6 /* Session */,
 				24DF297F2AA4A90400DC40D6 /* Phases */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
@@ -310,6 +316,14 @@
 				24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		24F3F2942B1A3994008063B2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				24F3F2952B1A39C8008063B2 /* SessionData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B9C4799C2A16742900C0CE3E = {
@@ -538,6 +552,7 @@
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
+				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
 				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
@@ -546,6 +561,7 @@
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
 				24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */,
+				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
