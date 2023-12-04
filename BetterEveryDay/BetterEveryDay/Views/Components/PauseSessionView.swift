@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PauseSessionView: View {
     @Binding var state: ThirdTimeState
-    @Binding var goneIntoOvertime: Bool
+    @Binding var availableBreaktime: TimeInterval
+    
+    @State private var goneIntoOvertime = false
     
     var start: PhaseTimerProtocol?
     
@@ -36,13 +38,21 @@ struct PauseSessionView: View {
                 .secondaryButtonStyle()
             }
         }
+        .task {
+            guard availableBreaktime > 0 else {
+                self.goneIntoOvertime = true
+                return
+            }
+            try? await waitFor(seconds: availableBreaktime)
+            self.goneIntoOvertime = true            
+        }
     }
 }
 
 struct PauseSessionView_Previews: PreviewProvider {
     static var previews: some View {
         PauseSessionView(state: .constant(.Pause),
-                         goneIntoOvertime: .constant(false),
+                         availableBreaktime: .constant(0.0),
                          start: PhaseTimer(displayStart: .now))
     }
 }

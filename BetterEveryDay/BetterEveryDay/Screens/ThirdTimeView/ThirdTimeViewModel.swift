@@ -17,7 +17,6 @@ import SwiftUI
     var limit: Int = 0
 
     @Published var sessionGoal = ""
-    @Published var goingIntoOvertime = false
     @Published var availableBreakTime = 0.0
     @Published var phase: ThirdTimeState {
         willSet(newPhase) {
@@ -32,12 +31,10 @@ import SwiftUI
             
             if phase == .Focus && newPhase == .Pause {
                 availableBreakTime = session.availableBreakTime
-                scheduleOvertime()
                 
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
                 availableBreakTime = session.availableBreakTime
-                goingIntoOvertime = false
             }
         }
         didSet {
@@ -78,18 +75,6 @@ import SwiftUI
         if let previousTimer = phaseTimer {
             let marker = PhaseMarker(previousTimer, phase: phase)
             session.append(phase: marker)
-        }
-    }
-    
-    private func scheduleOvertime() {
-        Task {
-            guard availableBreakTime > 0 else {
-                goingIntoOvertime = true
-                return
-            }
-            try? await waitFor(seconds: availableBreakTime)
-            self.goingIntoOvertime = true
-            print("Gone into overtime")
         }
     }
 }
