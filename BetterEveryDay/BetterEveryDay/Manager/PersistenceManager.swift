@@ -59,7 +59,11 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
     func update(session: SessionProtocol) {
         guard let currentSession else { return }
         
-        
+        if session.history.count > currentSession.phases.count, let lastPhase = session.history.last {
+            let phase = PhaseData(type: lastPhase.name, started: lastPhase.start, length: lastPhase.length)
+            currentSession.phases.append(phase)
+        }
+        currentSession.availableBreaktime = session.availableBreakTime
     }
     
     func getLatest() {

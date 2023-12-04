@@ -46,11 +46,11 @@ enum SessionType: String, Codable {
 final class PhaseData {
     var type: ThirdTimeState
     var started: Date
-    var finished: Date?
+    var length: TimeInterval?
     
-    init(type: ThirdTimeState, started: Date, finished: Date? = nil) {
+    init(type: ThirdTimeState, started: Date, length: TimeInterval? = nil) {
         self.type = type
         self.started = started
-        self.finished = finished
+        self.length = length
     }
 }

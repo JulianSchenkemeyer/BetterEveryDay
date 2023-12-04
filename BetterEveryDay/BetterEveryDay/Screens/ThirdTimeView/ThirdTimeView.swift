@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-enum ThirdTimeState: String {
 enum ThirdTimeState: String, Codable {
     case Focus = "Focus"
     case Pause = "Pause"
@@ -42,7 +41,7 @@ struct ThirdTimeView: View {
                                  start: viewModel.phaseTimer)
             case .Pause:
                 PauseSessionView(state: $viewModel.phase,
-                                 goneIntoOvertime: $viewModel.goingIntoOvertime,
+                                 availableBreaktime: $viewModel.availableBreakTime,
                                  start: viewModel.phaseTimer)
             case .Reflect:
                 ReflectSessionView(state: $viewModel.phase,
@@ -53,13 +52,14 @@ struct ThirdTimeView: View {
             if (new == .Pause) {
                 guard viewModel.availableBreakTime > 0 else { return }
                 schedulePauseEndedNotification()
+                
+                persistenceManager.update(session: viewModel.session)
             }
-            print(new, old)
-            print(viewModel.session.state)
-            print( viewModel.session.history.count)
             
             if (new == .Focus) {
                 removeScheduledNotifications()
+                
+                persistenceManager.update(session: viewModel.session)
             }
             
             if (old == .Prepare) {
