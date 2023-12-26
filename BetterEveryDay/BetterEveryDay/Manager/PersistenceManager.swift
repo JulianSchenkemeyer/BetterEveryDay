@@ -19,7 +19,7 @@ protocol PersistenceManagerProtocol {
     
     func update(session: SessionProtocol) async
     
-    func getLatest() async
+    func getLatestRunningSession() async
     
     func get() async
 }
@@ -51,7 +51,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
     
     func finishRunningSession() {
         guard let currentSession else { return }
-        currentSession.state = .FINISHED
+        currentSession.state = SessionState.FINISHED.rawValue
         
         self.currentSession = nil
     }
@@ -66,8 +66,21 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
         currentSession.availableBreaktime = session.availableBreakTime
     }
     
-    func getLatest() {
+    func getLatestRunningSession() {
+        let runningState = SessionState.RUNNING.rawValue
+        let predicate = #Predicate<SessionData> { session in
+            session.state == runningState
+        }
+        let sorting = [SortDescriptor<SessionData>(\.started, order: .reverse)]
+        var fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sorting)
+        fetchDescriptor.fetchLimit = 1
         
+        do {
+            let unfinishedSession = try modelContainer.mainContext.fetch(fetchDescriptor)
+            print("fetched \(unfinishedSession.count) Sessions")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func get() {

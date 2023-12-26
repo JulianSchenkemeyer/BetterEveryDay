@@ -11,8 +11,8 @@ import SwiftData
 
 @Model
 final class SessionData {
-    var type: SessionType
-    var state: SessionState
+    var type: SessionType.RawValue
+    var state: SessionState.RawValue
     var goal: String
     var started: Date
     var phases: [PhaseData]
@@ -25,8 +25,8 @@ final class SessionData {
          phases: [PhaseData],
          availableBreaktime: TimeInterval
     ) {
-        self.type = type
-        self.state = state
+        self.type = type.rawValue
+        self.state = state.rawValue
         self.goal = goal
         self.started = started
         self.phases = phases
@@ -44,12 +44,12 @@ enum SessionType: String, Codable {
 
 @Model
 final class PhaseData {
-    var type: ThirdTimeState
+    var type: ThirdTimeState.RawValue
     var started: Date
     var length: TimeInterval?
     
     init(type: ThirdTimeState, started: Date, length: TimeInterval? = nil) {
-        self.type = type
+        self.type = type.rawValue
         self.started = started
         self.length = length
     }
