@@ -18,4 +18,10 @@ struct PhaseMarker {
         self.length = phaseTimer.length
         self.name = phase
     }
+    
+    init(name: ThirdTimeState, start: Date, length: TimeInterval) {
+        self.name = name
+        self.start = start
+        self.length = length
+    }
 }

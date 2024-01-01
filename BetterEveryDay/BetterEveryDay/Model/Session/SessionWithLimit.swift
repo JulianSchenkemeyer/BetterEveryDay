@@ -54,11 +54,18 @@ struct SessionWithLimit: SessionProtocol {
         return tracker.breaktime
     }
     
-    init(breakLimit: TimeInterval) {
+    
+    init(goal: String, history: [PhaseMarker], started: Date, breaktime: TimeInterval,breakLimit: TimeInterval) {
+        self.goal = goal
         self.state = .RUNNING
-        self.history = []
-        self.started = .now
+        self.history = history
+        self.started = started
         self.breakLimit = breakLimit
-        self.tracker = BreaktimeTracker(breaktime: 0, limit: breakLimit)
+        
+        self.tracker = BreaktimeTracker(breaktime: breaktime, limit: breakLimit)
+    }
+    
+    init(breakLimit: TimeInterval) {
+        self.init(goal: "", history: [], started: .now, breaktime: 0, breakLimit: breakLimit)
     }
 }

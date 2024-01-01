@@ -16,12 +16,18 @@ struct SessionWithoutLimit: SessionProtocol {
     var started: Date
     
     var availableBreakTime: TimeInterval {
+        print("____ Available Breaktime \(total.focus / 3 - total.break)")
         return total.focus / 3 - total.break
     }
     
-    init() {
+    init(goal: String, history: [PhaseMarker], started: Date) {
         self.state = .RUNNING
-        self.history = []
-        self.started = .now
+        self.goal = goal
+        self.history = history
+        self.started = started
+    }
+    
+    init() {
+        self.init(goal: "", history: [], started: .now)
     }
 }
