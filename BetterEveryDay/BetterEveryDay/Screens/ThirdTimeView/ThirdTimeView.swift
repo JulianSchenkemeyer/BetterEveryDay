@@ -74,6 +74,14 @@ struct ThirdTimeView: View {
         }
         .onAppear {
             viewModel.limit = breaktimeLimit
+            restorePreviousSession()
+    
+    private func restorePreviousSession() {
+        if persistenceManager.currentSession == nil {
+            let unfinishedSession = persistenceManager.getLatestRunningSession()
+            guard let unfinishedSession else { return }
+            
+            viewModel.restore(session: unfinishedSession)
         }
     }
     

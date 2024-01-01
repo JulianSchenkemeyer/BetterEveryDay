@@ -77,4 +77,23 @@ import SwiftUI
             session.append(phase: marker)
         }
     }
+    
+    func restore(session: SessionProtocol) {
+        self.sessionGoal = session.goal
+        self.availableBreakTime = session.availableBreakTime
+        
+        self.session = session
+        
+        
+        if let lastPhase = session.history.last {
+            switch lastPhase.name {
+            case .Focus:
+                self.phase = .Pause
+            case .Pause:
+                self.phase = .Focus
+            default:
+                self.phase = lastPhase.name
+            }
+        }
+    }
 }

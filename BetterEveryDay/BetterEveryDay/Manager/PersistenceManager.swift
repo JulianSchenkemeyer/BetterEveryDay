@@ -10,16 +10,13 @@ import SwiftData
 
 @MainActor
 protocol PersistenceManagerProtocol {
-    
-    var currentSession: SessionData? { get set }
-    
     func createNewSession(session: SessionProtocol) async
     
     func finishRunningSession() async
     
     func update(session: SessionProtocol) async
     
-    func getLatestRunningSession() async
+    func getLatestRunningSession() async -> SessionProtocol?
     
     func get() async
 }
@@ -38,7 +35,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
     }
     
     func createNewSession(session: SessionProtocol) {
-        let newSession = SessionData(type: .limitless,
+        let newSession = SessionData(type: session.type,
                                      state: session.state,
                                      goal: session.goal,
                                      started: session.started,
@@ -66,7 +63,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
         currentSession.availableBreaktime = session.availableBreakTime
     }
     
-    func getLatestRunningSession() {
+    func getLatestRunningSession() -> SessionProtocol? {
         let runningState = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == runningState
@@ -76,17 +73,51 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
         fetchDescriptor.fetchLimit = 1
         
         do {
-            let unfinishedSession = try modelContainer.mainContext.fetch(fetchDescriptor)
-            print("fetched \(unfinishedSession.count) Sessions")
+            let unfinishedSessions = try modelContainer.mainContext.fetch(fetchDescriptor)
+            guard let unfinishedSession = unfinishedSessions.first else { return nil }
+            
+            let restoredSession = convert(session: unfinishedSession)
+            currentSession = unfinishedSession
+            
+            return restoredSession
         } catch {
             print(error.localizedDescription)
+            return nil
         }
     }
     
     func get() {
         
     }
-    
-    
+
+    func convert(session: SessionData) -> SessionProtocol {
+        let type = SessionType(rawValue: session.type)!
+        let goal = session.goal
+//        let state = SessionState(rawValue: session.state)
+        let started = session.started
+        
+        let history = session.phases.map { phase in
+            PhaseMarker(name: ThirdTimeState(rawValue: phase.type)!,
+                        start: phase.started,
+                        length: phase.length ?? 0)
+        }
+        
+        switch type {
+        case .limitless:
+            print("convert to session without limit")
+            
+            return SessionWithoutLimit(goal: goal,
+                                       history: history,
+                                       started: started)
+        case .withLimit:
+            print("convert to session with limit")
+            
+            return SessionWithLimit(goal: goal,
+                                    history: history,
+                                    started: started,
+                                    breaktime: session.availableBreaktime,
+                                    breakLimit: 10)
+        }
+    }
 }
 
