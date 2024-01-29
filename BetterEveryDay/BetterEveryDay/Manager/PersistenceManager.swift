@@ -10,7 +10,7 @@ import SwiftData
 
 @MainActor
 protocol PersistenceManagerProtocol {
-    func createNewSession(session: SessionProtocol) async
+    func createNewSession(session: SessionProtocol, breakLimit: TimeInterval) async
     
     func finishRunningSession() async
     
@@ -34,13 +34,14 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
         }()
     }
     
-    func createNewSession(session: SessionProtocol) {
+    func createNewSession(session: SessionProtocol, breakLimit: TimeInterval) {
         let newSession = SessionData(type: session.type,
                                      state: session.state,
                                      goal: session.goal,
                                      started: session.started,
                                      phases: [],
-                                     availableBreaktime: session.availableBreakTime)
+                                     availableBreaktime: session.availableBreakTime,
+                                     breakLimit: breakLimit)
         
         currentSession = newSession
         modelContainer.mainContext.insert(newSession)

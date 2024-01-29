@@ -63,7 +63,7 @@ struct ThirdTimeView: View {
             }
             
             if (old == .Prepare) {
-                persistenceManager.createNewSession(session: viewModel.session)
+                persistenceManager.createNewSession(session: viewModel.session, breakLimit: TimeInterval(viewModel.limit))
             }
             if (new == .Reflect) {
                 persistenceManager.finishRunningSession()

@@ -16,6 +16,7 @@ final class SessionData {
     var goal: String
     var started: Date
     var phases: [PhaseData]
+    var breakLimit: TimeInterval
     var availableBreaktime: Double
     
     init(type: SessionType,
@@ -23,7 +24,8 @@ final class SessionData {
          goal: String,
          started: Date,
          phases: [PhaseData],
-         availableBreaktime: TimeInterval
+         availableBreaktime: TimeInterval,
+         breakLimit: TimeInterval
     ) {
         self.type = type.rawValue
         self.state = state.rawValue
@@ -31,6 +33,7 @@ final class SessionData {
         self.started = started
         self.phases = phases
         self.availableBreaktime = availableBreaktime
+        self.breakLimit = breakLimit
     }
 }
 
