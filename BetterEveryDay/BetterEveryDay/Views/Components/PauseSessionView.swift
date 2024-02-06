@@ -18,7 +18,7 @@ struct PauseSessionView: View {
     var body: some View {
         VStack {
             if let start {
-                TimerLabelView(date: start.displayStart)
+                TimerLabelView(date: start.start)
                     .foregroundColor(goneIntoOvertime ? .red : .primary)
             }
             
@@ -53,6 +53,6 @@ struct PauseSessionView_Previews: PreviewProvider {
     static var previews: some View {
         PauseSessionView(state: .constant(.Pause),
                          availableBreaktime: .constant(0.0),
-                         start: PhaseTimer(displayStart: .now))
+                         start: PhaseTimer(start: .now))
     }
 }

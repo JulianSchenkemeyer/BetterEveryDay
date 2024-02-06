@@ -14,7 +14,7 @@ struct FocusSessionView: View {
     var body: some View {
         VStack {
             if let start {
-                TimerLabelView(date: start.displayStart)
+                TimerLabelView(date: start.start)
             }
             
             HStack {
@@ -40,6 +40,6 @@ struct FocusSessionView_Previews: PreviewProvider {
     static var previews: some View {
         FocusSessionView(
             state: .constant(.Focus),
-            start: PhaseTimer(displayStart: .now))
+            start: PhaseTimer(start: .now))
     }
 }

@@ -63,7 +63,9 @@ struct ThirdTimeView: View {
             }
             
             if (old == .Prepare) {
-                persistenceManager.createNewSession(session: viewModel.session, breakLimit: TimeInterval(viewModel.limit))
+                if persistenceManager.currentSession == nil {
+                    persistenceManager.createNewSession(session: viewModel.session, breakLimit: TimeInterval(viewModel.limit))
+                }
             }
             if (new == .Reflect) {
                 persistenceManager.finishRunningSession()
@@ -75,6 +77,7 @@ struct ThirdTimeView: View {
         .onAppear {
             viewModel.limit = breaktimeLimit
             restorePreviousSession()
+        }
     
     private func restorePreviousSession() {
         if persistenceManager.currentSession == nil {
