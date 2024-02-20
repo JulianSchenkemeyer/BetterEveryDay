@@ -29,6 +29,7 @@
 		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
 		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		247FD1292B72B990009CEB88 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD1282B72B990009CEB88 /* Date+Ext.swift */; };
+		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* PhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */; };
@@ -93,6 +94,7 @@
 		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
 		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		247FD1282B72B990009CEB88 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarkerTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* PhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimer.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				246D6C312A4C015B00E5B39B /* Components */,
 				246D6C2C2A48985B00E5B39B /* Labels */,
 				24E924302A44D295002CA7F8 /* Buttons */,
+				247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
+				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
