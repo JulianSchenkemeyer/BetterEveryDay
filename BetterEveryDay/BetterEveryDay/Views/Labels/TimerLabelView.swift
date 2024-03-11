@@ -12,7 +12,7 @@ struct TimerLabelView: View {
     
     var body: some View {
         Text(date, style: .timer)
-            .font(.system(size: 80))
+            .font(.system(size: 60))
             .fontWeight(.bold)
     }
 }

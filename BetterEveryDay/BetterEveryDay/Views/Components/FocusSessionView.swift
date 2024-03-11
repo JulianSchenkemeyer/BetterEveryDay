@@ -12,9 +12,12 @@ struct FocusSessionView: View {
     var start: PhaseTimerProtocol?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 200) {
             if let start {
                 TimerLabelView(date: start.start)
+                    .background(
+                        BackgroundElement(size: 300)
+                    )
             }
             
             HStack {
@@ -40,6 +43,6 @@ struct FocusSessionView_Previews: PreviewProvider {
     static var previews: some View {
         FocusSessionView(
             state: .constant(.Focus),
-            start: PhaseTimer(start: .now))
+            start: FocusPhaseTimer(start: .now))
     }
 }
