@@ -29,6 +29,7 @@
 		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
 		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
+		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */; };
@@ -93,6 +94,7 @@
 		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
 		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
+		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarkerTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPhaseTimer.swift; sourceTree = "<group>"; };
@@ -278,6 +280,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		24912E552B9F5F6E001AB4C7 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		24DF297F2AA4A90400DC40D6 /* Phases */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +368,7 @@
 		B9C479A72A16742900C0CE3E /* BetterEveryDay */ = {
 			isa = PBXGroup;
 			children = (
+				24912E552B9F5F6E001AB4C7 /* Animations */,
 				247FD1272B72B978009CEB88 /* Extensions */,
 				2406EB262A76ECDD00E3FF6A /* Manager */,
 				2406EB212A76BEDA00E3FF6A /* Services */,
@@ -560,6 +571,7 @@
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
+				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
