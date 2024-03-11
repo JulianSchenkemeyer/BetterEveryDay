@@ -12,7 +12,7 @@ final class PhaseMarkerTests: XCTestCase {
 
     func testInit() throws {
         let now = Date.now
-        let phaseTimer = PhaseTimer(displayStart: now)
+        let phaseTimer = FocusPhaseTimer(start: now)
         let phaseMarker = PhaseMarker(phaseTimer, phase: .Focus)
         
         

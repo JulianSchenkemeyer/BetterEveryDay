@@ -43,10 +43,10 @@ import SwiftUI
             case .Prepare:
                 reset()
             case .Focus:
-                phaseTimer = PhaseTimer(start: Date.now)
+                phaseTimer = FocusPhaseTimer(start: .now)
              
             case .Pause:
-                phaseTimer = PhaseTimer(start: .now.add(timeInterval: availableBreakTime))
+                phaseTimer = PausePhaseTimer(start: .now.addingTimeInterval(availableBreakTime))
                 
             case .Reflect:
                 session.setToFinish()
@@ -63,7 +63,7 @@ import SwiftUI
         case .Prepare, .Reflect:
             break
         case .Focus, .Pause:
-            phaseTimer = PhaseTimer(start: Date.now)
+            phaseTimer = FocusPhaseTimer(start: Date.now)
         }
     }
     
@@ -98,12 +98,12 @@ import SwiftUI
             }
             
             let lastPhaseEnded = Date(timeIntervalSince1970: lastPhase.start.timeIntervalSince1970 + lastPhase.length)
-            self.phaseTimer = PhaseTimer(start: lastPhaseEnded)
+            self.phaseTimer = FocusPhaseTimer(start: lastPhaseEnded)
         } else {
             // If there is no previously completed session the app was closed
             // during the first focus phase
             self.phase = .Focus
-            self.phaseTimer = PhaseTimer(start: session.started)
+            self.phaseTimer = FocusPhaseTimer(start: session.started)
         }
     }
 }

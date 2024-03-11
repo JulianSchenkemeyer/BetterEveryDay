@@ -15,7 +15,7 @@ protocol PhaseTimerProtocol {
     init(start: Date)
 }
 
-struct PhaseTimer: PhaseTimerProtocol {
+struct FocusPhaseTimer: PhaseTimerProtocol {
     let start: Date
     
     var length: TimeInterval {
@@ -27,4 +27,18 @@ struct PhaseTimer: PhaseTimerProtocol {
     }
 }
 
+
+struct PausePhaseTimer: PhaseTimerProtocol {
+    let start: Date
+    let offset: Date
+    
+    var length: TimeInterval {
+        Date.now.timeIntervalSince1970 - offset.timeIntervalSince1970
+    }
+    
+    init(start: Date) {
+        self.start = start
+        self.offset = .now
+    }
+}
 

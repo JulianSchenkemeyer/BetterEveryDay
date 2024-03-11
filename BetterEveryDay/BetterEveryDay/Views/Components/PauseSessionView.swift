@@ -53,6 +53,6 @@ struct PauseSessionView_Previews: PreviewProvider {
     static var previews: some View {
         PauseSessionView(state: .constant(.Pause),
                          availableBreaktime: .constant(0.0),
-                         start: PhaseTimer(start: .now))
+                         start: FocusPhaseTimer(start: .now))
     }
 }
