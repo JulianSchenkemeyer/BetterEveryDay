@@ -5,7 +5,7 @@
 //  Created by Julian Schenkemeyer on 11.03.24.
 //
 
-import Foundation
+import SwiftUI
 
 
 enum WanderingShadowAnimation: Int, CaseIterable {

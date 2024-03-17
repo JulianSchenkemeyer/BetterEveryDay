@@ -30,6 +30,7 @@
 		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
+		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */; };
@@ -95,6 +96,7 @@
 		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
+		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarkerTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPhaseTimer.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				24DF297F2AA4A90400DC40D6 /* Phases */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
 				2406EB132A70F2E200E3FF6A /* TimeSpendData.swift */,
+				24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
 				24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */,
 				24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */,
+				24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
