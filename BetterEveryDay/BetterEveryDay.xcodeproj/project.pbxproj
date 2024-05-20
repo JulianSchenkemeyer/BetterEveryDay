@@ -31,6 +31,8 @@
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
+		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
+		24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */; };
@@ -97,6 +99,8 @@
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
+		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
+		24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreen.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarkerTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPhaseTimer.swift; sourceTree = "<group>"; };
@@ -422,6 +426,8 @@
 			children = (
 				242068A22A4025B400AA3494 /* ThirdTimeView */,
 				2433A0972AAFA54A00621188 /* SettingsView */,
+				24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */,
+				24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
+				24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */,
 				24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */,
 				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
@@ -596,6 +603,7 @@
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */,
+				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
 				24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */,
