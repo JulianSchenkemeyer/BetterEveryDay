@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SessionScreen: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,15 +21,36 @@ struct SessionScreen: View {
                 
                 VStack {
                     TimerLabelView(date: .now)
-                    Text("focus")
+                    Text("Work")
                         .font(.body)
-                        .bold()
+                        .foregroundStyle(.secondary)
+                        .tracking(1.1)
+                        .fontWeight(.semibold)
                 }
+                
+                
+                Button {
+                    
+                } label: {
+                    Text("Pause")
+                }
+                .primaryButtonStyle()
+                .padding(.top, 80)
+
                 
                 
                 Spacer()
             }
-            
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Finish")
+                    }
+
+                }
+            }
             .navigationTitle("Session")
         }
     }
