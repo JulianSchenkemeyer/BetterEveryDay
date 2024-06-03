@@ -7,21 +7,31 @@
 
 import SwiftUI
 
+enum Phases: String, Codable {
+    case Focus, Pause
+}
+
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var phase: Phases = .Focus
+    @State private var date = Date.now
+    
+    var goal = "Work on Session Screen"
     
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Goal")
+                Text(goal)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
                     .padding(20)
                 
+                
                 VStack {
-                    TimerLabelView(date: .now)
-                    Text("Work")
+                    TimerLabelView(date: date)
+                    Text(phase.rawValue)
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .tracking(1.1)
@@ -30,13 +40,13 @@ struct SessionScreen: View {
                 
                 
                 Button {
-                    
+                    phase = .Pause
                 } label: {
                     Text("Pause")
                 }
                 .primaryButtonStyle()
                 .padding(.top, 80)
-
+                
                 
                 
                 Spacer()
@@ -48,7 +58,7 @@ struct SessionScreen: View {
                     } label: {
                         Text("Finish")
                     }
-
+                    
                 }
             }
             .navigationTitle("Session")
@@ -59,6 +69,6 @@ struct SessionScreen: View {
 #Preview {
     Text("test")
         .sheet(isPresented: .constant(true)) {
-            SessionScreen()
+            SessionScreen(goal: "1")
         }
 }

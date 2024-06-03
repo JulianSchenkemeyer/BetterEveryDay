@@ -26,7 +26,7 @@ struct PrepareSessionScreen: View {
                 }
             }
             
-            Spacer()
+//            Spacer()
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session", text: $goal)
@@ -46,10 +46,9 @@ struct PrepareSessionScreen: View {
         .padding(.horizontal, 30)
         .padding(.bottom, 100)
         .navigationTitle("Prepare")
+        .navigationBarTitleDisplayMode(.automatic)
         .sheet(isPresented: $sessionIsInProgress, content: {
-//            Text("In Progress")
-//                .font(.largeTitle)
-            SessionScreen()
+            SessionScreen(goal: goal)
         })
     }
 }
