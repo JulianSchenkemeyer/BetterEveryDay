@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PhaseTimerProtocol {
+protocol PhaseProtocol {
     var start: Date { get }
     
     var length: TimeInterval { get }
@@ -15,7 +15,7 @@ protocol PhaseTimerProtocol {
     init(start: Date)
 }
 
-struct FocusPhaseTimer: PhaseTimerProtocol {
+struct FocusPhaseTimer: PhaseProtocol {
     let start: Date
     
     var length: TimeInterval {
@@ -28,7 +28,7 @@ struct FocusPhaseTimer: PhaseTimerProtocol {
 }
 
 
-struct PausePhaseTimer: PhaseTimerProtocol {
+struct PausePhaseTimer: PhaseProtocol {
     let start: Date
     let offset: Date
     
