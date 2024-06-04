@@ -48,6 +48,8 @@
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
 		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
+		24FED7372C0FA49D007F98D0 /* PhaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */; };
+		24FED7392C0FA4CF007F98D0 /* PausePhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
 		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
 		B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479AC2A16742C00C0CE3E /* Assets.xcassets */; };
@@ -116,6 +118,8 @@
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
+		24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseProtocol.swift; sourceTree = "<group>"; };
+		24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausePhaseTimer.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
 		B9C479AA2A16742900C0CE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 			children = (
 				24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */,
 				24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */,
+				24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */,
+				24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */,
 			);
 			path = Phases;
 			sourceTree = "<group>";
@@ -596,9 +602,11 @@
 				24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */,
 				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
+				24FED7392C0FA4CF007F98D0 /* PausePhaseTimer.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
 				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
+				24FED7372C0FA49D007F98D0 /* PhaseProtocol.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
