@@ -40,7 +40,7 @@ struct ReflectSessionView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                     Spacer()
-                    HourMinutesDurationTextView(timeInterval: session.availableBreakTime)
+                    HourMinutesDurationTextView(timeInterval: session.pauseBudget)
                 }
                 
             }.padding(.horizontal, 80)

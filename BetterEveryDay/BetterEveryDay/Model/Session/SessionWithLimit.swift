@@ -50,7 +50,7 @@ struct SessionWithLimit: SessionProtocol {
     let breakLimit: TimeInterval
     var tracker: BreaktimeTracker
     
-    var availableBreakTime: TimeInterval {
+    var pauseBudget: TimeInterval {
         return tracker.breaktime
     }
     

@@ -15,7 +15,7 @@ protocol SessionProtocol {
     var history: [PhaseMarker] { get set }
     var started: Date { get }
     
-    var availableBreakTime: TimeInterval { get }
+    var pauseBudget: TimeInterval { get }
 }
 
 extension SessionProtocol {

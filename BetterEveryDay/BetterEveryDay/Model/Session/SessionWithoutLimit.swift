@@ -15,7 +15,7 @@ struct SessionWithoutLimit: SessionProtocol {
     var history: [PhaseMarker]
     var started: Date
     
-    var availableBreakTime: TimeInterval {
+    var pauseBudget: TimeInterval {
         print("____ Available Breaktime \(total.focus / 3 - total.break)")
         return total.focus / 3 - total.break
     }
