@@ -26,14 +26,14 @@ struct PrepareSessionScreen: View {
                 }
             }
             
-//            Spacer()
             
             VStack(spacing: 30) {
-                TextField("Your Goal for the Session", text: $goal)
+                TextField("Your Goal for the Session", text: $goal, axis: .vertical)
+                    .lineLimit(1...)
                     .textFieldStyle(.roundedBorder)
-                    .font(.title3)
-                    .minimumScaleFactor(0.7)
-                .foregroundStyle(.black, .red)
+                    .font(.body)
+                    .submitLabel(.go)
+
                 
                 Button {
                     sessionIsInProgress = true
@@ -47,7 +47,7 @@ struct PrepareSessionScreen: View {
         .padding(.bottom, 100)
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
-        .sheet(isPresented: $sessionIsInProgress, content: {
+        .fullScreenCover(isPresented: $sessionIsInProgress, content: {
             SessionScreen(goal: goal)
         })
     }
