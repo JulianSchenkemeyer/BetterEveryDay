@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct PrepareSessionScreen: View {
+    @EnvironmentObject var notificationManager: NotificationManager
+    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
+    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
+    
     @State private var goal = ""
     @State private var sessionIsInProgress = false
+    
+    @StateObject private var viewModel = ThirdTimeViewModel()
     
     var body: some View {
         VStack(spacing: 40) {
@@ -28,7 +34,7 @@ struct PrepareSessionScreen: View {
             
             
             VStack(spacing: 30) {
-                TextField("Your Goal for the Session", text: $goal, axis: .vertical)
+                TextField("Your Goal for the Session", text: $viewModel.sessionGoal, axis: .vertical)
                     .lineLimit(1...)
                     .textFieldStyle(.roundedBorder)
                     .font(.body)
@@ -36,6 +42,7 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
+                    viewModel.phase = .Focus
                     sessionIsInProgress = true
                 } label: {
                     Label("Start Session", systemImage: "play")
@@ -48,7 +55,7 @@ struct PrepareSessionScreen: View {
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, content: {
-            SessionScreen(goal: goal)
+            SessionScreen(viewModel: viewModel, goal: goal)
         })
     }
 }

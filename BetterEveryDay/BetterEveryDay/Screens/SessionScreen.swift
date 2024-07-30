@@ -14,6 +14,8 @@ enum Phases: String, Codable {
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
     
+    var viewModel: ThirdTimeViewModel
+    
     @State private var phase: Phases = .Work
     @State private var date = Date.now
     
@@ -26,7 +28,7 @@ struct SessionScreen: View {
                     Text("I will...")
                         .foregroundStyle(.secondary)
                     
-                    Text(goal)
+                    Text(viewModel.sessionGoal)
                         
                 }
                 .font(.title2)
@@ -36,24 +38,32 @@ struct SessionScreen: View {
                 
                 
                 VStack {
-                    TimerLabelView(date: date)
-                    Text(phase.rawValue)
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .tracking(1.1)
-                        .fontWeight(.semibold)
+                    if let phaseTimer = viewModel.phaseTimer {
+                        TimerLabelView(date: phaseTimer.start)
+                        Text(viewModel.phase.rawValue)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                            .tracking(1.1)
+                            .fontWeight(.semibold)
+                    }
                 }
                 
                 
                 Button {
-                    phase = phase == .Pause ? .Work : .Pause
+//                    phase = phase == .Pause ? .Work : .Pause
+                    switch viewModel.phase {
+                    case .Focus:
+                        viewModel.phase = .Pause
+                    case .Pause:
+                        viewModel.phase = .Focus
+                    default:
+                        break
+                    }
                 } label: {
-                    Text("Pause")
+                    Text(viewModel.phase == .Focus ? "Pause" : "Focus")
                 }
                 .primaryButtonStyle()
                 .padding(.top, 80)
-                
-                
                 
                 Spacer()
             }
@@ -67,14 +77,13 @@ struct SessionScreen: View {
                     
                 }
             }
-//            .navigationTitle("Session")
         }
     }
 }
 
 #Preview {
     Text("test")
-        .sheet(isPresented: .constant(true)) {
-            SessionScreen(goal: "work on session screen work on session screen")
+        .fullScreenCover(isPresented: .constant(true)) {
+            SessionScreen(viewModel: ThirdTimeViewModel(phase: .Focus), goal: "work on session screen work on session screen")
         }
 }
