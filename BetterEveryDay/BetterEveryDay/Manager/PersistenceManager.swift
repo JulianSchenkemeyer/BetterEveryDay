@@ -40,7 +40,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
                                      goal: session.goal,
                                      started: session.started,
                                      phases: [],
-                                     availableBreaktime: session.availableBreakTime,
+                                     availableBreaktime: session.pauseBudget,
                                      breakLimit: breakLimit)
         
         currentSession = newSession
@@ -61,7 +61,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableO
             let phase = PhaseData(type: lastPhase.name, started: lastPhase.start, length: lastPhase.length)
             currentSession.phases.append(phase)
         }
-        currentSession.availableBreaktime = session.availableBreakTime
+        currentSession.availableBreaktime = session.pauseBudget
     }
     
     func getLatestRunningSession() -> SessionProtocol? {

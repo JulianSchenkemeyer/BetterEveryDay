@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum ThirdTimeState: String, Codable {
-    case Focus = "Focus"
-    case Pause = "Pause"
-    case Prepare = "Prepare"
-    case Reflect = "Reflect"
-}
 
 struct ThirdTimeView: View {
     
@@ -78,6 +72,7 @@ struct ThirdTimeView: View {
             viewModel.limit = breaktimeLimit
             restorePreviousSession()
         }
+    }
     
     private func restorePreviousSession() {
         if persistenceManager.currentSession == nil {

@@ -13,7 +13,7 @@ struct PauseSessionView: View {
     
     @State private var goneIntoOvertime = false
     
-    var start: PhaseTimerProtocol?
+    var start: PhaseProtocol?
     
     var body: some View {
         VStack {

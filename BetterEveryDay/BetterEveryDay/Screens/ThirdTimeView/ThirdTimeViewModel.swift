@@ -12,7 +12,7 @@ import SwiftUI
     
     private let sessionFactory: SessionFactory
     
-    var phaseTimer: PhaseTimerProtocol?
+    var phaseTimer: PhaseProtocol?
     var session: SessionProtocol
     var limit: Int = 0
 
@@ -30,11 +30,11 @@ import SwiftUI
             }
             
             if phase == .Focus && newPhase == .Pause {
-                availableBreakTime = session.availableBreakTime
+                availableBreakTime = session.pauseBudget
                 
             }
             if phase == .Pause && (newPhase == .Focus || newPhase == .Reflect) {
-                availableBreakTime = session.availableBreakTime
+                availableBreakTime = session.pauseBudget
             }
         }
         didSet {
@@ -80,7 +80,7 @@ import SwiftUI
     
     func restore(session: SessionProtocol) {
         self.sessionGoal = session.goal
-        self.availableBreakTime = session.availableBreakTime
+        self.availableBreakTime = session.pauseBudget
         
         self.session = session
         

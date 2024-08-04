@@ -13,7 +13,7 @@ struct PhaseMarker {
     let start: Date
     let length: TimeInterval
     
-    init(_ phaseTimer: PhaseTimerProtocol, phase: ThirdTimeState) {
+    init(_ phaseTimer: PhaseProtocol, phase: ThirdTimeState) {
         self.start = phaseTimer.start
         self.length = phaseTimer.length
         self.name = phase

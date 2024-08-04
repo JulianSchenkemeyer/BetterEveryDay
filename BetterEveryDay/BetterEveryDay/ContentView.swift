@@ -37,7 +37,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                ThirdTimeView()
+                PrepareSessionScreen()
             }
             .tabItem {
                 Label("Timer", systemImage: "clock")
