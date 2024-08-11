@@ -9,19 +9,22 @@ import Foundation
 
 
 
-@Observable class SessionModel {
+@Observable final class SessionController {
     var state: SessionState
     var goal: String
-    var started: Date
+    var started: Date?
     
-    var sections: Session
+    var segments: Session
     
 
-    init(state: SessionState, goal: String, started: Date, sections: Session = Session()) {
+    init(state: SessionState = .RUNNING,
+         goal: String = "",
+         started: Date? = nil,
+         sections: Session = Session()) {
         self.state = state
         self.goal = goal
         self.started = started
-        self.sections = sections
+        self.segments = sections
     }
 }
 

@@ -17,34 +17,22 @@
 		2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */; };
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
-		240F91EF2AC2AD20000A9C59 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F91EE2AC2AD20000A9C59 /* SessionTests.swift */; };
 		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
-		246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C322A4C019500E5B39B /* PrepareSessionView.swift */; };
-		246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */; };
-		246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C362A4C024800E5B39B /* PauseSessionView.swift */; };
-		246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */; };
 		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
-		246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
-		24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */; };
-		24DBA2372C61624F00860171 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionModel.swift */; };
-		24DBA2392C61E73300860171 /* SessionSectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSectionsTests.swift */; };
+		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
+		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
 		24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */; };
 		24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */; };
-		24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */; };
-		24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */; };
 		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
-		24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */; };
-		24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29892AA5E42000DC40D6 /* SessionFactory.swift */; };
-		24DF298E2AA8500C00DC40D6 /* PhaseTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF298D2AA8500C00DC40D6 /* PhaseTimerTests.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -91,34 +79,22 @@
 		2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
-		240F91EE2AC2AD20000A9C59 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
-		246D6C322A4C019500E5B39B /* PrepareSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionView.swift; sourceTree = "<group>"; };
-		246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSessionView.swift; sourceTree = "<group>"; };
-		246D6C362A4C024800E5B39B /* PauseSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseSessionView.swift; sourceTree = "<group>"; };
-		246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectSessionView.swift; sourceTree = "<group>"; };
 		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
-		246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModelTests.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreen.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
-		24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarkerTests.swift; sourceTree = "<group>"; };
-		24DBA2362C61624F00860171 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
-		24DBA2382C61E73300860171 /* SessionSectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSectionsTests.swift; sourceTree = "<group>"; };
+		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
+		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
 		24DF297B2AA4A8F100DC40D6 /* FocusPhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPhaseTimer.swift; sourceTree = "<group>"; };
 		24DF297D2AA4A8FE00DC40D6 /* PhaseMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseMarker.swift; sourceTree = "<group>"; };
-		24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithoutLimit.swift; sourceTree = "<group>"; };
-		24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
 		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
-		24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWithLimit.swift; sourceTree = "<group>"; };
-		24DF29892AA5E42000DC40D6 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
-		24DF298D2AA8500C00DC40D6 /* PhaseTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimerTests.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -212,7 +188,6 @@
 		2406EB292A7FE2C300E3FF6A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				246D6C3D2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -234,7 +209,6 @@
 		240F91ED2AC2AD08000A9C59 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				240F91EE2AC2AD20000A9C59 /* SessionTests.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -270,10 +244,6 @@
 		246D6C312A4C015B00E5B39B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				246D6C322A4C019500E5B39B /* PrepareSessionView.swift */,
-				246D6C342A4C01DB00E5B39B /* FocusSessionView.swift */,
-				246D6C362A4C024800E5B39B /* PauseSessionView.swift */,
-				246D6C382A4C026D00E5B39B /* ReflectSessionView.swift */,
 				2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */,
 			);
 			path = Components;
@@ -321,9 +291,8 @@
 		24DF29802AA4D2EE00DC40D6 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				24F53FA52C6899A900C6A666 /* old */,
 				24DF29852AA5E3B400DC40D6 /* SessionState.swift */,
-				24DBA2362C61624F00860171 /* SessionModel.swift */,
+				24DBA2362C61624F00860171 /* SessionController.swift */,
 				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
 				24F53FA82C689FB000C6A666 /* Session.swift */,
 			);
@@ -334,19 +303,9 @@
 			isa = PBXGroup;
 			children = (
 				240F91ED2AC2AD08000A9C59 /* Session */,
-				24DF298C2AA84FE000DC40D6 /* Phases */,
-				24DBA2382C61E73300860171 /* SessionSectionsTests.swift */,
+				24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		24DF298C2AA84FE000DC40D6 /* Phases */ = {
-			isa = PBXGroup;
-			children = (
-				24DF298D2AA8500C00DC40D6 /* PhaseTimerTests.swift */,
-				24A4AACD2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift */,
-			);
-			path = Phases;
 			sourceTree = "<group>";
 		};
 		24E924302A44D295002CA7F8 /* Buttons */ = {
@@ -365,17 +324,6 @@
 				24F3F2952B1A39C8008063B2 /* SessionData.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		24F53FA52C6899A900C6A666 /* old */ = {
-			isa = PBXGroup;
-			children = (
-				24DF29832AA5E38F00DC40D6 /* SessionProtocol.swift */,
-				24DF29892AA5E42000DC40D6 /* SessionFactory.swift */,
-				24DF29812AA4D30900DC40D6 /* SessionWithoutLimit.swift */,
-				24DF29872AA5E3D500DC40D6 /* SessionWithLimit.swift */,
-			);
-			path = old;
 			sourceTree = "<group>";
 		};
 		B9C4799C2A16742900C0CE3E = {
@@ -601,14 +549,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */,
-				246D6C372A4C024800E5B39B /* PauseSessionView.swift in Sources */,
-				24DF29882AA5E3D500DC40D6 /* SessionWithLimit.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
 				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
-				246D6C332A4C019500E5B39B /* PrepareSessionView.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
@@ -618,32 +563,27 @@
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
-				246D6C352A4C01DB00E5B39B /* FocusSessionView.swift in Sources */,
 				24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */,
 				24DF297E2AA4A8FE00DC40D6 /* PhaseMarker.swift in Sources */,
 				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24FED7392C0FA4CF007F98D0 /* PausePhaseTimer.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
-				246D6C392A4C026D00E5B39B /* ReflectSessionView.swift in Sources */,
 				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
-				24DBA2372C61624F00860171 /* SessionModel.swift in Sources */,
+				24DBA2372C61624F00860171 /* SessionController.swift in Sources */,
 				24FED7372C0FA49D007F98D0 /* PhaseProtocol.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				24F53FA92C689FB000C6A666 /* Session.swift in Sources */,
-				24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */,
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
-				24DF29842AA5E38F00DC40D6 /* SessionProtocol.swift in Sources */,
 				24DF297C2AA4A8F100DC40D6 /* FocusPhaseTimer.swift in Sources */,
 				24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
-				24DF298A2AA5E42000DC40D6 /* SessionFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,12 +591,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DBA2392C61E73300860171 /* SessionSectionsTests.swift in Sources */,
+				24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */,
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
-				24DF298E2AA8500C00DC40D6 /* PhaseTimerTests.swift in Sources */,
-				246D6C3E2A5AF2DB00E5B39B /* ThirdTimeViewModelTests.swift in Sources */,
-				24A4AACE2AC2AAA400F4B4A5 /* PhaseMarkerTests.swift in Sources */,
-				240F91EF2AC2AD20000A9C59 /* SessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
