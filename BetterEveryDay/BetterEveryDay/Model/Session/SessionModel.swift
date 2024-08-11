@@ -14,10 +14,10 @@ import Foundation
     var goal: String
     var started: Date
     
-    var sections: SessionSections
+    var sections: Session
     
 
-    init(state: SessionState, goal: String, started: Date, sections: SessionSections = SessionSections()) {
+    init(state: SessionState, goal: String, started: Date, sections: Session = Session()) {
         self.state = state
         self.goal = goal
         self.started = started

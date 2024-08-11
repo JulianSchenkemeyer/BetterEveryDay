@@ -51,7 +51,7 @@
 		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
 		24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SessionCategory.swift */; };
-		24F53FA92C689FB000C6A666 /* SessionSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA82C689FB000C6A666 /* SessionSections.swift */; };
+		24F53FA92C689FB000C6A666 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA82C689FB000C6A666 /* Session.swift */; };
 		24FED7372C0FA49D007F98D0 /* PhaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */; };
 		24FED7392C0FA4CF007F98D0 /* PausePhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
@@ -125,7 +125,7 @@
 		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		24F53FA62C6899DA00C6A666 /* SessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCategory.swift; sourceTree = "<group>"; };
-		24F53FA82C689FB000C6A666 /* SessionSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSections.swift; sourceTree = "<group>"; };
+		24F53FA82C689FB000C6A666 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseProtocol.swift; sourceTree = "<group>"; };
 		24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausePhaseTimer.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,7 +325,7 @@
 				24DF29852AA5E3B400DC40D6 /* SessionState.swift */,
 				24DBA2362C61624F00860171 /* SessionModel.swift */,
 				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
-				24F53FA82C689FB000C6A666 /* SessionSections.swift */,
+				24F53FA82C689FB000C6A666 /* Session.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
-				24F53FA92C689FB000C6A666 /* SessionSections.swift in Sources */,
+				24F53FA92C689FB000C6A666 /* Session.swift in Sources */,
 				24DF29822AA4D30900DC40D6 /* SessionWithoutLimit.swift in Sources */,
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,

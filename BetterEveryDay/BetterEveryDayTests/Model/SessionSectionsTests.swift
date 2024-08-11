@@ -10,13 +10,13 @@ import XCTest
 
 final class SessionSectionsTests: XCTestCase {
     func testInit() {
-        let sessionSections = SessionSections()
+        let sessionSections = Session()
         
         XCTAssert(sessionSections.sections.isEmpty, "Is not created empty")
     }
     
     func testCreateNextSection() {
-        let sessionSections = SessionSections()
+        let sessionSections = Session()
         
         sessionSections.next()
         XCTAssertEqual(sessionSections.sections.count, 1)
@@ -29,7 +29,7 @@ final class SessionSectionsTests: XCTestCase {
     }
     
     func testFinishUpPreviousSession() {
-        let sessionSections = SessionSections()
+        let sessionSections = Session()
         sessionSections.sections.append(.init(category: .Focus))
         
         sessionSections.next()
@@ -51,13 +51,13 @@ final class SessionSectionsTests: XCTestCase {
     
     func testGetDurationOfFinishedSessionSection() {
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
-        let sessionSection = SessionSection(category: .Focus, startedAt: thirtyMinAgo, finishedAt: .now)
+        let sessionSection = SessionSegment(category: .Focus, startedAt: thirtyMinAgo, finishedAt: .now)
         
         XCTAssertEqual(sessionSection.duration, 1_800, accuracy: 0.001)
     }
     
     func testGetPauseLength() {
-        let sessionSections = SessionSections()
+        let sessionSections = Session()
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         sessionSections.sections.append(.init(category: .Focus, startedAt: thirtyMinAgo))
         sessionSections.next()
@@ -66,7 +66,7 @@ final class SessionSectionsTests: XCTestCase {
     }
     
     func testSessionWithMultipleEntries() {
-        let sessionSections = SessionSections()
+        let sessionSections = Session()
         
         let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         sessionSections.sections.append(.init(category: .Focus, startedAt: thirtyMinSession))
