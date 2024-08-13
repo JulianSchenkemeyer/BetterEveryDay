@@ -12,7 +12,6 @@ struct PrepareSessionScreen: View {
 //    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     
-    @State private var goal = ""
     @State private var sessionIsInProgress = false
     
     @State private var viewModel = SessionController()
@@ -57,7 +56,7 @@ struct PrepareSessionScreen: View {
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, content: {
-            SessionScreen(viewModel: viewModel, goal: goal)
+            SessionScreen(goal: viewModel.goal, viewModel: viewModel.segments)
         })
     }
 }

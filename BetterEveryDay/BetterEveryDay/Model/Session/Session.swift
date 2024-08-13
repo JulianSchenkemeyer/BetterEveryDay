@@ -9,18 +9,18 @@ import Foundation
 
 
 /// Session is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
-final class Session {
-    var sections: [SessionSegment] = []
+@Observable final class Session {
+    var segments: [SessionSegment] = []
     var availableBreak: TimeInterval
     
-    init(sections: [SessionSegment] = [], availableBreak: TimeInterval = 0) {
-        self.sections = sections
+    init(segments: [SessionSegment] = [], availableBreak: TimeInterval = 0) {
+        self.segments = segments
         self.availableBreak = availableBreak
     }
     
     /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
     func next() {
-        guard var last = sections.popLast() else {
+        guard var last = segments.popLast() else {
             createNew(category: .Focus)
             return
         }
@@ -30,23 +30,31 @@ final class Session {
         createNew(category: nextCategory)
     }
     
-    private func finishSection(_ section: inout SessionSegment) {
-        section.finishedAt = Date.now
-        sections.append(section)
+    func getCurrent() {
+        
     }
     
-    private func updateBreak(_ section: SessionSegment) -> TimeInterval {
-        switch section.category {
+    func endCurrent() {
+        
+    }
+    
+    private func finishSection(_ section: inout SessionSegment) {
+        section.finishedAt = Date.now
+        segments.append(section)
+    }
+    
+    private func updateBreak(_ segment: SessionSegment) -> TimeInterval {
+        switch segment.category {
         case .Focus:
-            section.duration / 3
+            segment.duration / 3
         case .Pause:
-            -section.duration
+            -segment.duration
         }
         
     }
     
     private func createNew(category: SessionCategory) {
-        sections.append(.init(category: category))
+        segments.append(.init(category: category))
     }
 }
 

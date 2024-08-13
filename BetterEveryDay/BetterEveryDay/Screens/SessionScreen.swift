@@ -14,12 +14,8 @@ enum Phases: String, Codable {
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
     
-    var viewModel: SessionController
-    
-    @State private var phase: Phases = .Work
-    @State private var date = Date.now
-    
-    var goal = ""
+    var goal: String
+    var viewModel: Session
     
     var body: some View {
         NavigationStack {
@@ -28,8 +24,8 @@ struct SessionScreen: View {
                     Text("I will...")
                         .foregroundStyle(.secondary)
                     
-                    Text(viewModel.goal)
-                        
+                    Text(goal)
+                    
                 }
                 .font(.title2)
                 .fontWeight(.semibold)
@@ -38,30 +34,22 @@ struct SessionScreen: View {
                 
                 
                 VStack {
-//                    if let phaseTimer = viewModel.phaseTimer {
-//                        TimerLabelView(date: phaseTimer.start)
-//                        Text(viewModel.phase.rawValue)
-//                            .font(.body)
-//                            .foregroundStyle(.secondary)
-//                            .tracking(1.1)
-//                            .fontWeight(.semibold)
-//                    }
+                    if let segment = viewModel.segments.last {
+                        TimerLabelView(date: segment.startedAt)
+                        Text(segment.category.rawValue)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                            .tracking(1.1)
+                            .fontWeight(.semibold)
+                    }
                 }
                 
                 
-//                Button {
-////                    phase = phase == .Pause ? .Work : .Pause
-//                    switch viewModel.state {
-//                    case .Focus:
-//                        viewModel.phase = .Pause
-//                    case .Pause:
-//                        viewModel.phase = .Focus
-//                    default:
-//                        break
-//                    }
-//                } label: {
-//                    Text(viewModel.state == .Focus ? "Pause" : "Focus")
-//                }
+                Button {
+                    viewModel.next()
+                } label: {
+                    Text(viewModel.segments.last?.category.rawValue ?? "")
+                }
                 .primaryButtonStyle()
                 .padding(.top, 80)
                 
@@ -84,6 +72,7 @@ struct SessionScreen: View {
 #Preview {
     Text("test")
         .fullScreenCover(isPresented: .constant(true)) {
-            SessionScreen(viewModel: SessionController(state: .RUNNING, goal: "", started: .now), goal: "work on session screen work on session screen")
+            SessionScreen(goal: "work on session screen work on session screen",
+                          viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
         }
 }
