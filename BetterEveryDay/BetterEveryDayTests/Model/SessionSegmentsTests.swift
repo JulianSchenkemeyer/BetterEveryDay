@@ -1,5 +1,5 @@
 //
-//  SessionSectionsTests.swift
+//  SessionSegmentsTests.swift
 //  BetterEveryDayTests
 //
 //  Created by Julian Schenkemeyer on 06.08.24.
@@ -8,19 +8,19 @@
 import XCTest
 @testable import BetterEveryDay
 
-final class SessionSectionsTests: XCTestCase {
+final class SessionSegmentsTests: XCTestCase {
     func testInit() {
-        let sessionSections = Session()
+        let sessionSegments = Session()
         
-        XCTAssert(sessionSections.segments.isEmpty, "Is not created empty")
+        XCTAssert(sessionSegments.segments.isEmpty, "Is not created empty")
     }
     
     func testCreateNextSection() {
-        let sessionSections = Session()
+        let sessionSegments = Session()
         
-        sessionSections.next()
-        XCTAssertEqual(sessionSections.segments.count, 1)
-        guard let last = sessionSections.segments.last else {
+        sessionSegments.next()
+        XCTAssertEqual(sessionSegments.segments.count, 1)
+        guard let last = sessionSegments.segments.last else {
             XCTFail()
             return
         }
@@ -29,17 +29,17 @@ final class SessionSectionsTests: XCTestCase {
     }
     
     func testFinishUpPreviousSession() {
-        let sessionSections = Session()
-        sessionSections.segments.append(.init(category: .Focus))
+        let sessionSegments = Session()
+        sessionSegments.segments.append(.init(category: .Focus))
         
-        sessionSections.next()
+        sessionSegments.next()
         
-        XCTAssertEqual(sessionSections.segments.count, 2)
-        guard let first = sessionSections.segments.first else {
+        XCTAssertEqual(sessionSegments.segments.count, 2)
+        guard let first = sessionSegments.segments.first else {
             XCTFail()
             return
         }
-        guard let last = sessionSections.segments.last else {
+        guard let last = sessionSegments.segments.last else {
             XCTFail()
             return
         }
@@ -57,36 +57,36 @@ final class SessionSectionsTests: XCTestCase {
     }
     
     func testGetPauseLength() {
-        let sessionSections = Session()
+        let sessionSegments = Session()
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
-        sessionSections.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
-        sessionSections.next()
+        sessionSegments.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
+        sessionSegments.next()
         
-        XCTAssertEqual(sessionSections.availableBreak, 600, accuracy: 0.001)
+        XCTAssertEqual(sessionSegments.availableBreak, 600, accuracy: 0.001)
     }
     
     func testSessionWithMultipleEntries() {
-        let sessionSections = Session()
+        let sessionSegments = Session()
         
         let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
-        sessionSections.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
-        sessionSections.next()
+        sessionSegments.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
+        sessionSegments.next()
         
-        XCTAssertEqual(sessionSections.availableBreak, 600, accuracy: 0.001)
+        XCTAssertEqual(sessionSegments.availableBreak, 600, accuracy: 0.001)
         
-        let _ = sessionSections.segments.popLast()
+        let _ = sessionSegments.segments.popLast()
         let fifteenMinSession = Calendar.current.date(byAdding: .minute, value: -15, to: .now)!
-        sessionSections.segments.append(.init(category: .Pause, startedAt: fifteenMinSession))
-        sessionSections.next()
+        sessionSegments.segments.append(.init(category: .Pause, startedAt: fifteenMinSession))
+        sessionSegments.next()
         
-        XCTAssertEqual(sessionSections.availableBreak, -300, accuracy: 0.001)
+        XCTAssertEqual(sessionSegments.availableBreak, -300, accuracy: 0.001)
         
-        let _ = sessionSections.segments.popLast()
+        let _ = sessionSegments.segments.popLast()
         let OneHourSession = Calendar.current.date(byAdding: .hour, value: -1, to: .now)!
-        sessionSections.segments.append(.init(category: .Focus, startedAt: OneHourSession))
-        sessionSections.next()
+        sessionSegments.segments.append(.init(category: .Focus, startedAt: OneHourSession))
+        sessionSegments.next()
         
-        XCTAssertEqual(sessionSections.availableBreak, 900, accuracy: 0.001)
+        XCTAssertEqual(sessionSegments.availableBreak, 900, accuracy: 0.001)
     }
     
     func testGetSessionStats() {
