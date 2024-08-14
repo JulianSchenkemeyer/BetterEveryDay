@@ -32,9 +32,8 @@ struct SessionScreen: View {
                 .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
                 .padding(20)
                 
-                
-                VStack {
-                    if let segment = viewModel.segments.last {
+                if let segment = viewModel.getCurrent() {
+                    VStack {
                         TimerLabelView(date: segment.startedAt)
                         Text(segment.category.rawValue)
                             .font(.body)
@@ -42,16 +41,16 @@ struct SessionScreen: View {
                             .tracking(1.1)
                             .fontWeight(.semibold)
                     }
+                    
+                    
+                    Button {
+                        viewModel.next()
+                    } label: {
+                        Text(segment.category.rawValue)
+                    }
+                    .primaryButtonStyle()
+                    .padding(.top, 80)
                 }
-                
-                
-                Button {
-                    viewModel.next()
-                } label: {
-                    Text(viewModel.segments.last?.category.rawValue ?? "")
-                }
-                .primaryButtonStyle()
-                .padding(.top, 80)
                 
                 Spacer()
             }

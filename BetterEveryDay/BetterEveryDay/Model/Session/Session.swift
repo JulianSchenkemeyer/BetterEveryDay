@@ -30,12 +30,15 @@ import Foundation
         createNew(category: nextCategory)
     }
     
-    func getCurrent() {
-        
+    /// Get the current ``SessionSegment``
+    func getCurrent() -> SessionSegment? {
+        segments.last
     }
     
-    func endCurrent() {
-        
+    /// End the currently running session
+    func endSession() {
+        guard var last = segments.popLast() else { return }
+        finishSection(&last)
     }
     
     private func finishSection(_ section: inout SessionSegment) {
