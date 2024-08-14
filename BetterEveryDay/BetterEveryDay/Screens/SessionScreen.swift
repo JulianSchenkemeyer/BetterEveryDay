@@ -13,6 +13,7 @@ enum Phases: String, Codable {
 
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var goneOvertime = false
     
     var goal: String
     var viewModel: Session
@@ -34,7 +35,18 @@ struct SessionScreen: View {
                 
                 if let segment = viewModel.getCurrent() {
                     VStack {
-                        TimerLabelView(date: segment.startedAt)
+                        if segment.category == .Focus {
+                            TimerLabelView(date: segment.startedAt)
+                        } else {
+                            TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
+                                .foregroundStyle(goneOvertime ? .red : .black)
+                                .task {
+                                    if viewModel.availableBreak > 0 {
+                                        try? await waitFor(seconds: viewModel.availableBreak)
+                                    }
+                                    goneOvertime = true
+                                }
+                        }
                         Text(segment.category.rawValue)
                             .font(.body)
                             .foregroundStyle(.secondary)
@@ -45,8 +57,11 @@ struct SessionScreen: View {
                     
                     Button {
                         viewModel.next()
+                        if segment.category == .Focus {
+                            goneOvertime = false
+                        }
                     } label: {
-                        Text(segment.category.rawValue)
+                        Text(segment.category == .Focus ? "Pause" : "Focus")
                     }
                     .primaryButtonStyle()
                     .padding(.top, 80)

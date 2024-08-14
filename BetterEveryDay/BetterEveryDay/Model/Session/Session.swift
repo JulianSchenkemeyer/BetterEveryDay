@@ -53,7 +53,6 @@ import Foundation
         case .Pause:
             -segment.duration
         }
-        
     }
     
     private func createNew(category: SessionCategory) {
