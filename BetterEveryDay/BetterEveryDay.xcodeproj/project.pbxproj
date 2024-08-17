@@ -40,6 +40,7 @@
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
 		24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SessionCategory.swift */; };
 		24F53FA92C689FB000C6A666 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA82C689FB000C6A666 /* Session.swift */; };
+		24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FAA2C70A9E600C6A666 /* SessionTests.swift */; };
 		24FED7372C0FA49D007F98D0 /* PhaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */; };
 		24FED7392C0FA4CF007F98D0 /* PausePhaseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
@@ -102,6 +103,7 @@
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		24F53FA62C6899DA00C6A666 /* SessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCategory.swift; sourceTree = "<group>"; };
 		24F53FA82C689FB000C6A666 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		24F53FAA2C70A9E600C6A666 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		24FED7362C0FA49D007F98D0 /* PhaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseProtocol.swift; sourceTree = "<group>"; };
 		24FED7382C0FA4CF007F98D0 /* PausePhaseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausePhaseTimer.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,13 +208,6 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		240F91ED2AC2AD08000A9C59 /* Session */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
 		242068A22A4025B400AA3494 /* ThirdTimeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +297,8 @@
 		24DF298B2AA84F9900DC40D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				240F91ED2AC2AD08000A9C59 /* Session */,
 				24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */,
+				24F53FAA2C70A9E600C6A666 /* SessionTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -591,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */,
 				24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */,
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
 			);

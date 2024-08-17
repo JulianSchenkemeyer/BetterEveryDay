@@ -62,7 +62,7 @@ import Foundation
 
 
 /// Describes on part of a session
-struct SessionSegment {
+struct SessionSegment: Equatable {
     let category: SessionCategory
     let startedAt: Date
     var finishedAt: Date?

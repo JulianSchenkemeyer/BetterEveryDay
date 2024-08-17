@@ -1,0 +1,112 @@
+//
+//  SessionTests.swift
+//  BetterEveryDayTests
+//
+//  Created by Julian Schenkemeyer on 17.08.24.
+//
+
+import XCTest
+@testable import BetterEveryDay
+
+
+final class SessionTests: XCTestCase {
+    func testInit() {
+        let session = Session()
+        
+        XCTAssert(session.segments.isEmpty, "Is not created empty")
+    }
+    
+    func testCreateNextSection() {
+        let session = Session()
+        
+        session.next()
+        XCTAssertEqual(session.segments.count, 1)
+        guard let last = session.segments.last else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(last.category, .Focus, "")
+        XCTAssertNil(last.finishedAt)
+    }
+    
+    func testFinishUpPreviousSession() {
+        let session = Session()
+        session.segments.append(.init(category: .Focus))
+        
+        session.next()
+        
+        XCTAssertEqual(session.segments.count, 2)
+        guard let first = session.segments.first else {
+            XCTFail()
+            return
+        }
+        guard let last = session.segments.last else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(first.category, .Focus, "")
+        XCTAssertNotNil(first.finishedAt)
+        XCTAssertEqual(last.category, .Pause, "")
+        XCTAssertNil(last.finishedAt)
+    }
+    
+    func testGetPauseLength() {
+        let session = Session()
+        let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 600, accuracy: 0.001)
+    }
+    
+    func testSessionWithMultipleEntries() {
+        let session = Session()
+        
+        let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 600, accuracy: 0.001)
+        
+        let _ = session.segments.popLast()
+        let fifteenMinSession = Calendar.current.date(byAdding: .minute, value: -15, to: .now)!
+        session.segments.append(.init(category: .Pause, startedAt: fifteenMinSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, -300, accuracy: 0.001)
+        
+        let _ = session.segments.popLast()
+        let OneHourSession = Calendar.current.date(byAdding: .hour, value: -1, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: OneHourSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 900, accuracy: 0.001)
+    }
+    
+    func testGetCurrentSegment() {
+        let session = Session()
+        
+        // No current session
+        XCTAssertNil(session.getCurrent())
+        
+        
+        session.next()
+        XCTAssertEqual(session.segments.last, session.getCurrent())
+        
+        session.next()
+        XCTAssertEqual(session.segments.last, session.getCurrent())
+    }
+    
+    func testEndSession() {
+        let session = Session()
+        session.next()
+        
+        XCTAssertEqual(session.segments.count, 1)
+        XCTAssertTrue(session.getCurrent()!.isRunning)
+        
+        session.endSession()
+        
+        XCTAssertEqual(session.segments.count, 1)
+        XCTAssertFalse(session.getCurrent()!.isRunning)
+    }
+}
