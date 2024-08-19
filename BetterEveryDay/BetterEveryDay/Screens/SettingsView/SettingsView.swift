@@ -11,7 +11,7 @@ struct SettingsView: View {
     
     let limits = [0, 180, 240, 300, 360, 420, 480, 540, 600]
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
-    @AppStorage("breaktimeFactor") private var breaktimeFactor = 3.0
+    @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
     
     var body: some View {
         Form {

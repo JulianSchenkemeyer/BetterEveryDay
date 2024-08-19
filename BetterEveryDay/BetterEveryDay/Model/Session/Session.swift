@@ -13,14 +13,17 @@ import Foundation
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval
     var breaktimeLimit = 0
+    var breaktimeFactor = 3.0
     
     init(segments: [SessionSegment] = [],
          availableBreak: TimeInterval = 0,
-         breaktimeLimit: Int = 0) {
-        
+         breaktimeLimit: Int = 0,
+         breaktimeFactor: Double = 3
+    ) {
         self.segments = segments
         self.availableBreak = availableBreak
         self.breaktimeLimit = breaktimeLimit
+        self.breaktimeFactor = breaktimeFactor
     }
     
     /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
@@ -62,7 +65,7 @@ import Foundation
     private func calculateBreak(_ segment: SessionSegment) -> TimeInterval {
         switch segment.category {
         case .Focus:
-            segment.duration / 3
+            segment.duration / breaktimeFactor
         case .Pause:
             -segment.duration
         }
