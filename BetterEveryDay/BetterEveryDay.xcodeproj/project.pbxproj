@@ -187,13 +187,6 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		2406EB292A7FE2C300E3FF6A /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		2406EB2A2A7FE2E000E3FF6A /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +368,6 @@
 				24DF298B2AA84F9900DC40D6 /* Model */,
 				2406EB2B2A7FE2F900E3FF6A /* Manager */,
 				2406EB2A2A7FE2E000E3FF6A /* Services */,
-				2406EB292A7FE2C300E3FF6A /* ViewModels */,
 				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
 			);
 			path = BetterEveryDayTests;
