@@ -43,7 +43,7 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
-                    viewModel.segments = Session(breaktimeLimit: breaktimeLimit)
+                    viewModel.segments = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
                     viewModel.segments.next()
                     sessionIsInProgress = true
                 } label: {
