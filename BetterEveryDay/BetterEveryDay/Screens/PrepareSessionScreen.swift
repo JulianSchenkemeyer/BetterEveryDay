@@ -11,9 +11,9 @@ struct PrepareSessionScreen: View {
     @EnvironmentObject var notificationManager: NotificationManager
 //    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
+    @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
     
     @State private var sessionIsInProgress = false
-    
     @State private var viewModel = SessionController()
     
     var body: some View {

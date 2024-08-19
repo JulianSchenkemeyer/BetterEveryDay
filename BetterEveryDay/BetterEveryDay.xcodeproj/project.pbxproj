@@ -17,11 +17,9 @@
 		2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */; };
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
-		242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242068A32A4025D000AA3494 /* ThirdTimeView.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
-		246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
@@ -80,11 +78,9 @@
 		2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
-		242068A32A4025D000AA3494 /* ThirdTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeView.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
-		246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeViewModel.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
@@ -187,13 +183,6 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		2406EB292A7FE2C300E3FF6A /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		2406EB2A2A7FE2E000E3FF6A /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,15 +195,6 @@
 			children = (
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		242068A22A4025B400AA3494 /* ThirdTimeView */ = {
-			isa = PBXGroup;
-			children = (
-				242068A32A4025D000AA3494 /* ThirdTimeView.swift */,
-				246D6C3B2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift */,
-			);
-			path = ThirdTimeView;
 			sourceTree = "<group>";
 		};
 		2433A0972AAFA54A00621188 /* SettingsView */ = {
@@ -375,7 +355,6 @@
 				24DF298B2AA84F9900DC40D6 /* Model */,
 				2406EB2B2A7FE2F900E3FF6A /* Manager */,
 				2406EB2A2A7FE2E000E3FF6A /* Services */,
-				2406EB292A7FE2C300E3FF6A /* ViewModels */,
 				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
 			);
 			path = BetterEveryDayTests;
@@ -393,7 +372,6 @@
 		B9C479D32A1A627C00C0CE3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				242068A22A4025B400AA3494 /* ThirdTimeView */,
 				2433A0972AAFA54A00621188 /* SettingsView */,
 				24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */,
 				24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */,
@@ -543,7 +521,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				246D6C3C2A5AF1FA00E5B39B /* ThirdTimeViewModel.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeSpendView.swift in Sources */,
@@ -552,7 +529,6 @@
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
-				242068A42A4025D000AA3494 /* ThirdTimeView.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
 				2406EB142A70F2E200E3FF6A /* TimeSpendData.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,

@@ -59,6 +59,15 @@ final class SessionTests: XCTestCase {
         XCTAssertEqual(session.availableBreak, 600, accuracy: 0.001)
     }
     
+    func testGetPauseLengthWithCustomBreaktimeFactor() {
+        let session = Session(breaktimeFactor: 5)
+        let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 360, accuracy: 0.001)
+    }
+    
     func testSessionWithMultipleEntries() {
         let session = Session()
         
