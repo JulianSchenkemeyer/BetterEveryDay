@@ -13,13 +13,10 @@ enum Phases: String, Codable {
 
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var goneOvertime = false
     
-    var viewModel: ThirdTimeViewModel
-    
-    @State private var phase: Phases = .Work
-    @State private var date = Date.now
-    
-    var goal = ""
+    var goal: String
+    var viewModel: Session
     
     var body: some View {
         NavigationStack {
@@ -28,42 +25,47 @@ struct SessionScreen: View {
                     Text("I will...")
                         .foregroundStyle(.secondary)
                     
-                    Text(viewModel.sessionGoal)
-                        
+                    Text(goal)
+                    
                 }
                 .font(.title2)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
                 .padding(20)
                 
-                
-                VStack {
-                    if let phaseTimer = viewModel.phaseTimer {
-                        TimerLabelView(date: phaseTimer.start)
-                        Text(viewModel.phase.rawValue)
+                if let segment = viewModel.getCurrent() {
+                    VStack {
+                        if segment.category == .Focus {
+                            TimerLabelView(date: segment.startedAt)
+                        } else {
+                            TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
+                                .foregroundStyle(goneOvertime ? .red : .black)
+                                .task {
+                                    if viewModel.availableBreak > 0 {
+                                        try? await waitFor(seconds: viewModel.availableBreak)
+                                    }
+                                    goneOvertime = true
+                                }
+                        }
+                        Text(segment.category.rawValue)
                             .font(.body)
                             .foregroundStyle(.secondary)
                             .tracking(1.1)
                             .fontWeight(.semibold)
                     }
-                }
-                
-                
-                Button {
-//                    phase = phase == .Pause ? .Work : .Pause
-                    switch viewModel.phase {
-                    case .Focus:
-                        viewModel.phase = .Pause
-                    case .Pause:
-                        viewModel.phase = .Focus
-                    default:
-                        break
+                    
+                    
+                    Button {
+                        viewModel.next()
+                        if segment.category == .Focus {
+                            goneOvertime = false
+                        }
+                    } label: {
+                        Text(segment.category == .Focus ? "Pause" : "Focus")
                     }
-                } label: {
-                    Text(viewModel.phase == .Focus ? "Pause" : "Focus")
+                    .primaryButtonStyle()
+                    .padding(.top, 80)
                 }
-                .primaryButtonStyle()
-                .padding(.top, 80)
                 
                 Spacer()
             }
@@ -84,6 +86,7 @@ struct SessionScreen: View {
 #Preview {
     Text("test")
         .fullScreenCover(isPresented: .constant(true)) {
-            SessionScreen(viewModel: ThirdTimeViewModel(phase: .Focus), goal: "work on session screen work on session screen")
+            SessionScreen(goal: "work on session screen work on session screen",
+                          viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
         }
 }

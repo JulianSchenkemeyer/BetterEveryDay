@@ -11,16 +11,16 @@ import SwiftData
 @main
 struct BetterEveryDayApp: App {
     @StateObject private var notificationManager = EnvironmentManager.setupNotifications()
-    @StateObject private var persistenceManager = EnvironmentManager.setupPersistenceManager()
+//    @StateObject private var persistenceManager = EnvironmentManager.setupPersistenceManager()
     
     
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(persistenceManager.modelContainer)
+//        .modelContainer(persistenceManager.modelContainer)
         .environmentObject(notificationManager)
-        .environmentObject(persistenceManager)
+//        .environmentObject(persistenceManager)
     }
 }
 
@@ -30,7 +30,7 @@ enum EnvironmentManager {
         return NotificationManager(notificationService: service)
     }
     
-    @MainActor static func setupPersistenceManager() -> SwiftDataPersistenceManager {
-        SwiftDataPersistenceManager()
-    }
+//    @MainActor static func setupPersistenceManager() -> SwiftDataPersistenceManager {
+//        SwiftDataPersistenceManager()
+//    }
 }
