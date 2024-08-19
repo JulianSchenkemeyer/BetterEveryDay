@@ -12,10 +12,15 @@ import Foundation
 @Observable final class Session {
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval
+    var breaktimeLimit = 0
     
-    init(segments: [SessionSegment] = [], availableBreak: TimeInterval = 0) {
+    init(segments: [SessionSegment] = [],
+         availableBreak: TimeInterval = 0,
+         breaktimeLimit: Int = 0) {
+        
         self.segments = segments
         self.availableBreak = availableBreak
+        self.breaktimeLimit = breaktimeLimit
     }
     
     /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
@@ -25,7 +30,8 @@ import Foundation
             return
         }
         finishSection(&last)
-        availableBreak += updateBreak(last)
+        updateBreak(last)
+        
         let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
         createNew(category: nextCategory)
     }
@@ -46,7 +52,14 @@ import Foundation
         segments.append(section)
     }
     
-    private func updateBreak(_ segment: SessionSegment) -> TimeInterval {
+    private func updateBreak(_ segment: SessionSegment) {
+        let limit = breaktimeLimit > 0 ? breaktimeLimit : .max
+        let newBreaktime = calculateBreak(segment) + availableBreak
+        
+        availableBreak = min(newBreaktime, TimeInterval(limit))
+    }
+    
+    private func calculateBreak(_ segment: SessionSegment) -> TimeInterval {
         switch segment.category {
         case .Focus:
             segment.duration / 3

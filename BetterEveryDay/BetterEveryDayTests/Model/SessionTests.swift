@@ -83,6 +83,46 @@ final class SessionTests: XCTestCase {
         XCTAssertEqual(session.availableBreak, 900, accuracy: 0.001)
     }
     
+    func testSessionWithBreakLimit() {
+        let session = Session(breaktimeLimit: 300)
+        let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 300, accuracy: 0.001)
+    }
+    
+    func testSessionWithBreakLimitAndMultipleEntries() {
+        let session = Session(breaktimeLimit: 300)
+        
+        let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 300, accuracy: 0.001)
+        
+        let _ = session.segments.popLast()
+        let fifteenMinSession = Calendar.current.date(byAdding: .minute, value: -15, to: .now)!
+        session.segments.append(.init(category: .Pause, startedAt: fifteenMinSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, -600, accuracy: 0.001)
+        
+        let _ = session.segments.popLast()
+        let OneHourSession = Calendar.current.date(byAdding: .hour, value: -1, to: .now)!
+        session.segments.append(.init(category: .Focus, startedAt: OneHourSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 300, accuracy: 0.001)
+        
+        let _ = session.segments.popLast()
+        let threeMinSession = Calendar.current.date(byAdding: .minute, value: -3, to: .now)!
+        session.segments.append(.init(category: .Pause, startedAt: threeMinSession))
+        session.next()
+        
+        XCTAssertEqual(session.availableBreak, 120, accuracy: 0.001)
+    }
+    
     func testGetCurrentSegment() {
         let session = Session()
         
