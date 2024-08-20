@@ -46,3 +46,14 @@ final class NotificationService: NotificationServiceProtocol {
         notificationCenter.removeAllDeliveredNotifications()
     }
 }
+
+/// Mock implementation for the NotificationService
+final class NotificationServiceMock: NotificationServiceProtocol {
+    init() { }
+    
+    func schedule(notification: any BEDNotification) { }
+    
+    func remove(notification: any BEDNotification) { }
+    
+    func removeDeliveredNotifications() { }
+}

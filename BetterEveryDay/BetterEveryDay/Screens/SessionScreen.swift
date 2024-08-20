@@ -128,5 +128,5 @@ struct SessionScreen: View {
 
 #Preview {
     SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
-        .environment(NotificationManager(notificationService: NotificationService(notificationCenter: .current())))
+        .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }
