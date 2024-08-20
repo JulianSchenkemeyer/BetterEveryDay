@@ -17,7 +17,7 @@ protocol NotificationManagerProtocol {
     func removeScheduledNotifications()
 }
 
-final class NotificationManager: NotificationManagerProtocol, ObservableObject {
+@Observable final class NotificationManager: NotificationManagerProtocol {
     var notificationService: NotificationServiceProtocol
     var scheduledNotifications: [any BEDNotification]
     

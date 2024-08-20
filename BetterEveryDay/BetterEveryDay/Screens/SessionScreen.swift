@@ -13,6 +13,7 @@ enum Phases: String, Codable {
 
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(NotificationManager.self) private var notificationManager
     @State private var goneOvertime = false
     
     var goal: String
@@ -26,7 +27,6 @@ struct SessionScreen: View {
                         .foregroundStyle(.secondary)
                     
                     Text(goal)
-                    
                 }
                 .font(.title2)
                 .fontWeight(.semibold)
@@ -41,10 +41,7 @@ struct SessionScreen: View {
                             TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
                                 .foregroundStyle(goneOvertime ? .red : .black)
                                 .task {
-                                    if viewModel.availableBreak > 0 {
-                                        try? await waitFor(seconds: viewModel.availableBreak)
-                                    }
-                                    goneOvertime = true
+                                    await goOvertimeTimer()
                                 }
                         }
                         Text(segment.category.rawValue)
@@ -52,6 +49,14 @@ struct SessionScreen: View {
                             .foregroundStyle(.secondary)
                             .tracking(1.1)
                             .fontWeight(.semibold)
+                    }
+                    .onChange(of: segment.category) { _, newValue in
+                        switch newValue {
+                        case .Focus:
+                            removeScheduledNotifications()
+                        case .Pause:
+                            schedulePauseEndedNotification()
+                        }
                     }
                     
                     
@@ -72,14 +77,33 @@ struct SessionScreen: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        viewModel.endSession()
                         dismiss()
                     } label: {
                         Text("Finish")
                     }
-                    
                 }
             }
         }
+    }
+    
+    private func goOvertimeTimer() async {
+        if viewModel.availableBreak > 0 {
+            try? await waitFor(seconds: viewModel.availableBreak)
+        }
+        goneOvertime = true
+    }
+    
+    private func schedulePauseEndedNotification() {
+        let breaktime = viewModel.availableBreak
+        
+        let triggerDate = Date.now.addingTimeInterval(breaktime)
+        let notification = PauseEndedNotification(triggerAt: triggerDate)
+        notificationManager.schedule(notification: notification)
+    }
+    
+    private func removeScheduledNotifications() {
+        notificationManager.removeScheduledNotifications()
     }
 }
 
