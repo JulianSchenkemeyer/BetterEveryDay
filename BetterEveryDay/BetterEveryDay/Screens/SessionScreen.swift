@@ -25,7 +25,6 @@ struct SessionScreen: View {
                 HStack(alignment: .top) {
                     Text("I will...")
                         .foregroundStyle(.secondary)
-                    
                     Text(goal)
                 }
                 .font(.title2)
@@ -59,12 +58,8 @@ struct SessionScreen: View {
                         }
                     }
                     
-                    
                     Button {
-                        viewModel.next()
-                        if segment.category == .Focus {
-                            goneOvertime = false
-                        }
+                        createNextSegment()
                     } label: {
                         Text(segment.category == .Focus ? "Pause" : "Focus")
                     }
@@ -77,8 +72,7 @@ struct SessionScreen: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        viewModel.endSession()
-                        dismiss()
+                        finishSession()
                     } label: {
                         Text("Finish")
                     }
@@ -87,6 +81,27 @@ struct SessionScreen: View {
         }
     }
     
+    /// Create a new segment for the current session
+    private func createNextSegment() {
+        guard let segment = viewModel.getCurrent() else {
+            return
+        }
+        
+        viewModel.next()
+        removeScheduledNotifications()
+        if segment.category == .Focus {
+            goneOvertime = false
+        }
+    }
+    
+    /// Finish the current session
+    private func finishSession() {
+        removeScheduledNotifications()
+        viewModel.endSession()
+        dismiss()
+    }
+    
+    /// Switch to overtime mode, when the available breaktime is over
     private func goOvertimeTimer() async {
         if viewModel.availableBreak > 0 {
             try? await waitFor(seconds: viewModel.availableBreak)
@@ -94,23 +109,24 @@ struct SessionScreen: View {
         goneOvertime = true
     }
     
+    /// Schedule a local notification for when the pause is ended
     private func schedulePauseEndedNotification() {
-        let breaktime = viewModel.availableBreak
-        
-        let triggerDate = Date.now.addingTimeInterval(breaktime)
+        guard let segment = viewModel.getCurrent() else {
+            return
+        }
+        let triggerDate = segment.startedAt + viewModel.availableBreak
         let notification = PauseEndedNotification(triggerAt: triggerDate)
+        
         notificationManager.schedule(notification: notification)
     }
     
+    /// Remove all currently scheduled local notifications
     private func removeScheduledNotifications() {
         notificationManager.removeScheduledNotifications()
     }
 }
 
 #Preview {
-    Text("test")
-        .fullScreenCover(isPresented: .constant(true)) {
-            SessionScreen(goal: "work on session screen work on session screen",
-                          viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
-        }
+    SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
+        .environment(NotificationManager(notificationService: NotificationService(notificationCenter: .current())))
 }
