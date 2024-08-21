@@ -13,6 +13,7 @@ enum Phases: String, Codable {
 
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(NotificationManager.self) private var notificationManager
     @State private var goneOvertime = false
     
     var goal: String
@@ -24,9 +25,7 @@ struct SessionScreen: View {
                 HStack(alignment: .top) {
                     Text("I will...")
                         .foregroundStyle(.secondary)
-                    
                     Text(goal)
-                    
                 }
                 .font(.title2)
                 .fontWeight(.semibold)
@@ -41,10 +40,7 @@ struct SessionScreen: View {
                             TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
                                 .foregroundStyle(goneOvertime ? .red : .black)
                                 .task {
-                                    if viewModel.availableBreak > 0 {
-                                        try? await waitFor(seconds: viewModel.availableBreak)
-                                    }
-                                    goneOvertime = true
+                                    await goOvertimeTimer()
                                 }
                         }
                         Text(segment.category.rawValue)
@@ -53,13 +49,17 @@ struct SessionScreen: View {
                             .tracking(1.1)
                             .fontWeight(.semibold)
                     }
-                    
+                    .onChange(of: segment.category) { _, newValue in
+                        switch newValue {
+                        case .Focus:
+                            removeScheduledNotifications()
+                        case .Pause:
+                            schedulePauseEndedNotification()
+                        }
+                    }
                     
                     Button {
-                        viewModel.next()
-                        if segment.category == .Focus {
-                            goneOvertime = false
-                        }
+                        createNextSegment()
                     } label: {
                         Text(segment.category == .Focus ? "Pause" : "Focus")
                     }
@@ -72,21 +72,61 @@ struct SessionScreen: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        dismiss()
+                        finishSession()
                     } label: {
                         Text("Finish")
                     }
-                    
                 }
             }
         }
     }
+    
+    /// Create a new segment for the current session
+    private func createNextSegment() {
+        guard let segment = viewModel.getCurrent() else {
+            return
+        }
+        
+        viewModel.next()
+        removeScheduledNotifications()
+        if segment.category == .Focus {
+            goneOvertime = false
+        }
+    }
+    
+    /// Finish the current session
+    private func finishSession() {
+        removeScheduledNotifications()
+        viewModel.endSession()
+        dismiss()
+    }
+    
+    /// Switch to overtime mode, when the available breaktime is over
+    private func goOvertimeTimer() async {
+        if viewModel.availableBreak > 0 {
+            try? await waitFor(seconds: viewModel.availableBreak)
+        }
+        goneOvertime = true
+    }
+    
+    /// Schedule a local notification for when the pause is ended
+    private func schedulePauseEndedNotification() {
+        guard let segment = viewModel.getCurrent() else {
+            return
+        }
+        let triggerDate = segment.startedAt + viewModel.availableBreak
+        let notification = PauseEndedNotification(triggerAt: triggerDate)
+        
+        notificationManager.schedule(notification: notification)
+    }
+    
+    /// Remove all currently scheduled local notifications
+    private func removeScheduledNotifications() {
+        notificationManager.removeScheduledNotifications()
+    }
 }
 
 #Preview {
-    Text("test")
-        .fullScreenCover(isPresented: .constant(true)) {
-            SessionScreen(goal: "work on session screen work on session screen",
-                          viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
-        }
+    SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
+        .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }

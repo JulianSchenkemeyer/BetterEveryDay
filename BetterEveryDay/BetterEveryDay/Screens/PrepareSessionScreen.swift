@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PrepareSessionScreen: View {
-    @EnvironmentObject var notificationManager: NotificationManager
 //    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
@@ -78,5 +77,4 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
-    
 }

@@ -8,14 +8,19 @@
 import Foundation
 import UserNotifications
 
+/// Defines the functionality provided by the NotificationService
 protocol NotificationServiceProtocol {
-    var notificationCenter: UNUserNotificationCenter { get }
-    
+    /// Schedule a new notification
+    /// - Parameter notification: Notification, which will be scheduled
     func schedule(notification: any BEDNotification)
+    /// Remove a specific notification
+    /// - Parameter notification: Notification to be removed
     func remove(notification: any BEDNotification)
+    /// Remove all delivered notification, so they are no longer displayed in the NotificationCenter
     func removeDeliveredNotifications()
 }
 
+/// NotificationService for local notifications
 final class NotificationService: NotificationServiceProtocol {
     var notificationCenter: UNUserNotificationCenter
     
@@ -40,4 +45,15 @@ final class NotificationService: NotificationServiceProtocol {
     func removeDeliveredNotifications() {
         notificationCenter.removeAllDeliveredNotifications()
     }
+}
+
+/// Mock implementation for the NotificationService
+final class NotificationServiceMock: NotificationServiceProtocol {
+    init() { }
+    
+    func schedule(notification: any BEDNotification) { }
+    
+    func remove(notification: any BEDNotification) { }
+    
+    func removeDeliveredNotifications() { }
 }

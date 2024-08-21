@@ -15,6 +15,12 @@ import Foundation
     var breaktimeLimit = 0
     var breaktimeFactor = 3.0
     
+    /// Initialise a new Session
+    /// - Parameters:
+    ///   - segments: ``SessionSegment`` array to prefill the session, default is empty
+    ///   - availableBreak: Available breaktime for the session, default is 0
+    ///   - breaktimeLimit: Limit for the available breaktime, default is unlimited (0)
+    ///   - breaktimeFactor: Factor for calculating the available breaktime, default is 3
     init(segments: [SessionSegment] = [],
          availableBreak: TimeInterval = 0,
          breaktimeLimit: Int = 0,
@@ -50,11 +56,15 @@ import Foundation
         finishSection(&last)
     }
     
-    private func finishSection(_ section: inout SessionSegment) {
-        section.finishedAt = Date.now
-        segments.append(section)
+    /// **Private** Finish the  given ``SessionSegment``
+    /// - Parameter segment: the SessionSegment, which should be finished
+    private func finishSection(_ segment: inout SessionSegment) {
+        segment.finishedAt = Date.now
+        segments.append(segment)
     }
     
+    /// **Private** update the available breaktime, based on the given ``SessionSegment``
+    /// - Parameter segment: the SessionSegment, which will be used to update the breaktime
     private func updateBreak(_ segment: SessionSegment) {
         let limit = breaktimeLimit > 0 ? breaktimeLimit : .max
         let newBreaktime = calculateBreak(segment) + availableBreak
@@ -62,6 +72,11 @@ import Foundation
         availableBreak = min(newBreaktime, TimeInterval(limit))
     }
     
+    /// **Private** Calculate the breaktime based on the ``SessionSegment``
+    /// If the session was a Focus segment, its duration of the segment / breaktimeFactor.
+    /// If the session was a Pause segment, its duration of the segment * (-1)
+    /// - Parameter segment: the SessionSegment to calculate the breaktime
+    /// - Returns: the new breaktime
     private func calculateBreak(_ segment: SessionSegment) -> TimeInterval {
         switch segment.category {
         case .Focus:
@@ -71,6 +86,8 @@ import Foundation
         }
     }
     
+    /// Create a new ``SessionSegment``
+    /// - Parameter category: the new ``SessionCategory`` for the new ``SessionSegment``
     private func createNew(category: SessionCategory) {
         segments.append(.init(category: category))
     }
