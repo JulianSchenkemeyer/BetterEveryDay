@@ -42,8 +42,8 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
-                    viewModel.segments = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
-                    viewModel.segments.next()
+                    viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+                    viewModel.session.next()
                     sessionIsInProgress = true
                 } label: {
                     Label("Start Session", systemImage: "play")
@@ -56,7 +56,7 @@ struct PrepareSessionScreen: View {
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, content: {
-            SessionScreen(goal: viewModel.goal, viewModel: viewModel.segments)
+            SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
     }
 }
