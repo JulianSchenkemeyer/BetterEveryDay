@@ -1,26 +1,27 @@
-////
-////  PersistenceManager.swift
-////  BetterEveryDay
-////
-////  Created by Julian Schenkemeyer on 01.12.23.
-////
 //
-//import Foundation
-//import SwiftData
+//  PersistenceManager.swift
+//  BetterEveryDay
 //
-//@MainActor
-//protocol PersistenceManagerProtocol {
-//    func createNewSession(session: SessionProtocol, breakLimit: TimeInterval) async
-//    
-//    func finishRunningSession() async
-//    
-//    func update(session: SessionProtocol) async
-//    
-//    func getLatestRunningSession() async -> SessionProtocol?
-//    
-//    func get() async
-//}
+//  Created by Julian Schenkemeyer on 01.12.23.
 //
+
+import Foundation
+import SwiftData
+
+protocol PersistenceManagerProtocol: ObservableObject {
+    func createNewSession(from sessionController: SessionController)
+    func finishRunningSession(with sessionController: SessionController)
+    func createNewSessionSegment(form segment: SessionSegment)
+    func finishLastSessionSegment()
+}
+
+final class PersistenceManagerMock: PersistenceManagerProtocol {
+    func createNewSession(from sessionController: SessionController) { }
+    func finishRunningSession(with sessionController: SessionController) { }
+    func createNewSessionSegment(form segment: SessionSegment) { }
+    func finishLastSessionSegment() { }
+}
+
 //@MainActor
 //final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableObject {
 //    var currentSession: SessionData?
@@ -121,4 +122,4 @@
 //        }
 //    }
 //}
-//
+

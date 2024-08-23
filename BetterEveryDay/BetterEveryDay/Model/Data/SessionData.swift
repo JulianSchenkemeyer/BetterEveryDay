@@ -11,49 +11,41 @@ import SwiftData
 
 @Model
 final class SessionData {
-    var type: SessionType.RawValue
     var state: SessionState.RawValue
     var goal: String
     var started: Date
-    var phases: [PhaseData]
-    var breakLimit: TimeInterval
-    var availableBreaktime: Double
+    var breaktimeLimit: Int
+    var breaktimeFactor: Double
     
-    init(type: SessionType,
-         state: SessionState,
+    var availableBreak: TimeInterval
+    var segments: [SessionSegmentData]
+    
+    init(state: SessionState.RawValue,
          goal: String,
          started: Date,
-         phases: [PhaseData],
-         availableBreaktime: TimeInterval,
-         breakLimit: TimeInterval
-    ) {
-        self.type = type.rawValue
-        self.state = state.rawValue
+         breaktimeLimit: Int,
+         breaktimeFactor: Double,
+         availableBreak: TimeInterval,
+         segments: [SessionSegmentData]) {
+        self.state = state
         self.goal = goal
         self.started = started
-        self.phases = phases
-        self.availableBreaktime = availableBreaktime
-        self.breakLimit = breakLimit
+        self.breaktimeLimit = breaktimeLimit
+        self.breaktimeFactor = breaktimeFactor
+        self.availableBreak = availableBreak
+        self.segments = segments
     }
 }
 
-
-enum SessionType: String, Codable {
-    case withLimit = "with Limit"
-    case limitless = "limitless"
+@Model final class SessionSegmentData {
+    var category: SessionCategory.RawValue
+    var startedAt: Date
+    var finishedAt: Date?
     
-    var description: String { self.rawValue }
-}
-
-@Model
-final class PhaseData {
-    var type: ThirdTimeState.RawValue
-    var started: Date
-    var length: TimeInterval?
-    
-    init(type: ThirdTimeState, started: Date, length: TimeInterval? = nil) {
-        self.type = type.rawValue
-        self.started = started
-        self.length = length
+    init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil) {
+        self.category = category
+        self.startedAt = startedAt
+        self.finishedAt = finishedAt
     }
 }
+
