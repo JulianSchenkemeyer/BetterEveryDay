@@ -18,7 +18,7 @@ final class SessionData {
     var breaktimeFactor: Double
     
     var availableBreak: TimeInterval
-    var segments: [SessionSegmentData]
+    @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) var segments: [SessionSegmentData]
     
     init(state: SessionState.RawValue,
          goal: String,
@@ -38,11 +38,13 @@ final class SessionData {
 }
 
 @Model final class SessionSegmentData {
+    var session: SessionData?
     var category: SessionCategory.RawValue
     var startedAt: Date
     var finishedAt: Date?
     
     init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil) {
+        self.session = nil
         self.category = category
         self.startedAt = startedAt
         self.finishedAt = finishedAt
