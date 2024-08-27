@@ -14,7 +14,7 @@ import Foundation
     var goal: String
     var started: Date?
     
-    var segments: Session
+    var session: Session
     
 
     init(state: SessionState = .RUNNING,
@@ -24,7 +24,7 @@ import Foundation
         self.state = state
         self.goal = goal
         self.started = started
-        self.segments = sections
+        self.session = sections
     }
 }
 

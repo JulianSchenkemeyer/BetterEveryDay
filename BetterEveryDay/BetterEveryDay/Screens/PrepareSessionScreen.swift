@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrepareSessionScreen: View {
-//    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
+    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
     
@@ -42,8 +42,10 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
-                    viewModel.segments = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
-                    viewModel.segments.next()
+                    viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+                    persistenceManager.insertSession(from: viewModel)
+                    
+                    viewModel.session.next()
                     sessionIsInProgress = true
                 } label: {
                     Label("Start Session", systemImage: "play")
@@ -55,8 +57,12 @@ struct PrepareSessionScreen: View {
         .padding(.bottom, 100)
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
-        .fullScreenCover(isPresented: $sessionIsInProgress, content: {
-            SessionScreen(goal: viewModel.goal, viewModel: viewModel.segments)
+        .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
+            viewModel.state = .FINISHED
+            persistenceManager.finishSession(with: viewModel.session)
+            viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        }, content: {
+            SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
     }
 }
@@ -77,4 +83,5 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
+    .environmentObject(PersistenceManagerMock())
 }

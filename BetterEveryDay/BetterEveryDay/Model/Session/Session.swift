@@ -7,6 +7,7 @@
 
 import Foundation
 
+typealias OnFinishingSegmentClosure = ((Session) -> Void)?
 
 /// Session is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
 @Observable final class Session {
@@ -32,33 +33,43 @@ import Foundation
         self.breaktimeFactor = breaktimeFactor
     }
     
-    /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
-    func next() {
-        guard var last = segments.popLast() else {
-            createNew(category: .Focus)
-            return
-        }
-        finishSection(&last)
-        updateBreak(last)
-        
-        let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
-        createNew(category: nextCategory)
-    }
-    
     /// Get the current ``SessionSegment``
     func getCurrent() -> SessionSegment? {
         segments.last
     }
     
+    /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
+    /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
+    func next(onFinishingSegment: OnFinishingSegmentClosure = nil) {
+        guard var last = segments.popLast() else {
+            createNew(category: .Focus)
+            return
+        }
+        finishSegment(&last)
+        updateBreak(last)
+        
+        if let onFinishingSegment {
+            onFinishingSegment(self)
+        }
+        
+        let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
+        createNew(category: nextCategory)
+    }
+    
     /// End the currently running session
-    func endSession() {
+    /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
+    func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else { return }
-        finishSection(&last)
+        finishSegment(&last)
+        
+        if let onFinishingSegment {
+            onFinishingSegment(self)
+        }
     }
     
     /// **Private** Finish the  given ``SessionSegment``
     /// - Parameter segment: the SessionSegment, which should be finished
-    private func finishSection(_ segment: inout SessionSegment) {
+    private func finishSegment(_ segment: inout SessionSegment) {
         segment.finishedAt = Date.now
         segments.append(segment)
     }

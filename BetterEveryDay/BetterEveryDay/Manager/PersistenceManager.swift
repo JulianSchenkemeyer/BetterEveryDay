@@ -1,124 +1,90 @@
-////
-////  PersistenceManager.swift
-////  BetterEveryDay
-////
-////  Created by Julian Schenkemeyer on 01.12.23.
-////
 //
-//import Foundation
-//import SwiftData
+//  PersistenceManager.swift
+//  BetterEveryDay
 //
-//@MainActor
-//protocol PersistenceManagerProtocol {
-//    func createNewSession(session: SessionProtocol, breakLimit: TimeInterval) async
-//    
-//    func finishRunningSession() async
-//    
-//    func update(session: SessionProtocol) async
-//    
-//    func getLatestRunningSession() async -> SessionProtocol?
-//    
-//    func get() async
-//}
+//  Created by Julian Schenkemeyer on 01.12.23.
 //
-//@MainActor
-//final class SwiftDataPersistenceManager: PersistenceManagerProtocol, ObservableObject {
-//    var currentSession: SessionData?
-//    var modelContainer: ModelContainer
-//    
-//    init() {
-//        self.modelContainer = {
-//            let schema = Schema([SessionData.self])
-//            let container = try! ModelContainer(for: schema, configurations: [])
-//            return container
-//        }()
-//    }
-//    
-//    func createNewSession(session: SessionProtocol, breakLimit: TimeInterval) {
-//        let newSession = SessionData(type: session.type,
-//                                     state: session.state,
-//                                     goal: session.goal,
-//                                     started: session.started,
-//                                     phases: [],
-//                                     availableBreaktime: session.pauseBudget,
-//                                     breakLimit: breakLimit)
-//        
-//        currentSession = newSession
-//        modelContainer.mainContext.insert(newSession)
-//    }
-//    
-//    func finishRunningSession() {
-//        guard let currentSession else { return }
-//        currentSession.state = SessionState.FINISHED.rawValue
-//        
-//        self.currentSession = nil
-//    }
-//    
-//    func update(session: SessionProtocol) {
-//        guard let currentSession else { return }
-//        
-//        if session.history.count > currentSession.phases.count, let lastPhase = session.history.last {
-//            let phase = PhaseData(type: lastPhase.name, started: lastPhase.start, length: lastPhase.length)
-//            currentSession.phases.append(phase)
-//        }
-//        currentSession.availableBreaktime = session.pauseBudget
-//    }
-//    
-//    func getLatestRunningSession() -> SessionProtocol? {
-//        let runningState = SessionState.RUNNING.rawValue
-//        let predicate = #Predicate<SessionData> { session in
-//            session.state == runningState
-//        }
-//        let sorting = [SortDescriptor<SessionData>(\.started, order: .reverse)]
-//        var fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sorting)
-//        fetchDescriptor.fetchLimit = 1
-//        
-//        do {
-//            let unfinishedSessions = try modelContainer.mainContext.fetch(fetchDescriptor)
-//            guard let unfinishedSession = unfinishedSessions.first else { return nil }
-//            
-//            let restoredSession = convert(session: unfinishedSession)
-//            currentSession = unfinishedSession
-//            
-//            return restoredSession
-//        } catch {
-//            print(error.localizedDescription)
-//            return nil
-//        }
-//    }
-//    
-//    func get() {
-//        
-//    }
-//
-//    func convert(session: SessionData) -> SessionProtocol {
-//        let type = SessionType(rawValue: session.type)!
-//        let goal = session.goal
-////        let state = SessionState(rawValue: session.state)
-//        let started = session.started
-//        
-//        let history = session.phases.map { phase in
-//            PhaseMarker(name: ThirdTimeState(rawValue: phase.type)!,
-//                        start: phase.started,
-//                        length: phase.length ?? 0)
-//        }
-//        
-//        switch type {
-//        case .limitless:
-//            print("convert to session without limit")
-//            
-//            return SessionWithoutLimit(goal: goal,
-//                                       history: history,
-//                                       started: started)
-//        case .withLimit:
-//            print("convert to session with limit")
-//            
-//            return SessionWithLimit(goal: goal,
-//                                    history: history,
-//                                    started: started,
-//                                    breaktime: session.availableBreaktime,
-//                                    breakLimit: 10)
-//        }
-//    }
-//}
-//
+
+import Foundation
+import SwiftData
+
+/// Defines the functions needed to persist the session
+protocol PersistenceManagerProtocol: ObservableObject {
+    /// Create a new session entry in the persistence layer
+    /// - Parameter sessionController: ``SessionController``  to be persisted
+    func insertSession(from sessionController: SessionController)
+    
+    /// Update an existing session entry in the persistence layer
+    /// - Parameter session: ``Session`` to be persisted
+    func updateSession(with session: Session)
+    
+    /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
+    /// - Parameter session: ``Session``  to be persisted
+    func finishSession(with session: Session)
+}
+
+final class PersistenceManagerMock: PersistenceManagerProtocol {
+    func insertSession(from sessionController: SessionController) { }
+    func updateSession(with session: Session) { }
+    func finishSession(with session: Session) { }
+}
+
+final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
+    var currentSession: SessionData?
+    var modelContainer: ModelContainer
+    
+    init() {
+        self.modelContainer = {
+            let schema = Schema([SessionData.self])
+            let container = try! ModelContainer(for: schema, configurations: [])
+            return container
+        }()
+    }
+    
+    @MainActor func insertSession(from sessionController: SessionController) {
+        let session = sessionController.session
+        let sessionSegments = session.segments.map {
+            SessionSegmentData(category: $0.category.rawValue,
+                               startedAt: $0.startedAt,
+                               finishedAt: $0.finishedAt)
+        }
+        
+        let newSessionData = SessionData(state: sessionController.state.rawValue,
+                                         goal: sessionController.goal,
+                                         started: .now,
+                                         breaktimeLimit: session.breaktimeLimit,
+                                         breaktimeFactor: session.breaktimeFactor,
+                                         availableBreak: session.availableBreak,
+                                         segments: sessionSegments)
+        currentSession = newSessionData
+        
+        modelContainer.mainContext.insert(newSessionData)
+    }
+    
+    func updateSession(with session: Session) {
+        guard let currentSession else {
+            print("❌ no current session")
+            return
+        }
+        
+        guard let segment = session.segments.last else {
+            print("❌ no segment to persist")
+            return
+        }
+        
+        currentSession.availableBreak = session.availableBreak
+        currentSession.segments.append(.init(category: segment.category.rawValue,
+                                             startedAt: segment.startedAt,
+                                             finishedAt: segment.finishedAt))
+    }
+    
+    func finishSession(with session: Session) {
+        guard let currentSession else {
+            print("❌ no current session")
+            return
+        }
+        
+        currentSession.state = "Finished"
+        currentSession.availableBreak = session.availableBreak
+    }
+}
