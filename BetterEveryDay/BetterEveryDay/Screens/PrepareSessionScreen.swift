@@ -42,6 +42,7 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
+                    viewModel.state = .RUNNING
                     viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
                     persistenceManager.insertSession(from: viewModel)
                     
@@ -59,11 +60,18 @@ struct PrepareSessionScreen: View {
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             viewModel.state = .FINISHED
+            viewModel.goal = ""
             persistenceManager.finishSession(with: viewModel.session)
             viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
+        .onAppear {
+            let unfinished = persistenceManager.getLatestRunningSession()
+            guard let unfinished else { return }
+            viewModel = unfinished
+            sessionIsInProgress = true
+        }
     }
 }
 
