@@ -64,6 +64,12 @@ struct PrepareSessionScreen: View {
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
+        .onAppear {
+            let unfinished = persistenceManager.getLatestRunningSession()
+            guard let unfinished else { return }
+            viewModel = unfinished
+            sessionIsInProgress = true
+        }
     }
 }
 
