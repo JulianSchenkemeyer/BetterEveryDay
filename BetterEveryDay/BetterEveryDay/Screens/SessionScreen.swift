@@ -59,6 +59,10 @@ struct SessionScreen: View {
                             schedulePauseEndedNotification()
                         }
                     }
+                    .onAppear {
+                        guard segment.category == .Pause else { return }
+                        goneOvertime = (segment.startedAt + viewModel.availableBreak) < .now
+                    }
                     
                     Button {
                         createNextSegment()
