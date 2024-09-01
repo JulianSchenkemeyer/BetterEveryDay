@@ -14,7 +14,7 @@ enum Phases: String, Codable {
 struct SessionScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(NotificationManager.self) private var notificationManager
-    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
+    @Environment(\.persistenceManager) var persistenceManager
     
     @State private var goneOvertime = false
     
@@ -94,7 +94,7 @@ struct SessionScreen: View {
         }
         
         viewModel.next() { data in
-            persistenceManager.updateSession(with: data)
+            persistenceManager?.updateSession(with: data)
         }
         removeScheduledNotifications()
         if segment.category == .Focus {
@@ -137,5 +137,5 @@ struct SessionScreen: View {
 #Preview {
     SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
-        .environmentObject(PersistenceManagerMock())
+        .environment(\.persistenceManager, PersistenceManagerMock())
 }

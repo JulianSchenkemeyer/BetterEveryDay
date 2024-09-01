@@ -20,7 +20,7 @@ struct BetterEveryDayApp: App {
         }
         .modelContainer(persistenceManager.modelContainer)
         .environment(notificationManager)
-        .environmentObject(persistenceManager)
+        .environment(\.persistenceManager, persistenceManager)
     }
 }
 
