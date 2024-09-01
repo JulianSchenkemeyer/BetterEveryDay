@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 /// Defines the functions needed to persist the session
-protocol PersistenceManagerProtocol: ObservableObject {
+protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
     /// - Parameter sessionController: ``SessionController``  to be persisted
     func insertSession(from sessionController: SessionController)
