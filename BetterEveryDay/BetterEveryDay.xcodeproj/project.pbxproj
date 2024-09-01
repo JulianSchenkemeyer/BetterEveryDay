@@ -18,6 +18,7 @@
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
+		2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436FEAB2C83621A00380591 /* TodayOverview.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
 		247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */; };
@@ -76,6 +77,7 @@
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2436FEAB2C83621A00380591 /* TodayOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOverview.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
 		247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Ext.swift"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */,
+				2436FEAB2C83621A00380591 /* TodayOverview.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
 				24DBA2372C61624F00860171 /* SessionController.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
+				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				24F53FA92C689FB000C6A666 /* Session.swift in Sources */,
