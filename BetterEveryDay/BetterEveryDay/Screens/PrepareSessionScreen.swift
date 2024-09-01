@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrepareSessionScreen: View {
-    @EnvironmentObject var persistenceManager: SwiftDataPersistenceManager
+    @Environment(\.persistenceManager) var persistenceManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
     
@@ -44,8 +44,9 @@ struct PrepareSessionScreen: View {
                 Button {
                     viewModel.state = .RUNNING
                     viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
-                    persistenceManager.insertSession(from: viewModel)
-                    
+                    if persistenceManager != nil {
+                        persistenceManager?.insertSession(from: viewModel)
+                    }
                     viewModel.session.next()
                     sessionIsInProgress = true
                 } label: {
@@ -61,13 +62,15 @@ struct PrepareSessionScreen: View {
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             viewModel.state = .FINISHED
             viewModel.goal = ""
-            persistenceManager.finishSession(with: viewModel.session)
+            
+            persistenceManager?.finishSession(with: viewModel.session)
+            
             viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
         .onAppear {
-            let unfinished = persistenceManager.getLatestRunningSession()
+            let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
             viewModel = unfinished
             sessionIsInProgress = true
@@ -91,5 +94,6 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
-    .environmentObject(PersistenceManagerMock())
+//    .environment(\.persistenceManager, PersistenceManagerMock())
+    .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }
