@@ -17,19 +17,7 @@ struct PrepareSessionScreen: View {
     
     var body: some View {
         VStack(spacing: 40) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 25.0)
-                    .fill(.ultraThinMaterial)
-                    .frame(height: 250)
-                .padding(.top, 30)
-                
-                VStack(alignment: .leading) {
-                    Text("Today")
-                        .font(.title3)
-                        .bold()
-                }
-            }
-            
+            TodayOverview()
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session",
@@ -55,7 +43,7 @@ struct PrepareSessionScreen: View {
                 .primaryButtonStyle()
             }
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 10)
         .padding(.bottom, 100)
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)

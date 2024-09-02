@@ -56,13 +56,15 @@ struct TodayOverview: View {
         .background {
             RoundedRectangle(cornerRadius: 25.0)
                 .fill(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.15), radius: 2, x: 1, y: 1)
+                .shadow(color: .white.opacity(0.3), radius: 2, x: -1, y: -1)
         }
-        .shadow(color: .black.opacity(0.2), radius: 5, x: 1, y: 1)
-        .padding()
+        
     }
         
 }
 
 #Preview {
     TodayOverview()
+        .padding()
 }
