@@ -82,6 +82,6 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
-//    .environment(\.persistenceManager, PersistenceManagerMock())
+    .environment(\.persistenceManager, PersistenceManagerMock())
     .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }

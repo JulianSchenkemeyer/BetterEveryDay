@@ -9,6 +9,10 @@ import SwiftUI
 import Charts
 
 struct TodayOverview: View {
+    
+    var sessionsToday = 0
+    var totalSessionLength = 0.0
+    
     var body: some View {
         VStack {
             HStack {
@@ -30,7 +34,7 @@ struct TodayOverview: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                     
-                    Text("4")
+                    Text("\(sessionsToday)")
                         .font(.title3)
                 }
                 .frame(maxWidth: .infinity)
@@ -42,7 +46,7 @@ struct TodayOverview: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                     
-                    Text("6:18")
+                    HourMinutesDurationTextView(timeInterval: totalSessionLength)
                         .font(.title3)
                 }
                 .frame(maxWidth: .infinity)
@@ -65,6 +69,6 @@ struct TodayOverview: View {
 }
 
 #Preview {
-    TodayOverview()
+    TodayOverview(sessionsToday: 12, totalSessionLength: 88895.78179)
         .padding()
 }
