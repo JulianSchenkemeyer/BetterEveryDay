@@ -23,6 +23,8 @@ protocol PersistenceManagerProtocol: Observable {
     func finishSession(with session: Session)
 
     func getLatestRunningSession() -> SessionController?
+    
+    func getTodaysSessions() -> [SessionData]
 }
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
@@ -30,6 +32,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func updateSession(with session: Session) { }
     func finishSession(with session: Session) { }
     func getLatestRunningSession() -> SessionController? { nil }
+    func getTodaysSessions() -> [SessionData] { [] }
 }
 
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
@@ -113,7 +116,27 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }
     }
     
-    func restoreSession(with data: SessionData) -> SessionController {
+    @MainActor func getTodaysSessions() -> [SessionData] {
+        let finished = SessionState.FINISHED.rawValue
+        let (start, end) = Date.now.getStartAndEndOfDay()
+        let predicate = #Predicate<SessionData>{ session in
+            session.state == finished && session.started >= start && session.started < end
+        }
+        
+        let fetchDescribtor = FetchDescriptor(predicate: predicate)
+        
+        do {
+            let todaysSessions = try modelContainer.mainContext.fetch(fetchDescribtor)
+            return todaysSessions
+        } catch {
+            print("❌")
+            return []
+        }
+    }
+    
+    
+    //MARK: Helper
+    private func restoreSession(with data: SessionData) -> SessionController {
         var sections = data.segments
             .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
