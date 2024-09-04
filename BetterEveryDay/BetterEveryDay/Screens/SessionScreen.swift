@@ -105,7 +105,9 @@ struct SessionScreen: View {
     /// Finish the current session
     private func finishSession() {
         removeScheduledNotifications()
-        viewModel.endSession()
+        viewModel.endSession() { data in
+            persistenceManager?.updateSession(with: data)
+        }
         dismiss()
     }
     

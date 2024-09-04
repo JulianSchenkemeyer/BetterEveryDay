@@ -60,6 +60,7 @@ typealias OnFinishingSegmentClosure = ((Session) -> Void)?
     /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
     func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else { return }
+        updateBreak(last)
         finishSegment(&last)
         
         if let onFinishingSegment {
