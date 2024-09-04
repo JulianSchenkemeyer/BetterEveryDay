@@ -52,7 +52,9 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         let sessionSegments = session.segments.map {
             SessionSegmentData(category: $0.category.rawValue,
                                startedAt: $0.startedAt,
-                               finishedAt: $0.finishedAt)
+                               finishedAt: $0.finishedAt,
+                               duration: $0.duration
+            )
         }
         
         let newSessionData = SessionData(state: sessionController.state.rawValue,
@@ -81,7 +83,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.segments.append(.init(category: segment.category.rawValue,
                                              startedAt: segment.startedAt,
-                                             finishedAt: segment.finishedAt))
+                                             finishedAt: segment.finishedAt,
+                                             duration: segment.duration))
     }
     
     func finishSession(with session: Session) {
