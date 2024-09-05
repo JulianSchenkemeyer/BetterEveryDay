@@ -59,7 +59,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         
         let newSessionData = SessionData(state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
-                                         started: .now,
+                                         started: sessionController.started ?? .now,
                                          breaktimeLimit: session.breaktimeLimit,
                                          breaktimeFactor: session.breaktimeFactor,
                                          availableBreak: session.availableBreak,
