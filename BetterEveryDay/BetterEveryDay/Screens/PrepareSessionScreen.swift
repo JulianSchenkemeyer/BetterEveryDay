@@ -30,13 +30,7 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
-                    viewModel.state = .RUNNING
-                    viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
-                    if persistenceManager != nil {
-                        persistenceManager?.insertSession(from: viewModel)
-                    }
-                    viewModel.session.next()
-                    sessionIsInProgress = true
+                    startSession()
                 } label: {
                     Label("Start Session", systemImage: "play")
                 }
@@ -48,21 +42,46 @@ struct PrepareSessionScreen: View {
         .navigationTitle("Prepare")
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
-            viewModel.state = .FINISHED
-            viewModel.goal = ""
-            
-            persistenceManager?.finishSession(with: viewModel.session)
-            
-            viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+            finishSession()
+            resetSessionController()
+            todays = persistenceManager?.getTodaysSessions() ?? []
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
         .onAppear {
-            let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
-            guard let unfinished else { return }
-            viewModel = unfinished
-            sessionIsInProgress = true
+            todays = persistenceManager?.getTodaysSessions() ?? []
+            
+            restoreRunningSession()
         }
+    }
+    
+    private func startSession() {
+        viewModel.state = .RUNNING
+        viewModel.started = .now
+        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        if persistenceManager != nil {
+            persistenceManager?.insertSession(from: viewModel)
+        }
+        viewModel.session.next()
+        sessionIsInProgress = true
+    }
+    
+    private func finishSession() {
+        viewModel.state = .FINISHED
+        persistenceManager?.finishSession(with: viewModel.session)
+    }
+    
+    private func resetSessionController() {
+        viewModel.goal = ""
+        viewModel.started = nil
+        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+    }
+    
+    private func restoreRunningSession() {
+        let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
+        guard let unfinished else { return }
+        viewModel = unfinished
+        sessionIsInProgress = true
     }
 }
 
