@@ -10,8 +10,7 @@ import Charts
 
 struct TodayOverview: View {
     
-    var sessionsToday = 0
-    var totalSessionLength = 0.0
+    var todaysSessions: [SessionData] = []
     
     var body: some View {
         VStack {
@@ -34,7 +33,7 @@ struct TodayOverview: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                     
-                    Text("\(sessionsToday)")
+                    Text("\(todaysSessions.count)")
                         .font(.title3)
                 }
                 .frame(maxWidth: .infinity)
@@ -46,7 +45,7 @@ struct TodayOverview: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                     
-                    HourMinutesDurationTextView(timeInterval: totalSessionLength)
+                    HourMinutesDurationTextView(timeInterval: totalLength)
                         .font(.title3)
                 }
                 .frame(maxWidth: .infinity)
@@ -65,10 +64,22 @@ struct TodayOverview: View {
         }
         
     }
+    
+    var totalLength: TimeInterval {
+        todaysSessions.reduce(0.0) { partialResult, sessionData in
+            let duration = sessionData.segments.reduce(0.0, { partialResult, sessionSegmentData in
+                partialResult + sessionSegmentData.duration
+            })
+            print("\(partialResult) + \(duration)")
+            
+            return partialResult + duration
+            
+        }
+    }
         
 }
 
 #Preview {
-    TodayOverview(sessionsToday: 12, totalSessionLength: 88895.78179)
+    TodayOverview()
         .padding()
 }

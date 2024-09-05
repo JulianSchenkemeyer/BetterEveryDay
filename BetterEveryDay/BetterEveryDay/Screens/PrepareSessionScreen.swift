@@ -14,10 +14,11 @@ struct PrepareSessionScreen: View {
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
+    @State private var todays: [SessionData] = []
     
     var body: some View {
         VStack(spacing: 40) {
-            TodayOverview()
+            TodayOverview(todaysSessions: todays)
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session",
