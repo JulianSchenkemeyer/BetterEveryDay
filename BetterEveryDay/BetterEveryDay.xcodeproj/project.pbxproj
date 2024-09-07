@@ -23,6 +23,7 @@
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
 		247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */; };
 		247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B02C864EEC00B72733 /* Date+Ext.swift */; };
+		247FC7B52C8CA67500B72733 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B42C8CA67500B72733 /* Card.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
@@ -83,6 +84,7 @@
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
 		247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Ext.swift"; sourceTree = "<group>"; };
 		247FC7B02C864EEC00B72733 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		247FC7B42C8CA67500B72733 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		247FC7B22C8CA65700B72733 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				247FC7B42C8CA67500B72733 /* Card.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 		247FD1272B72B978009CEB88 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +381,7 @@
 		B9C479D82A1A63B100C0CE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				247FC7B22C8CA65700B72733 /* Container */,
 				2406EB182A70F39300E3FF6A /* Charts */,
 				246D6C312A4C015B00E5B39B /* Components */,
 				246D6C2C2A48985B00E5B39B /* Labels */,
@@ -533,6 +544,7 @@
 				24DBA2372C61624F00860171 /* SessionController.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
+				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				24F53FA92C689FB000C6A666 /* Session.swift in Sources */,
