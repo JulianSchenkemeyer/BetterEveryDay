@@ -40,7 +40,13 @@ struct PrepareSessionScreen: View {
         }
         .padding(.horizontal, 10)
         .padding(.bottom, 100)
-        .navigationTitle("Prepare")
+        .navigationTitle("Today")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Text(.now, format: .dateTime.day().month().year())
+                    .foregroundStyle(.secondary)
+            }
+        }
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
