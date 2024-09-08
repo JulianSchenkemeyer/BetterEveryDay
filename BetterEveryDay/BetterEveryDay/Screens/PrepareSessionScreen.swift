@@ -19,6 +19,7 @@ struct PrepareSessionScreen: View {
     var body: some View {
         VStack(spacing: 40) {
             TodayOverview(todaysSessions: todays)
+            TodayGoalList(todaysSessions: todays)
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session",

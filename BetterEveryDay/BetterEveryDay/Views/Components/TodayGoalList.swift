@@ -1,5 +1,5 @@
 //
-//  TodaysGoalsListCard.swift
+//  TodayGoalList.swift
 //  BetterEveryDay
 //
 //  Created by Julian Schenkemeyer on 08.09.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TodaysGoalsListCard: View {
+struct TodayGoalList: View {
     var todaysSessions: [SessionData] = []
     
     var body: some View {
@@ -37,5 +37,5 @@ struct TodaysGoalsListCard: View {
 }
 
 #Preview {
-    TodaysGoalsListCard(todaysSessions: Mockdata.sessionDataArray)
+    TodayGoalList(todaysSessions: Mockdata.sessionDataArray)
 }
