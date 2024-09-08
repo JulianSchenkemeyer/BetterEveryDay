@@ -19,6 +19,7 @@
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
 		2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436FEAB2C83621A00380591 /* TodayOverview.swift */; };
+		245DDACF2C8DDE5900BE0703 /* Mockdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245DDACE2C8DDE5900BE0703 /* Mockdata.swift */; };
 		246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2D2A48990300E5B39B /* TimerLabelView.swift */; };
 		246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */; };
 		247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */; };
@@ -80,6 +81,7 @@
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2436FEAB2C83621A00380591 /* TodayOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOverview.swift; sourceTree = "<group>"; };
+		245DDACE2C8DDE5900BE0703 /* Mockdata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockdata.swift; sourceTree = "<group>"; };
 		246D6C2D2A48990300E5B39B /* TimerLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabelView.swift; sourceTree = "<group>"; };
 		246D6C2F2A4899E100E5B39B /* PhaseLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseLabelModifier.swift; sourceTree = "<group>"; };
 		247FC7AE2C84401C00B72733 /* EnvironmentValues+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Ext.swift"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C479B02A16742C00C0CE3E /* Preview Assets.xcassets */,
+				245DDACE2C8DDE5900BE0703 /* Mockdata.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
 				24F53FA92C689FB000C6A666 /* Session.swift in Sources */,
+				245DDACF2C8DDE5900BE0703 /* Mockdata.swift in Sources */,
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
