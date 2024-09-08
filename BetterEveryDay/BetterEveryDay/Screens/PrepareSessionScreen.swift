@@ -14,22 +14,12 @@ struct PrepareSessionScreen: View {
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
+    @State private var todays: [SessionData] = []
     
     var body: some View {
         VStack(spacing: 40) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 25.0)
-                    .fill(.ultraThinMaterial)
-                    .frame(height: 250)
-                .padding(.top, 30)
-                
-                VStack(alignment: .leading) {
-                    Text("Today")
-                        .font(.title3)
-                        .bold()
-                }
-            }
-            
+            TodayOverview(todaysSessions: todays)
+            TodayGoalList(todaysSessions: todays)
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session",
@@ -42,39 +32,64 @@ struct PrepareSessionScreen: View {
 
                 
                 Button {
-                    viewModel.state = .RUNNING
-                    viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
-                    if persistenceManager != nil {
-                        persistenceManager?.insertSession(from: viewModel)
-                    }
-                    viewModel.session.next()
-                    sessionIsInProgress = true
+                    startSession()
                 } label: {
                     Label("Start Session", systemImage: "play")
                 }
                 .primaryButtonStyle()
             }
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 10)
         .padding(.bottom, 100)
-        .navigationTitle("Prepare")
+        .navigationTitle("Today")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Text(.now, format: .dateTime.day().month().year())
+                    .foregroundStyle(.secondary)
+            }
+        }
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
-            viewModel.state = .FINISHED
-            viewModel.goal = ""
-            
-            persistenceManager?.finishSession(with: viewModel.session)
-            
-            viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+            finishSession()
+            resetSessionController()
+            todays = persistenceManager?.getTodaysSessions() ?? []
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
         .onAppear {
-            let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
-            guard let unfinished else { return }
-            viewModel = unfinished
-            sessionIsInProgress = true
+            todays = persistenceManager?.getTodaysSessions() ?? []
+            
+            restoreRunningSession()
         }
+    }
+    
+    private func startSession() {
+        viewModel.state = .RUNNING
+        viewModel.started = .now
+        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        if persistenceManager != nil {
+            persistenceManager?.insertSession(from: viewModel)
+        }
+        viewModel.session.next()
+        sessionIsInProgress = true
+    }
+    
+    private func finishSession() {
+        viewModel.state = .FINISHED
+        persistenceManager?.finishSession(with: viewModel.session)
+    }
+    
+    private func resetSessionController() {
+        viewModel.goal = ""
+        viewModel.started = nil
+        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+    }
+    
+    private func restoreRunningSession() {
+        let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
+        guard let unfinished else { return }
+        viewModel = unfinished
+        sessionIsInProgress = true
     }
 }
 
@@ -94,6 +109,6 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
-//    .environment(\.persistenceManager, PersistenceManagerMock())
+    .environment(\.persistenceManager, PersistenceManagerMock())
     .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }

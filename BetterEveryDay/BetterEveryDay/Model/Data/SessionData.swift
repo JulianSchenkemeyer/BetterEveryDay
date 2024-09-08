@@ -16,8 +16,9 @@ final class SessionData {
     var started: Date
     var breaktimeLimit: Int
     var breaktimeFactor: Double
-    
     var availableBreak: TimeInterval
+    var duration: TimeInterval
+    
     @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) var segments: [SessionSegmentData]
     
     init(state: SessionState.RawValue,
@@ -26,6 +27,7 @@ final class SessionData {
          breaktimeLimit: Int,
          breaktimeFactor: Double,
          availableBreak: TimeInterval,
+         duration: TimeInterval,
          segments: [SessionSegmentData]) {
         self.state = state
         self.goal = goal
@@ -33,6 +35,7 @@ final class SessionData {
         self.breaktimeLimit = breaktimeLimit
         self.breaktimeFactor = breaktimeFactor
         self.availableBreak = availableBreak
+        self.duration = duration
         self.segments = segments
     }
 }
@@ -42,12 +45,14 @@ final class SessionData {
     var category: SessionCategory.RawValue
     var startedAt: Date
     var finishedAt: Date?
+    var duration: Double
     
-    init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil) {
+    init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil, duration: Double) {
         self.session = nil
         self.category = category
         self.startedAt = startedAt
         self.finishedAt = finishedAt
+        self.duration = duration
     }
 }
 

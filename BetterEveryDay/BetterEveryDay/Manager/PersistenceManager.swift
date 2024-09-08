@@ -23,6 +23,8 @@ protocol PersistenceManagerProtocol: Observable {
     func finishSession(with session: Session)
 
     func getLatestRunningSession() -> SessionController?
+    
+    func getTodaysSessions() -> [SessionData]
 }
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
@@ -30,6 +32,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func updateSession(with session: Session) { }
     func finishSession(with session: Session) { }
     func getLatestRunningSession() -> SessionController? { nil }
+    func getTodaysSessions() -> [SessionData] { [] }
 }
 
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
@@ -39,8 +42,12 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     init() {
         self.modelContainer = {
             let schema = Schema([SessionData.self])
-            let container = try! ModelContainer(for: schema, configurations: [])
-            return container
+            do {
+                let container = try ModelContainer(for: schema, configurations: [])
+                return container
+            } catch {
+                fatalError(error.localizedDescription)
+            }
         }()
     }
     
@@ -49,15 +56,19 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         let sessionSegments = session.segments.map {
             SessionSegmentData(category: $0.category.rawValue,
                                startedAt: $0.startedAt,
-                               finishedAt: $0.finishedAt)
+                               finishedAt: $0.finishedAt,
+                               duration: $0.duration
+            )
         }
+        let sessionDuration = sessionSegments.reduce(0.0) { $0 + $1.duration }
         
         let newSessionData = SessionData(state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
-                                         started: .now,
+                                         started: sessionController.started ?? .now,
                                          breaktimeLimit: session.breaktimeLimit,
                                          breaktimeFactor: session.breaktimeFactor,
                                          availableBreak: session.availableBreak,
+                                         duration: sessionDuration,
                                          segments: sessionSegments)
         currentSession = newSessionData
         
@@ -76,9 +87,11 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }
         
         currentSession.availableBreak = session.availableBreak
+        currentSession.duration += segment.duration
         currentSession.segments.append(.init(category: segment.category.rawValue,
                                              startedAt: segment.startedAt,
-                                             finishedAt: segment.finishedAt))
+                                             finishedAt: segment.finishedAt,
+                                             duration: segment.duration))
     }
     
     func finishSession(with session: Session) {
@@ -89,6 +102,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         
         currentSession.state = "Finished"
         currentSession.availableBreak = session.availableBreak
+        currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
     }
 
     @MainActor func getLatestRunningSession() -> SessionController? {
@@ -113,7 +127,28 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }
     }
     
-    func restoreSession(with data: SessionData) -> SessionController {
+    @MainActor func getTodaysSessions() -> [SessionData] {
+        let finished = SessionState.FINISHED.rawValue
+        let (start, end) = Date.now.getStartAndEndOfDay()
+        let predicate = #Predicate<SessionData>{ session in
+            session.state == finished && session.started >= start && session.started < end
+        }
+        let sorting = [SortDescriptor<SessionData>(\.started, order: .reverse)]
+        
+        let fetchDescribtor = FetchDescriptor(predicate: predicate, sortBy: sorting)
+        
+        do {
+            let todaysSessions = try modelContainer.mainContext.fetch(fetchDescribtor)
+            return todaysSessions
+        } catch {
+            print("❌")
+            return []
+        }
+    }
+    
+    
+    //MARK: Helper
+    private func restoreSession(with data: SessionData) -> SessionController {
         var sections = data.segments
             .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
