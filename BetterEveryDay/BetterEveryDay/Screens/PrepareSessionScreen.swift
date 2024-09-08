@@ -19,6 +19,7 @@ struct PrepareSessionScreen: View {
     var body: some View {
         VStack(spacing: 40) {
             TodayOverview(todaysSessions: todays)
+            TodayGoalList(todaysSessions: todays)
             
             VStack(spacing: 30) {
                 TextField("Your Goal for the Session",
@@ -40,7 +41,13 @@ struct PrepareSessionScreen: View {
         }
         .padding(.horizontal, 10)
         .padding(.bottom, 100)
-        .navigationTitle("Prepare")
+        .navigationTitle("Today")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Text(.now, format: .dateTime.day().month().year())
+                    .foregroundStyle(.secondary)
+            }
+        }
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
