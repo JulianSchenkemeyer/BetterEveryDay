@@ -9,7 +9,6 @@ import SwiftUI
 import Charts
 
 struct TodayOverview: View {
-    
     var todaysSessions: [SessionData] = []
     
     var body: some View {
@@ -25,8 +24,6 @@ struct TodayOverview: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-                
-                
                 VStack {
                     Text("Total Length")
                         .font(.caption.bold())
@@ -41,20 +38,10 @@ struct TodayOverview: View {
     }
     
     var totalLength: TimeInterval {
-        todaysSessions.reduce(0.0) { partialResult, sessionData in
-            let duration = sessionData.segments.reduce(0.0, { partialResult, sessionSegmentData in
-                partialResult + sessionSegmentData.duration
-            })
-            print("\(partialResult) + \(duration)")
-            
-            return partialResult + duration
-            
-        }
+        todaysSessions.reduce(0.0) { $0 + $1.duration }
     }
-        
 }
 
 #Preview {
-    TodayOverview()
-        .padding()
+    TodayOverview(todaysSessions: Mockdata.sessionDataArray)
 }
