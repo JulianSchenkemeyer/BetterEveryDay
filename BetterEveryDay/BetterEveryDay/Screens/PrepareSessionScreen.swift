@@ -89,7 +89,13 @@ struct PrepareSessionScreen: View {
         let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
         guard let unfinished else { return }
         viewModel = unfinished
-        sessionIsInProgress = true
+        
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) {
+            sessionIsInProgress = true
+        }
+        
     }
 }
 
