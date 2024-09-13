@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeSpendData: Identifiable {
+struct TimeDistributionData: Identifiable {
     let id = UUID()
     
     let part: Double
