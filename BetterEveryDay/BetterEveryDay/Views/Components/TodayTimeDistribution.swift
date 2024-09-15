@@ -10,6 +10,21 @@ import SwiftUI
 struct TodayTimeDistribution: View {
     var todaysSessions: [SessionData] = []
     
+    var chartData: [TimeDistributionData] {
+        var totalDuration = 0.0
+        var totalWorkTime = 0.0
+        var totalPauseTime = 0.0
+        
+        for session in todaysSessions {
+            totalDuration += session.duration
+            totalWorkTime += session.timeSpendWork
+            totalPauseTime += session.timeSpendPause
+        }
+        
+        print("\(totalWorkTime), \(totalPauseTime)")
+        return [.init(part: totalWorkTime / totalDuration, category: "Work"),
+                .init(part: totalPauseTime / totalDuration, category: "Pause")]
+    }
     
     var body: some View {
         Card {
@@ -20,20 +35,9 @@ struct TodayTimeDistribution: View {
                 
                 Divider()
                 
-                TimeDistributionChartView()
+                TimeDistributionChartView(data: chartData)
             }
         }
-    }
-    
-    func calculateDistribution() -> [TimeDistributionData] {
-        todaysSessions.reduce((0.0, 0.0)) {
-            $0 + $1.segments.reduce((0.0, 0.0)) {
-                
-            }
-        }
-        
-        
-        return []
     }
 }
 
