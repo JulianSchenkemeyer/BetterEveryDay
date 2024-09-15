@@ -17,26 +17,30 @@ struct PrepareSessionScreen: View {
     @State private var todays: [SessionData] = []
     
     var body: some View {
-        VStack(spacing: 40) {
-            TodayOverview(todaysSessions: todays)
-            TodayGoalList(todaysSessions: todays)
-            
-            VStack(spacing: 30) {
-                TextField("Your Goal for the Session",
-                          text: $viewModel.goal,
-                          axis: .vertical)
+        ScrollView {
+            VStack(spacing: 20) {
+                TodayOverview(todaysSessions: todays)
+                TodayTimeDistribution(todaysSessions: todays)
+                TodayGoalList(todaysSessions: todays)
+                
+                
+                VStack(spacing: 30) {
+                    TextField("Your Goal for the Session",
+                              text: $viewModel.goal,
+                              axis: .vertical)
                     .lineLimit(1...)
                     .textFieldStyle(.roundedBorder)
                     .font(.body)
                     .submitLabel(.go)
-
-                
-                Button {
-                    startSession()
-                } label: {
-                    Label("Start Session", systemImage: "play")
+                    
+                    
+                    Button {
+                        startSession()
+                    } label: {
+                        Label("Start Session", systemImage: "play")
+                    }
+                    .primaryButtonStyle()
                 }
-                .primaryButtonStyle()
             }
         }
         .padding(.horizontal, 10)
