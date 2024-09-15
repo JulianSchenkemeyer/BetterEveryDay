@@ -18,33 +18,23 @@ struct PrepareSessionScreen: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: 24) {
                 TodayOverview(todaysSessions: todays)
                 TodayTimeDistribution(todaysSessions: todays)
                 TodayGoalList(todaysSessions: todays)
-                
-                
-                VStack(spacing: 30) {
-                    TextField("Your Goal for the Session",
-                              text: $viewModel.goal,
-                              axis: .vertical)
-                    .lineLimit(1...)
-                    .textFieldStyle(.roundedBorder)
-                    .font(.body)
-                    .submitLabel(.go)
-                    
-                    
-                    Button {
-                        startSession()
-                    } label: {
-                        Label("Start Session", systemImage: "play")
-                    }
-                    .primaryButtonStyle()
-                }
             }
+            
+        }
+        .safeAreaInset(edge: .bottom, alignment: .trailing) {
+            Button {
+                startSession()
+            } label: {
+                Label("Start Session", systemImage: "play")
+            }
+            .primaryButtonStyle()
+            .padding()
         }
         .padding(.horizontal, 10)
-        .padding(.bottom, 100)
         .navigationTitle("Today")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
