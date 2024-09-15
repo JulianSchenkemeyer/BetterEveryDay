@@ -69,6 +69,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                          breaktimeFactor: session.breaktimeFactor,
                                          availableBreak: session.availableBreak,
                                          duration: sessionDuration,
+                                         timeSpendWork: 0,
+                                         timeSpendPause: 0,
                                          segments: sessionSegments)
         currentSession = newSessionData
         
@@ -88,6 +90,14 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         
         currentSession.availableBreak = session.availableBreak
         currentSession.duration += segment.duration
+        
+        switch segment.category {
+        case .Focus:
+            currentSession.timeSpendWork += segment.duration
+        case .Pause:
+            currentSession.timeSpendPause += segment.duration
+        }
+        
         currentSession.segments.append(.init(category: segment.category.rawValue,
                                              startedAt: segment.startedAt,
                                              finishedAt: segment.finishedAt,

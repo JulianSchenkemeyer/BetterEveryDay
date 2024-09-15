@@ -18,6 +18,8 @@ final class SessionData {
     var breaktimeFactor: Double
     var availableBreak: TimeInterval
     var duration: TimeInterval
+    var timeSpendWork: TimeInterval
+    var timeSpendPause: TimeInterval
     
     @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) var segments: [SessionSegmentData]
     
@@ -28,6 +30,8 @@ final class SessionData {
          breaktimeFactor: Double,
          availableBreak: TimeInterval,
          duration: TimeInterval,
+         timeSpendWork: TimeInterval,
+         timeSpendPause: TimeInterval,
          segments: [SessionSegmentData]) {
         self.state = state
         self.goal = goal
@@ -36,6 +40,8 @@ final class SessionData {
         self.breaktimeFactor = breaktimeFactor
         self.availableBreak = availableBreak
         self.duration = duration
+        self.timeSpendWork = timeSpendWork
+        self.timeSpendPause = timeSpendPause
         self.segments = segments
     }
 }
