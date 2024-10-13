@@ -34,12 +34,18 @@ struct PrepareSessionScreen: View {
         .safeAreaInset(edge: .bottom, alignment: .trailing) {
             Group {
                 if showNewTaskModal {
-                    TextField("Your Goal for the Session",
-                              text: $viewModel.goal,
-                              axis: .vertical)
-                    .lineLimit(1...)
-                    .font(.body)
-                    .submitLabel(.go)
+                    HStack {
+                        TextField("Your Goal for the Session",
+                                  text: $viewModel.goal,
+                                  axis: .vertical)
+                        .lineLimit(1...)
+                        .font(.body)
+                        
+                        Button("Cancel") {
+                            viewModel.goal = ""
+                            showNewTaskModal = false
+                        }
+                    }
                     .padding(16)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
@@ -47,6 +53,14 @@ struct PrepareSessionScreen: View {
                             .shadow(color: .black.opacity(0.5), radius: 1, x: -1, y: -1)
                             .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3 )
                             .shadow(color: .black.opacity(0.2), radius: 5, x: 5, y: 5)
+                    }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Start Session") {
+                                startSession()
+                            }
+                        }
                     }
                     
                 } else {
