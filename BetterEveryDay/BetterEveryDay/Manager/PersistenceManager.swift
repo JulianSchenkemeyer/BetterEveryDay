@@ -32,7 +32,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func updateSession(with session: Session) { }
     func finishSession(with session: Session) { }
     func getLatestRunningSession() -> SessionController? { nil }
-    func getTodaysSessions() -> [SessionData] { [] }
+    func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
 
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
