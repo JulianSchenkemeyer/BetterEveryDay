@@ -17,6 +17,8 @@ struct PrepareSessionScreen: View {
     @State private var todays: [SessionData] = []
     
     @State private var showNewTaskModal: Bool = false
+    @FocusState private var focusSessionGoalInput: Bool
+    
     
     var body: some View {
         ScrollView {
@@ -40,8 +42,10 @@ struct PrepareSessionScreen: View {
                                   axis: .vertical)
                         .lineLimit(1...)
                         .font(.body)
+                        .focused($focusSessionGoalInput)
                         
                         Button("Cancel") {
+                            focusSessionGoalInput = false
                             viewModel.goal = ""
                             showNewTaskModal = false
                         }
@@ -65,8 +69,8 @@ struct PrepareSessionScreen: View {
                     
                 } else {
                     Button {
-                        //                startSession()
                         showNewTaskModal = true
+                        focusSessionGoalInput = true
                     } label: {
                         Label("Start Session", systemImage: "play")
                     }
