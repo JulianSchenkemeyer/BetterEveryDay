@@ -16,25 +16,52 @@ struct PrepareSessionScreen: View {
     @State private var viewModel = SessionController()
     @State private var todays: [SessionData] = []
     
+    @State private var showNewTaskModal: Bool = false
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
                 TodayOverview(todaysSessions: todays)
                 TodayTimeDistribution(todaysSessions: todays)
                 TodayGoalList(todaysSessions: todays)
+                
+                
             }
-            
-        }
-        .safeAreaInset(edge: .bottom, alignment: .trailing) {
-            Button {
-                startSession()
-            } label: {
-                Label("Start Session", systemImage: "play")
-            }
-            .primaryButtonStyle()
             .padding()
         }
-        .padding(.horizontal, 10)
+        .opacity(showNewTaskModal ? 0.5 : 1)
+        .blur(radius: showNewTaskModal ? 1.5 : 0)
+        .safeAreaInset(edge: .bottom, alignment: .trailing) {
+            Group {
+                if showNewTaskModal {
+                    TextField("Your Goal for the Session",
+                              text: $viewModel.goal,
+                              axis: .vertical)
+                    .lineLimit(1...)
+                    .font(.body)
+                    .submitLabel(.go)
+                    .padding(16)
+                    .background {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(.ultraThinMaterial)
+                            .shadow(color: .black.opacity(0.5), radius: 1, x: -1, y: -1)
+                            .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3 )
+                            .shadow(color: .black.opacity(0.2), radius: 5, x: 5, y: 5)
+                    }
+                    
+                } else {
+                    Button {
+                        //                startSession()
+                        showNewTaskModal = true
+                    } label: {
+                        Label("Start Session", systemImage: "play")
+                    }
+                    .primaryButtonStyle()
+                    .padding()
+                }
+            }
+            .padding()
+        }
         .navigationTitle("Today")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
