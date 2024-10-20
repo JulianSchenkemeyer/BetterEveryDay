@@ -77,9 +77,16 @@ struct PrepareSessionScreen: View {
                         showNewTaskModal = true
                         focusSessionGoalInput = true
                     } label: {
-                        Label("Start Session", systemImage: "play")
+                        Image(systemName: "plus")
+                            .bold()
+                            .foregroundStyle(.white)
+                            .padding()
+                            .frame(width: 50, height: 50)
+                            .background(.primary)
+                            .clipShape(.circle)
                     }
-                    .primaryButtonStyle()
+                    .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
+                    .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
                     .padding()
                 }
             }
