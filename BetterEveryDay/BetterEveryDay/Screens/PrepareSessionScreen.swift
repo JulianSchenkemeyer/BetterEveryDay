@@ -43,14 +43,17 @@ struct PrepareSessionScreen: View {
                         .lineLimit(1...)
                         .font(.body)
                         .focused($focusSessionGoalInput)
+                        .padding([.leading, .vertical], 10)
                         
                         Button("Cancel") {
                             focusSessionGoalInput = false
                             viewModel.goal = ""
                             showNewTaskModal = false
                         }
+                        .secondaryButtonStyle()
+                        .padding(.trailing, 4)
                     }
-                    .padding(16)
+                    .padding(4)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(.ultraThinMaterial)
@@ -58,12 +61,14 @@ struct PrepareSessionScreen: View {
                             .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3 )
                             .shadow(color: .black.opacity(0.2), radius: 5, x: 5, y: 5)
                     }
+                    .padding(.bottom, 32)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Spacer()
                             Button("Start Session") {
                                 startSession()
                             }
+                            .primaryButtonStyle()
                         }
                     }
                     
