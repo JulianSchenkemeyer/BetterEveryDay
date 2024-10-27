@@ -25,8 +25,6 @@ struct PrepareSessionScreen: View {
                 TodayOverview(todaysSessions: todays)
                 TodayTimeDistribution(todaysSessions: todays)
                 TodayGoalList(todaysSessions: todays)
-                
-                
             }
             .padding()
         }
