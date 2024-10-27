@@ -17,7 +17,7 @@ import Foundation
     var session: Session
     
 
-    init(state: SessionState = .RUNNING,
+    init(state: SessionState = .PREPARING,
          goal: String = "",
          started: Date? = nil,
          sections: Session = Session()) {

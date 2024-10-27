@@ -16,35 +16,26 @@ struct PrepareSessionScreen: View {
     @State private var viewModel = SessionController()
     @State private var todays: [SessionData] = []
     
+    @State private var showNewTaskModal: Bool = false
+    
+    
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: 24) {
                 TodayOverview(todaysSessions: todays)
                 TodayTimeDistribution(todaysSessions: todays)
                 TodayGoalList(todaysSessions: todays)
-                
-                
-                VStack(spacing: 30) {
-                    TextField("Your Goal for the Session",
-                              text: $viewModel.goal,
-                              axis: .vertical)
-                    .lineLimit(1...)
-                    .textFieldStyle(.roundedBorder)
-                    .font(.body)
-                    .submitLabel(.go)
-                    
-                    
-                    Button {
-                        startSession()
-                    } label: {
-                        Label("Start Session", systemImage: "play")
-                    }
-                    .primaryButtonStyle()
-                }
+            }
+            .padding()
+        }
+        .opacity(showNewTaskModal ? 0.5 : 1)
+        .blur(radius: showNewTaskModal ? 1.5 : 0)
+        .safeAreaInset(edge: .bottom, alignment: .trailing) {
+            AddNewSession(sessionGoal: $viewModel.goal,
+                          showNewTaskModal: $showNewTaskModal) {
+                startSession()
             }
         }
-        .padding(.horizontal, 10)
-        .padding(.bottom, 100)
         .navigationTitle("Today")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -76,6 +67,7 @@ struct PrepareSessionScreen: View {
         }
         viewModel.session.next()
         sessionIsInProgress = true
+        showNewTaskModal = false
     }
     
     private func finishSession() {
