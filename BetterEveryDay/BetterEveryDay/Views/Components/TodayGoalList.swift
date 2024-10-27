@@ -18,18 +18,22 @@ struct TodayGoalList: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider()
-                
-                ForEach(todaysSessions.prefix(5)) { session in
-                    HStack(alignment: .bottom) {
-                        Text(session.goal)
-                            .font(.body)
-                        Spacer()
-                        HourMinutesDurationTextView(timeInterval: session.duration)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                if todaysSessions.isEmpty {
+                    ContentUnavailableView("No goals achieved today", systemImage: "list.bullet")
+                        .frame(maxWidth: .infinity, maxHeight: 150, alignment: .leading)
+                } else {
+                    ForEach(todaysSessions.prefix(5)) { session in
+                        HStack(alignment: .bottom) {
+                            Text(session.goal)
+                                .font(.body)
+                            Spacer()
+                            HourMinutesDurationTextView(timeInterval: session.duration)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.bottom, 1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.bottom, 1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }
@@ -38,4 +42,5 @@ struct TodayGoalList: View {
 
 #Preview {
     TodayGoalList(todaysSessions: Mockdata.sessionDataArray)
+    TodayGoalList(todaysSessions: [])
 }
