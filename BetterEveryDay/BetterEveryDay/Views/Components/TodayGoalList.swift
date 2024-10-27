@@ -41,7 +41,7 @@ struct TodayGoalList: View {
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: 180, alignment: .leading)
+            .frame(maxWidth: .infinity, minHeight: 180, maxHeight: 180, alignment: .topLeading)
         }
     }
 }
