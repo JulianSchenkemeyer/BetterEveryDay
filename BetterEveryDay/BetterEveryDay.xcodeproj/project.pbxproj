@@ -36,6 +36,7 @@
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
 		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
 		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
+		24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF72162CCACF3D00195BD5 /* AddNewSession.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
@@ -100,6 +101,7 @@
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
 		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
+		24DF72162CCACF3D00195BD5 /* AddNewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSession.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		246D6C312A4C015B00E5B39B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				24DF72162CCACF3D00195BD5 /* AddNewSession.swift */,
 				2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */,
 				2436FEAB2C83621A00380591 /* TodayOverview.swift */,
 				24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */,
@@ -537,6 +540,7 @@
 				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
+				24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */,
 				24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */,
 				247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,

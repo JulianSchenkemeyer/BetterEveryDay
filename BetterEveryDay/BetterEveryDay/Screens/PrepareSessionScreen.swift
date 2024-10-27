@@ -17,7 +17,6 @@ struct PrepareSessionScreen: View {
     @State private var todays: [SessionData] = []
     
     @State private var showNewTaskModal: Bool = false
-    @FocusState private var focusSessionGoalInput: Bool
     
     
     var body: some View {
@@ -34,63 +33,10 @@ struct PrepareSessionScreen: View {
         .opacity(showNewTaskModal ? 0.5 : 1)
         .blur(radius: showNewTaskModal ? 1.5 : 0)
         .safeAreaInset(edge: .bottom, alignment: .trailing) {
-            Group {
-                if showNewTaskModal {
-                    HStack {
-                        TextField("Your Goal for the Session",
-                                  text: $viewModel.goal,
-                                  axis: .vertical)
-                        .lineLimit(1...)
-                        .font(.body)
-                        .focused($focusSessionGoalInput)
-                        .padding([.leading, .vertical], 10)
-                        
-                        Button("Cancel") {
-                            focusSessionGoalInput = false
-                            viewModel.goal = ""
-                            showNewTaskModal = false
-                        }
-                        .secondaryButtonStyle()
-                        .padding(.trailing, 4)
-                    }
-                    .padding(4)
-                    .background {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(.ultraThinMaterial)
-                            .shadow(color: .black.opacity(0.5), radius: 1, x: -1, y: -1)
-                            .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3 )
-                            .shadow(color: .black.opacity(0.2), radius: 5, x: 5, y: 5)
-                    }
-                    .padding(.bottom, 32)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Start Session") {
-                                startSession()
-                            }
-                            .primaryButtonStyle()
-                        }
-                    }
-                    
-                } else {
-                    Button {
-                        showNewTaskModal = true
-                        focusSessionGoalInput = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .bold()
-                            .foregroundStyle(.white)
-                            .padding()
-                            .frame(width: 50, height: 50)
-                            .background(.primary)
-                            .clipShape(.circle)
-                    }
-                    .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
-                    .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
-                    .padding()
-                }
+            AddNewSession(sessionGoal: $viewModel.goal,
+                          showNewTaskModal: $showNewTaskModal) {
+                startSession()
             }
-            .padding()
         }
         .navigationTitle("Today")
         .toolbar {
@@ -123,6 +69,7 @@ struct PrepareSessionScreen: View {
         }
         viewModel.session.next()
         sessionIsInProgress = true
+        showNewTaskModal = false
     }
     
     private func finishSession() {
