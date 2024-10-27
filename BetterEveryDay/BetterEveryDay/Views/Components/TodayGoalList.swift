@@ -9,6 +9,11 @@ import SwiftUI
 
 struct TodayGoalList: View {
     var todaysSessions: [SessionData] = []
+    let motivationalQuotes = ["Stay hungry, stay foolish.",
+                              "Every day is a new beginning.",
+                              "Small steps every day.",
+                              "Your potential is endless.",
+                              "If you want it, work for it."]
     
     var body: some View {
         Card {
@@ -18,9 +23,10 @@ struct TodayGoalList: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider()
+                
                 if todaysSessions.isEmpty {
-                    ContentUnavailableView("No goals achieved today", systemImage: "list.bullet")
-                        .frame(maxWidth: .infinity, maxHeight: 150, alignment: .leading)
+                    ContentUnavailableView(motivationalQuotes.randomElement()!,
+                                           systemImage: "list.bullet")
                 } else {
                     ForEach(todaysSessions.prefix(5)) { session in
                         HStack(alignment: .bottom) {
@@ -32,10 +38,10 @@ struct TodayGoalList: View {
                                 .foregroundStyle(.secondary)
                         }
                         .padding(.bottom, 1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: 180, alignment: .leading)
         }
     }
 }
