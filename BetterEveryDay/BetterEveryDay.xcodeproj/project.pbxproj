@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24018DE02CD1F5950039829E /* SessionSegment.swift */; };
 		2406EB142A70F2E200E3FF6A /* TimeDistributionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB132A70F2E200E3FF6A /* TimeDistributionData.swift */; };
 		2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */; };
 		2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24018DE02CD1F5950039829E /* SessionSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegment.swift; sourceTree = "<group>"; };
 		2406EB132A70F2E200E3FF6A /* TimeDistributionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDistributionData.swift; sourceTree = "<group>"; };
 		2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutesDurationTextView.swift; sourceTree = "<group>"; };
 		2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDistributionChartView.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				24DBA2362C61624F00860171 /* SessionController.swift */,
 				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
 				24F53FA82C689FB000C6A666 /* Session.swift */,
+				24018DE02CD1F5950039829E /* SessionSegment.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -467,7 +470,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					B9C479A42A16742900C0CE3E = {
 						CreatedOnToolsVersion = 14.3;
@@ -543,6 +546,7 @@
 				24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */,
 				24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */,
 				247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */,
+				24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
@@ -805,7 +809,6 @@
 		B9C479CE2A16742D00C0CE3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -829,7 +832,6 @@
 		B9C479CF2A16742D00C0CE3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -853,7 +855,6 @@
 		B9C479D12A16742D00C0CE3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -876,7 +877,6 @@
 		B9C479D22A16742D00C0CE3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
