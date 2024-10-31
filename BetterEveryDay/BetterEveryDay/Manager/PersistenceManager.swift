@@ -12,7 +12,7 @@ import SwiftData
 protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
     /// - Parameter sessionController: ``SessionController``  to be persisted
-    func insertSession(from sessionController: SessionController)
+    func insertSession(from sessionController: SessionController) async
     
     /// Update an existing session entry in the persistence layer
     /// - Parameter session: ``Session`` to be persisted
@@ -22,9 +22,9 @@ protocol PersistenceManagerProtocol: Observable {
     /// - Parameter session: ``Session``  to be persisted
     func finishSession(with session: ThirdTimeSession)
 
-    func getLatestRunningSession() -> SessionController?
+    func getLatestRunningSession() async -> SessionController?
     
-    func getTodaysSessions() -> [SessionData]
+    func getTodaysSessions() async -> [SessionData]
 }
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
@@ -36,8 +36,8 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
 }
 
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
-    var currentSession: SessionData?
-    var modelContainer: ModelContainer
+    private var currentSession: SessionData?
+    private(set) var modelContainer: ModelContainer
     
     init() {
         self.modelContainer = {
@@ -51,16 +51,10 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }()
     }
     
-    @MainActor func insertSession(from sessionController: SessionController) {
+    @MainActor func insertSession(from sessionController: SessionController) async {
         let session = sessionController.session
-        let sessionSegments = session.segments.map {
-            SessionSegmentData(category: $0.category.rawValue,
-                               startedAt: $0.startedAt,
-                               finishedAt: $0.finishedAt,
-                               duration: $0.duration
-            )
-        }
-        let sessionDuration = sessionSegments.reduce(0.0) { $0 + $1.duration }
+        let sessionSegments: [SessionSegmentData] = []
+        let sessionDuration = 0.0
         
         let newSessionData = SessionData(state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
@@ -75,6 +69,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession = newSessionData
         
         modelContainer.mainContext.insert(newSessionData)
+        try? modelContainer.mainContext.save()
     }
     
     @MainActor func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
@@ -98,6 +93,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                              startedAt: segment.startedAt,
                                              finishedAt: segment.finishedAt,
                                              duration: segment.duration))
+        
+        try? modelContainer.mainContext.save()
     }
     
     func finishSession(with session: ThirdTimeSession) {
