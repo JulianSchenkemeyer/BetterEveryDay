@@ -61,7 +61,7 @@ struct PrepareSessionScreen: View {
     private func startSession() {
         viewModel.state = .RUNNING
         viewModel.started = .now
-        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
         if persistenceManager != nil {
             persistenceManager?.insertSession(from: viewModel)
         }
@@ -78,7 +78,7 @@ struct PrepareSessionScreen: View {
     private func resetSessionController() {
         viewModel.goal = ""
         viewModel.started = nil
-        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
     }
     
     private func restoreRunningSession() {

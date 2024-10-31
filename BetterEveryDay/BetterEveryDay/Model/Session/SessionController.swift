@@ -14,13 +14,13 @@ import Foundation
     var goal: String
     var started: Date?
     
-    var session: Session
+    var session: ThirdTimeSession
     
 
     init(state: SessionState = .PREPARING,
          goal: String = "",
          started: Date? = nil,
-         sections: Session = Session()) {
+         sections: ThirdTimeSession = ThirdTimeSession()) {
         self.state = state
         self.goal = goal
         self.started = started

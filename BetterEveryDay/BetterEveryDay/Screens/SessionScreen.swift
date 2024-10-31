@@ -19,7 +19,7 @@ struct SessionScreen: View {
     @State private var goneOvertime = false
     
     var goal: String
-    var viewModel: Session
+    var viewModel: ThirdTimeSession
     
     var body: some View {
         NavigationStack {
@@ -137,7 +137,7 @@ struct SessionScreen: View {
 }
 
 #Preview {
-    SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
+    SessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
         .environment(\.persistenceManager, PersistenceManagerMock())
 }

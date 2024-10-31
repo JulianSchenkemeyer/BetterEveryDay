@@ -16,11 +16,11 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Update an existing session entry in the persistence layer
     /// - Parameter session: ``Session`` to be persisted
-    func updateSession(with session: Session)
+    func updateSession(with session: ThirdTimeSession)
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
-    func finishSession(with session: Session)
+    func finishSession(with session: ThirdTimeSession)
 
     func getLatestRunningSession() -> SessionController?
     
@@ -29,8 +29,8 @@ protocol PersistenceManagerProtocol: Observable {
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController) { }
-    func updateSession(with session: Session) { }
-    func finishSession(with session: Session) { }
+    func updateSession(with session: ThirdTimeSession) { }
+    func finishSession(with session: ThirdTimeSession) { }
     func getLatestRunningSession() -> SessionController? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
@@ -77,7 +77,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         modelContainer.mainContext.insert(newSessionData)
     }
     
-    func updateSession(with session: Session) {
+    func updateSession(with session: ThirdTimeSession) {
         guard let currentSession else {
             print("❌ no current session")
             return
@@ -104,7 +104,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                              duration: segment.duration))
     }
     
-    func finishSession(with session: Session) {
+    func finishSession(with session: ThirdTimeSession) {
         guard let currentSession else {
             print("❌ no current session")
             return
@@ -171,7 +171,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             sections.append(.init(category: .Focus, startedAt: data.started))
         }
         
-        let session = Session(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
+        let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
         
         return SessionController(state: SessionState(rawValue: data.state)!, goal: data.goal, started: data.started, sections: session )
     }

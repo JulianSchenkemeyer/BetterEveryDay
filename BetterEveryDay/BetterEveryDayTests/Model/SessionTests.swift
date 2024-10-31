@@ -11,13 +11,13 @@ import XCTest
 
 final class SessionTests: XCTestCase {
     func testInit() {
-        let session = Session()
+        let session = ThirdTimeSession()
         
         XCTAssert(session.segments.isEmpty, "Is not created empty")
     }
     
     func testCreateNextSection() {
-        let session = Session()
+        let session = ThirdTimeSession()
         
         session.next()
         XCTAssertEqual(session.segments.count, 1)
@@ -30,7 +30,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testFinishUpPreviousSession() {
-        let session = Session()
+        let session = ThirdTimeSession()
         session.segments.append(.init(category: .Focus))
         
         session.next()
@@ -51,7 +51,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testGetPauseLength() {
-        let session = Session()
+        let session = ThirdTimeSession()
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
         session.next()
@@ -60,7 +60,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testGetPauseLengthWithCustomBreaktimeFactor() {
-        let session = Session(breaktimeFactor: 5)
+        let session = ThirdTimeSession(breaktimeFactor: 5)
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
         session.next()
@@ -69,7 +69,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testSessionWithMultipleEntries() {
-        let session = Session()
+        let session = ThirdTimeSession()
         
         let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         session.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
@@ -93,7 +93,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testSessionWithBreakLimit() {
-        let session = Session(breaktimeLimit: 300)
+        let session = ThirdTimeSession(breaktimeLimit: 300)
         let thirtyMinAgo = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         session.segments.append(.init(category: .Focus, startedAt: thirtyMinAgo))
         session.next()
@@ -102,7 +102,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testSessionWithBreakLimitAndMultipleEntries() {
-        let session = Session(breaktimeLimit: 300)
+        let session = ThirdTimeSession(breaktimeLimit: 300)
         
         let thirtyMinSession = Calendar.current.date(byAdding: .minute, value: -30, to: .now)!
         session.segments.append(.init(category: .Focus, startedAt: thirtyMinSession))
@@ -133,7 +133,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testGetCurrentSegment() {
-        let session = Session()
+        let session = ThirdTimeSession()
         
         // No current session
         XCTAssertNil(session.getCurrent())
@@ -147,7 +147,7 @@ final class SessionTests: XCTestCase {
     }
     
     func testEndSession() {
-        let session = Session()
+        let session = ThirdTimeSession()
         session.next()
         
         XCTAssertEqual(session.segments.count, 1)
