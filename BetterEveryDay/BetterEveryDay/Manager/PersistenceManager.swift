@@ -16,7 +16,7 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Update an existing session entry in the persistence layer
     /// - Parameter session: ``Session`` to be persisted
-    func updateSession(with session: ThirdTimeSession)
+    func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) async
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
@@ -29,7 +29,7 @@ protocol PersistenceManagerProtocol: Observable {
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController) { }
-    func updateSession(with session: ThirdTimeSession) { }
+    func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
     func finishSession(with session: ThirdTimeSession) { }
     func getLatestRunningSession() -> SessionController? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
@@ -77,18 +77,14 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         modelContainer.mainContext.insert(newSessionData)
     }
     
-    func updateSession(with session: ThirdTimeSession) {
+    @MainActor func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
         guard let currentSession else {
             print("❌ no current session")
             return
         }
         
-        guard let segment = session.segments.last else {
-            print("❌ no segment to persist")
-            return
-        }
         
-        currentSession.availableBreak = session.availableBreak
+        currentSession.availableBreak = availableBreaktime
         currentSession.duration += segment.duration
         
         switch segment.category {

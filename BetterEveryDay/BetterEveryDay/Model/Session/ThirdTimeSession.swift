@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias OnFinishingSegmentClosure = ((ThirdTimeSession) -> Void)?
+typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
 
 protocol SessionProtocol: Observable {
     var segments: [SessionSegment] { get set }
@@ -59,7 +59,7 @@ protocol SessionProtocol: Observable {
         updateBreak(last)
         
         if let onFinishingSegment {
-            onFinishingSegment(self)
+            onFinishingSegment(availableBreak, last)
         }
         
         let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
@@ -74,7 +74,7 @@ protocol SessionProtocol: Observable {
         finishSegment(&last)
         
         if let onFinishingSegment {
-            onFinishingSegment(self)
+            onFinishingSegment(availableBreak, last)
         }
     }
     
