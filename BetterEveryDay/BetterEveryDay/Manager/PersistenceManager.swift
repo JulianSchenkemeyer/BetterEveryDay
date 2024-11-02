@@ -20,7 +20,7 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
-    func finishSession(with session: ThirdTimeSession)
+    func finishSession(with session: ThirdTimeSession) async
 
     func getLatestRunningSession() async -> SessionController?
     
@@ -97,7 +97,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? modelContainer.mainContext.save()
     }
     
-    func finishSession(with session: ThirdTimeSession) {
+    @MainActor func finishSession(with session: ThirdTimeSession) {
         guard let currentSession else {
             print("❌ no current session")
             return
@@ -106,6 +106,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.state = "Finished"
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
+        
+        try? modelContainer.mainContext.save()
     }
 
     @MainActor func getLatestRunningSession() -> SessionController? {

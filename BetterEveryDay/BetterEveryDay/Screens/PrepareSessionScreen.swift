@@ -75,8 +75,10 @@ struct PrepareSessionScreen: View {
     }
     
     private func finishSession() {
-        viewModel.state = .FINISHED
-        persistenceManager?.finishSession(with: viewModel.session)
+        viewModel.finish()
+        Task {
+            await persistenceManager?.finishSession(with: viewModel.session)
+        }
     }
     
     private func resetSessionController() {
