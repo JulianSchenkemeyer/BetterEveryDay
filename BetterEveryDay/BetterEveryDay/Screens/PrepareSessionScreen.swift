@@ -47,12 +47,14 @@ struct PrepareSessionScreen: View {
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
             resetSessionController()
-            todays = persistenceManager?.getTodaysSessions() ?? []
+            Task {
+                todays = await persistenceManager?.getTodaysSessions() ?? []
+            }
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
-        .onAppear {
-            todays = persistenceManager?.getTodaysSessions() ?? []
+        .task {
+            todays = await persistenceManager?.getTodaysSessions() ?? []
             
             restoreRunningSession()
         }
@@ -63,7 +65,9 @@ struct PrepareSessionScreen: View {
         viewModel.started = .now
         viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
         if persistenceManager != nil {
-            persistenceManager?.insertSession(from: viewModel)
+            Task {
+                await persistenceManager?.insertSession(from: viewModel)
+            }
         }
         viewModel.session.next()
         sessionIsInProgress = true
@@ -82,16 +86,22 @@ struct PrepareSessionScreen: View {
     }
     
     private func restoreRunningSession() {
-        let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
-        guard let unfinished else { return }
-        viewModel = unfinished
-        
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-            sessionIsInProgress = true
+        Task {
+            let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
+            guard let unfinished else { return }
+
+            viewModel.goal = unfinished.goal
+            viewModel.started = unfinished.started
+            viewModel.session = unfinished.session
+            viewModel.state = unfinished.state
+                
+            
+            var transaction = Transaction()
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                sessionIsInProgress = true
+            }
         }
-        
     }
 }
 

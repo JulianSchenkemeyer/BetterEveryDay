@@ -93,8 +93,10 @@ struct SessionScreen: View {
             return
         }
         
-        viewModel.next() { data in
-            persistenceManager?.updateSession(with: data)
+        viewModel.next() { breaktime, segment in
+            Task {
+                await persistenceManager?.updateSession(with: breaktime, segment: segment)
+            }
         }
         removeScheduledNotifications()
         if segment.category == .Focus {
@@ -105,8 +107,10 @@ struct SessionScreen: View {
     /// Finish the current session
     private func finishSession() {
         removeScheduledNotifications()
-        viewModel.endSession() { data in
-            persistenceManager?.updateSession(with: data)
+        viewModel.endSession() { breaktime, segment in
+            Task {
+                await persistenceManager?.updateSession(with: breaktime, segment: segment)
+            }
         }
         dismiss()
     }
