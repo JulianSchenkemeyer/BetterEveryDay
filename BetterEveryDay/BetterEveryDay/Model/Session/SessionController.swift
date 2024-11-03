@@ -37,11 +37,11 @@ import Foundation
         state = .FINISHED
     }
     
-    func reset(limit: Int, factor: Double) {
+    func reset() {
         goal = ""
         started = nil
         state = .PREPARING
-        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+        session = ThirdTimeSession()
     }
     
     func restore(goal: String, started: Date?, session: ThirdTimeSession, state: SessionState) {

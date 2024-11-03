@@ -75,7 +75,7 @@ struct PrepareSessionScreen: View {
         Task {
             await persistenceManager?.finishSession(with: viewModel.session)
             
-            viewModel.reset(limit: breaktimeLimit, factor: breaktimeFactor)
+            viewModel.reset()
             
             todays = await persistenceManager?.getTodaysSessions() ?? []
         }
