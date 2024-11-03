@@ -19,7 +19,7 @@ protocol SessionProtocol: Observable {
     
 }
 
-/// Session is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
+/// ThirdTimeSession is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
 @Observable final class ThirdTimeSession: SessionProtocol {
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval
