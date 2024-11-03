@@ -46,10 +46,6 @@ struct PrepareSessionScreen: View {
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
-            resetSessionController()
-            Task {
-                todays = await persistenceManager?.getTodaysSessions() ?? []
-            }
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
@@ -78,13 +74,11 @@ struct PrepareSessionScreen: View {
         viewModel.finish()
         Task {
             await persistenceManager?.finishSession(with: viewModel.session)
+            
+            viewModel.reset(limit: breaktimeLimit, factor: breaktimeFactor)
+            
+            todays = await persistenceManager?.getTodaysSessions() ?? []
         }
-    }
-    
-    private func resetSessionController() {
-        viewModel.goal = ""
-        viewModel.started = nil
-        viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
     }
     
     private func restoreRunningSession() {
