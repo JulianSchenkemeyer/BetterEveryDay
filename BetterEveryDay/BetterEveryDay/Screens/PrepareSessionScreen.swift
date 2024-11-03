@@ -46,10 +46,6 @@ struct PrepareSessionScreen: View {
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
-            resetSessionController()
-            Task {
-                todays = await persistenceManager?.getTodaysSessions() ?? []
-            }
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
@@ -61,15 +57,15 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession() {
-        viewModel.state = .RUNNING
-        viewModel.started = .now
-        viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        viewModel.start(with: breaktimeLimit, factor: breaktimeFactor)
+        
         if persistenceManager != nil {
             Task {
                 await persistenceManager?.insertSession(from: viewModel)
             }
         }
         viewModel.session.next()
+        
         sessionIsInProgress = true
         showNewTaskModal = false
     }
@@ -78,13 +74,11 @@ struct PrepareSessionScreen: View {
         viewModel.finish()
         Task {
             await persistenceManager?.finishSession(with: viewModel.session)
+            
+            viewModel.reset(limit: breaktimeLimit, factor: breaktimeFactor)
+            
+            todays = await persistenceManager?.getTodaysSessions() ?? []
         }
-    }
-    
-    private func resetSessionController() {
-        viewModel.goal = ""
-        viewModel.started = nil
-        viewModel.session = ThirdTimeSession(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
     }
     
     private func restoreRunningSession() {
@@ -92,11 +86,10 @@ struct PrepareSessionScreen: View {
             let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
 
-            viewModel.goal = unfinished.goal
-            viewModel.started = unfinished.started
-            viewModel.session = unfinished.session
-            viewModel.state = unfinished.state
-                
+            viewModel.restore(goal: unfinished.goal,
+                              started: unfinished.started,
+                              session: unfinished.session,
+                              state: unfinished.state)
             
             var transaction = Transaction()
             transaction.disablesAnimations = true

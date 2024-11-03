@@ -8,6 +8,8 @@
 import Foundation
 import SwiftData
 
+typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSession, state: SessionState)
+
 /// Defines the functions needed to persist the session
 protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
@@ -22,7 +24,7 @@ protocol PersistenceManagerProtocol: Observable {
     /// - Parameter session: ``Session``  to be persisted
     func finishSession(with session: ThirdTimeSession) async
 
-    func getLatestRunningSession() async -> SessionController?
+    func getLatestRunningSession() async -> LatestSessionData?
     
     func getTodaysSessions() async -> [SessionData]
 }
@@ -31,7 +33,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
     func finishSession(with session: ThirdTimeSession) { }
-    func getLatestRunningSession() -> SessionController? { nil }
+    func getLatestRunningSession() -> LatestSessionData? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
 
@@ -110,7 +112,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? modelContainer.mainContext.save()
     }
 
-    @MainActor func getLatestRunningSession() -> SessionController? {
+    @MainActor func getLatestRunningSession() -> LatestSessionData? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == running
@@ -153,7 +155,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     
     
     //MARK: Helper
-    private func restoreSession(with data: SessionData) -> SessionController {
+    private func restoreSession(with data: SessionData) -> LatestSessionData {
         var sections = data.segments
             .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
@@ -168,6 +170,9 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         
         let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
         
-        return SessionController(state: SessionState(rawValue: data.state)!, goal: data.goal, started: data.started, sections: session )
+        return (goal: data.goal,
+                started: data.started,
+                session: session,
+                state: SessionState(rawValue: data.state)! )
     }
 }
