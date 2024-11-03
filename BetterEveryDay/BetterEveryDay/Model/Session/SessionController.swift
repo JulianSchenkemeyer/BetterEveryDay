@@ -14,17 +14,41 @@ import Foundation
     var goal: String
     var started: Date?
     
-    var session: Session
+    var session: ThirdTimeSession
     
 
     init(state: SessionState = .PREPARING,
          goal: String = "",
          started: Date? = nil,
-         sections: Session = Session()) {
+         sections: ThirdTimeSession = ThirdTimeSession()) {
         self.state = state
         self.goal = goal
         self.started = started
         self.session = sections
+    }
+    
+    func start(with limit: Int, factor: Double) {
+        state = .RUNNING
+        started = .now
+        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+    }
+    
+    func finish() {
+        state = .FINISHED
+    }
+    
+    func reset(limit: Int, factor: Double) {
+        goal = ""
+        started = nil
+        state = .PREPARING
+        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+    }
+    
+    func restore(goal: String, started: Date?, session: ThirdTimeSession, state: SessionState) {
+        self.goal = goal
+        self.started = started
+        self.session = session
+        self.state = state
     }
 }
 

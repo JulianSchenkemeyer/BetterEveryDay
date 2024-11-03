@@ -46,52 +46,57 @@ struct PrepareSessionScreen: View {
         .navigationBarTitleDisplayMode(.automatic)
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
-            resetSessionController()
-            todays = persistenceManager?.getTodaysSessions() ?? []
         }, content: {
             SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
         })
-        .onAppear {
-            todays = persistenceManager?.getTodaysSessions() ?? []
+        .task {
+            todays = await persistenceManager?.getTodaysSessions() ?? []
             
             restoreRunningSession()
         }
     }
     
     private func startSession() {
-        viewModel.state = .RUNNING
-        viewModel.started = .now
-        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        viewModel.start(with: breaktimeLimit, factor: breaktimeFactor)
+        
         if persistenceManager != nil {
-            persistenceManager?.insertSession(from: viewModel)
+            Task {
+                await persistenceManager?.insertSession(from: viewModel)
+            }
         }
         viewModel.session.next()
+        
         sessionIsInProgress = true
         showNewTaskModal = false
     }
     
     private func finishSession() {
-        viewModel.state = .FINISHED
-        persistenceManager?.finishSession(with: viewModel.session)
-    }
-    
-    private func resetSessionController() {
-        viewModel.goal = ""
-        viewModel.started = nil
-        viewModel.session = Session(breaktimeLimit: breaktimeLimit, breaktimeFactor: breaktimeFactor)
+        viewModel.finish()
+        Task {
+            await persistenceManager?.finishSession(with: viewModel.session)
+            
+            viewModel.reset(limit: breaktimeLimit, factor: breaktimeFactor)
+            
+            todays = await persistenceManager?.getTodaysSessions() ?? []
+        }
     }
     
     private func restoreRunningSession() {
-        let unfinished = persistenceManager?.getLatestRunningSession() ?? nil
-        guard let unfinished else { return }
-        viewModel = unfinished
-        
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-            sessionIsInProgress = true
+        Task {
+            let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
+            guard let unfinished else { return }
+
+            viewModel.restore(goal: unfinished.goal,
+                              started: unfinished.started,
+                              session: unfinished.session,
+                              state: unfinished.state)
+            
+            var transaction = Transaction()
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                sessionIsInProgress = true
+            }
         }
-        
     }
 }
 

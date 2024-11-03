@@ -7,10 +7,20 @@
 
 import Foundation
 
-typealias OnFinishingSegmentClosure = ((Session) -> Void)?
+typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
+
+protocol SessionProtocol: Observable {
+    var segments: [SessionSegment] { get set }
+    var availableBreak: TimeInterval { get set }
+    
+    func getCurrent() -> SessionSegment?
+    func next(onFinishingSegment: OnFinishingSegmentClosure)
+    func endSession(onFinishingSegment: OnFinishingSegmentClosure)
+    
+}
 
 /// Session is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
-@Observable final class Session {
+@Observable final class ThirdTimeSession: SessionProtocol {
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval
     var breaktimeLimit = 0
@@ -49,7 +59,7 @@ typealias OnFinishingSegmentClosure = ((Session) -> Void)?
         updateBreak(last)
         
         if let onFinishingSegment {
-            onFinishingSegment(self)
+            onFinishingSegment(availableBreak, last)
         }
         
         let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
@@ -64,7 +74,7 @@ typealias OnFinishingSegmentClosure = ((Session) -> Void)?
         finishSegment(&last)
         
         if let onFinishingSegment {
-            onFinishingSegment(self)
+            onFinishingSegment(availableBreak, last)
         }
     }
     
@@ -103,28 +113,4 @@ typealias OnFinishingSegmentClosure = ((Session) -> Void)?
     private func createNew(category: SessionCategory) {
         segments.append(.init(category: category))
     }
-}
-
-
-/// Describes on part of a session
-struct SessionSegment: Equatable {
-    let category: SessionCategory
-    let startedAt: Date
-    var finishedAt: Date?
-    
-    init(category: SessionCategory, startedAt: Date = .now, finishedAt: Date? = nil) {
-        self.category = category
-        self.startedAt = startedAt
-        self.finishedAt = finishedAt
-    }
-    
-    /// Computed duration value: time from start to finish
-    var duration: TimeInterval {
-        guard let finishedAt else { return Date.now.timeIntervalSince1970 - startedAt.timeIntervalSince1970 }
-        
-        return finishedAt.timeIntervalSince1970 - startedAt.timeIntervalSince1970
-    }
-    
-    /// True if SessionSegment has no finishedAt value
-    var isRunning: Bool { finishedAt == nil }
 }

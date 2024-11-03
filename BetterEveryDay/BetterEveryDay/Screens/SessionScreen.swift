@@ -19,7 +19,7 @@ struct SessionScreen: View {
     @State private var goneOvertime = false
     
     var goal: String
-    var viewModel: Session
+    var viewModel: ThirdTimeSession
     
     var body: some View {
         NavigationStack {
@@ -93,8 +93,10 @@ struct SessionScreen: View {
             return
         }
         
-        viewModel.next() { data in
-            persistenceManager?.updateSession(with: data)
+        viewModel.next() { breaktime, segment in
+            Task {
+                await persistenceManager?.updateSession(with: breaktime, segment: segment)
+            }
         }
         removeScheduledNotifications()
         if segment.category == .Focus {
@@ -105,8 +107,10 @@ struct SessionScreen: View {
     /// Finish the current session
     private func finishSession() {
         removeScheduledNotifications()
-        viewModel.endSession() { data in
-            persistenceManager?.updateSession(with: data)
+        viewModel.endSession() { breaktime, segment in
+            Task {
+                await persistenceManager?.updateSession(with: breaktime, segment: segment)
+            }
         }
         dismiss()
     }
@@ -137,7 +141,7 @@ struct SessionScreen: View {
 }
 
 #Preview {
-    SessionScreen(goal: "work on session screen work on session screen", viewModel: Session(segments: [.init(category: .Focus, startedAt: .now)]))
+    SessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
         .environment(\.persistenceManager, PersistenceManagerMock())
 }
