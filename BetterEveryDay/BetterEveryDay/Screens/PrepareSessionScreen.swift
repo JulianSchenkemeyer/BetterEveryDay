@@ -86,10 +86,10 @@ struct PrepareSessionScreen: View {
             let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
 
-            viewModel.restore(goal: unfinished.goal,
+            viewModel.restore(state: unfinished.state,
+                              goal: unfinished.goal,
                               started: unfinished.started,
-                              session: unfinished.session,
-                              state: unfinished.state)
+                              session: unfinished.session)
             
             var transaction = Transaction()
             transaction.disablesAnimations = true
