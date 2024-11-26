@@ -40,7 +40,7 @@ struct SessionScreen: View {
                             TimerLabelView(date: segment.startedAt)
                         } else {
                             TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
-                                .foregroundStyle(goneOvertime ? .red : .black)
+                                .foregroundStyle(goneOvertime ? .red : .primary)
                                 .task {
                                     await goOvertimeTimer()
                                 }
