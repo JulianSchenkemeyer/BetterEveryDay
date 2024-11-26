@@ -8,26 +8,49 @@ If you only need a short break and still have time left in your pause, the remai
 
 BetterEveryDay is currently in its prototype phase.
 
+Overview
+Prepare
+Session
+
+### What does already work
+
 - Foundational logic (calculation of breaks, goal setting)
-- Persistence with Swift Data (To a degree exchangeable)
-- Local Notifications for reminding users when their breaktime is up, if they currently do not have the app open
-- A daily summary
+- Limit the maximal pause time, which can be earned to 3, 4, ..., 10 min
+- Change the factor through which pause time is earned between 1 and 5. For example if the factor is set to 5, you have to focus on your task for 5 min to earn 1 min of pause time
+- UI
+  - Basic Information about the current day (total length spend in sessions, session count, distribution of focus vs pause, last 5 goals)
+  - Modal to enter a new goal and start a new session
+  - Session view, showing the timer, if the user is currently in focus or pause and his stated goal for the session
+  - a rough draft of the settings view
+- Local Notifications for reminding users when their pause time is up, if the app is not open
+- Persisting the session data
+- Restoring running sessions if the app was quit
 
-## To do
+### Next Steps
 
-- [ ] daily summ
+- Make historical data visible / Timeline view, allowing the user to revisit the goals and session of past days
+- Rewrite Settings
+- Modularize into smaller module
+- Widgets and Live activity
+- Interactive Widgets and Control Center Element
+- Allow users to switch to other timer variants (classic Pomodoro)
+- Adjustment for other platforms
 
-## Techstack
+## Used Technologies
 
 - Swift
 - SwiftUI
 - Swift Charts
+- Swift Data
+- DocC
+- XCTest
 
-## Features
+## What needs to be done before a release
 
-- Timer, indicating the time spend working on a task (shown in focus phase)
-- Countdown, indicating the time left in the break (shown in pause phase)
-- Keep track of unused and overdrawn pause times
-- Option to limit the max length of a pause (currently hardcoded to 10min)
-- Summary (Reflect) screen, showing the total focus time and break time (separated in used and unused), also shown in a simple bar chart
-- Local notifications, to indicate when the pause quota is used up
+- App Icons & Launchscreen
+- Improve Accessibility & UX
+- Add an onboarding experience
+- Make sure the design is consistent (colors, shadow, font types, ...)
+- Find a better name
+- Add more personality (small animations, ...)
+- Improve Performance
