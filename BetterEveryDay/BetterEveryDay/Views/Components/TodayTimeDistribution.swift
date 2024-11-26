@@ -10,7 +10,7 @@ import SwiftUI
 struct TodayTimeDistribution: View {
     var todaysSessions: [SessionData] = []
     
-    var chartData: [TimeDistributionData] {
+    var chartData: (work: Double, pause: Double) {
         var totalDuration = 0.0
         var totalWorkTime = 0.0
         var totalPauseTime = 0.0
@@ -21,9 +21,11 @@ struct TodayTimeDistribution: View {
             totalPauseTime += session.timeSpendPause
         }
         
-        print("\(totalWorkTime), \(totalPauseTime)")
-        return [.init(part: totalWorkTime / totalDuration, category: "Work"),
-                .init(part: totalPauseTime / totalDuration, category: "Pause")]
+        let workPercentage = totalWorkTime / totalDuration
+        let pausePercentage = totalPauseTime / totalDuration
+        
+        return (work: workPercentage.isNaN ? 0.0 : workPercentage,
+                pause: pausePercentage.isNaN ? 0.0 : pausePercentage)
     }
     
     var body: some View {
@@ -35,7 +37,8 @@ struct TodayTimeDistribution: View {
                 
                 Divider()
                 
-                TimeDistributionChartView(data: chartData)
+                TimeDistributionChartView(totalWorkTime: chartData.work,
+                                          totalPauseTime: chartData.pause)
             }
         }
     }

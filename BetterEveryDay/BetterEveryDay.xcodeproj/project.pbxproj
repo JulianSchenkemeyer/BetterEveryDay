@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24018DE02CD1F5950039829E /* SessionSegment.swift */; };
-		2406EB142A70F2E200E3FF6A /* TimeDistributionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB132A70F2E200E3FF6A /* TimeDistributionData.swift */; };
 		2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */; };
 		2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */; };
 		2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB1C2A76B4A200E3FF6A /* NotificationHelper.swift */; };
@@ -74,7 +73,6 @@
 
 /* Begin PBXFileReference section */
 		24018DE02CD1F5950039829E /* SessionSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegment.swift; sourceTree = "<group>"; };
-		2406EB132A70F2E200E3FF6A /* TimeDistributionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDistributionData.swift; sourceTree = "<group>"; };
 		2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutesDurationTextView.swift; sourceTree = "<group>"; };
 		2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDistributionChartView.swift; sourceTree = "<group>"; };
 		2406EB1C2A76B4A200E3FF6A /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				24F3F2942B1A3994008063B2 /* Data */,
 				24DF29802AA4D2EE00DC40D6 /* Session */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
-				2406EB132A70F2E200E3FF6A /* TimeDistributionData.swift */,
 				24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */,
 			);
 			path = Model;
@@ -550,7 +547,6 @@
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
-				2406EB142A70F2E200E3FF6A /* TimeDistributionData.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
