@@ -1,12 +1,10 @@
 //
 //  Date+Ext.swift
-//  BetterEveryDay
+//  BetterEveryDayPersistence
 //
-//  Created by Julian Schenkemeyer on 02.09.24.
+//  Created by Julian Schenkemeyer on 31.12.24.
 //
-
 import Foundation
-
 
 extension Date {
     func getStartAndEndOfDay() -> (start: Date, end: Date) {

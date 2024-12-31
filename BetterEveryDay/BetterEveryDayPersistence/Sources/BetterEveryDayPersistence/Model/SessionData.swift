@@ -11,20 +11,20 @@ import BetterEveryDayCore
 
 
 @Model
-final class SessionData {
-    var state: SessionState.RawValue
-    var goal: String
-    var started: Date
-    var breaktimeLimit: Int
-    var breaktimeFactor: Double
-    var availableBreak: TimeInterval
-    var duration: TimeInterval
-    var timeSpendWork: TimeInterval
-    var timeSpendPause: TimeInterval
+public final class SessionData {
+    public var state: SessionState.RawValue
+    public var goal: String
+    public var started: Date
+    public var breaktimeLimit: Int
+    public var breaktimeFactor: Double
+    public var availableBreak: TimeInterval
+    public var duration: TimeInterval
+    public var timeSpendWork: TimeInterval
+    public var timeSpendPause: TimeInterval
     
-    @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) var segments: [SessionSegmentData]
+    @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) public var segments: [SessionSegmentData]
     
-    init(state: SessionState.RawValue,
+    public init(state: SessionState.RawValue,
          goal: String,
          started: Date,
          breaktimeLimit: Int,
@@ -47,14 +47,14 @@ final class SessionData {
     }
 }
 
-@Model final class SessionSegmentData {
-    var session: SessionData?
-    var category: SessionCategory.RawValue
-    var startedAt: Date
-    var finishedAt: Date?
-    var duration: Double
+@Model public final class SessionSegmentData {
+    public var session: SessionData?
+    public var category: SessionCategory.RawValue
+    public var startedAt: Date
+    public var finishedAt: Date?
+    public var duration: Double
     
-    init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil, duration: Double) {
+    public init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil, duration: Double) {
         self.session = nil
         self.category = category
         self.startedAt = startedAt

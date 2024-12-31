@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import BetterEveryDayPersistence
 
 struct TodayOverview: View {
     var todaysSessions: [SessionData] = []
