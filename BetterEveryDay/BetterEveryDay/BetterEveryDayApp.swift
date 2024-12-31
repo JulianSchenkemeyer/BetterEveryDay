@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import BetterEveryDayPersistence
 
 @main
 struct BetterEveryDayApp: App {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BetterEveryDayCore
+import BetterEveryDayPersistence
 
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
@@ -117,6 +118,6 @@ struct PrepareSessionScreen: View {
             Label("Settings", systemImage: "gear")
         }
     }
-    .environment(\.persistenceManager, PersistenceManagerMock())
+//    .environment(\.persistenceManager, PersistenceManagerMock())
     .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }

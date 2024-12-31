@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterEveryDayPersistence
 
 struct TodayGoalList: View {
     var todaysSessions: [SessionData] = []

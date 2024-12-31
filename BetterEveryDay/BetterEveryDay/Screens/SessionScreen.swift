@@ -144,5 +144,5 @@ struct SessionScreen: View {
 #Preview {
     SessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
-        .environment(\.persistenceManager, PersistenceManagerMock())
+//        .environment(\.persistenceManager, PersistenceManagerMock())
 }
