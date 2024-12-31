@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterEveryDayCore
 
 enum Phases: String, Codable {
     case Work, Pause

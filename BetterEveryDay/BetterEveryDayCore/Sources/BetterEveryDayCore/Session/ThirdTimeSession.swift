@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
+public typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
 
-protocol SessionProtocol: Observable {
+public protocol SessionProtocol: Observable {
     var segments: [SessionSegment] { get set }
     var availableBreak: TimeInterval { get set }
     
@@ -20,11 +20,12 @@ protocol SessionProtocol: Observable {
 }
 
 /// ThirdTimeSession is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
-@Observable final class ThirdTimeSession: SessionProtocol {
-    var segments: [SessionSegment] = []
-    var availableBreak: TimeInterval
-    var breaktimeLimit = 0
-    var breaktimeFactor = 3.0
+@Observable public final class ThirdTimeSession: SessionProtocol {
+    public var segments: [SessionSegment] = []
+    public var availableBreak: TimeInterval
+    
+    public var breaktimeLimit = 0
+    public var breaktimeFactor = 3.0
     
     /// Initialise a new Session
     /// - Parameters:
@@ -32,7 +33,7 @@ protocol SessionProtocol: Observable {
     ///   - availableBreak: Available breaktime for the session, default is 0
     ///   - breaktimeLimit: Limit for the available breaktime, default is unlimited (0)
     ///   - breaktimeFactor: Factor for calculating the available breaktime, default is 3
-    init(segments: [SessionSegment] = [],
+    public init(segments: [SessionSegment] = [],
          availableBreak: TimeInterval = 0,
          breaktimeLimit: Int = 0,
          breaktimeFactor: Double = 3
@@ -44,13 +45,13 @@ protocol SessionProtocol: Observable {
     }
     
     /// Get the current ``SessionSegment``
-    func getCurrent() -> SessionSegment? {
+    public func getCurrent() -> SessionSegment? {
         segments.last
     }
     
     /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
     /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
-    func next(onFinishingSegment: OnFinishingSegmentClosure = nil) {
+    public func next(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else {
             createNew(category: .Focus)
             return
@@ -68,7 +69,7 @@ protocol SessionProtocol: Observable {
     
     /// End the currently running session
     /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
-    func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
+    public func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else { return }
         updateBreak(last)
         finishSegment(&last)

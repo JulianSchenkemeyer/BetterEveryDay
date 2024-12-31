@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import BetterEveryDayCore
 
 typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSession, state: SessionState)
 
