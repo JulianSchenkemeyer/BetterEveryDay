@@ -40,9 +40,11 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     private var currentSession: SessionData?
     private(set) var modelContainer: ModelContainer
+    private(set) var context: ModelContext
+
     
     init() {
-        self.modelContainer = {
+        func createContainer() -> ModelContainer {
             let schema = Schema([SessionData.self])
             do {
                 let container = try ModelContainer(for: schema, configurations: [])
@@ -50,7 +52,10 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             } catch {
                 fatalError(error.localizedDescription)
             }
-        }()
+        }
+        self.modelContainer = createContainer()
+
+        context = .init(self.modelContainer)
     }
     
     @MainActor func insertSession(from sessionController: SessionController) async {
@@ -70,8 +75,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                          segments: sessionSegments)
         currentSession = newSessionData
         
-        modelContainer.mainContext.insert(newSessionData)
-        try? modelContainer.mainContext.save()
+        context.insert(newSessionData)
+        try? context.save()
     }
     
     @MainActor func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
@@ -96,10 +101,10 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                              finishedAt: segment.finishedAt,
                                              duration: segment.duration))
         
-        try? modelContainer.mainContext.save()
+        try? context.save()
     }
     
-    @MainActor func finishSession(with session: ThirdTimeSession) {
+    func finishSession(with session: ThirdTimeSession) {
         guard let currentSession else {
             print("❌ no current session")
             return
@@ -109,10 +114,10 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
         
-        try? modelContainer.mainContext.save()
+        try? context.save()
     }
 
-    @MainActor func getLatestRunningSession() -> LatestSessionData? {
+    func getLatestRunningSession() -> LatestSessionData? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == running
@@ -122,7 +127,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         fetchDescriptor.fetchLimit = 1
         
         do {
-            let unfinishedSession = try modelContainer.mainContext.fetch(fetchDescriptor)
+            let unfinishedSession = try context.fetch(fetchDescriptor)
             guard let unfinishedSession = unfinishedSession.first else { return nil }
             
             currentSession = unfinishedSession
@@ -134,7 +139,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }
     }
     
-    @MainActor func getTodaysSessions() -> [SessionData] {
+    func getTodaysSessions() -> [SessionData] {
         let finished = SessionState.FINISHED.rawValue
         let (start, end) = Date.now.getStartAndEndOfDay()
         let predicate = #Predicate<SessionData>{ session in
@@ -145,7 +150,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         let fetchDescribtor = FetchDescriptor(predicate: predicate, sortBy: sorting)
         
         do {
-            let todaysSessions = try modelContainer.mainContext.fetch(fetchDescribtor)
+            let todaysSessions = try context.fetch(fetchDescribtor)
             return todaysSessions
         } catch {
             print("❌")
