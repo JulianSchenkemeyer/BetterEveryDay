@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import BetterEveryDay
+@testable import BetterEveryDayCore
 
 
 final class SessionTests: XCTestCase {
