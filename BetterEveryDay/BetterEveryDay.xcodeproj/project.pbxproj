@@ -31,6 +31,7 @@
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
+		24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */; };
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
@@ -96,6 +97,7 @@
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreen.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
+		24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTests.swift; sourceTree = "<group>"; };
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		2406EB2B2A7FE2F900E3FF6A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */,
 				24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */,
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
+				24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
