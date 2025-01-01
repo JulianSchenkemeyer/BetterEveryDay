@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24018DE02CD1F5950039829E /* SessionSegment.swift */; };
 		2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */; };
 		2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */; };
 		2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB1C2A76B4A200E3FF6A /* NotificationHelper.swift */; };
@@ -26,26 +25,20 @@
 		247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B02C864EEC00B72733 /* Date+Ext.swift */; };
 		247FC7B52C8CA67500B72733 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B42C8CA67500B72733 /* Card.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
+		24801E4F2D23477B00B29388 /* BetterEveryDayCore in Frameworks */ = {isa = PBXBuildFile; productRef = 24801E4E2D23477B00B29388 /* BetterEveryDayCore */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
-		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */; };
 		24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */; };
 		24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */; };
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
-		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
-		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
-		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
 		24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF72162CCACF3D00195BD5 /* AddNewSession.swift */; };
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
 		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
-		24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SessionCategory.swift */; };
-		24F53FA92C689FB000C6A666 /* ThirdTimeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA82C689FB000C6A666 /* ThirdTimeSession.swift */; };
-		24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FAA2C70A9E600C6A666 /* SessionTests.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
 		B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479AA2A16742900C0CE3E /* ContentView.swift */; };
 		B9C479AD2A16742C00C0CE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C479AC2A16742C00C0CE3E /* Assets.xcassets */; };
@@ -73,7 +66,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24018DE02CD1F5950039829E /* SessionSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegment.swift; sourceTree = "<group>"; };
 		2406EB162A70F32A00E3FF6A /* HourMinutesDurationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinutesDurationTextView.swift; sourceTree = "<group>"; };
 		2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDistributionChartView.swift; sourceTree = "<group>"; };
 		2406EB1C2A76B4A200E3FF6A /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
@@ -92,26 +84,20 @@
 		247FC7B02C864EEC00B72733 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		247FC7B42C8CA67500B72733 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
+		24801E472D2317F000B29388 /* BetterEveryDayCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BetterEveryDayCore; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
-		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreen.swift; sourceTree = "<group>"; };
 		24A4AACB2AC07EEF00F4B4A5 /* WaitFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitFor.swift; sourceTree = "<group>"; };
 		24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTests.swift; sourceTree = "<group>"; };
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
-		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
-		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
-		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
 		24DF72162CCACF3D00195BD5 /* AddNewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSession.swift; sourceTree = "<group>"; };
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
-		24F53FA62C6899DA00C6A666 /* SessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCategory.swift; sourceTree = "<group>"; };
-		24F53FA82C689FB000C6A666 /* ThirdTimeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeSession.swift; sourceTree = "<group>"; };
-		24F53FAA2C70A9E600C6A666 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterEveryDayApp.swift; sourceTree = "<group>"; };
 		B9C479AA2A16742900C0CE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -130,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24801E4F2D23477B00B29388 /* BetterEveryDayCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				24F3F2942B1A3994008063B2 /* Data */,
-				24DF29802AA4D2EE00DC40D6 /* Session */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
-				24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,33 +252,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		24801E482D23461700B29388 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		24912E552B9F5F6E001AB4C7 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
 				24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */,
 			);
 			path = Animations;
-			sourceTree = "<group>";
-		};
-		24DF29802AA4D2EE00DC40D6 /* Session */ = {
-			isa = PBXGroup;
-			children = (
-				24DF29852AA5E3B400DC40D6 /* SessionState.swift */,
-				24DBA2362C61624F00860171 /* SessionController.swift */,
-				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
-				24F53FA82C689FB000C6A666 /* ThirdTimeSession.swift */,
-				24018DE02CD1F5950039829E /* SessionSegment.swift */,
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
-		24DF298B2AA84F9900DC40D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */,
-				24F53FAA2C70A9E600C6A666 /* SessionTests.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		24E924302A44D295002CA7F8 /* Buttons */ = {
@@ -317,9 +288,11 @@
 		B9C4799C2A16742900C0CE3E = {
 			isa = PBXGroup;
 			children = (
+				24801E472D2317F000B29388 /* BetterEveryDayCore */,
 				B9C479A72A16742900C0CE3E /* BetterEveryDay */,
 				B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */,
 				B9C479C32A16742D00C0CE3E /* BetterEveryDayUITests */,
+				24801E482D23461700B29388 /* Frameworks */,
 				B9C479A62A16742900C0CE3E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -366,7 +339,6 @@
 		B9C479B92A16742C00C0CE3E /* BetterEveryDayTests */ = {
 			isa = PBXGroup;
 			children = (
-				24DF298B2AA84F9900DC40D6 /* Model */,
 				2406EB2B2A7FE2F900E3FF6A /* Manager */,
 				2406EB2A2A7FE2E000E3FF6A /* Services */,
 				B9C479BA2A16742C00C0CE3E /* BetterEveryDayTests.swift */,
@@ -494,6 +466,8 @@
 				Base,
 			);
 			mainGroup = B9C4799C2A16742900C0CE3E;
+			packageReferences = (
+			);
 			productRefGroup = B9C479A62A16742900C0CE3E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -537,7 +511,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */,
-				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				24A4AACC2AC07EEF00F4B4A5 /* WaitFor.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */,
 				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
@@ -546,12 +519,10 @@
 				24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */,
 				24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */,
 				247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */,
-				24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
-				24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */,
@@ -559,18 +530,15 @@
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
-				24DBA2372C61624F00860171 /* SessionController.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
 				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
-				24F53FA92C689FB000C6A666 /* ThirdTimeSession.swift in Sources */,
 				245DDACF2C8DDE5900BE0703 /* Mockdata.swift in Sources */,
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
-				24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
@@ -581,8 +549,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */,
-				24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */,
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
 				24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */,
 			);
@@ -944,6 +910,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24801E4E2D23477B00B29388 /* BetterEveryDayCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BetterEveryDayCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B9C4799D2A16742900C0CE3E /* Project object */;
 }

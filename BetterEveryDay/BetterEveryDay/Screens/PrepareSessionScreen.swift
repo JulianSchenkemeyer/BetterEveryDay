@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterEveryDayCore
 
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
