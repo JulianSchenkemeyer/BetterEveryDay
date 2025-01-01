@@ -43,11 +43,11 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     private(set) var context: ModelContext
 
     
-    init() {
+    init(configuration: ModelConfiguration = .init(isStoredInMemoryOnly: false)) {
         func createContainer() -> ModelContainer {
             let schema = Schema([SessionData.self])
             do {
-                let container = try ModelContainer(for: schema, configurations: [])
+                let container = try ModelContainer(for: schema, configurations: configuration)
                 return container
             } catch {
                 fatalError(error.localizedDescription)
@@ -58,7 +58,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         context = .init(self.modelContainer)
     }
     
-    @MainActor func insertSession(from sessionController: SessionController) async {
+    func insertSession(from sessionController: SessionController) async {
         let session = sessionController.session
         let sessionSegments: [SessionSegmentData] = []
         let sessionDuration = 0.0
@@ -79,7 +79,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? context.save()
     }
     
-    @MainActor func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
+    func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
         guard let currentSession else {
             print("❌ no current session")
             return
