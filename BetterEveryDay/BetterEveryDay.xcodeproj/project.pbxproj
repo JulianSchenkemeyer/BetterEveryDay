@@ -34,6 +34,7 @@
 		24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */; };
 		24AF74222D2A9614009A08EB /* ClassicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74212D2A9609009A08EB /* ClassicSession.swift */; };
 		24AF74242D2AB1BD009A08EB /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */; };
+		24AF74272D2D0550009A08EB /* ClassicSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */; };
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
@@ -102,6 +103,7 @@
 		24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTests.swift; sourceTree = "<group>"; };
 		24AF74212D2A9609009A08EB /* ClassicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSession.swift; sourceTree = "<group>"; };
 		24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
+		24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSessionTests.swift; sourceTree = "<group>"; };
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		24DF298B2AA84F9900DC40D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */,
 				24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */,
 				24F53FAA2C70A9E600C6A666 /* SessionTests.swift */,
 			);
@@ -599,6 +602,7 @@
 			files = (
 				24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */,
 				24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */,
+				24AF74272D2D0550009A08EB /* ClassicSessionTests.swift in Sources */,
 				B9C479BB2A16742C00C0CE3E /* BetterEveryDayTests.swift in Sources */,
 				24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */,
 			);

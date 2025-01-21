@@ -7,52 +7,67 @@
 
 import Foundation
 
+
+/// Session with a fixed interval (focus and pause segment have a fixed length)
 @Observable final class ClassicSession: SessionProtocol {
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval = 0
-    private var activeSegmentIndex: Int = 0
     
-    init(segments: [SessionSegment],
-         availableBreak: TimeInterval = 0,
-         activeSegmentIndex: Int = 0) {
+    var focustimeLimit = 0
+    var breaktimeLimit = 0
+    
+    
+    init(segments: [SessionSegment] = [],
+         focustimeLimit: Int = 0,
+         breaktimeLimit: Int = 0
+    ) {
+        
         self.segments = segments
-        self.availableBreak = availableBreak
-        self.activeSegmentIndex = activeSegmentIndex
+        self.focustimeLimit = focustimeLimit
+        self.breaktimeLimit = breaktimeLimit
     }
     
     
     func getCurrent() -> SessionSegment? {
-        if activeSegmentIndex >= segments.count {
-            return nil
-        }
-        return segments[activeSegmentIndex]
+        segments.last
     }
     
-    func next(onFinishingSegment: OnFinishingSegmentClosure) {
-        guard var last = getCurrent() else {
+    func next(onFinishingSegment: OnFinishingSegmentClosure = nil) {
+        guard let last = getCurrent() else {
+            createNew(category: .Focus)
             return
         }
         
-        last.finishedAt = Date.now
-        
         if let onFinishingSegment {
-            onFinishingSegment(0, last)
+            onFinishingSegment(availableBreak, last)
         }
         
-        if activeSegmentIndex < segments.count {
-            activeSegmentIndex += 1
-        }
+        let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
+        createNew(category: nextCategory)
     }
     
-    func endSession(onFinishingSegment: OnFinishingSegmentClosure) {
-        guard var last = getCurrent() else {
+    func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
+        guard var last = segments.popLast() else {
             return
         }
         
-        last.finishedAt = Date.now
+        last.finishedAt = .now
+        segments.append(last)
         
         if let onFinishingSegment {
-            onFinishingSegment(0, last)
+            onFinishingSegment(availableBreak, last)
         }
+    }
+    
+    private func createNew(category: SessionCategory) {
+        let now = Date.now
+        let timeToAdd = category == .Focus ? focustimeLimit : breaktimeLimit
+        let finished = Calendar.current.date(byAdding: .minute, value: timeToAdd, to: now)!
+        
+        segments.append(SessionSegment(
+            category: category,
+            startedAt: now,
+            finishedAt: finished
+        ))
     }
 }
