@@ -81,12 +81,12 @@ import Foundation
     
     @Test func finishSessionData() async throws {
         let sessionController = SessionController()
-        let session = sessionController.session
+        var session = sessionController.session
         await persistenceManager.insertSession(from: sessionController)
         
         let now = Date.now
         let inFiveMinutes = Calendar.current.date(byAdding: .minute, value: 5, to: now)
-        let segment = SessionSegment(category: .Focus, startedAt: now, finishedAt: inFiveMinutes)
+        var segment = SessionSegment(category: .Focus, startedAt: now, finishedAt: inFiveMinutes)
         session.segments.append(segment)
 
         persistenceManager.updateSession(with: 0.0, segment: segment)
