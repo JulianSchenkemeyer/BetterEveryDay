@@ -14,7 +14,7 @@ import Foundation
     var goal: String
     var started: Date?
     
-    var session: ThirdTimeSession
+    var session: SessionProtocol
     
 
     
@@ -37,12 +37,12 @@ import Foundation
     
     /// Starts the session
     /// - Parameters:
-    ///   - limit: Int, limit for the breaktime. 0 is limitless
-    ///   - factor: Double, factor describing the rate breaktime is gained
-    func start(with limit: Int, factor: Double) {
+    ///   - sessionConfiguration: ``SessionConfiguration``, object containing the information needed to create a new Session
+    func start(with sessionConfiguration: SessionConfiguration) {
         state = .RUNNING
         started = .now
-        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+//        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+//        session = ClassicSession()
     }
     
     /// Finish the current session

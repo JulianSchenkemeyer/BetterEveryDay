@@ -14,7 +14,7 @@ typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSe
 protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
     /// - Parameter sessionController: ``SessionController``  to be persisted
-    func insertSession(from sessionController: SessionController) async
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async
     
     /// Update an existing session entry in the persistence layer
     /// - Parameter session: ``Session`` to be persisted
@@ -30,7 +30,7 @@ protocol PersistenceManagerProtocol: Observable {
 }
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
-    func insertSession(from sessionController: SessionController) { }
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
     func finishSession(with session: SessionProtocol) { }
     func getLatestRunningSession() -> LatestSessionData? { nil }
@@ -58,16 +58,18 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         context = .init(self.modelContainer)
     }
     
-    func insertSession(from sessionController: SessionController) async {
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async {
         let session = sessionController.session
         let sessionSegments: [SessionSegmentData] = []
         let sessionDuration = 0.0
         
-        let newSessionData = SessionData(state: sessionController.state.rawValue,
+        let newSessionData = SessionData(type: "flexible",
+                                         state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
                                          started: sessionController.started ?? .now,
-                                         breaktimeLimit: 0,
-                                         breaktimeFactor: 0,
+                                         focusTimeLimit: configuration.focustimeLimit,
+                                         breaktimeLimit: configuration.breaktimeLimit,
+                                         breaktimeFactor: configuration.breaktimeFactor,
                                          availableBreak: session.availableBreak,
                                          duration: sessionDuration,
                                          timeSpendWork: 0,
