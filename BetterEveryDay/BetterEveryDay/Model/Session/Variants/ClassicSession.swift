@@ -7,20 +7,6 @@
 
 import Foundation
 
-enum SessionType: String {
-    case fixed, flexible
-}
-
-struct SessionConfiguration {
-    let type: SessionType
-    
-    let focustimeLimit: Int
-    let breaktimeLimit: Int
-    
-    let breaktimeFactor: Double
-}
-
-
 
 /// Session with a fixed interval (focus and pause segment have a fixed length)
 @Observable final class ClassicSession: SessionProtocol {
@@ -84,38 +70,4 @@ struct SessionConfiguration {
             finishedAt: finished
         ))
     }
-    
-    
-//    /// Fill the segments array with the fixed session segments (focus, pause).
-//    /// - Parameters:
-//    ///   - segmentCount: Describes the amount of the segments which will be part of this session
-//    ///   - lengthOfFocusSegments: Describes the duration of the focus segments
-//    ///   - lengthOfPauseSegments: Describes the duration of the pause segments
-//    private func contructSegmentsForSession(configuration: ClassicSessionConfiguration) {
-//        let segmentCount = (configuration.focusSegmentCount * 2) - 1
-//        let lengthOfFocusSegments = configuration.lengthOfFocusSegments
-//        let lengthOfPauseSegments = configuration.lengthOfPauseSegments
-//        
-//        var previousSegmentFinishedAt = Date.now
-//        
-//        for i in 1..<segmentCount + 1 {
-//            if i.isMultiple(of: 2) {
-//                let finishedAt = previousSegmentFinishedAt + lengthOfPauseSegments
-//                self.segments.append(
-//                    .init(category: .Pause,
-//                          startedAt: previousSegmentFinishedAt,
-//                          finishedAt: finishedAt)
-//                )
-//                previousSegmentFinishedAt = finishedAt
-//            } else {
-//                let finishedAt = previousSegmentFinishedAt + lengthOfFocusSegments
-//                self.segments.append(
-//                    .init(category: .Focus,
-//                          startedAt: previousSegmentFinishedAt,
-//                          finishedAt: finishedAt)
-//                )
-//                previousSegmentFinishedAt = finishedAt
-//            }
-//        }
-//    }
 }
