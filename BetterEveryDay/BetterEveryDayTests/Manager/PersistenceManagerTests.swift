@@ -102,7 +102,7 @@ import Foundation
         
         let now = Date.now
         let inFiveMinutes = Calendar.current.date(byAdding: .minute, value: 5, to: now)
-        var segment = SessionSegment(category: .Focus, startedAt: now, finishedAt: inFiveMinutes)
+        let segment = SessionSegment(category: .Focus, startedAt: now, finishedAt: inFiveMinutes)
         session.segments.append(segment)
 
         persistenceManager.updateSession(with: 0.0, segment: segment)
