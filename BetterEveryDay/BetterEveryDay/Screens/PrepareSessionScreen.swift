@@ -47,7 +47,11 @@ struct PrepareSessionScreen: View {
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
         }, content: {
-            SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
+            if let session = viewModel.session as? ThirdTimeSession {
+                SessionScreen(goal: viewModel.goal, viewModel: session)
+            } else if let session = viewModel.session as? ClassicSession {
+                Text("test \(type(of: session))")
+            }
         })
         .task {
             todays = await persistenceManager?.getTodaysSessions() ?? []
@@ -57,14 +61,23 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession() {
-        viewModel.start(with: breaktimeLimit, factor: breaktimeFactor)
+        let sessionConfiguration = SessionConfiguration(type: .flexible,
+                                                        focustimeLimit: 0,
+                                                        breaktimeLimit: breaktimeLimit,
+                                                        breaktimeFactor: breaktimeFactor)
+        viewModel.start(with: sessionConfiguration)
         
+        //TODO: Maybe a start instead of next
         if persistenceManager != nil {
             Task {
-                await persistenceManager?.insertSession(from: viewModel)
+                let sessionConfiguration = SessionConfiguration(type: .flexible,
+                                                                focustimeLimit: 0,
+                                                                breaktimeLimit: breaktimeLimit,
+                                                                breaktimeFactor: breaktimeFactor)
+                await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
             }
         }
-        viewModel.session.next()
+        viewModel.session.next(onFinishingSegment: nil)
         
         sessionIsInProgress = true
         showNewTaskModal = false

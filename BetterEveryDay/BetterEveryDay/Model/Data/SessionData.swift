@@ -11,9 +11,11 @@ import SwiftData
 
 @Model
 final class SessionData {
+    var type: SessionType.RawValue
     var state: SessionState.RawValue
     var goal: String
     var started: Date
+    var focusTimeLimit: Int
     var breaktimeLimit: Int
     var breaktimeFactor: Double
     var availableBreak: TimeInterval
@@ -23,9 +25,11 @@ final class SessionData {
     
     @Relationship(deleteRule: .cascade, inverse: \SessionSegmentData.session) var segments: [SessionSegmentData]
     
-    init(state: SessionState.RawValue,
+    init(type: SessionType.RawValue,
+         state: SessionState.RawValue,
          goal: String,
          started: Date,
+         focusTimeLimit: Int,
          breaktimeLimit: Int,
          breaktimeFactor: Double,
          availableBreak: TimeInterval,
@@ -33,9 +37,11 @@ final class SessionData {
          timeSpendWork: TimeInterval,
          timeSpendPause: TimeInterval,
          segments: [SessionSegmentData]) {
+        self.type = type
         self.state = state
         self.goal = goal
         self.started = started
+        self.focusTimeLimit = focusTimeLimit
         self.breaktimeLimit = breaktimeLimit
         self.breaktimeFactor = breaktimeFactor
         self.availableBreak = availableBreak

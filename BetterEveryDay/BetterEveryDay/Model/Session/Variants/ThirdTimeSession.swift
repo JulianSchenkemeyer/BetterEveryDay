@@ -7,18 +7,6 @@
 
 import Foundation
 
-typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
-
-protocol SessionProtocol: Observable {
-    var segments: [SessionSegment] { get set }
-    var availableBreak: TimeInterval { get set }
-    
-    func getCurrent() -> SessionSegment?
-    func next(onFinishingSegment: OnFinishingSegmentClosure)
-    func endSession(onFinishingSegment: OnFinishingSegmentClosure)
-    
-}
-
 /// ThirdTimeSession is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
 @Observable final class ThirdTimeSession: SessionProtocol {
     var segments: [SessionSegment] = []

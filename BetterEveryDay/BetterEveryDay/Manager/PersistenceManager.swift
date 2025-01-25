@@ -14,7 +14,7 @@ typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSe
 protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
     /// - Parameter sessionController: ``SessionController``  to be persisted
-    func insertSession(from sessionController: SessionController) async
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async
     
     /// Update an existing session entry in the persistence layer
     /// - Parameter session: ``Session`` to be persisted
@@ -22,7 +22,7 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
-    func finishSession(with session: ThirdTimeSession) async
+    func finishSession(with session: SessionProtocol) async
 
     func getLatestRunningSession() async -> LatestSessionData?
     
@@ -30,9 +30,9 @@ protocol PersistenceManagerProtocol: Observable {
 }
 
 final class PersistenceManagerMock: PersistenceManagerProtocol {
-    func insertSession(from sessionController: SessionController) { }
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
-    func finishSession(with session: ThirdTimeSession) { }
+    func finishSession(with session: SessionProtocol) { }
     func getLatestRunningSession() -> LatestSessionData? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
@@ -58,16 +58,18 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         context = .init(self.modelContainer)
     }
     
-    func insertSession(from sessionController: SessionController) async {
+    func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async {
         let session = sessionController.session
         let sessionSegments: [SessionSegmentData] = []
         let sessionDuration = 0.0
         
-        let newSessionData = SessionData(state: sessionController.state.rawValue,
+        let newSessionData = SessionData(type: configuration.type.rawValue,
+                                         state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
                                          started: sessionController.started ?? .now,
-                                         breaktimeLimit: session.breaktimeLimit,
-                                         breaktimeFactor: session.breaktimeFactor,
+                                         focusTimeLimit: configuration.focustimeLimit,
+                                         breaktimeLimit: configuration.breaktimeLimit,
+                                         breaktimeFactor: configuration.breaktimeFactor,
                                          availableBreak: session.availableBreak,
                                          duration: sessionDuration,
                                          timeSpendWork: 0,
@@ -104,7 +106,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? context.save()
     }
     
-    func finishSession(with session: ThirdTimeSession) {
+    func finishSession(with session: SessionProtocol) {
         guard let currentSession else {
             print("❌ no current session")
             return
