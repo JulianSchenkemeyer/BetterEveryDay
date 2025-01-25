@@ -41,7 +41,7 @@ import Foundation
     func start(with sessionConfiguration: SessionConfiguration) {
         state = .RUNNING
         started = .now
-//        session = ThirdTimeSession(breaktimeLimit: limit, breaktimeFactor: factor)
+        session = ThirdTimeSession(breaktimeLimit: sessionConfiguration.breaktimeLimit, breaktimeFactor: sessionConfiguration.breaktimeFactor)
 //        session = ClassicSession()
     }
     

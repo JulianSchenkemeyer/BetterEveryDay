@@ -63,7 +63,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         let sessionSegments: [SessionSegmentData] = []
         let sessionDuration = 0.0
         
-        let newSessionData = SessionData(type: "flexible",
+        let newSessionData = SessionData(type: configuration.type.rawValue,
                                          state: sessionController.state.rawValue,
                                          goal: sessionController.goal,
                                          started: sessionController.started ?? .now,

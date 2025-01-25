@@ -47,8 +47,11 @@ struct PrepareSessionScreen: View {
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
         }, content: {
-            Text("test")
-//            SessionScreen(goal: viewModel.goal, viewModel: viewModel.session)
+            if let session = viewModel.session as? ThirdTimeSession {
+                SessionScreen(goal: viewModel.goal, viewModel: session)
+            } else if let session = viewModel.session as? ClassicSession {
+                Text("test \(type(of: session))")
+            }
         })
         .task {
             todays = await persistenceManager?.getTodaysSessions() ?? []
@@ -82,13 +85,13 @@ struct PrepareSessionScreen: View {
     
     private func finishSession() {
         viewModel.finish()
-//        Task {
-//            await persistenceManager?.finishSession(with: viewModel.session)
-//            
-//            viewModel.reset()
-//            
-//            todays = await persistenceManager?.getTodaysSessions() ?? []
-//        }
+        Task {
+            await persistenceManager?.finishSession(with: viewModel.session)
+            
+            viewModel.reset()
+            
+            todays = await persistenceManager?.getTodaysSessions() ?? []
+        }
     }
     
     private func restoreRunningSession() {
