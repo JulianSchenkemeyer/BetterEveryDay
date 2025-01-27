@@ -17,9 +17,11 @@ struct SessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     
     @State private var goneOvertime = false
+    @State private var timer: Timer?
     
     var goal: String
     var viewModel: ThirdTimeSession
+    
     
     var body: some View {
         NavigationStack {
@@ -106,6 +108,11 @@ struct SessionScreen: View {
     
     /// Finish the current session
     private func finishSession() {
+        if timer != nil {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+        
         removeScheduledNotifications()
         viewModel.endSession() { breaktime, segment in
             Task {
@@ -118,9 +125,12 @@ struct SessionScreen: View {
     /// Switch to overtime mode, when the available breaktime is over
     private func goOvertimeTimer() async {
         if viewModel.availableBreak > 0 {
-            try? await waitFor(seconds: viewModel.availableBreak)
+            self.timer = Timer.scheduledTimer(withTimeInterval: viewModel.availableBreak, repeats: false, block: { _ in
+                goneOvertime = true
+            })
+        } else {
+            goneOvertime = true
         }
-        goneOvertime = true
     }
     
     /// Schedule a local notification for when the pause is ended
