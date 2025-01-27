@@ -56,6 +56,7 @@ struct SessionScreen: View {
                     .onChange(of: segment.category) { _, newValue in
                         switch newValue {
                         case .Focus:
+                            resetTimer()
                             removeScheduledNotifications()
                         case .Pause:
                             schedulePauseEndedNotification()
@@ -108,10 +109,7 @@ struct SessionScreen: View {
     
     /// Finish the current session
     private func finishSession() {
-        if timer != nil {
-            self.timer?.invalidate()
-            self.timer = nil
-        }
+        resetTimer()
         
         removeScheduledNotifications()
         viewModel.endSession() { breaktime, segment in
@@ -120,6 +118,14 @@ struct SessionScreen: View {
             }
         }
         dismiss()
+    }
+    
+    /// Reset the go overtime timer
+    private func resetTimer() {
+        if timer != nil {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
     }
     
     /// Switch to overtime mode, when the available breaktime is over
