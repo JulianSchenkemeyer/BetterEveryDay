@@ -49,23 +49,17 @@ struct FixedSessionScreen: View {
                     .onChange(of: segment.category) { _, newValue in
                         switch newValue {
                         case .Focus:
-                            resetTimer()
                             removeScheduledNotifications()
                         case .Pause:
                             schedulePauseEndedNotification()
                         }
+                        resetTimer()
+                        scheduleSessionChange()
                     }
                     .onAppear {
+                        scheduleSessionChange()
                         guard segment.category == .Pause else { return }
                     }
-                    
-                    Button {
-                        createNextSegment()
-                    } label: {
-                        Text(segment.category == .Focus ? "Pause" : "Focus")
-                    }
-                    .primaryButtonStyle()
-                    .padding(.top, 80)
                 }
                 
                 Spacer()
@@ -105,6 +99,16 @@ struct FixedSessionScreen: View {
         dismiss()
     }
     
+    private func scheduleSessionChange() {
+        guard let segment = viewModel.getCurrent() else {
+            return
+        }
+
+        self.timer = Timer.scheduledTimer(withTimeInterval: segment.duration, repeats: false, block: { _ in
+            createNextSegment()
+        })
+    }
+    
     /// Reset the go overtime timer
     private func resetTimer() {
         if timer != nil {
@@ -131,7 +135,7 @@ struct FixedSessionScreen: View {
 }
 
 #Preview {
-    @Previewable @State var session = ClassicSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
+    @Previewable @State var session = ClassicSession(segments: [], focustimeLimit: 1, breaktimeLimit: 1)
     
     FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
