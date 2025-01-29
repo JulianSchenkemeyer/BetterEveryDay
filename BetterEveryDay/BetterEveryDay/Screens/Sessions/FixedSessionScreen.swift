@@ -14,11 +14,10 @@ struct FixedSessionScreen: View {
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(\.persistenceManager) var persistenceManager
     
-    @State private var goneOvertime = false
     @State private var timer: Timer?
     
     var goal: String
-    var viewModel: ThirdTimeSession
+    var viewModel: ClassicSession
     
     
     var body: some View {
@@ -34,16 +33,12 @@ struct FixedSessionScreen: View {
                 .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
                 .padding(20)
                 
-                if let segment = viewModel.getCurrent() {
+                if let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt {
                     VStack {
                         if segment.category == .Focus {
-                            TimerLabelView(date: segment.startedAt)
+                            TimerLabelView(date: finishedAt)
                         } else {
-                            TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
-                                .foregroundStyle(goneOvertime ? .red : .primary)
-                                .task {
-                                    await goOvertimeTimer()
-                                }
+                            TimerLabelView(date: finishedAt)
                         }
                         Text(segment.category.rawValue)
                             .font(.body)
@@ -62,7 +57,6 @@ struct FixedSessionScreen: View {
                     }
                     .onAppear {
                         guard segment.category == .Pause else { return }
-                        goneOvertime = (segment.startedAt + viewModel.availableBreak) < .now
                     }
                     
                     Button {
@@ -90,19 +84,12 @@ struct FixedSessionScreen: View {
     
     /// Create a new segment for the current session
     private func createNextSegment() {
-        guard let segment = viewModel.getCurrent() else {
-            return
-        }
-        
         viewModel.next() { breaktime, segment in
             Task {
                 await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }
         removeScheduledNotifications()
-        if segment.category == .Focus {
-            goneOvertime = false
-        }
     }
     
     /// Finish the current session
@@ -126,17 +113,6 @@ struct FixedSessionScreen: View {
         }
     }
     
-    /// Switch to overtime mode, when the available breaktime is over
-    private func goOvertimeTimer() async {
-        if viewModel.availableBreak > 0 {
-            self.timer = Timer.scheduledTimer(withTimeInterval: viewModel.availableBreak, repeats: false, block: { _ in
-                goneOvertime = true
-            })
-        } else {
-            goneOvertime = true
-        }
-    }
-    
     /// Schedule a local notification for when the pause is ended
     private func schedulePauseEndedNotification() {
         guard let segment = viewModel.getCurrent() else {
@@ -155,7 +131,13 @@ struct FixedSessionScreen: View {
 }
 
 #Preview {
-    FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
+    @Previewable @State var session = ClassicSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
+    
+    FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
         .environment(\.persistenceManager, PersistenceManagerMock())
+        .onAppear {
+            session.next()
+            print(session.segments.count)
+        }
 }
