@@ -99,6 +99,8 @@ struct FixedSessionScreen: View {
         dismiss()
     }
     
+    /// Schedule the automatic change of session phases (focus - pause). It creates a new Timer object
+    /// scheduled to execute when the the segment ends and creates a new segment.
     private func scheduleSessionChange() {
         guard let segment = viewModel.getCurrent() else {
             return
