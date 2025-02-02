@@ -167,19 +167,45 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
         
-        if let last = sections.last, let finishedAt = last.finishedAt {
-            let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
-            sections.append(.init(category: category, startedAt: finishedAt))
+        
+        if data.type == SessionType.fixed.rawValue {
+            // Restore running session in fixed session (Classic)
+            if let last = sections.last, let startedAt = last.finishedAt {
+                let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
+                let duration = last.category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
+                let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: startedAt)!
+                sections.append(.init(category: category, startedAt: startedAt, finishedAt: finishedAt))
+            } else {
+                // In case there is no session segment saved yet
+                sections.append(.init(category: .Focus,
+                                      startedAt: data.started,
+                                      finishedAt: Calendar.current.date(byAdding: .minute, value: data.focusTimeLimit, to: data.started)))
+            }
+            
+            let session = ClassicSession(segments: sections, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
+            return (goal: data.goal,
+                    started: data.started,
+                    session: session,
+                    state: SessionState(rawValue: data.state)! )
+            
         } else {
-            // In case there is no session segment saved yet
-            sections.append(.init(category: .Focus, startedAt: data.started))
+            
+            if let last = sections.last, let finishedAt = last.finishedAt {
+                let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
+                sections.append(.init(category: category, startedAt: finishedAt))
+            } else {
+                // In case there is no session segment saved yet
+                sections.append(.init(category: .Focus, startedAt: data.started))
+            }
+            
+            let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
+            return (goal: data.goal,
+                    started: data.started,
+                    session: session,
+                    state: SessionState(rawValue: data.state)! )
         }
         
-        let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
         
-        return (goal: data.goal,
-                started: data.started,
-                session: session,
-                state: SessionState(rawValue: data.state)! )
+        
     }
 }
