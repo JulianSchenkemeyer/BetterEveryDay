@@ -65,8 +65,8 @@ import Foundation
     ///   - state: ``SessionState``
     ///   - goal: String, describing the goal of the session
     ///   - started: Date, when the session started, nil if the session is not started yet
-    ///   - session: ``ThirdTimeSession`` object containing the session data
-    func restore(state: SessionState, goal: String, started: Date?, session: ThirdTimeSession) {
+    ///   - session: ``SessionProtocol`` object containing the session data
+    func restore(state: SessionState, goal: String, started: Date?, session: SessionProtocol) {
         self.state = state
         self.goal = goal
         self.started = started

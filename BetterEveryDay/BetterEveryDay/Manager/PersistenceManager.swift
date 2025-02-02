@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSession, state: SessionState)
+typealias LatestSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
 
 /// Defines the functions needed to persist the session
 protocol PersistenceManagerProtocol: Observable {
