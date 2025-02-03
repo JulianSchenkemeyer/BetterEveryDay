@@ -180,16 +180,22 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     
     fileprivate func restoreFixedSession(_ sections: inout [SessionSegment], _ data: SessionData) -> LatestSessionData {
         // Restore running session in fixed session (Classic)
-        if let last = sections.last, let startedAt = last.finishedAt {
-            let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
-            let duration = last.category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
-            let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: startedAt)!
-            sections.append(.init(category: category, startedAt: startedAt, finishedAt: finishedAt))
-        } else {
-            // In case there is no session segment saved yet
-            sections.append(.init(category: .Focus,
-                                  startedAt: data.started,
-                                  finishedAt: Calendar.current.date(byAdding: .minute, value: data.focusTimeLimit, to: data.started)))
+        let now = Date.now
+        var segmentStart = sections.last?.finishedAt ?? data.started
+        
+        
+        while now > segmentStart {
+            let category: SessionCategory = if sections.last?.category == .Focus {
+                .Pause
+            } else {
+                .Focus
+            }
+            let duration = category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
+            
+            let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: segmentStart)!
+            sections.append(.init(category: category, startedAt: segmentStart, finishedAt: finishedAt))
+            
+            segmentStart = finishedAt
         }
         
         let session = ClassicSession(segments: sections, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
@@ -210,8 +216,5 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         } else {
             return restoreFlexibleSession(&sections, data)
         }
-        
-        
-        
     }
 }
