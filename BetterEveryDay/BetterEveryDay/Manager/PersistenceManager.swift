@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-typealias LatestSessionData = (goal: String, started: Date, session: ThirdTimeSession, state: SessionState)
+typealias LatestSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
 
 /// Defines the functions needed to persist the session
 protocol PersistenceManagerProtocol: Observable {
@@ -162,11 +162,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     
     
     //MARK: Helper
-    private func restoreSession(with data: SessionData) -> LatestSessionData {
-        var sections = data.segments
-            .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
-            .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
-        
+    fileprivate func restoreFlexibleSession(_ sections: inout [SessionSegment], _ data: SessionData) -> LatestSessionData {
         if let last = sections.last, let finishedAt = last.finishedAt {
             let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
             sections.append(.init(category: category, startedAt: finishedAt))
@@ -176,10 +172,49 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         }
         
         let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
-        
         return (goal: data.goal,
                 started: data.started,
                 session: session,
                 state: SessionState(rawValue: data.state)! )
+    }
+    
+    fileprivate func restoreFixedSession(_ sections: inout [SessionSegment], _ data: SessionData) -> LatestSessionData {
+        // Restore running session in fixed session (Classic)
+        let now = Date.now
+        var segmentStart = sections.last?.finishedAt ?? data.started
+        
+        
+        while now > segmentStart {
+            let category: SessionCategory = if sections.last?.category == .Focus {
+                .Pause
+            } else {
+                .Focus
+            }
+            let duration = category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
+            
+            let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: segmentStart)!
+            sections.append(.init(category: category, startedAt: segmentStart, finishedAt: finishedAt))
+            
+            segmentStart = finishedAt
+        }
+        
+        let session = ClassicSession(segments: sections, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
+        return (goal: data.goal,
+                started: data.started,
+                session: session,
+                state: SessionState(rawValue: data.state)! )
+    }
+    
+    private func restoreSession(with data: SessionData) -> LatestSessionData {
+        var sections = data.segments
+            .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
+            .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
+        
+        
+        if data.type == SessionType.fixed.rawValue {
+            return restoreFixedSession(&sections, data)
+        } else {
+            return restoreFlexibleSession(&sections, data)
+        }
     }
 }
