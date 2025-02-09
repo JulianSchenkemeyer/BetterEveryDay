@@ -7,18 +7,20 @@
 import Foundation
 
 
+typealias LatestSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
+
 protocol RestorationManagerProtocol {
-    func restoreSessions(with data: SessionData) -> LatestSessionData
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> LatestSessionData
 }
 
 final class RestorationManager: RestorationManagerProtocol {
     private var factory = SessionRestoratorFactory()
     
-    func restoreSessions(with data: SessionData) -> LatestSessionData {
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> LatestSessionData {
         let type = identifySessionType(data)
         let restorator = factory.createRestorator(for: type)
         
-        return restorator.restore(data)
+        return restorator.restore(data, onRestoredSegments: onRestoredSegments)
     }
     
     private func identifySessionType(_ data: SessionData) -> SessionType {
@@ -37,9 +39,12 @@ final class SessionRestoratorFactory {
     }
 }
 
+
+
+
 protocol SessionRestoratorProtocol {
     //TODO: Persist Updated Data
-    func restore(_ data: SessionData) -> LatestSessionData
+    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> LatestSessionData
 }
 
 extension SessionRestoratorProtocol {
@@ -51,7 +56,7 @@ extension SessionRestoratorProtocol {
 }
 
 final class FlexibleSessionRestorator: SessionRestoratorProtocol {
-    func restore(_ data: SessionData) -> LatestSessionData {
+    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> LatestSessionData {
         var segments = restoreSegments(data)
         
         if let last = segments.last, let finishedAt = last.finishedAt {
@@ -71,12 +76,16 @@ final class FlexibleSessionRestorator: SessionRestoratorProtocol {
 }
 
 final class FixedSessionRestorator: SessionRestoratorProtocol {
-    func restore( _ data: SessionData) -> LatestSessionData {
+    func restore( _ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> LatestSessionData {
         var segments = restoreSegments(data)
         
         // Restore running session in fixed session (Classic)
         let now = Date.now
         var segmentStart = segments.last?.finishedAt ?? data.started
+        
+        
+        //TODO: save newly created segment, Don't save current segment twice
+        //TODO: batch updates
         
         
         while now > segmentStart {

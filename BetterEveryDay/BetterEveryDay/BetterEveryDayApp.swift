@@ -12,6 +12,7 @@ import SwiftData
 struct BetterEveryDayApp: App {
     private var notificationManager = EnvironmentManager.setupNotifications()
     private var persistenceManager = EnvironmentManager.setupPersistenceManager()
+    private var restorationManager = EnvironmentManager.setupRestorationManager()
     
     
     var body: some Scene {
@@ -21,6 +22,7 @@ struct BetterEveryDayApp: App {
         .modelContainer(persistenceManager.modelContainer)
         .environment(notificationManager)
         .environment(\.persistenceManager, persistenceManager)
+        .environment(\.restorationManager, restorationManager)
     }
 }
 
@@ -32,5 +34,9 @@ enum EnvironmentManager {
     
     static func setupPersistenceManager() -> SwiftDataPersistenceManager {
         SwiftDataPersistenceManager()
+    }
+    
+    static func setupRestorationManager() -> RestorationManager {
+        RestorationManager()
     }
 }

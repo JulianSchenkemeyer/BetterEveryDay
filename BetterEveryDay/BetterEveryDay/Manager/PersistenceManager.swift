@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-typealias LatestSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
 
 /// Defines the functions needed to persist the session
 protocol PersistenceManagerProtocol: Observable {
@@ -24,7 +23,7 @@ protocol PersistenceManagerProtocol: Observable {
     /// - Parameter session: ``Session``  to be persisted
     func finishSession(with session: SessionProtocol) async
 
-    func getLatestRunningSession() async -> LatestSessionData?
+    func getLatestRunningSession() async -> SessionData?
     
     func getTodaysSessions() async -> [SessionData]
 }
@@ -33,7 +32,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
     func finishSession(with session: SessionProtocol) { }
-    func getLatestRunningSession() -> LatestSessionData? { nil }
+    func getLatestRunningSession() -> SessionData? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
 
@@ -119,7 +118,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? context.save()
     }
 
-    func getLatestRunningSession() -> LatestSessionData? {
+    func getLatestRunningSession() -> SessionData? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == running
@@ -134,7 +133,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             
             currentSession = unfinishedSession
             
-            return restoreSession(with: unfinishedSession)
+            return unfinishedSession
         } catch {
             print("")
             return nil
@@ -176,45 +175,5 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                 started: data.started,
                 session: session,
                 state: SessionState(rawValue: data.state)! )
-    }
-    
-    fileprivate func restoreFixedSession(_ sections: inout [SessionSegment], _ data: SessionData) -> LatestSessionData {
-        // Restore running session in fixed session (Classic)
-        let now = Date.now
-        var segmentStart = sections.last?.finishedAt ?? data.started
-        
-        
-        while now > segmentStart {
-            let category: SessionCategory = if sections.last?.category == .Focus {
-                .Pause
-            } else {
-                .Focus
-            }
-            let duration = category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
-            
-            let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: segmentStart)!
-            sections.append(.init(category: category, startedAt: segmentStart, finishedAt: finishedAt))
-            
-            segmentStart = finishedAt
-        }
-        
-        let session = ClassicSession(segments: sections, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
-        return (goal: data.goal,
-                started: data.started,
-                session: session,
-                state: SessionState(rawValue: data.state)! )
-    }
-    
-    private func restoreSession(with data: SessionData) -> LatestSessionData {
-        var sections = data.segments
-            .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
-            .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
-        
-        
-        if data.type == SessionType.fixed.rawValue {
-            return restoreFixedSession(&sections, data)
-        } else {
-            return restoreFlexibleSession(&sections, data)
-        }
     }
 }
