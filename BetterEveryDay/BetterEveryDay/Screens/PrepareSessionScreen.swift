@@ -100,7 +100,10 @@ struct PrepareSessionScreen: View {
             let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
             
-            let restored = restorationManager?.restoreSessions(from: unfinished) { _ in }
+            let restored = restorationManager?.restoreSessions(from: unfinished) {
+                untracked in
+                persistenceManager?.updateSession(with: 0, segments: untracked)
+            }
             guard let restored else { return }
 
             viewModel.restore(state: restored.state,

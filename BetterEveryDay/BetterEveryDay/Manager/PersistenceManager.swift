@@ -19,6 +19,8 @@ protocol PersistenceManagerProtocol: Observable {
     /// - Parameter session: ``Session`` to be persisted
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) async
     
+    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment])
+    
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
     func finishSession(with session: SessionProtocol) async
@@ -31,6 +33,7 @@ protocol PersistenceManagerProtocol: Observable {
 final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
+    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment]) { }
     func finishSession(with session: SessionProtocol) { }
     func getLatestRunningSession() -> SessionData? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
@@ -105,6 +108,17 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? context.save()
     }
     
+    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment]) {
+        guard let currentSession else {
+            print("❌ no current session")
+            return
+        }
+        let segmentsData: [SessionSegmentData] = segments.map { .init(category: $0.category.rawValue, startedAt: $0.startedAt, finishedAt: $0.finishedAt, duration: $0.duration) }
+        currentSession.segments.append(contentsOf: segmentsData)
+        
+        try? context.save()
+    }
+    
     func finishSession(with session: SessionProtocol) {
         guard let currentSession else {
             print("❌ no current session")
@@ -157,23 +171,5 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             print("❌")
             return []
         }
-    }
-    
-    
-    //MARK: Helper
-    fileprivate func restoreFlexibleSession(_ sections: inout [SessionSegment], _ data: SessionData) -> LatestSessionData {
-        if let last = sections.last, let finishedAt = last.finishedAt {
-            let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
-            sections.append(.init(category: category, startedAt: finishedAt))
-        } else {
-            // In case there is no session segment saved yet
-            sections.append(.init(category: .Focus, startedAt: data.started))
-        }
-        
-        let session = ThirdTimeSession(segments: sections, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
-        return (goal: data.goal,
-                started: data.started,
-                session: session,
-                state: SessionState(rawValue: data.state)! )
     }
 }

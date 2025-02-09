@@ -43,7 +43,6 @@ final class SessionRestoratorFactory {
 
 
 protocol SessionRestoratorProtocol {
-    //TODO: Persist Updated Data
     func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> LatestSessionData
 }
 
@@ -83,11 +82,8 @@ final class FixedSessionRestorator: SessionRestoratorProtocol {
         let now = Date.now
         var segmentStart = segments.last?.finishedAt ?? data.started
         
-        
-        //TODO: save newly created segment, Don't save current segment twice
-        //TODO: batch updates
-        
-        
+        // Keep track of segments, which are finished but are not persisted yet
+        var untrackedSegments: [SessionSegment] = []
         while now > segmentStart {
             let category: SessionCategory = if segments.last?.category == .Focus {
                 .Pause
@@ -97,9 +93,18 @@ final class FixedSessionRestorator: SessionRestoratorProtocol {
             let duration = category == .Focus ? data.focusTimeLimit : data.breaktimeLimit
             
             let finishedAt = Calendar.current.date(byAdding: .minute, value: duration, to: segmentStart)!
-            segments.append(.init(category: category, startedAt: segmentStart, finishedAt: finishedAt))
+            let segment = SessionSegment(category: category, startedAt: segmentStart, finishedAt: finishedAt)
+            segments.append(segment)
+            
+            if now > finishedAt {
+                untrackedSegments.append(segment)
+            }
             
             segmentStart = finishedAt
+        }
+        
+        if let onRestoredSegments {
+            onRestoredSegments(untrackedSegments)
         }
         
         let session = ClassicSession(segments: segments, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
