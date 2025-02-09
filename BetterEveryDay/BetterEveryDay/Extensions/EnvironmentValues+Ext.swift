@@ -10,4 +10,5 @@ import SwiftUI
 
 extension EnvironmentValues {
     @Entry var persistenceManager:  (any PersistenceManagerProtocol)?
+    @Entry var restorationManager: (any RestorationManagerProtocol)?
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
+    @Environment(\.restorationManager) var restorationManager
     @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
     @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
     
@@ -50,7 +51,7 @@ struct PrepareSessionScreen: View {
             if let session = viewModel.session as? ThirdTimeSession {
                 FlexibleSessionScreen(goal: viewModel.goal, viewModel: session)
             } else if let session = viewModel.session as? ClassicSession {
-                Text("test \(type(of: session))")
+                FixedSessionScreen(goal: viewModel.goal, viewModel: session)
             }
         })
         .task {
@@ -98,11 +99,17 @@ struct PrepareSessionScreen: View {
         Task {
             let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
+            
+            let restored = restorationManager?.restoreSessions(from: unfinished) {
+                untracked in
+                persistenceManager?.updateSession(with: 0, segments: untracked)
+            }
+            guard let restored else { return }
 
-            viewModel.restore(state: unfinished.state,
-                              goal: unfinished.goal,
-                              started: unfinished.started,
-                              session: unfinished.session)
+            viewModel.restore(state: restored.state,
+                              goal: restored.goal,
+                              started: restored.started,
+                              session: restored.session)
             
             var transaction = Transaction()
             transaction.disablesAnimations = true
@@ -130,5 +137,6 @@ struct PrepareSessionScreen: View {
         }
     }
     .environment(\.persistenceManager, PersistenceManagerMock())
+    .environment(\.restorationManager, RestorationManager())
     .environment(NotificationManager(notificationService: NotificationServiceMock()))
 }
