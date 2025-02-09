@@ -19,7 +19,7 @@ protocol PersistenceManagerProtocol: Observable {
     /// - Parameter session: ``Session`` to be persisted
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) async
     
-    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment])
+    func updateSession(with segments: [SessionSegment])
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: ``Session``  to be persisted
@@ -33,7 +33,7 @@ protocol PersistenceManagerProtocol: Observable {
 final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
-    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment]) { }
+    func updateSession(with segments: [SessionSegment]) { }
     func finishSession(with session: SessionProtocol) { }
     func getLatestRunningSession() -> SessionData? { nil }
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
@@ -108,13 +108,36 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         try? context.save()
     }
     
-    func updateSession(with availableBreaktime: TimeInterval, segments: [SessionSegment]) {
+    func updateSession(with segments: [SessionSegment]) {
         guard let currentSession else {
             print("❌ no current session")
             return
         }
+        var availableBreaktime: TimeInterval = 0
+        var duration: TimeInterval = 0
+        var timeSpendWork: TimeInterval = 0
+        var timeSpendPause: TimeInterval = 0
+        
+        for segment in segments {
+            duration += segment.duration
+            
+            switch segment.category {
+            case .Focus:
+                timeSpendWork += segment.duration
+                availableBreaktime = TimeInterval(currentSession.breaktimeLimit)
+            case .Pause:
+                timeSpendPause += segment.duration
+                availableBreaktime = 0
+            }
+        }
+        
+        
         let segmentsData: [SessionSegmentData] = segments.map { .init(category: $0.category.rawValue, startedAt: $0.startedAt, finishedAt: $0.finishedAt, duration: $0.duration) }
         currentSession.segments.append(contentsOf: segmentsData)
+        currentSession.availableBreak = availableBreaktime
+        currentSession.duration += duration
+        currentSession.timeSpendWork += timeSpendWork
+        currentSession.timeSpendPause += timeSpendPause
         
         try? context.save()
     }
@@ -129,7 +152,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
         
-        try? context.save()
+        try? context.save() 
     }
 
     func getLatestRunningSession() -> SessionData? {
