@@ -48,7 +48,7 @@ struct PrepareSessionScreen: View {
             finishSession()
         }, content: {
             if let session = viewModel.session as? ThirdTimeSession {
-                SessionScreen(goal: viewModel.goal, viewModel: session)
+                FlexibleSessionScreen(goal: viewModel.goal, viewModel: session)
             } else if let session = viewModel.session as? ClassicSession {
                 Text("test \(type(of: session))")
             }

@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-enum Phases: String, Codable {
-    case Work, Pause
-}
 
-struct SessionScreen: View {
+
+struct FlexibleSessionScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(\.persistenceManager) var persistenceManager
@@ -157,7 +155,7 @@ struct SessionScreen: View {
 }
 
 #Preview {
-    SessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
+    FlexibleSessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
         .environment(\.persistenceManager, PersistenceManagerMock())
 }

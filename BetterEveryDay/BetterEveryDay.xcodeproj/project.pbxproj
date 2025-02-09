@@ -17,6 +17,8 @@
 		2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */; };
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
+		242517842D4974AA0034273F /* Phases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517832D4974A60034273F /* Phases.swift */; };
+		242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517862D4974E00034273F /* FixedSessionScreen.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
 		2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436FEAB2C83621A00380591 /* TodayOverview.swift */; };
 		245DDACF2C8DDE5900BE0703 /* Mockdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245DDACE2C8DDE5900BE0703 /* Mockdata.swift */; };
@@ -29,7 +31,7 @@
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
-		24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */; };
+		24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */; };
 		249A0EB82D42D868007DBB10 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A0EB72D42D860007DBB10 /* SessionConfiguration.swift */; };
 		24AF74202D245ADF009A08EB /* PersistenceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */; };
 		24AF74222D2A9614009A08EB /* ClassicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74212D2A9609009A08EB /* ClassicSession.swift */; };
@@ -86,6 +88,8 @@
 		2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
+		242517832D4974A60034273F /* Phases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phases.swift; sourceTree = "<group>"; };
+		242517862D4974E00034273F /* FixedSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionScreen.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2436FEAB2C83621A00380591 /* TodayOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOverview.swift; sourceTree = "<group>"; };
 		245DDACE2C8DDE5900BE0703 /* Mockdata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockdata.swift; sourceTree = "<group>"; };
@@ -98,7 +102,7 @@
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E582B9F7910001AB4C7 /* ThirdTimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTimeState.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
-		24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreen.swift; sourceTree = "<group>"; };
+		24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionScreen.swift; sourceTree = "<group>"; };
 		249A0EB72D42D860007DBB10 /* SessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
 		24AF741F2D245AD6009A08EB /* PersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTests.swift; sourceTree = "<group>"; };
 		24AF74212D2A9609009A08EB /* ClassicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSession.swift; sourceTree = "<group>"; };
@@ -213,6 +217,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		242517852D4974D50034273F /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				242517862D4974E00034273F /* FixedSessionScreen.swift */,
+				24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
 		2433A0972AAFA54A00621188 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +312,7 @@
 				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
 				24018DE02CD1F5950039829E /* SessionSegment.swift */,
 				249A0EB72D42D860007DBB10 /* SessionConfiguration.swift */,
+				242517832D4974A60034273F /* Phases.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -405,7 +419,7 @@
 			children = (
 				2433A0972AAFA54A00621188 /* SettingsView */,
 				24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */,
-				24912E5C2BAA2DBE001AB4C7 /* SessionScreen.swift */,
+				242517852D4974D50034273F /* Sessions */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -554,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */,
+				242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */,
 				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
@@ -572,7 +587,7 @@
 				24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
-				24912E5D2BAA2DBE001AB4C7 /* SessionScreen.swift in Sources */,
+				24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */,
 				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
 				2406EB202A76BEC100E3FF6A /* PauseEndedNotification.swift in Sources */,
 				24AF74242D2AB1BD009A08EB /* SessionProtocol.swift in Sources */,
@@ -589,6 +604,7 @@
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
+				242517842D4974AA0034273F /* Phases.swift in Sources */,
 				24912E592B9F7910001AB4C7 /* ThirdTimeState.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
