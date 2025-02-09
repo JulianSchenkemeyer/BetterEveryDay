@@ -106,7 +106,8 @@ struct FixedSessionScreen: View {
             return
         }
 
-        self.timer = Timer.scheduledTimer(withTimeInterval: segment.duration, repeats: false, block: { _ in
+        let timeleft = segment.finishedAt!.timeIntervalSince1970 - Date.now.timeIntervalSince1970
+        self.timer = Timer.scheduledTimer(withTimeInterval: timeleft, repeats: false, block: { _ in
             createNextSegment()
         })
     }
