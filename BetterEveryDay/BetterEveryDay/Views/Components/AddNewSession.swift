@@ -11,6 +11,8 @@ struct AddNewSession: View {
     @Binding var sessionGoal: String
     @Binding var showNewTaskModal: Bool
     
+    @State private var favoriteColor: Int?
+    
     @FocusState private var focusSessionGoalInput: Bool
     
     var onStartSession: () -> Void
@@ -19,20 +21,30 @@ struct AddNewSession: View {
     var body: some View {
         Group {
             if showNewTaskModal {
-                HStack {
-                    TextField("Your Goal for the Session",
-                              text: $sessionGoal,
-                              axis: .vertical)
-                    .lineLimit(1...)
-                    .font(.body)
-                    .focused($focusSessionGoalInput)
-                    .padding([.leading, .vertical], 10)
-                    
-                    Button("Cancel") {
-                        cancelSessionCreation()
+                VStack(spacing: 8) {
+                    Picker("What is your favorite color?", selection: $favoriteColor) {
+                        Text("Flexible").tag(0)
+                        Text("Fixed").tag(1)
                     }
-                    .secondaryButtonStyle()
-                    .padding(.trailing, 4)
+                    .pickerStyle(.segmented)
+                    
+                    Divider()
+                    
+                    HStack {
+                        TextField("Your Goal for the Session",
+                                  text: $sessionGoal,
+                                  axis: .vertical)
+                        .lineLimit(1...)
+                        .font(.body)
+                        .focused($focusSessionGoalInput)
+                        .padding([.leading, .vertical], 10)
+                        
+                        Button("Cancel") {
+                            cancelSessionCreation()
+                        }
+                        .secondaryButtonStyle()
+                        .padding(.trailing, 4)
+                    }
                 }
                 .padding(4)
                 .background {
