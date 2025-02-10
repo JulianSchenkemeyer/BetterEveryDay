@@ -62,6 +62,8 @@ struct FixedSessionScreen: View {
                     }
                 }
                 
+                Text("You have completed \(ceil(Double(viewModel.segments.count / 2)).formatted()) focus segments")
+                
                 Spacer()
             }
             .toolbar {
