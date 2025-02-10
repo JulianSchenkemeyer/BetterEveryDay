@@ -102,7 +102,7 @@ struct PrepareSessionScreen: View {
             
             let restored = restorationManager?.restoreSessions(from: unfinished) {
                 untracked in
-                persistenceManager?.updateSession(with: 0, segments: untracked)
+                persistenceManager?.updateSession(with: untracked)
             }
             guard let restored else { return }
 
