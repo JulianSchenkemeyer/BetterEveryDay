@@ -15,7 +15,7 @@ struct AddNewSession: View {
     
     @FocusState private var focusSessionGoalInput: Bool
     
-    var onStartSession: () -> Void
+    var onStartSession: (SessionType) -> Void
     
     
     var body: some View {
@@ -93,12 +93,12 @@ struct AddNewSession: View {
     }
     
     private func startCreatedSession() {
-        onStartSession()
+        onStartSession(selectedSessionVariant)
     }
 }
 
 
 #Preview {
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(true)) { }
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(false)) { }
+    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(true)) { _ in }
+    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(false)) { _ in }
 }
