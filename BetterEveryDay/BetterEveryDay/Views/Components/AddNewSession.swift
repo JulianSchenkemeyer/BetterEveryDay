@@ -11,28 +11,40 @@ struct AddNewSession: View {
     @Binding var sessionGoal: String
     @Binding var showNewTaskModal: Bool
     
+    @State private var selectedSessionVariant: SessionType = .flexible
+    
     @FocusState private var focusSessionGoalInput: Bool
     
-    var onStartSession: () -> Void
+    var onStartSession: (SessionType) -> Void
     
     
     var body: some View {
         Group {
             if showNewTaskModal {
-                HStack {
-                    TextField("Your Goal for the Session",
-                              text: $sessionGoal,
-                              axis: .vertical)
-                    .lineLimit(1...)
-                    .font(.body)
-                    .focused($focusSessionGoalInput)
-                    .padding([.leading, .vertical], 10)
-                    
-                    Button("Cancel") {
-                        cancelSessionCreation()
+                VStack(spacing: 8) {
+                    Picker("Select Session Type", selection: $selectedSessionVariant) {
+                        Text("Flexible").tag(SessionType.flexible)
+                        Text("Fixed").tag(SessionType.fixed)
                     }
-                    .secondaryButtonStyle()
-                    .padding(.trailing, 4)
+                    .pickerStyle(.segmented)
+                    
+                    Divider()
+                    
+                    HStack {
+                        TextField("Your Goal for the Session",
+                                  text: $sessionGoal,
+                                  axis: .vertical)
+                        .lineLimit(1...)
+                        .font(.body)
+                        .focused($focusSessionGoalInput)
+                        .padding([.leading, .vertical], 10)
+                        
+                        Button("Cancel") {
+                            cancelSessionCreation()
+                        }
+                        .secondaryButtonStyle()
+                        .padding(.trailing, 4)
+                    }
                 }
                 .padding(4)
                 .background {
@@ -81,12 +93,12 @@ struct AddNewSession: View {
     }
     
     private func startCreatedSession() {
-        onStartSession()
+        onStartSession(selectedSessionVariant)
     }
 }
 
 
 #Preview {
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(true)) { }
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(false)) { }
+    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(true)) { _ in }
+    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(false)) { _ in }
 }

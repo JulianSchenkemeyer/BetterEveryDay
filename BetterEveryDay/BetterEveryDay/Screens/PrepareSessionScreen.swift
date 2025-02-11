@@ -33,8 +33,9 @@ struct PrepareSessionScreen: View {
         .blur(radius: showNewTaskModal ? 1.5 : 0)
         .safeAreaInset(edge: .bottom, alignment: .trailing) {
             AddNewSession(sessionGoal: $viewModel.goal,
-                          showNewTaskModal: $showNewTaskModal) {
-                startSession()
+                          showNewTaskModal: $showNewTaskModal) { selectedVariant in
+                
+                startSession(variant: selectedVariant)
             }
         }
         .navigationTitle("Today")
@@ -61,20 +62,15 @@ struct PrepareSessionScreen: View {
         }
     }
     
-    private func startSession() {
-        let sessionConfiguration = SessionConfiguration(type: .flexible,
-                                                        focustimeLimit: 0,
+    private func startSession(variant: SessionType) {
+        let sessionConfiguration = SessionConfiguration(type: variant,
+                                                        focustimeLimit: 25,
                                                         breaktimeLimit: breaktimeLimit,
                                                         breaktimeFactor: breaktimeFactor)
         viewModel.start(with: sessionConfiguration)
         
-        //TODO: Maybe a start instead of next
         if persistenceManager != nil {
             Task {
-                let sessionConfiguration = SessionConfiguration(type: .flexible,
-                                                                focustimeLimit: 0,
-                                                                breaktimeLimit: breaktimeLimit,
-                                                                breaktimeFactor: breaktimeFactor)
                 await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
             }
         }
