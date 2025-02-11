@@ -61,6 +61,18 @@ struct FixedSessionScreen: View {
                         guard segment.category == .Pause else { return }
                     }
                 }
+                Spacer()
+                
+                Card {
+                    VStack {
+                        Text(ceil(Double(viewModel.segments.count / 2)).formatted())
+                            .font(.largeTitle)
+                        
+                        Text("Focus segments completed")
+                    }
+                        .font(.body)
+                        .padding()
+                }.padding(.horizontal, 40)
                 
                 Spacer()
             }
