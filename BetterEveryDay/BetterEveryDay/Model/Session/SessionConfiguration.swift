@@ -5,8 +5,10 @@
 //  Created by Julian Schenkemeyer on 23.01.25.
 //
 
-enum SessionType: String {
+enum SessionType: String, CaseIterable, Identifiable {
     case fixed, flexible
+    
+    var id: Self { self }
 }
 
 struct SessionConfiguration {

@@ -11,7 +11,7 @@ struct AddNewSession: View {
     @Binding var sessionGoal: String
     @Binding var showNewTaskModal: Bool
     
-    @State private var favoriteColor: Int?
+    @State private var selectedSessionVariant: SessionType = .flexible
     
     @FocusState private var focusSessionGoalInput: Bool
     
@@ -22,9 +22,9 @@ struct AddNewSession: View {
         Group {
             if showNewTaskModal {
                 VStack(spacing: 8) {
-                    Picker("What is your favorite color?", selection: $favoriteColor) {
-                        Text("Flexible").tag(0)
-                        Text("Fixed").tag(1)
+                    Picker("Select Session Type", selection: $selectedSessionVariant) {
+                        Text("Flexible").tag(SessionType.flexible)
+                        Text("Fixed").tag(SessionType.fixed)
                     }
                     .pickerStyle(.segmented)
                     
