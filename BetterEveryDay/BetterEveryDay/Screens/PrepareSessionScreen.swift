@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     @Environment(\.restorationManager) var restorationManager
@@ -18,6 +19,8 @@ struct PrepareSessionScreen: View {
     @State private var todays: [SessionData] = []
     
     @State private var showNewTaskModal: Bool = false
+    
+    private let sessionFactory = SessionFactory()
     
     
     var body: some View {
@@ -48,11 +51,7 @@ struct PrepareSessionScreen: View {
         .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
             finishSession()
         }, content: {
-            if let session = viewModel.session as? ThirdTimeSession {
-                FlexibleSessionScreen(goal: viewModel.goal, viewModel: session)
-            } else if let session = viewModel.session as? ClassicSession {
-                FixedSessionScreen(goal: viewModel.goal, viewModel: session)
-            }
+            sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
         })
         .task {
             todays = await persistenceManager?.getTodaysSessions() ?? []
