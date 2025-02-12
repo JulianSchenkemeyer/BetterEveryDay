@@ -150,7 +150,7 @@ struct FixedSessionScreen: View {
 }
 
 #Preview {
-    @Previewable @State var session = ClassicSession(segments: [], focustimeLimit: 1, breaktimeLimit: 1)
+    @Previewable @State var session = FixedSession(segments: [], focustimeLimit: 1, breaktimeLimit: 1)
     
     FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
         .environment(NotificationManager(notificationService: NotificationServiceMock()))

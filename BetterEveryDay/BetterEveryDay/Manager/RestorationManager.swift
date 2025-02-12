@@ -107,7 +107,7 @@ final class FixedSessionRestorator: SessionRestoratorProtocol {
             onRestoredSegments(untrackedSegments)
         }
         
-        let session = ClassicSession(segments: segments, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
+        let session = FixedSession(segments: segments, focustimeLimit: data.focusTimeLimit, breaktimeLimit: data.breaktimeLimit)
         return (goal: data.goal,
                 started: data.started,
                 session: session,
