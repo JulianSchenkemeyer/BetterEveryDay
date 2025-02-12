@@ -8,7 +8,7 @@
 import Foundation
 
 /// ThirdTimeSession is the session control element. It contains the different  ``SessionSegment``objects, which make up the session.
-@Observable final class ThirdTimeSession: SessionProtocol {
+@Observable final class FlexibleSession: SessionProtocol {
     let type: SessionType = .flexible
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval

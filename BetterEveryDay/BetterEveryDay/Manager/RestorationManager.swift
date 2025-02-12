@@ -66,7 +66,7 @@ final class FlexibleSessionRestorator: SessionRestoratorProtocol {
             segments.append(.init(category: .Focus, startedAt: data.started))
         }
         
-        let session = ThirdTimeSession(segments: segments, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
+        let session = FlexibleSession(segments: segments, availableBreak: data.availableBreak, breaktimeLimit: data.breaktimeLimit, breaktimeFactor: data.breaktimeFactor)
         return (goal: data.goal,
                 started: data.started,
                 session: session,

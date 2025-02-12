@@ -27,7 +27,7 @@ import Foundation
     init(state: SessionState = .PREPARING,
          goal: String = "",
          started: Date? = nil,
-         session: ThirdTimeSession = ThirdTimeSession()) {
+         session: FlexibleSession = FlexibleSession()) {
         self.state = state
         self.goal = goal
         self.started = started
@@ -44,7 +44,7 @@ import Foundation
         
         switch sessionConfiguration.type {
         case .flexible:
-            session = ThirdTimeSession(breaktimeLimit: sessionConfiguration.breaktimeLimit, breaktimeFactor: sessionConfiguration.breaktimeFactor)
+            session = FlexibleSession(breaktimeLimit: sessionConfiguration.breaktimeLimit, breaktimeFactor: sessionConfiguration.breaktimeFactor)
             
         case .fixed:
             session = ClassicSession(focustimeLimit: 25, breaktimeLimit: 5)
@@ -61,7 +61,7 @@ import Foundation
         goal = ""
         started = nil
         state = .PREPARING
-        session = ThirdTimeSession()
+        session = FlexibleSession()
     }
     
     
