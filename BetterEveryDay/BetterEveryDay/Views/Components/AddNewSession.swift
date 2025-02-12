@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AddNewSession: View {
     @Binding var sessionGoal: String
     @Binding var showNewTaskModal: Bool
