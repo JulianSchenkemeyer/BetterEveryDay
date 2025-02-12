@@ -49,7 +49,7 @@ protocol SessionRestoratorProtocol {
 extension SessionRestoratorProtocol {
     func restoreSegments(_ data: SessionData) -> [SessionSegment] {
         data.segments
-            .map { SessionSegment(category: SessionCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
+            .map { SessionSegment(category: SegmentCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])
     }
 }
@@ -59,7 +59,7 @@ final class FlexibleSessionRestorator: SessionRestoratorProtocol {
         var segments = restoreSegments(data)
         
         if let last = segments.last, let finishedAt = last.finishedAt {
-            let category: SessionCategory = last.category == SessionCategory.Focus ? .Pause : .Focus
+            let category: SegmentCategory = last.category == SegmentCategory.Focus ? .Pause : .Focus
             segments.append(.init(category: category, startedAt: finishedAt))
         } else {
             // In case there is no session segment saved yet
@@ -85,7 +85,7 @@ final class FixedSessionRestorator: SessionRestoratorProtocol {
         // Keep track of segments, which are finished but are not persisted yet
         var untrackedSegments: [SessionSegment] = []
         while now > segmentStart {
-            let category: SessionCategory = if segments.last?.category == .Focus {
+            let category: SegmentCategory = if segments.last?.category == .Focus {
                 .Pause
             } else {
                 .Focus

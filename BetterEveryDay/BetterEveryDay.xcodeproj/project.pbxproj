@@ -49,7 +49,7 @@
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
 		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
-		24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SessionCategory.swift */; };
+		24F53FA72C6899DA00C6A666 /* SegmentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SegmentCategory.swift */; };
 		24F53FA92C689FB000C6A666 /* FlexibleSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA82C689FB000C6A666 /* FlexibleSession.swift */; };
 		24F53FAB2C70A9E600C6A666 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FAA2C70A9E600C6A666 /* SessionTests.swift */; };
 		B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C479A82A16742900C0CE3E /* BetterEveryDayApp.swift */; };
@@ -121,7 +121,7 @@
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
-		24F53FA62C6899DA00C6A666 /* SessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCategory.swift; sourceTree = "<group>"; };
+		24F53FA62C6899DA00C6A666 /* SegmentCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCategory.swift; sourceTree = "<group>"; };
 		24F53FA82C689FB000C6A666 /* FlexibleSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSession.swift; sourceTree = "<group>"; };
 		24F53FAA2C70A9E600C6A666 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		B9C479A52A16742900C0CE3E /* BetterEveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,7 +320,7 @@
 				24AF74252D2AB207009A08EB /* Variants */,
 				24DF29852AA5E3B400DC40D6 /* SessionState.swift */,
 				24DBA2362C61624F00860171 /* SessionController.swift */,
-				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
+				24F53FA62C6899DA00C6A666 /* SegmentCategory.swift */,
 				24018DE02CD1F5950039829E /* SessionSegment.swift */,
 				249A0EB72D42D860007DBB10 /* SessionConfiguration.swift */,
 			);
@@ -597,7 +597,7 @@
 				24AF74222D2A9614009A08EB /* FixedSession.swift in Sources */,
 				24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */,
 				242517892D51F5650034273F /* RestorationManager.swift in Sources */,
-				24F53FA72C6899DA00C6A666 /* SessionCategory.swift in Sources */,
+				24F53FA72C6899DA00C6A666 /* SegmentCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */,

@@ -9,11 +9,11 @@ import Foundation
 
 /// Describes on part of a session
 struct SessionSegment: Equatable {
-    let category: SessionCategory
+    let category: SegmentCategory
     let startedAt: Date
     var finishedAt: Date?
     
-    init(category: SessionCategory, startedAt: Date = .now, finishedAt: Date? = nil) {
+    init(category: SegmentCategory, startedAt: Date = .now, finishedAt: Date? = nil) {
         self.category = category
         self.startedAt = startedAt
         self.finishedAt = finishedAt

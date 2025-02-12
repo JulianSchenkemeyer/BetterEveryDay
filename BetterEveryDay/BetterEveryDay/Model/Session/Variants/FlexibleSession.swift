@@ -51,7 +51,7 @@ import Foundation
             onFinishingSegment(availableBreak, last)
         }
         
-        let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
+        let nextCategory: SegmentCategory = if last.category == .Focus { .Pause } else { .Focus }
         createNew(category: nextCategory)
     }
     
@@ -99,7 +99,7 @@ import Foundation
     
     /// Create a new ``SessionSegment``
     /// - Parameter category: the new ``SessionCategory`` for the new ``SessionSegment``
-    private func createNew(category: SessionCategory) {
+    private func createNew(category: SegmentCategory) {
         segments.append(.init(category: category))
     }
 }
