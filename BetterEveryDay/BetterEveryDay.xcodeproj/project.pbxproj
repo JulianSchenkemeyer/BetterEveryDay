@@ -17,6 +17,7 @@
 		2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */; };
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
+		2408FDDC2D5BF4CC0094FDD4 /* SessionScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408FDDB2D5BF4BF0094FDD4 /* SessionScreenFactory.swift */; };
 		242517842D4974AA0034273F /* Phases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517832D4974A60034273F /* Phases.swift */; };
 		242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517862D4974E00034273F /* FixedSessionScreen.swift */; };
 		242517892D51F5650034273F /* RestorationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517882D51F55C0034273F /* RestorationManager.swift */; };
@@ -89,6 +90,7 @@
 		2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
+		2408FDDB2D5BF4BF0094FDD4 /* SessionScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreenFactory.swift; sourceTree = "<group>"; };
 		242517832D4974A60034273F /* Phases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phases.swift; sourceTree = "<group>"; };
 		242517862D4974E00034273F /* FixedSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionScreen.swift; sourceTree = "<group>"; };
 		242517882D51F55C0034273F /* RestorationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorationManager.swift; sourceTree = "<group>"; };
@@ -220,6 +222,14 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		2408FDDA2D5BF4B20094FDD4 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				2408FDDB2D5BF4BF0094FDD4 /* SessionScreenFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		242517852D4974D50034273F /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +273,7 @@
 		246D6C3A2A4C041600E5B39B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2408FDDA2D5BF4B20094FDD4 /* Factories */,
 				24F3F2942B1A3994008063B2 /* Data */,
 				24DF29802AA4D2EE00DC40D6 /* Session */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
@@ -583,6 +594,7 @@
 				247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */,
 				24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
+				2408FDDC2D5BF4CC0094FDD4 /* SessionScreenFactory.swift in Sources */,
 				2406EB252A76E6FF00E3FF6A /* BEDNotification.swift in Sources */,
 				2406EB232A76BEEF00E3FF6A /* NotificationService.swift in Sources */,
 				24AF74222D2A9614009A08EB /* ClassicSession.swift in Sources */,
