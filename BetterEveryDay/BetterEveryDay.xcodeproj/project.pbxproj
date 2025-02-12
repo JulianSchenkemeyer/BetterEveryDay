@@ -31,6 +31,10 @@
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		248571332D5D3A9100309D86 /* SessionSegmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571322D5D3A8800309D86 /* SessionSegmentData.swift */; };
 		248571352D5D3BBC00309D86 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571342D5D3BB600309D86 /* SessionType.swift */; };
+		248571382D5D3C6E00309D86 /* SessionionRestoratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */; };
+		2485713B2D5D3CC100309D86 /* SessionRestoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713A2D5D3CAE00309D86 /* SessionRestoratorProtocol.swift */; };
+		2485713D2D5D3CF000309D86 /* FlexibleSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */; };
+		2485713F2D5D3D2100309D86 /* FixedSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */; };
@@ -104,6 +108,10 @@
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		248571322D5D3A8800309D86 /* SessionSegmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentData.swift; sourceTree = "<group>"; };
 		248571342D5D3BB600309D86 /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
+		248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionionRestoratorFactory.swift; sourceTree = "<group>"; };
+		2485713A2D5D3CAE00309D86 /* SessionRestoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRestoratorProtocol.swift; sourceTree = "<group>"; };
+		2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionRestorator.swift; sourceTree = "<group>"; };
+		2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionRestorator.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionScreen.swift; sourceTree = "<group>"; };
@@ -200,7 +208,7 @@
 		2406EB262A76ECDD00E3FF6A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				242517882D51F55C0034273F /* RestorationManager.swift */,
+				248571362D5D3C0800309D86 /* RestorationManager */,
 				2406EB272A76ECEE00E3FF6A /* NotificationManager.swift */,
 				24F3F2922B19F766008063B2 /* PersistenceManager.swift */,
 			);
@@ -296,6 +304,26 @@
 				247FC7B02C864EEC00B72733 /* Date+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		248571362D5D3C0800309D86 /* RestorationManager */ = {
+			isa = PBXGroup;
+			children = (
+				248571392D5D3C9400309D86 /* SessionRestorator */,
+				248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */,
+				242517882D51F55C0034273F /* RestorationManager.swift */,
+			);
+			path = RestorationManager;
+			sourceTree = "<group>";
+		};
+		248571392D5D3C9400309D86 /* SessionRestorator */ = {
+			isa = PBXGroup;
+			children = (
+				2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */,
+				2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */,
+				2485713A2D5D3CAE00309D86 /* SessionRestoratorProtocol.swift */,
+			);
+			path = SessionRestorator;
 			sourceTree = "<group>";
 		};
 		24912E552B9F5F6E001AB4C7 /* Animations */ = {
@@ -581,7 +609,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2485713F2D5D3D2100309D86 /* FixedSessionRestorator.swift in Sources */,
 				24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */,
+				2485713B2D5D3CC100309D86 /* SessionRestoratorProtocol.swift in Sources */,
 				242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */,
@@ -591,6 +621,7 @@
 				24DF72172CCACF4B00195BD5 /* AddNewSession.swift in Sources */,
 				249A0EB82D42D868007DBB10 /* SessionConfiguration.swift in Sources */,
 				24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */,
+				2485713D2D5D3CF000309D86 /* FlexibleSessionRestorator.swift in Sources */,
 				247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */,
 				24018DE12CD1F6290039829E /* SessionSegment.swift in Sources */,
 				24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */,
@@ -614,6 +645,7 @@
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
 				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
+				248571382D5D3C6E00309D86 /* SessionionRestoratorFactory.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				248571352D5D3BBC00309D86 /* SessionType.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
