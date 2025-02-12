@@ -10,6 +10,7 @@ import Foundation
 
 /// Session with a fixed interval (focus and pause segment have a fixed length)
 @Observable final class ClassicSession: SessionProtocol {
+    let type: SessionType = .fixed
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval = 0
     

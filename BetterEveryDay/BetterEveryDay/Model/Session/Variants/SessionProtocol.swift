@@ -10,6 +10,7 @@ import Foundation
 typealias OnFinishingSegmentClosure = ((TimeInterval, SessionSegment) -> Void)?
 
 protocol SessionProtocol: Observable {
+    var type: SessionType { get }
     var segments: [SessionSegment] { get set }
     var availableBreak: TimeInterval { get set }
     
