@@ -17,7 +17,7 @@ struct FixedSessionScreen: View {
     @State private var timer: Timer?
     
     var goal: String
-    var viewModel: ClassicSession
+    var viewModel: SessionProtocol
     
     
     var body: some View {
