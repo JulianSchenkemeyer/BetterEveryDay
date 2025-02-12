@@ -29,6 +29,7 @@
 		247FC7B12C864EEC00B72733 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B02C864EEC00B72733 /* Date+Ext.swift */; };
 		247FC7B52C8CA67500B72733 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FC7B42C8CA67500B72733 /* Card.swift */; };
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
+		248571332D5D3A9100309D86 /* SessionSegmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571322D5D3A8800309D86 /* SessionSegmentData.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */; };
@@ -100,6 +101,7 @@
 		247FC7B02C864EEC00B72733 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		247FC7B42C8CA67500B72733 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
+		248571322D5D3A8800309D86 /* SessionSegmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentData.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionScreen.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		24F3F2942B1A3994008063B2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				248571322D5D3A8800309D86 /* SessionSegmentData.swift */,
 				24F3F2952B1A39C8008063B2 /* SessionData.swift */,
 			);
 			path = Data;
@@ -604,6 +607,7 @@
 				24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */,
 				247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */,
 				24DBA2372C61624F00860171 /* SessionController.swift in Sources */,
+				248571332D5D3A9100309D86 /* SessionSegmentData.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
 				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
