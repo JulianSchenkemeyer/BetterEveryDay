@@ -18,7 +18,6 @@
 		2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */; };
 		2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */; };
 		2408FDDC2D5BF4CC0094FDD4 /* SessionScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408FDDB2D5BF4BF0094FDD4 /* SessionScreenFactory.swift */; };
-		242517842D4974AA0034273F /* Phases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517832D4974A60034273F /* Phases.swift */; };
 		242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517862D4974E00034273F /* FixedSessionScreen.swift */; };
 		242517892D51F5650034273F /* RestorationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242517882D51F55C0034273F /* RestorationManager.swift */; };
 		2433A0962AAFA54200621188 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A0952AAFA54200621188 /* SettingsView.swift */; };
@@ -90,7 +89,6 @@
 		2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationView.swift; sourceTree = "<group>"; };
 		2406EB2E2A800C3C00E3FF6A /* BadgeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabelView.swift; sourceTree = "<group>"; };
 		2408FDDB2D5BF4BF0094FDD4 /* SessionScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScreenFactory.swift; sourceTree = "<group>"; };
-		242517832D4974A60034273F /* Phases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phases.swift; sourceTree = "<group>"; };
 		242517862D4974E00034273F /* FixedSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionScreen.swift; sourceTree = "<group>"; };
 		242517882D51F55C0034273F /* RestorationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorationManager.swift; sourceTree = "<group>"; };
 		2433A0952AAFA54200621188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				24F53FA62C6899DA00C6A666 /* SessionCategory.swift */,
 				24018DE02CD1F5950039829E /* SessionSegment.swift */,
 				249A0EB72D42D860007DBB10 /* SessionConfiguration.swift */,
-				242517832D4974A60034273F /* Phases.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -617,7 +614,6 @@
 				24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */,
 				B9C479AB2A16742900C0CE3E /* ContentView.swift in Sources */,
 				2406EB282A76ECEE00E3FF6A /* NotificationManager.swift in Sources */,
-				242517842D4974AA0034273F /* Phases.swift in Sources */,
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
