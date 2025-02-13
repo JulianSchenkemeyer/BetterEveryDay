@@ -8,6 +8,6 @@
 import Foundation
 
 
-enum SessionCategory: String {
+enum SegmentCategory: String {
     case Focus, Pause
 }

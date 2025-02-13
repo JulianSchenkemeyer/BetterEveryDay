@@ -155,7 +155,7 @@ struct FlexibleSessionScreen: View {
 }
 
 #Preview {
-    FlexibleSessionScreen(goal: "work on session screen work on session screen", viewModel: ThirdTimeSession(segments: [.init(category: .Focus, startedAt: .now)]))
+    FlexibleSessionScreen(goal: "work on session screen work on session screen", viewModel: FlexibleSession(segments: [.init(category: .Focus, startedAt: .now)]))
         .environment(NotificationManager(notificationService: NotificationServiceMock()))
         .environment(\.persistenceManager, PersistenceManagerMock())
 }

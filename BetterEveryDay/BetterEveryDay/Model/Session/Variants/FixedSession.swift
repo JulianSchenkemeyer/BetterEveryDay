@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Session with a fixed interval (focus and pause segment have a fixed length)
-@Observable final class ClassicSession: SessionProtocol {
+@Observable final class FixedSession: SessionProtocol {
     let type: SessionType = .fixed
     var segments: [SessionSegment] = []
     var availableBreak: TimeInterval = 0
@@ -43,7 +43,7 @@ import Foundation
             onFinishingSegment(availableBreak, last)
         }
         
-        let nextCategory: SessionCategory = if last.category == .Focus { .Pause } else { .Focus }
+        let nextCategory: SegmentCategory = if last.category == .Focus { .Pause } else { .Focus }
         createNew(category: nextCategory)
     }
     
@@ -60,7 +60,7 @@ import Foundation
         }
     }
     
-    private func createNew(category: SessionCategory) {
+    private func createNew(category: SegmentCategory) {
         let now = Date.now
         let timeToAdd = category == .Focus ? focustimeLimit : breaktimeLimit
         let finished = Calendar.current.date(byAdding: .minute, value: timeToAdd, to: now)!

@@ -51,20 +51,3 @@ final class SessionData {
         self.segments = segments
     }
 }
-
-@Model final class SessionSegmentData {
-    var session: SessionData?
-    var category: SessionCategory.RawValue
-    var startedAt: Date
-    var finishedAt: Date?
-    var duration: Double
-    
-    init(category: SessionCategory.RawValue, startedAt: Date, finishedAt: Date? = nil, duration: Double) {
-        self.session = nil
-        self.category = category
-        self.startedAt = startedAt
-        self.finishedAt = finishedAt
-        self.duration = duration
-    }
-}
-

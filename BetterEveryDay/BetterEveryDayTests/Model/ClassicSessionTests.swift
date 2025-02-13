@@ -10,7 +10,7 @@ import Testing
 
 final class ClassicSessionTests {
     @Test func initClassicSession() {
-        let session = ClassicSession()
+        let session = FixedSession()
         
         #expect(session.availableBreak == 0)
         #expect(session.segments.count == 0)
@@ -19,7 +19,7 @@ final class ClassicSessionTests {
     }
     
     @Test func initClassicSessionWithParameters() {
-        let session = ClassicSession(segments: [], focustimeLimit: 30, breaktimeLimit: 10)
+        let session = FixedSession(segments: [], focustimeLimit: 30, breaktimeLimit: 10)
         
         #expect(session.segments.isEmpty)
         #expect(session.availableBreak == 0)
@@ -28,7 +28,7 @@ final class ClassicSessionTests {
     }
     
     @Test func getCurrentSegment() {
-        let session = ClassicSession()
+        let session = FixedSession()
         
         #expect(session.getCurrent() == nil)
         
@@ -41,7 +41,7 @@ final class ClassicSessionTests {
     }
     
     @Test func startClassicSession() {
-        let session = ClassicSession(segments: [], focustimeLimit: 30, breaktimeLimit: 10)
+        let session = FixedSession(segments: [], focustimeLimit: 30, breaktimeLimit: 10)
         session.next()
         
         #expect(session.segments.count == 1)
@@ -52,7 +52,7 @@ final class ClassicSessionTests {
     }
     
     @Test func progressThroughClassicSession() {
-        let session = ClassicSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
+        let session = FixedSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
         session.next()
         
         #expect(session.getCurrent()?.category == .Focus)
@@ -70,7 +70,7 @@ final class ClassicSessionTests {
     }
     
     @Test func endClassicSession() {
-        let session = ClassicSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
+        let session = FixedSession(segments: [], focustimeLimit: 25, breaktimeLimit: 5)
         session.next()
         session.endSession()
         
