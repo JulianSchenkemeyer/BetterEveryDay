@@ -7,16 +7,16 @@
 import Foundation
 
 
-typealias LatestSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
+typealias RunningSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
 
 protocol RestorationManagerProtocol {
-    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> LatestSessionData
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> RunningSessionData
 }
 
 final class RestorationManager: RestorationManagerProtocol {
     private var factory = SessionRestoratorFactory()
     
-    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> LatestSessionData {
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> RunningSessionData {
         let type = identifySessionType(data)
         let restorator = factory.createRestorator(for: type)
         

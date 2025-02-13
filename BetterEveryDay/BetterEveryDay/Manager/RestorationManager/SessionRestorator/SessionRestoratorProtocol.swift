@@ -8,7 +8,7 @@ import Foundation
 
 
 protocol SessionRestoratorProtocol {
-    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> LatestSessionData
+    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> RunningSessionData
 }
 
 extension SessionRestoratorProtocol {

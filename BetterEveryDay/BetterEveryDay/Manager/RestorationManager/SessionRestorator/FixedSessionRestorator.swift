@@ -8,10 +8,10 @@ import Foundation
 
 
 final class FixedSessionRestorator: SessionRestoratorProtocol {
-    func restore( _ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> LatestSessionData {
+    func restore( _ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> RunningSessionData {
         var segments = restoreSegments(data)
         
-        // Restore running session in fixed session (Classic)
+        // Restore running session in fixed session
         let now = Date.now
         var segmentStart = segments.last?.finishedAt ?? data.started
         
