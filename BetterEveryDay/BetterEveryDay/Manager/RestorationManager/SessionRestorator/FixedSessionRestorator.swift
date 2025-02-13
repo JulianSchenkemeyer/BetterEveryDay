@@ -7,6 +7,7 @@
 import Foundation
 
 
+/// SessionRestorator implementation for a ``FixedSession``
 final class FixedSessionRestorator: SessionRestoratorProtocol {
     func restore( _ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> RunningSessionData {
         var segments = restoreSegments(data)

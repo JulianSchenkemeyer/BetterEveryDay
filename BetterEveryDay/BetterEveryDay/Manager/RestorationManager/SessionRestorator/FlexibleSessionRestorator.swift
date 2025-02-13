@@ -6,6 +6,7 @@
 //
 
 
+/// SessionRestorator implementation for a ``FlexibleSession``
 final class FlexibleSessionRestorator: SessionRestoratorProtocol {
     func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> RunningSessionData {
         var segments = restoreSegments(data)
