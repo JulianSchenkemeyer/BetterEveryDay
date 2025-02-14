@@ -31,7 +31,7 @@
 		247FD12B2B72BDE7009CEB88 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */; };
 		248571332D5D3A9100309D86 /* SessionSegmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571322D5D3A8800309D86 /* SessionSegmentData.swift */; };
 		248571352D5D3BBC00309D86 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571342D5D3BB600309D86 /* SessionType.swift */; };
-		248571382D5D3C6E00309D86 /* SessionionRestoratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */; };
+		248571382D5D3C6E00309D86 /* SessionRestoratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571372D5D3C2300309D86 /* SessionRestoratorFactory.swift */; };
 		2485713B2D5D3CC100309D86 /* SessionRestoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713A2D5D3CAE00309D86 /* SessionRestoratorProtocol.swift */; };
 		2485713D2D5D3CF000309D86 /* FlexibleSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */; };
 		2485713F2D5D3D2100309D86 /* FixedSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */; };
@@ -108,7 +108,7 @@
 		247FD12A2B72BDE7009CEB88 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		248571322D5D3A8800309D86 /* SessionSegmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentData.swift; sourceTree = "<group>"; };
 		248571342D5D3BB600309D86 /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
-		248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionionRestoratorFactory.swift; sourceTree = "<group>"; };
+		248571372D5D3C2300309D86 /* SessionRestoratorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRestoratorFactory.swift; sourceTree = "<group>"; };
 		2485713A2D5D3CAE00309D86 /* SessionRestoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRestoratorProtocol.swift; sourceTree = "<group>"; };
 		2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionRestorator.swift; sourceTree = "<group>"; };
 		2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionRestorator.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				248571392D5D3C9400309D86 /* SessionRestorator */,
-				248571372D5D3C2300309D86 /* SessionionRestoratorFactory.swift */,
+				248571372D5D3C2300309D86 /* SessionRestoratorFactory.swift */,
 				242517882D51F55C0034273F /* RestorationManager.swift */,
 			);
 			path = RestorationManager;
@@ -645,7 +645,7 @@
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
 				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
-				248571382D5D3C6E00309D86 /* SessionionRestoratorFactory.swift in Sources */,
+				248571382D5D3C6E00309D86 /* SessionRestoratorFactory.swift in Sources */,
 				2406EB2F2A800C3C00E3FF6A /* BadgeLabelView.swift in Sources */,
 				248571352D5D3BBC00309D86 /* SessionType.swift in Sources */,
 				2406EB172A70F32A00E3FF6A /* HourMinutesDurationTextView.swift in Sources */,
