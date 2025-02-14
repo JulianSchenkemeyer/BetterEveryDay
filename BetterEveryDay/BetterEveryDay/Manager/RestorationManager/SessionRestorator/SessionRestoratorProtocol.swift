@@ -23,7 +23,7 @@ extension SessionRestoratorProtocol {
     
     /// Method to restore segments from ``SessionData``. Default implementation provided through ``SessionRestoratorProtocol``
     /// - Parameter data: ``SessionData``
-    /// - Returns: ``[SessionSegment]``
+    /// - Returns: ``SessionSegment`` Array
     func restoreSegments(_ data: SessionData) -> [SessionSegment] {
         data.segments
             .map { SessionSegment(category: SegmentCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
