@@ -132,7 +132,7 @@ import Foundation
         persistenceManager.finishSession(with: sessionController.session)
         
         let allResults = fetchAll()
-        let todaysResults = persistenceManager.getTodaysSessions()
+        let todaysResults = persistenceManager.getTodaysFinishedSessions()
         
         #expect(allResults.count == 2)
         #expect(todaysResults.count == 1)
