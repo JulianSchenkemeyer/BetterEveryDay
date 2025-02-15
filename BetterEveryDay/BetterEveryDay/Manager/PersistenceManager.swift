@@ -41,6 +41,7 @@ protocol PersistenceManagerProtocol: Observable {
     func getTodaysSessions() async -> [SessionData]
 }
 
+/// Mock implementation of ``PersistenceManagerProtocol`` for use in Previews or tests
 final class PersistenceManagerMock: PersistenceManagerProtocol {
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) { }
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
@@ -50,12 +51,16 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func getTodaysSessions() -> [SessionData] { Mockdata.sessionDataArray }
 }
 
+/// SwiftData implementation of ``PersistenceManagerProtocol``
 final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     private var currentSession: SessionData?
     private(set) var modelContainer: ModelContainer
     private(set) var context: ModelContext
     
     
+    /// Init an instance of SwiftDataPersistenceManager
+    /// - Parameter configuration: ``ModelConfiguration``, can be used to switch the SwiftData persistence layer to memory only for use in tests.
+    ///                        Defaults to ```.init(isStoredInMemoryOnly: false)```
     init(configuration: ModelConfiguration = .init(isStoredInMemoryOnly: false)) {
         func createContainer() -> ModelContainer {
             let schema = Schema([SessionData.self])
