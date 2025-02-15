@@ -52,10 +52,8 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
 }
 
 /// SwiftData implementation of ``PersistenceManagerProtocol``
-final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
+@ModelActor actor SwiftDataPersistenceManager: PersistenceManagerProtocol {
     private var currentSession: SessionData?
-    private(set) var modelContainer: ModelContainer
-    private(set) var context: ModelContext
     
     
     /// Init an instance of SwiftDataPersistenceManager
@@ -71,9 +69,11 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                 fatalError(error.localizedDescription)
             }
         }
-        self.modelContainer = createContainer()
+        let modelContainer = createContainer()
         
-        context = .init(self.modelContainer)
+        let modelContext = ModelContext(modelContainer)
+        self.modelExecutor = DefaultSerialModelExecutor(modelContext: modelContext)
+        self.modelContainer = modelContainer
     }
     
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async {
@@ -95,8 +95,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                          segments: sessionSegments)
         currentSession = newSessionData
         
-        context.insert(newSessionData)
-        try? context.save()
+        modelContext.insert(newSessionData)
+        try? modelContext.save()
     }
     
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) {
@@ -121,7 +121,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
                                              finishedAt: segment.finishedAt,
                                              duration: segment.duration))
         
-        try? context.save()
+        try? modelContext.save()
     }
     
     func updateSession(with segments: [SessionSegment]) {
@@ -155,7 +155,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.timeSpendWork += timeSpendWork
         currentSession.timeSpendPause += timeSpendPause
         
-        try? context.save()
+        try? modelContext.save()
     }
     
     func finishSession(with session: SessionProtocol) {
@@ -168,7 +168,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
         
-        try? context.save()
+        try? modelContext.save()
     }
     
     func getLatestRunningSession() -> SessionData? {
@@ -181,7 +181,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         fetchDescriptor.fetchLimit = 1
         
         do {
-            let unfinishedSession = try context.fetch(fetchDescriptor)
+            let unfinishedSession = try modelContext.fetch(fetchDescriptor)
             guard let unfinishedSession = unfinishedSession.first else { return nil }
             
             currentSession = unfinishedSession
@@ -204,7 +204,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         let fetchDescribtor = FetchDescriptor(predicate: predicate, sortBy: sorting)
         
         do {
-            let todaysSessions = try context.fetch(fetchDescribtor)
+            let todaysSessions = try modelContext.fetch(fetchDescribtor)
             return todaysSessions
         } catch {
             print("❌")
