@@ -60,6 +60,9 @@ import Foundation
         }
     }
     
+    
+    /// **Private** Create a new segment of the specified category
+    /// - Parameter category: ``SegmentCategory`` of the new segment
     private func createNew(category: SegmentCategory) {
         let now = Date.now
         let timeToAdd = category == .Focus ? focustimeLimit : breaktimeLimit
