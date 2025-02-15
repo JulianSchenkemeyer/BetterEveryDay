@@ -62,9 +62,12 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession(variant: SessionType) {
+        //TODO: remove this when fixed session is configurable
+        let focusTimeLimit = variant == .fixed ? 25 : 0
+        let breakTimeLimit = variant == .fixed ? 5 : 0
         let sessionConfiguration = SessionConfiguration(type: variant,
-                                                        focustimeLimit: 25,
-                                                        breaktimeLimit: breaktimeLimit,
+                                                        focustimeLimit: focusTimeLimit,
+                                                        breaktimeLimit: breakTimeLimit,
                                                         breaktimeFactor: breaktimeFactor)
         viewModel.start(with: sessionConfiguration)
         
