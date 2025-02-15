@@ -12,21 +12,32 @@ import SwiftData
 /// Defines the functions needed to persist the session
 protocol PersistenceManagerProtocol: Observable {
     /// Create a new session entry in the persistence layer
-    /// - Parameter sessionController: ``SessionController``  to be persisted
+    /// - Parameters:
+    ///  - sessionController: ``SessionController``  to be persisted
+    ///  - configuration: ``SessionConfiguration``
     func insertSession(from sessionController: SessionController, configuration: SessionConfiguration) async
     
-    /// Update an existing session entry in the persistence layer
-    /// - Parameter session: ``Session`` to be persisted
+    /// Update the currently running session entry in the persistence layer
+    /// - Parameters:
+    ///   - availableBreaktime: new value for the available breaktime
+    ///   - segment: new ``SessionSegment`` to be added to the currently running session
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) async
     
+    
+    /// Update the currently running session entry in the persistence layer
+    /// - Parameter segments: array of ``SessionSegment`` to be added to the running session
     func updateSession(with segments: [SessionSegment])
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
-    /// - Parameter session: ``Session``  to be persisted
+    /// - Parameter session: to be persisted
     func finishSession(with session: SessionProtocol) async
-
+    
+    /// Get the latest running session from the persistence layer
+    /// - Returns: the latest running session or nil if non could be found
     func getLatestRunningSession() async -> SessionData?
     
+    /// Get all finished session which were started today
+    /// - Returns: array of ``SessionData``
     func getTodaysSessions() async -> [SessionData]
 }
 
@@ -43,7 +54,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     private var currentSession: SessionData?
     private(set) var modelContainer: ModelContainer
     private(set) var context: ModelContext
-
+    
     
     init(configuration: ModelConfiguration = .init(isStoredInMemoryOnly: false)) {
         func createContainer() -> ModelContainer {
@@ -56,7 +67,7 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
             }
         }
         self.modelContainer = createContainer()
-
+        
         context = .init(self.modelContainer)
     }
     
@@ -152,9 +163,9 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
         
-        try? context.save() 
+        try? context.save()
     }
-
+    
     func getLatestRunningSession() -> SessionData? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
