@@ -23,11 +23,11 @@ import Foundation
     ///   - state: ``SessionState``, defaults .PREPARING
     ///   - goal: String, describing the goal of the session, defaults ""
     ///   - started: Date, when the session started, nil if the session is not started yet; defaults nil
-    ///   - session: ``ThirdTimeSession`` object containing the session data, defaults to an fresh instance
+    ///   - session: ``SessionProtocol`` object containing the session data, defaults to an fresh instance, defaults to a new FlexibleSession
     init(state: SessionState = .PREPARING,
          goal: String = "",
          started: Date? = nil,
-         session: FlexibleSession = FlexibleSession()) {
+         session: SessionProtocol = FlexibleSession()) {
         self.state = state
         self.goal = goal
         self.started = started

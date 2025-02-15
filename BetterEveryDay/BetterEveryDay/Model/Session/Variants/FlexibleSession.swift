@@ -32,13 +32,10 @@ import Foundation
         self.breaktimeFactor = breaktimeFactor
     }
     
-    /// Get the current ``SessionSegment``
     func getCurrent() -> SessionSegment? {
         segments.last
     }
     
-    /// Finish up the current  ``SessionSegment``, update availableBreak and create new SessionSegment
-    /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
     func next(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else {
             createNew(category: .Focus)
@@ -55,8 +52,6 @@ import Foundation
         createNew(category: nextCategory)
     }
     
-    /// End the currently running session
-    /// - Parameter onFinishingSegment: ```((Session) -> Void)?`` to be executed when the segment is finished
     func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
         guard var last = segments.popLast() else { return }
         updateBreak(last)
@@ -97,7 +92,7 @@ import Foundation
         }
     }
     
-    /// Create a new ``SessionSegment``
+    /// **Private** Create a new ``SessionSegment``
     /// - Parameter category: the new ``SessionCategory`` for the new ``SessionSegment``
     private func createNew(category: SegmentCategory) {
         segments.append(.init(category: category))

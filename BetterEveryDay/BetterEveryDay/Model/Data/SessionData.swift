@@ -9,8 +9,7 @@ import Foundation
 import SwiftData
 
 
-@Model
-final class SessionData {
+@Model final class SessionData {
     var type: SessionType.RawValue
     var state: SessionState.RawValue
     var goal: String
