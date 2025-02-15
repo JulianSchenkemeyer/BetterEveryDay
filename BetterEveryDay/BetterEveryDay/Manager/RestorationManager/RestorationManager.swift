@@ -18,14 +18,14 @@ protocol RestorationManagerProtocol {
     ///   - onRestoredSegments: Optional closure, which can be used to process restored segments. Can be used for example
     ///   to persist currently untracked segments.
     /// - Returns: Tuple containing the session data
-    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> RunningSessionData
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) async -> Void)?) async -> RunningSessionData
 }
 
 /// ``RestorationManagerProtocol`` implementation
 final class RestorationManager: RestorationManagerProtocol {
     private var factory = SessionRestoratorFactory()
     
-    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)? = nil) -> RunningSessionData {
+    func restoreSessions(from data: SessionData, onRestoredSegments: (([SessionSegment]) async -> Void)? = nil) async -> RunningSessionData {
         let type = identifySessionType(data)
         let restorator = factory.createRestorator(for: type)
         

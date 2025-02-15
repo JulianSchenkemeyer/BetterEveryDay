@@ -26,7 +26,7 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Update the currently running session entry in the persistence layer
     /// - Parameter segments: array of ``SessionSegment`` to be added to the running session
-    func updateSession(with segments: [SessionSegment])
+    func updateSession(with segments: [SessionSegment]) async
     
     /// Finish the running session entry in the persistence layer, which sets the state of the entry to finished
     /// - Parameter session: to be persisted

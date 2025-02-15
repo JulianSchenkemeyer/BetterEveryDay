@@ -16,7 +16,7 @@ protocol SessionRestoratorProtocol {
     ///   - onRestoredSegments: Optional closure, which can be used to process restored segments. Can be used for example
     ///   to persist currently untracked segments.
     /// - Returns: ``RunningSessionData``
-    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) -> Void)?) -> RunningSessionData
+    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) async -> Void)?) -> RunningSessionData
 }
 
 extension SessionRestoratorProtocol {
