@@ -59,8 +59,8 @@ final class SwiftDataPersistenceManager: PersistenceManagerProtocol {
     
     
     /// Init an instance of SwiftDataPersistenceManager
-    /// - Parameter configuration: ``ModelConfiguration``, can be used to switch the SwiftData persistence layer to memory only for use in tests.
-    ///                        Defaults to ```.init(isStoredInMemoryOnly: false)```
+    /// - Parameter configuration: ModelConfiguration, can be used to switch the SwiftData persistence layer to memory only for use in tests.
+    ///                         Defaults to a default ModelConfiguration
     init(configuration: ModelConfiguration = .init(isStoredInMemoryOnly: false)) {
         func createContainer() -> ModelContainer {
             let schema = Schema([SessionData.self])
