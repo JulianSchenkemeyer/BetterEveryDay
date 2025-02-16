@@ -55,7 +55,7 @@ struct PrepareSessionScreen: View {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
         })
         .task {
-            todays = await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todays = try! await persistenceManager?.getTodaysFinishedSessions() ?? []
             
             restoreRunningSession()
         }
@@ -73,7 +73,7 @@ struct PrepareSessionScreen: View {
         
         if persistenceManager != nil {
             Task {
-                await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
+                try! await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
             }
         }
         viewModel.session.next(onFinishingSegment: nil)
@@ -85,22 +85,22 @@ struct PrepareSessionScreen: View {
     private func finishSession() {
         viewModel.finish()
         Task {
-            await persistenceManager?.finishSession(with: viewModel.session)
+            try? await persistenceManager?.finishSession(with: viewModel.session)
             
             viewModel.reset()
             
-            todays = await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todays = try await persistenceManager?.getTodaysFinishedSessions() ?? []
         }
     }
     
     private func restoreRunningSession() {
         Task {
-            let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
+            let unfinished = try await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
             
             let restored = await restorationManager?.restoreSessions(from: unfinished) {
                 untracked in
-                await persistenceManager?.updateSession(with: untracked)
+                try? await persistenceManager?.updateSession(with: untracked)
             }
             guard let restored else { return }
 
