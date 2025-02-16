@@ -133,14 +133,14 @@ import Foundation
         try await persistenceManager.finishSession(with: sessionController.session)
         
         let allResults = fetchAll()
-        let todaysResults = try await persistenceManager.getTodaysFinishedSessions()
+        let todaysResults = await persistenceManager.getTodaysFinishedSessions()
         
         #expect(allResults.count == 2)
         #expect(todaysResults.count == 1)
     }
     
     @Test func getDataFromLatestRunningSession() async throws {
-        #expect(try await persistenceManager.getLatestRunningSession() == nil)
+        #expect(await persistenceManager.getLatestRunningSession() == nil)
         
         let sessionController = SessionController()
         let sessionConfiguration = SessionConfiguration(type: .flexible,
@@ -150,9 +150,9 @@ import Foundation
         sessionController.start(with: sessionConfiguration)
         try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
         
-        #expect(try await persistenceManager.getLatestRunningSession() != nil)
+        #expect(await persistenceManager.getLatestRunningSession() != nil)
         
         try await persistenceManager.finishSession(with: sessionController.session)
-        #expect(try await persistenceManager.getLatestRunningSession() == nil)
+        #expect(await persistenceManager.getLatestRunningSession() == nil)
     }
 }
