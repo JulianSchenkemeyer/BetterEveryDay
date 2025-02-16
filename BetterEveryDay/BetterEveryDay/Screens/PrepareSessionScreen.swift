@@ -16,7 +16,7 @@ struct PrepareSessionScreen: View {
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
-    @State private var todays: [SessionData] = []
+    @State private var todaysFinishedSessions: [SessionData] = []
     
     @State private var showNewTaskModal: Bool = false
     
@@ -26,9 +26,9 @@ struct PrepareSessionScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                TodayOverview(todaysSessions: todays)
-                TodayTimeDistribution(todaysSessions: todays)
-                TodayGoalList(todaysSessions: todays)
+                TodayOverview(todaysSessions: todaysFinishedSessions)
+                TodayTimeDistribution(todaysSessions: todaysFinishedSessions)
+                TodayGoalList(todaysSessions: todaysFinishedSessions)
             }
             .padding()
         }
@@ -55,7 +55,12 @@ struct PrepareSessionScreen: View {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
         })
         .task {
-            todays = try! await persistenceManager?.getTodaysFinishedSessions() ?? []
+            do {
+                todaysFinishedSessions = try await persistenceManager?.getTodaysFinishedSessions() ?? []
+            } catch {
+                print(error)
+                todaysFinishedSessions = []
+            }
             
             restoreRunningSession()
         }
@@ -73,7 +78,7 @@ struct PrepareSessionScreen: View {
         
         if persistenceManager != nil {
             Task {
-                try! await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
+                try await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
             }
         }
         viewModel.session.next(onFinishingSegment: nil)
@@ -89,7 +94,7 @@ struct PrepareSessionScreen: View {
             
             viewModel.reset()
             
-            todays = try await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todaysFinishedSessions = try await persistenceManager?.getTodaysFinishedSessions() ?? []
         }
     }
     

@@ -96,7 +96,7 @@ struct FlexibleSessionScreen: View {
         
         viewModel.next() { breaktime, segment in
             Task {
-                try? await persistenceManager?.updateSession(with: breaktime, segment: segment)
+                try await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }
         removeScheduledNotifications()
@@ -112,7 +112,7 @@ struct FlexibleSessionScreen: View {
         removeScheduledNotifications()
         viewModel.endSession() { breaktime, segment in
             Task {
-                try? await persistenceManager?.updateSession(with: breaktime, segment: segment)
+                try await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }
         dismiss()

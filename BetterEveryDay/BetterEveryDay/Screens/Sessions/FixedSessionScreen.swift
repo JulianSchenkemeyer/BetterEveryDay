@@ -92,7 +92,7 @@ struct FixedSessionScreen: View {
     private func createNextSegment() {
         viewModel.next() { breaktime, segment in
             Task {
-                try? await persistenceManager?.updateSession(with: breaktime, segment: segment)
+                try await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }
         removeScheduledNotifications()
@@ -105,7 +105,7 @@ struct FixedSessionScreen: View {
         removeScheduledNotifications()
         viewModel.endSession() { breaktime, segment in
             Task {
-                try? await persistenceManager?.updateSession(with: breaktime, segment: segment)
+                try await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }
         dismiss()
