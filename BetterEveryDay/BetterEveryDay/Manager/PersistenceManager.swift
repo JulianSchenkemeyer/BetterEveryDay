@@ -34,11 +34,11 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Get the latest running session from the persistence layer
     /// - Returns: the latest running session or nil if non could be found
-    func getLatestRunningSession() async throws -> SessionData?
+    func getLatestRunningSession() async -> SessionData?
     
     /// Get all finished session which were started today
     /// - Returns: array of ``SessionData``
-    func getTodaysFinishedSessions() async throws -> [SessionData]
+    func getTodaysFinishedSessions() async -> [SessionData]
 }
 
 /// Mock implementation of ``PersistenceManagerProtocol`` for use in Previews or tests
@@ -96,7 +96,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         currentSession = newSessionData
         
         modelContext.insert(newSessionData)
-        try? modelContext.save()
+        try modelContext.save()
     }
     
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) async throws {
@@ -168,10 +168,10 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         currentSession.availableBreak = session.availableBreak
         currentSession.duration = session.segments.reduce(0.0) { $0 + $1.duration }
         
-        try? modelContext.save()
+        try modelContext.save()
     }
     
-    func getLatestRunningSession() async throws -> SessionData? {
+    func getLatestRunningSession() async -> SessionData? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == running
@@ -193,7 +193,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         }
     }
     
-    func getTodaysFinishedSessions() async throws -> [SessionData] {
+    func getTodaysFinishedSessions() async -> [SessionData] {
         let finished = SessionState.FINISHED.rawValue
         let (start, end) = Date.now.getStartAndEndOfDay()
         let predicate = #Predicate<SessionData>{ session in

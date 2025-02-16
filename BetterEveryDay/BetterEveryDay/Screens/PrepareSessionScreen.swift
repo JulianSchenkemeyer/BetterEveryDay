@@ -55,12 +55,7 @@ struct PrepareSessionScreen: View {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
         })
         .task {
-            do {
-                todaysFinishedSessions = try await persistenceManager?.getTodaysFinishedSessions() ?? []
-            } catch {
-                print(error)
-                todaysFinishedSessions = []
-            }
+            todaysFinishedSessions = await persistenceManager?.getTodaysFinishedSessions() ?? []
             
             restoreRunningSession()
         }
@@ -94,13 +89,13 @@ struct PrepareSessionScreen: View {
             
             viewModel.reset()
             
-            todaysFinishedSessions = try await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todaysFinishedSessions = await persistenceManager?.getTodaysFinishedSessions() ?? []
         }
     }
     
     private func restoreRunningSession() {
         Task {
-            let unfinished = try await persistenceManager?.getLatestRunningSession() ?? nil
+            let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
             guard let unfinished else { return }
             
             let restored = await restorationManager?.restoreSessions(from: unfinished) {
