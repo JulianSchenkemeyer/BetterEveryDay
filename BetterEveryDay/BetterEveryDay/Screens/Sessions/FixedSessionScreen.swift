@@ -50,8 +50,10 @@ struct FixedSessionScreen: View {
                         switch newValue {
                         case .Focus:
                             removeScheduledNotifications()
+                            schedulePhaseEndedNotification(for: .Focus)
                         case .Pause:
-                            schedulePauseEndedNotification()
+                            removeScheduledNotifications()
+                            schedulePhaseEndedNotification(for: .Pause)
                         }
                         resetTimer()
                         scheduleSessionChange()
@@ -133,12 +135,15 @@ struct FixedSessionScreen: View {
     }
     
     /// Schedule a local notification for when the pause is ended
-    private func schedulePauseEndedNotification() {
-        guard let segment = viewModel.getCurrent() else {
+    private func schedulePhaseEndedNotification(for category: SegmentCategory) {
+        guard let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt else {
             return
         }
-        let triggerDate = segment.startedAt + viewModel.availableBreak
-        let notification = PauseEndedNotification(triggerAt: triggerDate)
+        let notification: any BEDNotification = if category == .Pause {
+            PauseEndedNotification(triggerAt: finishedAt)
+        } else {
+            FocusEndedNotification(triggerAt: finishedAt)
+        }
         
         notificationManager.schedule(notification: notification)
     }
