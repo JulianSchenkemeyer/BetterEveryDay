@@ -47,7 +47,8 @@ import Foundation
             session = FlexibleSession(breaktimeLimit: sessionConfiguration.breaktimeLimit, breaktimeFactor: sessionConfiguration.breaktimeFactor)
             
         case .fixed:
-            session = FixedSession(focustimeLimit: 25, breaktimeLimit: 5)
+            session = FixedSession(focustimeLimit: sessionConfiguration.focustimeLimit,
+                                   breaktimeLimit: sessionConfiguration.breaktimeLimit)
         }
     }
     

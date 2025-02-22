@@ -47,20 +47,15 @@ struct FixedSessionScreen: View {
                             .fontWeight(.semibold)
                     }
                     .onChange(of: segment.category) { _, newValue in
-                        switch newValue {
-                        case .Focus:
-                            removeScheduledNotifications()
-                            schedulePhaseEndedNotification(for: .Focus)
-                        case .Pause:
-                            removeScheduledNotifications()
-                            schedulePhaseEndedNotification(for: .Pause)
-                        }
+                        removeScheduledNotifications()
+                        scheduleNotifications(startingWith: newValue)
+                        
                         resetTimer()
                         scheduleSessionChange()
                     }
                     .onAppear {
                         scheduleSessionChange()
-                        guard segment.category == .Pause else { return }
+                        scheduleNotifications(startingWith: segment.category)
                     }
                 }
                 Spacer()
@@ -135,16 +130,40 @@ struct FixedSessionScreen: View {
     }
     
     /// Schedule a local notification for when the pause is ended
-    private func schedulePhaseEndedNotification(for category: SegmentCategory) {
-        guard let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt else {
+    private func scheduleNotifications(startingWith category: SegmentCategory) {
+        guard let viewModel = viewModel as? FixedSession,
+              let segment = viewModel.getCurrent(),
+              let finishedAt = segment.finishedAt else {
             return
         }
-        let notification: any BEDNotification = if category == .Pause {
-            PauseEndedNotification(triggerAt: finishedAt)
-        } else {
-            FocusEndedNotification(triggerAt: finishedAt)
+                
+        let inOneHour = Calendar.current.date(byAdding: .hour, value: 1, to: finishedAt)!
+        var triggerAt = finishedAt
+        var categoryOfNotification: SegmentCategory = category
+        
+        while triggerAt < inOneHour {
+            var notification: any BEDNotification
+            var advanceByValue: Int
+            if categoryOfNotification == .Focus {
+                notification = FocusEndedNotification(triggerAt: triggerAt)
+                advanceByValue = viewModel.focustimeLimit
+                categoryOfNotification = .Pause
+            } else {
+                notification = PauseEndedNotification(triggerAt: triggerAt)
+                advanceByValue = viewModel.breaktimeLimit
+                categoryOfNotification = .Focus
+            }
+            notificationManager.schedule(notification: notification)
+            triggerAt = Calendar.current.date(byAdding: .minute, value: advanceByValue, to: triggerAt)!
         }
         
+        scheduleFollowUpNotification(for: triggerAt)
+    }
+    
+    /// Schedule a follow up notification for the case the user has not opened the app for some time and there is a session running
+    private func scheduleFollowUpNotification(for triggerAt: Date) {
+        let followUpDate = Calendar.current.date(byAdding: .minute, value: 10, to: triggerAt)!
+        let notification = FollowUpNotification(triggerAt: followUpDate)
         notificationManager.schedule(notification: notification)
     }
     
