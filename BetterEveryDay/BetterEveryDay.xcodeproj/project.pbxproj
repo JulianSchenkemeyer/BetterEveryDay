@@ -36,6 +36,7 @@
 		2485713D2D5D3CF000309D86 /* FlexibleSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */; };
 		2485713F2D5D3D2100309D86 /* FixedSessionRestorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */; };
 		248571412D62523C00309D86 /* FocusEndedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571402D62522C00309D86 /* FocusEndedNotification.swift */; };
+		248571432D6A19B200309D86 /* FollowUpNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248571422D6A19A800309D86 /* FollowUpNotification.swift */; };
 		24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */; };
 		24912E5B2BA74B21001AB4C7 /* PrepareSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */; };
 		24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */; };
@@ -114,6 +115,7 @@
 		2485713C2D5D3CE500309D86 /* FlexibleSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionRestorator.swift; sourceTree = "<group>"; };
 		2485713E2D5D3D1600309D86 /* FixedSessionRestorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSessionRestorator.swift; sourceTree = "<group>"; };
 		248571402D62522C00309D86 /* FocusEndedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusEndedNotification.swift; sourceTree = "<group>"; };
+		248571422D6A19A800309D86 /* FollowUpNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpNotification.swift; sourceTree = "<group>"; };
 		24912E562B9F5F96001AB4C7 /* WanderingShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingShadowAnimation.swift; sourceTree = "<group>"; };
 		24912E5A2BA74B21001AB4C7 /* PrepareSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSessionScreen.swift; sourceTree = "<group>"; };
 		24912E5C2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSessionScreen.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		2406EB1E2A76BE2300E3FF6A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				248571422D6A19A800309D86 /* FollowUpNotification.swift */,
 				248571402D62522C00309D86 /* FocusEndedNotification.swift */,
 				2406EB1F2A76BEC100E3FF6A /* PauseEndedNotification.swift */,
 				2406EB242A76E6FF00E3FF6A /* BEDNotification.swift */,
@@ -618,6 +621,7 @@
 				242517872D4974EA0034273F /* FixedSessionScreen.swift in Sources */,
 				24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */,
 				2406EB1A2A70F3AD00E3FF6A /* TimeDistributionChartView.swift in Sources */,
+				248571432D6A19B200309D86 /* FollowUpNotification.swift in Sources */,
 				24912E572B9F5F96001AB4C7 /* WanderingShadowAnimation.swift in Sources */,
 				2406EB1D2A76B4A200E3FF6A /* NotificationHelper.swift in Sources */,
 				246D6C2E2A48990300E5B39B /* TimerLabelView.swift in Sources */,
