@@ -13,6 +13,7 @@ struct TimerLabelView: View {
     var body: some View {
         Text(date, style: .timer)
             .font(.system(size: 60))
+            .fontDesign(.monospaced)
             .fontWeight(.bold)
     }
 }

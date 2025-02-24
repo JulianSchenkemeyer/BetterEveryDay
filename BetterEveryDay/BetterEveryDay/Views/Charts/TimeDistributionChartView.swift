@@ -57,7 +57,7 @@ struct LegendEntry: View {
                 .foregroundColor(color)
                 .frame(width: 8, height: 8)
             
-            Text("Work")
+            Text(title)
                 .font(.caption)
                 .foregroundStyle(.gray)
             

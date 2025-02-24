@@ -52,13 +52,15 @@ struct FlexibleSessionScreen: View {
                             .fontWeight(.semibold)
                     }
                     .onChange(of: segment.category) { _, newValue in
+                        removeScheduledNotifications()
+
                         switch newValue {
                         case .Focus:
                             resetTimer()
-                            removeScheduledNotifications()
                         case .Pause:
                             schedulePauseEndedNotification()
                         }
+                        scheduleFollowUpNotification()
                     }
                     .onAppear {
                         guard segment.category == .Pause else { return }
@@ -145,6 +147,13 @@ struct FlexibleSessionScreen: View {
         let triggerDate = segment.startedAt + viewModel.availableBreak
         let notification = PauseEndedNotification(triggerAt: triggerDate)
         
+        notificationManager.schedule(notification: notification)
+    }
+    
+    /// Schedule a follow up notification for the case the user has not opened the app for some time and there is a session running
+    private func scheduleFollowUpNotification() {
+        let followUpDate = Calendar.current.date(byAdding: .minute, value: 60, to: .now)!
+        let notification = FollowUpNotification(triggerAt: followUpDate)
         notificationManager.schedule(notification: notification)
     }
     
