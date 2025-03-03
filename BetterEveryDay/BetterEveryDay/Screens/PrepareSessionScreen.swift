@@ -65,7 +65,7 @@ struct PrepareSessionScreen: View {
     
     private func startSession(variant: SessionType) {
         let focusTimeLimit = variant == .fixed ? fixedFocusLimit : 0
-        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : 0
+        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : flexBreaktimeLimit
         let sessionConfiguration = SessionConfiguration(type: variant,
                                                         focustimeLimit: focusTimeLimit,
                                                         breaktimeLimit: breakTimeLimit,
