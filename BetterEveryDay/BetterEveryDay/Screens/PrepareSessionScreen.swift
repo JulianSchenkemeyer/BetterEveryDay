@@ -11,8 +11,10 @@ import SwiftUI
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     @Environment(\.restorationManager) var restorationManager
-    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
-    @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
+    @AppStorage("flexBreaktimeLimit") private var flexBreaktimeLimit: Int = 0
+    @AppStorage("flexBreaktimeFactor") private var flexBreaktimeFactor: Double = 3
+    @AppStorage("fixedFocusLimit") private var fixedFocusLimit: Int = 25
+    @AppStorage("fixedBreakLimit") private var fixedBreakLimit: Int = 5
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
@@ -62,13 +64,7 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession(variant: SessionType) {
-        //TODO: remove this when fixed session is configurable
-        let focusTimeLimit = variant == .fixed ? 25 : 0
-        let breakTimeLimit = variant == .fixed ? 5 : 0
-        let sessionConfiguration = SessionConfiguration(type: variant,
-                                                        focustimeLimit: focusTimeLimit,
-                                                        breaktimeLimit: breakTimeLimit,
-                                                        breaktimeFactor: breaktimeFactor)
+        let sessionConfiguration = createSessionConfiguration(for: variant)
         viewModel.start(with: sessionConfiguration)
         
         if persistenceManager != nil {
@@ -80,6 +76,16 @@ struct PrepareSessionScreen: View {
         
         sessionIsInProgress = true
         showNewTaskModal = false
+    }
+    
+    private func createSessionConfiguration(for variant: SessionType) -> SessionConfiguration {
+        let focusTimeLimit = variant == .fixed ? fixedFocusLimit : 0
+        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : flexBreaktimeLimit
+        
+        return SessionConfiguration(type: variant,
+                                    focustimeLimit: focusTimeLimit,
+                                    breaktimeLimit: breakTimeLimit,
+                                    breaktimeFactor: flexBreaktimeFactor)
     }
     
     private func finishSession() {
@@ -103,7 +109,7 @@ struct PrepareSessionScreen: View {
                 try? await persistenceManager?.updateSession(with: untracked)
             }
             guard let restored else { return }
-
+            
             viewModel.restore(state: restored.state,
                               goal: restored.goal,
                               started: restored.started,
