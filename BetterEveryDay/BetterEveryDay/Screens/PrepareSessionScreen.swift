@@ -13,6 +13,8 @@ struct PrepareSessionScreen: View {
     @Environment(\.restorationManager) var restorationManager
     @AppStorage("flexBreaktimeLimit") private var flexBreaktimeLimit: Int = 0
     @AppStorage("flexBreaktimeFactor") private var flexBreaktimeFactor: Double = 3
+    @AppStorage("fixedFocusLimit") private var fixedFocusLimit: Int = 25
+    @AppStorage("fixedBreakLimit") private var fixedBreakLimit: Int = 5
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
@@ -62,9 +64,8 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession(variant: SessionType) {
-        //TODO: remove this when fixed session is configurable
-        let focusTimeLimit = variant == .fixed ? 25 : 0
-        let breakTimeLimit = variant == .fixed ? 5 : 0
+        let focusTimeLimit = variant == .fixed ? fixedFocusLimit : 0
+        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : 0
         let sessionConfiguration = SessionConfiguration(type: variant,
                                                         focustimeLimit: focusTimeLimit,
                                                         breaktimeLimit: breakTimeLimit,
