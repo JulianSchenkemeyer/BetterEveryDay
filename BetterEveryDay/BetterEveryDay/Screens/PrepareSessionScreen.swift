@@ -64,12 +64,7 @@ struct PrepareSessionScreen: View {
     }
     
     private func startSession(variant: SessionType) {
-        let focusTimeLimit = variant == .fixed ? fixedFocusLimit : 0
-        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : flexBreaktimeLimit
-        let sessionConfiguration = SessionConfiguration(type: variant,
-                                                        focustimeLimit: focusTimeLimit,
-                                                        breaktimeLimit: breakTimeLimit,
-                                                        breaktimeFactor: flexBreaktimeFactor)
+        let sessionConfiguration = createSessionConfiguration(for: variant)
         viewModel.start(with: sessionConfiguration)
         
         if persistenceManager != nil {
@@ -81,6 +76,16 @@ struct PrepareSessionScreen: View {
         
         sessionIsInProgress = true
         showNewTaskModal = false
+    }
+    
+    private func createSessionConfiguration(for variant: SessionType) -> SessionConfiguration {
+        let focusTimeLimit = variant == .fixed ? fixedFocusLimit : 0
+        let breakTimeLimit = variant == .fixed ? fixedBreakLimit : flexBreaktimeLimit
+        
+        return SessionConfiguration(type: variant,
+                                    focustimeLimit: focusTimeLimit,
+                                    breaktimeLimit: breakTimeLimit,
+                                    breaktimeFactor: flexBreaktimeFactor)
     }
     
     private func finishSession() {
@@ -104,7 +109,7 @@ struct PrepareSessionScreen: View {
                 try? await persistenceManager?.updateSession(with: untracked)
             }
             guard let restored else { return }
-
+            
             viewModel.restore(state: restored.state,
                               goal: restored.goal,
                               started: restored.started,
