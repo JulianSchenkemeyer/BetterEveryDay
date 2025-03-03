@@ -9,31 +9,54 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let limits = [0, 180, 240, 300, 360, 420, 480, 540, 600]
-    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
-    @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
+    @AppStorage("flexBreaktimeLimit") private var flexBreaktimeLimit: Int = 0
+    @AppStorage("flexBreaktimeFactor") private var flexBreaktimeFactor: Double = 3
+    @AppStorage("fixedFocusLimit") private var fixedFocusLimit: Int = 25
+    @AppStorage("fixedBreakLimit") private var fixedBreakLimit: Int = 5
+    
     
     var body: some View {
         Form {
             Section {
-                Picker("Limit Breaktime", selection: $breaktimeLimit) {
-                    ForEach(limits, id: \.self) {
+                Picker("Limit Breaktime", selection: $flexBreaktimeLimit) {
+                    ForEach([0] + Array(stride(from: 180, through: 600, by: 60)),
+                            id: \.self) {
                         LimitOptionsLabel(value: ($0 / 60))
                     }
                 }
                 
                 VStack(alignment: .leading) {
                     Text("Factor:")
-                    Text("\(breaktimeFactor, format: .number) minutes work for 1 minute pause")
+                    Text("\(flexBreaktimeFactor, format: .number) minutes work for 1 minute pause")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         
-                    Slider(value: $breaktimeFactor, in: 1...5, step: 1) {
+                    Slider(value: $flexBreaktimeFactor, in: 1...5, step: 1) {
                         Text("Factor")
+                    }
+                    
+                }
+            } header: {
+                Text("Fixed Session")
+            }
+            .padding(.vertical, 10)
+            
+            Section {
+                Picker("Limit Focustime", selection: $fixedFocusLimit) {
+                    ForEach(Array(stride(from: 20, through: 60, by: 5)),
+                            id: \.self) {
+                        LimitOptionsLabel(value: ($0))
+                    }
+                }
+                
+                Picker("Limit Breaktime", selection: $fixedBreakLimit) {
+                    ForEach(Array(stride(from: 5, through: 20, by: 5)),
+                            id: \.self) {
+                        LimitOptionsLabel(value: $0)
                     }
                 }
             } header: {
-                Text("Session Settings")
+                Text("Flexible Session")
             }
             .padding(.vertical, 10)
             

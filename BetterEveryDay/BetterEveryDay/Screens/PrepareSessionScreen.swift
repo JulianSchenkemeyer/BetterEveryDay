@@ -11,8 +11,8 @@ import SwiftUI
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     @Environment(\.restorationManager) var restorationManager
-    @AppStorage("breaktimeLimit") private var breaktimeLimit: Int = 0
-    @AppStorage("breaktimeFactor") private var breaktimeFactor: Double = 3
+    @AppStorage("flexBreaktimeLimit") private var flexBreaktimeLimit: Int = 0
+    @AppStorage("flexBreaktimeFactor") private var flexBreaktimeFactor: Double = 3
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
@@ -68,7 +68,7 @@ struct PrepareSessionScreen: View {
         let sessionConfiguration = SessionConfiguration(type: variant,
                                                         focustimeLimit: focusTimeLimit,
                                                         breaktimeLimit: breakTimeLimit,
-                                                        breaktimeFactor: breaktimeFactor)
+                                                        breaktimeFactor: flexBreaktimeFactor)
         viewModel.start(with: sessionConfiguration)
         
         if persistenceManager != nil {
