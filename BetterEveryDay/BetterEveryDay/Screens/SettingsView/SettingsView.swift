@@ -42,18 +42,13 @@ struct SettingsView: View {
             .padding(.vertical, 10)
             
             Section {
-                Picker("Limit Focustime", selection: $fixedFocusLimit) {
-                    ForEach(Array(stride(from: 20, through: 60, by: 5)),
-                            id: \.self) {
-                        LimitOptionsLabel(value: ($0))
-                    }
-                }
                 
-                Picker("Limit Breaktime", selection: $fixedBreakLimit) {
-                    ForEach(Array(stride(from: 5, through: 20, by: 5)),
-                            id: \.self) {
-                        LimitOptionsLabel(value: $0)
-                    }
+                Stepper(value: $fixedFocusLimit, in: 20...60, step: 5) {
+                    Text("Limit Focus to \(fixedFocusLimit) minutes")
+                }
+
+                Stepper(value: $fixedBreakLimit, in: 5...30, step: 5) {
+                    Text("Limit Break to \(fixedBreakLimit) minutes")
                 }
             } header: {
                 Text("Flexible Session")
