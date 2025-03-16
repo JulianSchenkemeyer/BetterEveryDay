@@ -9,11 +9,7 @@ import SwiftUI
 
 struct RequestNotificationView: View {
     
-    @State private var isPermissionGranted: Bool
-    
-    init(isPermissionGranted: Bool = false) {
-        self.isPermissionGranted = isPermissionGranted
-    }
+    @State private var isPermissionGranted: Bool = false
     
     var body: some View {
         HStack {
@@ -52,9 +48,6 @@ struct RequestNotificationView: View {
 
 struct RequestNotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            RequestNotificationView(isPermissionGranted: false)
-            RequestNotificationView(isPermissionGranted: true)
-        }
+        RequestNotificationView()
     }
 }
