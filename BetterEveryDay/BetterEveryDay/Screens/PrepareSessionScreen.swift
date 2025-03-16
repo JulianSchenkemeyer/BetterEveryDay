@@ -30,6 +30,9 @@ struct PrepareSessionScreen: View {
     
     var body: some View {
         ScrollView {
+            Button("finish") {
+                finishSession()
+            }
             VStack(spacing: 24) {
                 TodayOverview(todaysSessions: todaysFinishedSessions)
                 TodayTimeDistribution(todaysSessions: todaysFinishedSessions)
@@ -47,18 +50,17 @@ struct PrepareSessionScreen: View {
             }
         }
         .navigationTitle("Today")
+        .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Text(.now, format: .dateTime.day().month().year())
                     .foregroundStyle(.secondary)
             }
         }
-        .navigationBarTitleDisplayMode(.automatic)
-        .fullScreenCover(isPresented: $sessionIsInProgress, onDismiss: {
-            finishSession()
-        }, content: {
+        .navigationDestination(isPresented: $sessionIsInProgress) {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
-        })
+                .navigationBarBackButtonHidden()
+        }
         .task {
             todaysFinishedSessions = await persistenceManager?.getFinishedSessions(for: today) ?? []
             
@@ -69,6 +71,11 @@ struct PrepareSessionScreen: View {
             guard !Calendar.current.isDateInToday(today) else { return }
             
             today = .now
+        }
+        .onChange(of: sessionIsInProgress) { oldValue, newValue in
+            if oldValue == true && newValue == false {
+                finishSession()
+            }
         }
     }
     
