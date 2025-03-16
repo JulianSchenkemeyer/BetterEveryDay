@@ -37,8 +37,9 @@ protocol PersistenceManagerProtocol: Observable {
     func getLatestRunningSession() async -> SessionData?
     
     /// Get all finished session which were started today
+    /// - Parameter date: Date for which the finished session shall be loaded
     /// - Returns: array of ``SessionData``
-    func getTodaysFinishedSessions() async -> [SessionData]
+    func getFinishedSessions(for date: Date) async -> [SessionData]
 }
 
 /// Mock implementation of ``PersistenceManagerProtocol`` for use in Previews or tests
@@ -48,7 +49,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func updateSession(with segments: [SessionSegment]) { }
     func finishSession(with session: SessionProtocol) { }
     func getLatestRunningSession() -> SessionData? { nil }
-    func getTodaysFinishedSessions() -> [SessionData] { Mockdata.sessionDataArray }
+    func getFinishedSessions(for date: Date) async -> [SessionData] { Mockdata.sessionDataArray }
 }
 
 /// SwiftData implementation of ``PersistenceManagerProtocol``
@@ -193,9 +194,9 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         }
     }
     
-    func getTodaysFinishedSessions() async -> [SessionData] {
+    func getFinishedSessions(for date: Date) async -> [SessionData] {
         let finished = SessionState.FINISHED.rawValue
-        let (start, end) = Date.now.getStartAndEndOfDay()
+        let (start, end) = date.getStartAndEndOfDay()
         let predicate = #Predicate<SessionData>{ session in
             session.state == finished && session.started >= start && session.started < end
         }

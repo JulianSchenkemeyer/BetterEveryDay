@@ -60,7 +60,7 @@ struct PrepareSessionScreen: View {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
         })
         .task {
-            todaysFinishedSessions = await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todaysFinishedSessions = await persistenceManager?.getFinishedSessions(for: today) ?? []
             
             restoreRunningSession()
         }
@@ -104,7 +104,7 @@ struct PrepareSessionScreen: View {
             
             viewModel.reset()
             
-            todaysFinishedSessions = await persistenceManager?.getTodaysFinishedSessions() ?? []
+            todaysFinishedSessions = await persistenceManager?.getFinishedSessions(for: today) ?? []
         }
     }
     
