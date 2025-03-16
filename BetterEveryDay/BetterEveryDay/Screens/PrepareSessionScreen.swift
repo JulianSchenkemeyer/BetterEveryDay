@@ -11,6 +11,8 @@ import SwiftUI
 struct PrepareSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     @Environment(\.restorationManager) var restorationManager
+    @Environment(\.scenePhase) var scenePhase
+    
     @AppStorage("flexBreaktimeLimit") private var flexBreaktimeLimit: Int = 0
     @AppStorage("flexBreaktimeFactor") private var flexBreaktimeFactor: Double = 3
     @AppStorage("fixedFocusLimit") private var fixedFocusLimit: Int = 25
@@ -21,6 +23,7 @@ struct PrepareSessionScreen: View {
     @State private var todaysFinishedSessions: [SessionData] = []
     
     @State private var showNewTaskModal: Bool = false
+    @State private var today: Date = .now
     
     private let sessionFactory = SessionFactory()
     
@@ -60,6 +63,12 @@ struct PrepareSessionScreen: View {
             todaysFinishedSessions = await persistenceManager?.getTodaysFinishedSessions() ?? []
             
             restoreRunningSession()
+        }
+        .onChange(of: scenePhase) { oldValue, newValue in
+            guard oldValue == .inactive && newValue == .active else { return }
+            guard !Calendar.current.isDateInToday(today) else { return }
+            
+            today = .now
         }
     }
     
