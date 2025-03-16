@@ -44,7 +44,7 @@ import Foundation
         }
         
         let nextCategory: SegmentCategory = if last.category == .Focus { .Pause } else { .Focus }
-        createNew(category: nextCategory)
+        createNew(category: nextCategory, previousSegmentFinishedAt: last.finishedAt)
     }
     
     func endSession(onFinishingSegment: OnFinishingSegmentClosure = nil) {
@@ -63,14 +63,14 @@ import Foundation
     
     /// **Private** Create a new segment of the specified category
     /// - Parameter category: ``SegmentCategory`` of the new segment
-    private func createNew(category: SegmentCategory) {
-        let now = Date.now
+    private func createNew(category: SegmentCategory, previousSegmentFinishedAt: Date? = nil) {
+        let startedAt = previousSegmentFinishedAt ?? Date.now
         let timeToAdd = category == .Focus ? focustimeLimit : breaktimeLimit
-        let finished = Calendar.current.date(byAdding: .minute, value: timeToAdd, to: now)!
+        let finished = Calendar.current.date(byAdding: .minute, value: timeToAdd, to: startedAt)!
         
         segments.append(SessionSegment(
             category: category,
-            startedAt: now,
+            startedAt: startedAt,
             finishedAt: finished
         ))
     }

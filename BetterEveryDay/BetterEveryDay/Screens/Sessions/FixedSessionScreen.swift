@@ -11,7 +11,6 @@ import SwiftUI
 
 struct FixedSessionScreen: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.scenePhase) private var scenePhase
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(\.persistenceManager) var persistenceManager
     
@@ -53,8 +52,6 @@ struct FixedSessionScreen: View {
                         
                         resetTimer()
                         scheduleSessionChange()
-                    }
-                    .onChange(of: scenePhase) { _, newValue in
                     }
                     .onAppear {
                         scheduleSessionChange()
