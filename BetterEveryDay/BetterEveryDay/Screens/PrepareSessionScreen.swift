@@ -30,9 +30,6 @@ struct PrepareSessionScreen: View {
     
     var body: some View {
         ScrollView {
-            Button("finish") {
-                finishSession()
-            }
             VStack(spacing: 24) {
                 TodayOverview(todaysSessions: todaysFinishedSessions)
                 TodayTimeDistribution(todaysSessions: todaysFinishedSessions)
@@ -53,18 +50,20 @@ struct PrepareSessionScreen: View {
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Text(.now, format: .dateTime.day().month().year())
+                Text(today, format: .dateTime.day().month().year())
                     .foregroundStyle(.secondary)
             }
         }
         .navigationDestination(isPresented: $sessionIsInProgress) {
             sessionFactory.createSessionView(with: viewModel.session, goal: viewModel.goal)
                 .navigationBarBackButtonHidden()
+                .toolbar(.hidden, for: .tabBar)
+        }
+        .task(id: today) {
+            await fetchTodaysSessions()
         }
         .task {
-            todaysFinishedSessions = await persistenceManager?.getFinishedSessions(for: today) ?? []
-            
-            restoreRunningSession()
+            await restoreRunningSession()
         }
         .onChange(of: scenePhase) { oldValue, newValue in
             guard oldValue == .inactive && newValue == .active else { return }
@@ -115,28 +114,29 @@ struct PrepareSessionScreen: View {
         }
     }
     
-    private func restoreRunningSession() {
-        Task {
-            let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
-            guard let unfinished else { return }
-            
-            let restored = await restorationManager?.restoreSessions(from: unfinished) {
-                untracked in
-                try? await persistenceManager?.updateSession(with: untracked)
-            }
-            guard let restored else { return }
-            
-            viewModel.restore(state: restored.state,
-                              goal: restored.goal,
-                              started: restored.started,
-                              session: restored.session)
-            
-            var transaction = Transaction()
-            transaction.disablesAnimations = true
-            withTransaction(transaction) {
-                sessionIsInProgress = true
-            }
+    private func fetchTodaysSessions() async {
+        todaysFinishedSessions = await persistenceManager?.getFinishedSessions(for: today) ?? []
+    }
+    
+    private func restoreRunningSession() async {
+        // Only try to restore if we are currently in preparing phase
+        guard viewModel.state == .PREPARING else { return }
+        
+        let unfinished = await persistenceManager?.getLatestRunningSession() ?? nil
+        guard let unfinished else { return }
+        
+        let restored = await restorationManager?.restoreSessions(from: unfinished) {
+            untracked in
+            try? await persistenceManager?.updateSession(with: untracked)
         }
+        guard let restored else { return }
+        
+        viewModel.restore(state: restored.state,
+                          goal: restored.goal,
+                          started: restored.started,
+                          session: restored.session)
+        
+        sessionIsInProgress = true
     }
 }
 
