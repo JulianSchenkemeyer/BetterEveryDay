@@ -21,67 +21,45 @@ struct FixedSessionScreen: View {
     
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack(alignment: .top) {
-                    Text("I will...")
-                        .foregroundStyle(.secondary)
-                    Text(goal)
-                }
-                .font(.title2)
-                .fontWeight(.semibold)
-                .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
-                .padding(20)
-                
-                if let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt {
-                    VStack {
-                        if segment.category == .Focus {
-                            TimerLabelView(date: finishedAt)
-                        } else {
-                            TimerLabelView(date: finishedAt)
-                        }
-                        Text(segment.category.rawValue)
-                            .font(.body)
-                            .foregroundStyle(.secondary)
-                            .tracking(1.1)
-                            .fontWeight(.semibold)
+        SessionContainer(goal: goal, onFinishSession: finishSession) {
+            if let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt {
+                VStack {
+                    if segment.category == .Focus {
+                        TimerLabelView(date: finishedAt)
+                    } else {
+                        TimerLabelView(date: finishedAt)
                     }
-                    .onChange(of: segment.category) { _, newValue in
-                        removeScheduledNotifications()
-                        scheduleNotifications(startingWith: newValue)
-                        
-                        resetTimer()
-                        scheduleSessionChange()
-                    }
-                    .onAppear {
-                        scheduleSessionChange()
-                        scheduleNotifications(startingWith: segment.category)
-                    }
-                }
-                Spacer()
-                
-                Card {
-                    VStack {
-                        Text(ceil(Double(viewModel.segments.count / 2)).formatted())
-                            .font(.largeTitle)
-                        
-                        Text("Focus segments completed")
-                    }
+                    Text(segment.category.rawValue)
                         .font(.body)
-                        .padding()
-                }.padding(.horizontal, 40)
-                
-                Spacer()
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        finishSession()
-                    } label: {
-                        Text("Finish")
-                    }
+                        .foregroundStyle(.secondary)
+                        .tracking(1.1)
+                        .fontWeight(.semibold)
+                }
+                .onChange(of: segment.category) { _, newValue in
+                    removeScheduledNotifications()
+                    scheduleNotifications(startingWith: newValue)
+                    
+                    resetTimer()
+                    scheduleSessionChange()
+                }
+                .onAppear {
+                    scheduleSessionChange()
+                    scheduleNotifications(startingWith: segment.category)
                 }
             }
+            
+            Spacer()
+            
+            Card {
+                VStack {
+                    Text(ceil(Double(viewModel.segments.count / 2)).formatted())
+                        .font(.largeTitle)
+                    
+                    Text("Focus segments completed")
+                }
+                .font(.body)
+                .padding()
+            }.padding(.horizontal, 40)
         }
     }
     
@@ -114,7 +92,7 @@ struct FixedSessionScreen: View {
         guard let segment = viewModel.getCurrent() else {
             return
         }
-
+        
         let timeleft = segment.finishedAt!.timeIntervalSince1970 - Date.now.timeIntervalSince1970
         self.timer = Timer.scheduledTimer(withTimeInterval: timeleft, repeats: false, block: { _ in
             createNextSegment()
@@ -136,7 +114,7 @@ struct FixedSessionScreen: View {
               let finishedAt = segment.finishedAt else {
             return
         }
-                
+        
         let inOneHour = Calendar.current.date(byAdding: .hour, value: 1, to: finishedAt)!
         var triggerAt = finishedAt
         var categoryOfNotification: SegmentCategory = category
@@ -176,11 +154,12 @@ struct FixedSessionScreen: View {
 #Preview {
     @Previewable @State var session = FixedSession(segments: [], focustimeLimit: 1, breaktimeLimit: 1)
     
-    FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
-        .environment(NotificationManager(notificationService: NotificationServiceMock()))
-        .environment(\.persistenceManager, PersistenceManagerMock())
-        .onAppear {
-            session.next()
-            print(session.segments.count)
-        }
+    NavigationStack{
+        FixedSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
+    }
+    .environment(NotificationManager(notificationService: NotificationServiceMock()))
+    .environment(\.persistenceManager, PersistenceManagerMock())
+    .onAppear {
+        session.next()
+    }
 }
