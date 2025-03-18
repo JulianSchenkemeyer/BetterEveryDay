@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SessionContainer<Content: View>: View {
     let goal: String
+    let onFinishSession: () -> Void
     
     @ViewBuilder var content: () -> Content
     
@@ -25,12 +26,25 @@ struct SessionContainer<Content: View>: View {
             .padding(20)
             
             content()
+            
+            Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    onFinishSession()
+                } label: {
+                    Text("Finish")
+                }
+            }
         }
     }
 }
 
 #Preview {
-    SessionContainer(goal: "Do 10 pushups") {
-        Text("Hello World.")
+    NavigationStack {
+        SessionContainer(goal: "Do 10 pushups", onFinishSession: { print("Finished!") } ) {
+            Text("Hello World.")
+        }
     }
 }
