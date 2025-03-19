@@ -22,71 +22,49 @@ struct FlexibleSessionScreen: View {
     
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack(alignment: .top) {
-                    Text("I will...")
+        SessionContainer(goal: goal, onFinishSession: finishSession) {
+            if let segment = viewModel.getCurrent() {
+                VStack {
+                    if segment.category == .Focus {
+                        TimerLabelView(date: segment.startedAt)
+                    } else {
+                        TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
+                            .foregroundStyle(goneOvertime ? .red : .primary)
+                            .task {
+                                await goOvertimeTimer()
+                            }
+                    }
+                    Text(segment.category.rawValue)
+                        .font(.body)
                         .foregroundStyle(.secondary)
-                    Text(goal)
+                        .tracking(1.1)
+                        .fontWeight(.semibold)
                 }
-                .font(.title2)
-                .fontWeight(.semibold)
-                .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
-                .padding(20)
-                
-                if let segment = viewModel.getCurrent() {
-                    VStack {
-                        if segment.category == .Focus {
-                            TimerLabelView(date: segment.startedAt)
-                        } else {
-                            TimerLabelView(date: segment.startedAt + viewModel.availableBreak)
-                                .foregroundStyle(goneOvertime ? .red : .primary)
-                                .task {
-                                    await goOvertimeTimer()
-                                }
-                        }
-                        Text(segment.category.rawValue)
-                            .font(.body)
-                            .foregroundStyle(.secondary)
-                            .tracking(1.1)
-                            .fontWeight(.semibold)
-                    }
-                    .onChange(of: segment.category) { _, newValue in
-                        removeScheduledNotifications()
-
-                        switch newValue {
-                        case .Focus:
-                            resetTimer()
-                        case .Pause:
-                            schedulePauseEndedNotification()
-                        }
-                        scheduleFollowUpNotification()
-                    }
-                    .onAppear {
-                        guard segment.category == .Pause else { return }
-                        goneOvertime = (segment.startedAt + viewModel.availableBreak) < .now
-                    }
+                .onChange(of: segment.category) { _, newValue in
+                    removeScheduledNotifications()
                     
-                    Button {
-                        createNextSegment()
-                    } label: {
-                        Text(segment.category == .Focus ? "Pause" : "Focus")
+                    switch newValue {
+                    case .Focus:
+                        resetTimer()
+                    case .Pause:
+                        schedulePauseEndedNotification()
                     }
-                    .primaryButtonStyle()
-                    .padding(.top, 80)
+                    scheduleFollowUpNotification()
+                }
+                .onAppear {
+                    guard segment.category == .Pause else { return }
+                    goneOvertime = (segment.startedAt + viewModel.availableBreak) < .now
                 }
                 
-                Spacer()
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        finishSession()
-                    } label: {
-                        Text("Finish")
-                    }
+                Button {
+                    createNextSegment()
+                } label: {
+                    Text(segment.category == .Focus ? "Pause" : "Focus")
                 }
+                .primaryButtonStyle()
+                .padding(.top, 80)
             }
+            
         }
     }
     
@@ -164,7 +142,11 @@ struct FlexibleSessionScreen: View {
 }
 
 #Preview {
-    FlexibleSessionScreen(goal: "work on session screen work on session screen", viewModel: FlexibleSession(segments: [.init(category: .Focus, startedAt: .now)]))
-        .environment(NotificationManager(notificationService: NotificationServiceMock()))
-        .environment(\.persistenceManager, PersistenceManagerMock())
+    @Previewable @State var session = FlexibleSession(segments: [.init(category: .Focus, startedAt: .now)])
+    
+    NavigationStack {
+        FlexibleSessionScreen(goal: "work on session screen work on session screen", viewModel: session)
+    }
+    .environment(NotificationManager(notificationService: NotificationServiceMock()))
+    .environment(\.persistenceManager, PersistenceManagerMock())
 }

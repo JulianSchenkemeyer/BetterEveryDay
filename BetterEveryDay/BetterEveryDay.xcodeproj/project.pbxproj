@@ -46,6 +46,7 @@
 		24AF74242D2AB1BD009A08EB /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */; };
 		24AF74272D2D0550009A08EB /* ClassicSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */; };
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
+		24D7E80A2D8A07510078DA84 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E8092D8A07460078DA84 /* SessionContainer.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
 		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
@@ -125,6 +126,7 @@
 		24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
 		24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSessionTests.swift; sourceTree = "<group>"; };
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
+		24D7E8092D8A07460078DA84 /* SessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionContainer.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		247FC7B22C8CA65700B72733 /* Container */ = {
 			isa = PBXGroup;
 			children = (
+				24D7E8092D8A07460078DA84 /* SessionContainer.swift */,
 				247FC7B42C8CA67500B72733 /* Card.swift */,
 			);
 			path = Container;
@@ -651,6 +654,7 @@
 				248571332D5D3A9100309D86 /* SessionSegmentData.swift in Sources */,
 				246D6C302A4899E100E5B39B /* PhaseLabelModifier.swift in Sources */,
 				2436FEAC2C83621A00380591 /* TodayOverview.swift in Sources */,
+				24D7E80A2D8A07510078DA84 /* SessionContainer.swift in Sources */,
 				248571412D62523C00309D86 /* FocusEndedNotification.swift in Sources */,
 				247FC7B52C8CA67500B72733 /* Card.swift in Sources */,
 				248571382D5D3C6E00309D86 /* SessionRestoratorFactory.swift in Sources */,
