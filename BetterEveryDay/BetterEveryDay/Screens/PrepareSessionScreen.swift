@@ -40,11 +40,18 @@ struct PrepareSessionScreen: View {
         .opacity(showNewTaskModal ? 0.5 : 1)
         .blur(radius: showNewTaskModal ? 1.5 : 0)
         .safeAreaInset(edge: .bottom, alignment: .trailing) {
-            AddNewSession(sessionGoal: $viewModel.goal,
-                          showNewTaskModal: $showNewTaskModal) { selectedVariant in
+            AddNewSession(showNewTaskModal: $showNewTaskModal)
+        }
+        .sheet(isPresented: $showNewTaskModal, onDismiss: {
+            guard viewModel.state == .PREPARING else { return }
+            viewModel.reset()
+        }) {
+            AddNewSessionSheet(sessionGoal: $viewModel.goal) {
+                selectedVariant in
                 
                 startSession(variant: selectedVariant)
             }
+            .presentationDetents([.medium])
         }
         .navigationTitle("Today")
         .navigationBarTitleDisplayMode(.automatic)
