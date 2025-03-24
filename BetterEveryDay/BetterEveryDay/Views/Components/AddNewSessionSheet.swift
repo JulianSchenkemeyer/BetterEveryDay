@@ -38,10 +38,13 @@ struct AddNewSessionSheet: View {
                     .padding([.leading, .vertical], 10)
                     .padding(.trailing, 4)
                 }
-                .frame(maxHeight: .infinity, alignment: .topLeading)
-
             }
+            .frame(maxHeight: .infinity, alignment: .topLeading)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("New Session")
+                        .font(.headline)
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Cancel") {
                         dismiss()
@@ -49,14 +52,16 @@ struct AddNewSessionSheet: View {
                 }
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    Button("Start Session") {
-                        
+                    Button("Start") {
+                        onStartSession(selectedSessionVariant)
                     }
                     .primaryButtonStyle()
                 }
             }
             .padding(4)
-            .padding(.bottom, 32)
+            .onAppear {
+                focusSessionGoalInput = true
+            }
         }
     }
 }
