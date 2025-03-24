@@ -9,97 +9,27 @@ import SwiftUI
 
 
 struct AddNewSession: View {
-    @Binding var sessionGoal: String
     @Binding var showNewTaskModal: Bool
     
-    @State private var selectedSessionVariant: SessionType = .flexible
-    
-    @FocusState private var focusSessionGoalInput: Bool
-    
-    var onStartSession: (SessionType) -> Void
-    
-    
     var body: some View {
-        Group {
-            if showNewTaskModal {
-                VStack(spacing: 8) {
-                    Picker("Select Session Type", selection: $selectedSessionVariant) {
-                        Text("Flexible").tag(SessionType.flexible)
-                        Text("Fixed").tag(SessionType.fixed)
-                    }
-                    .pickerStyle(.segmented)
-                    
-                    Divider()
-                    
-                    HStack {
-                        TextField("Your Goal for the Session",
-                                  text: $sessionGoal,
-                                  axis: .vertical)
-                        .lineLimit(1...)
-                        .font(.body)
-                        .focused($focusSessionGoalInput)
-                        .padding([.leading, .vertical], 10)
-                        
-                        Button("Cancel") {
-                            cancelSessionCreation()
-                        }
-                        .secondaryButtonStyle()
-                        .padding(.trailing, 4)
-                    }
-                }
-                .padding(4)
-                .background {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(.ultraThinMaterial)
-                        .shadow(color: .black.opacity(0.5), radius: 1, x: -1, y: -1)
-                        .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3 )
-                        .shadow(color: .black.opacity(0.2), radius: 5, x: 5, y: 5)
-                }
-                .padding(.bottom, 32)
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        Button("Start Session") {
-                            startCreatedSession()
-                        }
-                        .primaryButtonStyle()
-                    }
-                }
-                
-            } else {
-                Button {
-                    showNewTaskModal = true
-                    focusSessionGoalInput = true
-                } label: {
-                    Image(systemName: "plus")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(width: 50, height: 50)
-                        .background(.primary)
-                        .clipShape(.circle)
-                }
-                .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
-                .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
+        Button {
+            showNewTaskModal = true
+        } label: {
+            Image(systemName: "plus")
+                .bold()
+                .foregroundStyle(.white)
                 .padding()
-            }
+                .frame(width: 50, height: 50)
+                .background(.primary)
+                .clipShape(.circle)
         }
-        .padding()
-    }
-    
-    private func cancelSessionCreation() {
-        focusSessionGoalInput = false
-        sessionGoal = ""
-        showNewTaskModal = false
-    }
-    
-    private func startCreatedSession() {
-        onStartSession(selectedSessionVariant)
+        .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
+        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
+        .padding(20)
     }
 }
 
 
 #Preview {
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(true)) { _ in }
-    AddNewSession(sessionGoal: .constant(""), showNewTaskModal: .constant(false)) { _ in }
+    AddNewSession(showNewTaskModal: .constant(true))
 }
