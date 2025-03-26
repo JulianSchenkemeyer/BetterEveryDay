@@ -40,6 +40,22 @@ struct AddNewSessionSheet: View {
                 }
             }
             .frame(maxHeight: .infinity, alignment: .topLeading)
+            .safeAreaInset(edge: .bottom, alignment: .trailing) {
+                Button {
+                    onStartSession(selectedSessionVariant)
+                    dismiss()
+                } label: {
+                    Text("Start")
+                        .bold()
+                        .foregroundStyle(.white)
+                        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                        .background(.primary)
+                        .clipShape(.capsule)
+                }
+                .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
+                .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
+                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 24))
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("New Session")
@@ -49,13 +65,6 @@ struct AddNewSessionSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
-                }
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("Start") {
-                        onStartSession(selectedSessionVariant)
-                    }
-                    .primaryButtonStyle()
                 }
             }
             .padding(4)

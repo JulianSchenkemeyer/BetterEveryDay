@@ -52,6 +52,7 @@ struct PrepareSessionScreen: View {
                 startSession(variant: selectedVariant)
             }
             .presentationDetents([.medium])
+            .presentationCornerRadius(24)
         }
         .navigationTitle("Today")
         .navigationBarTitleDisplayMode(.automatic)
