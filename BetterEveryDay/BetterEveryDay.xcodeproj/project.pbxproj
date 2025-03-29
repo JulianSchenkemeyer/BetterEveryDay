@@ -48,6 +48,7 @@
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
 		24D7E80A2D8A07510078DA84 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E8092D8A07460078DA84 /* SessionContainer.swift */; };
 		24D7E80C2D8F30020078DA84 /* AddNewSessionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */; };
+		24D7E8112D9808990078DA84 /* DefaultShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E8102D98087E0078DA84 /* DefaultShadow.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
 		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
@@ -129,6 +130,7 @@
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
 		24D7E8092D8A07460078DA84 /* SessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionContainer.swift; sourceTree = "<group>"; };
 		24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSessionSheet.swift; sourceTree = "<group>"; };
+		24D7E8102D98087E0078DA84 /* DefaultShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultShadow.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
@@ -356,6 +358,14 @@
 			path = Variants;
 			sourceTree = "<group>";
 		};
+		24D7E80F2D9808760078DA84 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				24D7E8102D98087E0078DA84 /* DefaultShadow.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
 		24DF29802AA4D2EE00DC40D6 /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +491,7 @@
 		B9C479D82A1A63B100C0CE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24D7E80F2D9808760078DA84 /* Modifier */,
 				247FC7B22C8CA65700B72733 /* Container */,
 				2406EB182A70F39300E3FF6A /* Charts */,
 				246D6C312A4C015B00E5B39B /* Components */,
@@ -646,6 +657,7 @@
 				242517892D51F5650034273F /* RestorationManager.swift in Sources */,
 				24F53FA72C6899DA00C6A666 /* SegmentCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
+				24D7E8112D9808990078DA84 /* DefaultShadow.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */,
 				24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */,
