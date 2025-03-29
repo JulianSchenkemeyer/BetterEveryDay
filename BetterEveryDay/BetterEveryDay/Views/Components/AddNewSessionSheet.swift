@@ -32,7 +32,7 @@ struct AddNewSessionSheet: View {
                     TextField("Your Goal for the Session",
                               text: $sessionGoal,
                               axis: .vertical)
-                    .lineLimit(1...)
+                    .lineLimit(1...3)
                     .font(.body)
                     .focused($focusSessionGoalInput)
                     .padding([.leading, .vertical], 10)
@@ -40,6 +40,10 @@ struct AddNewSessionSheet: View {
                 }
             }
             .frame(maxHeight: .infinity, alignment: .topLeading)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                focusSessionGoalInput = true
+            }
             .safeAreaInset(edge: .bottom, alignment: .trailing) {
                 Button {
                     onStartSession(selectedSessionVariant)
@@ -52,8 +56,7 @@ struct AddNewSessionSheet: View {
                         .background(.primary)
                         .clipShape(.capsule)
                 }
-                .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
-                .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
+                .defaultShadow()
                 .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 24))
             }
             .toolbar {

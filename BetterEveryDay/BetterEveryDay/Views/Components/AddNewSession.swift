@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct AddNewSession: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Binding var showNewTaskModal: Bool
     
     var body: some View {
@@ -23,8 +24,7 @@ struct AddNewSession: View {
                 .background(.primary)
                 .clipShape(.circle)
         }
-        .shadow(color: .black.opacity(0.5), radius: 1, x: 1, y: 1)
-        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 3 )
+        .defaultShadow()
         .padding(20)
     }
 }

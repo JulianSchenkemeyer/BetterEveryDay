@@ -19,8 +19,8 @@ struct Card<Content: View>: View {
         .background {
             RoundedRectangle(cornerRadius: 25.0)
                 .fill(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.15), radius: 2, x: 1, y: 1)
-                .shadow(color: .white.opacity(0.3), radius: 2, x: -1, y: -1)
+                .defaultShadow()
+            
         }
     }
 }
@@ -28,5 +28,7 @@ struct Card<Content: View>: View {
 #Preview {
     Card {
         Text("This is a card component")
+            .frame(height: 300)
     }
+    .padding(40)
 }
