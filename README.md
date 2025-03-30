@@ -1,7 +1,7 @@
 # BetterEveryDay
 
 <div>
-  <img src="/Resources/app-overview.jpg" height="600">
+  <img src="/Resources/app-overview.jpg" style="max-height:500px" alt="App screen overview. Show the different screens of the app and how they are connected.">
 </div>
 
 BetterEveryDay is a productivity timer app, based on the [third time approach](https://www.lesswrong.com/posts/RWu8eZqbwgB9zaerh/third-time-a-better-way-to-work). In contrast to a classical pomodoro timer, where you have fixed time interval for your work and pause, the timer in a third time approach is flexible. This means your work or focus phases can take as much time as you want. When you need a pause you can always hit pause, stop the timer and relax. The pause can take up to to one third of the time you previously spend working.
