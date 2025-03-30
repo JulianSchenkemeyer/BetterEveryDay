@@ -35,11 +35,11 @@ struct AddNewSessionSheet: View {
                     .lineLimit(1...3)
                     .font(.body)
                     .focused($focusSessionGoalInput)
-                    .padding([.leading, .vertical], 10)
-                    .padding(.trailing, 4)
+                    .padding(.vertical, 10)
                 }
             }
             .frame(maxHeight: .infinity, alignment: .topLeading)
+            .padding(.horizontal, 10)
             .contentShape(Rectangle())
             .onTapGesture {
                 focusSessionGoalInput = true
