@@ -59,7 +59,7 @@ struct FixedSessionScreen: View {
                 }
                 .font(.body)
                 .padding()
-            }.padding(.horizontal, 40)
+            }.padding([.bottom, .horizontal], 40)
         }
     }
     

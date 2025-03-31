@@ -56,17 +56,26 @@ struct FlexibleSessionScreen: View {
                     goneOvertime = (segment.startedAt + viewModel.availableBreak) < .now
                 }
                 
+                Spacer()
+                
                 Button {
                     createNextSegment()
                 } label: {
                     Text(segment.category == .Focus ? "Pause" : "Focus")
+                        .font(.body)
+                        .foregroundStyle(.white)
+                        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                        .background(.primary)
+                        
                 }
-                .primaryButtonStyle()
-                .padding(.top, 80)
+                .clipShape(.capsule)
+                .defaultShadow()
+                .padding([.bottom, .horizontal], 40)
             }
             
         }
     }
+    
     
     /// Create a new segment for the current session
     private func createNextSegment() {

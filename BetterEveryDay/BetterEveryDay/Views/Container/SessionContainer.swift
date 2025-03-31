@@ -26,8 +26,6 @@ struct SessionContainer<Content: View>: View {
             .padding(20)
             
             content()
-            
-            Spacer()
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -50,12 +50,12 @@ struct AddNewSessionSheet: View {
                     dismiss()
                 } label: {
                     Text("Start")
-                        .bold()
+                        .font(.body)
                         .foregroundStyle(.white)
                         .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
                         .background(.primary)
-                        .clipShape(.capsule)
                 }
+                .clipShape(.capsule)
                 .defaultShadow()
                 .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 24))
             }
