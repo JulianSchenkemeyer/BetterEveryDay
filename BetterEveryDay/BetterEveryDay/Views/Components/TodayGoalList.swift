@@ -31,8 +31,9 @@ struct TodayGoalList: View {
                     ForEach(todaysSessions.prefix(5)) { session in
                         HStack(alignment: .bottom) {
                             Text(session.goal)
+                                .lineLimit(1)
                                 .font(.body)
-                            Spacer()
+                            Spacer(minLength: 40)
                             HourMinutesDurationTextView(timeInterval: session.duration)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
