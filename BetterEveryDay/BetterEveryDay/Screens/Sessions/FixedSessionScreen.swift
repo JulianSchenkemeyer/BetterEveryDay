@@ -140,7 +140,7 @@ struct FixedSessionScreen: View {
     
     /// Schedule a follow up notification for the case the user has not opened the app for some time and there is a session running
     private func scheduleFollowUpNotification(for triggerAt: Date) {
-        let followUpDate = Calendar.current.date(byAdding: .minute, value: 10, to: triggerAt)!
+        let followUpDate = Calendar.current.date(byAdding: .hour, value: 1, to: triggerAt)!
         let notification = FollowUpNotification(triggerAt: followUpDate)
         notificationManager.schedule(notification: notification)
     }
