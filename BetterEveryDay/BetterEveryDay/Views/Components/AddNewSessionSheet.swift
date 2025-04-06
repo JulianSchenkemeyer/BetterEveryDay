@@ -15,7 +15,12 @@ struct AddNewSessionSheet: View {
     @FocusState private var focusSessionGoalInput: Bool
     
     @Binding var sessionGoal: String
+    var flexSettings: (limit: Int, factor: Double) = (0, 0)
+    var fixedSettings: (focus: Int, pause: Int) = (0, 0)
+    
     var onStartSession: (SessionType) -> Void
+
+    
     
     var body: some View {
         NavigationStack {
@@ -47,8 +52,14 @@ struct AddNewSessionSheet: View {
             .safeAreaInset(edge: .bottom, alignment: .center) {
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
-                        Text("Focus: 15 min.")
-                        Text("Pause: 5min")
+                        switch selectedSessionVariant {
+                        case .fixed:
+                            Text("Focus: \(fixedSettings.focus) minutes")
+                            Text("Pause: \(fixedSettings.pause) minutes")
+                        case .flexible:
+                            Text("Faktor: x / \(flexSettings.factor, format: .number)")
+                            Text(flexSettings.limit > 0 ? "Limit: \(flexSettings.limit / 60) minutes" : "")
+                        }
                     }
                     .font(.caption)
                     
