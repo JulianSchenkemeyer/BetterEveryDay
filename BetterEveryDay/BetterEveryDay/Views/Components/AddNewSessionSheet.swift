@@ -44,20 +44,30 @@ struct AddNewSessionSheet: View {
             .onTapGesture {
                 focusSessionGoalInput = true
             }
-            .safeAreaInset(edge: .bottom, alignment: .trailing) {
-                Button {
-                    onStartSession(selectedSessionVariant)
-                    dismiss()
-                } label: {
-                    Text("Start")
-                        .font(.body)
-                        .foregroundStyle(.white)
-                        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                        .background(.primary)
+            .safeAreaInset(edge: .bottom, alignment: .center) {
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading) {
+                        Text("Focus: 15 min.")
+                        Text("Pause: 5min")
+                    }
+                    .font(.caption)
+                    
+                    Spacer()
+                    
+                    Button {
+                        onStartSession(selectedSessionVariant)
+                        dismiss()
+                    } label: {
+                        Text("Start")
+                            .font(.body)
+                            .foregroundStyle(.white)
+                            .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                            .background(.primary)
+                    }
+                    .clipShape(.capsule)
+                    .defaultShadow()
                 }
-                .clipShape(.capsule)
-                .defaultShadow()
-                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 24))
+                .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -80,11 +90,11 @@ struct AddNewSessionSheet: View {
 
 
 #Preview {
-    Text("Preview")
-        .sheet(isPresented: .constant(true)) {
+//    Text("Preview")
+//        .sheet(isPresented: .constant(true)) {
             AddNewSessionSheet(sessionGoal: .constant(""),
                                onStartSession: {_ in })
             .presentationDetents([.medium])
-        }
+//        }
     
 }
