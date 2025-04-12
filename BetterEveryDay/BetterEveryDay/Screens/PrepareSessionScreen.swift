@@ -46,7 +46,17 @@ struct PrepareSessionScreen: View {
             guard viewModel.state == .PREPARING else { return }
             viewModel.reset()
         }) {
-            AddNewSessionSheet(sessionGoal: $viewModel.goal) {
+            AddNewSessionSheet(
+                sessionGoal: $viewModel.goal,
+                flexSettings: (
+                    flexBreaktimeLimit,
+                    flexBreaktimeFactor
+                ),
+                fixedSettings: (
+                    fixedFocusLimit,
+                    fixedBreakLimit
+                )
+            ) {
                 selectedVariant in
                 
                 startSession(variant: selectedVariant)

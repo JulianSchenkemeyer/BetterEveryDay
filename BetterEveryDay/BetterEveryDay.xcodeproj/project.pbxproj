@@ -45,6 +45,7 @@
 		24AF74222D2A9614009A08EB /* FixedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74212D2A9609009A08EB /* FixedSession.swift */; };
 		24AF74242D2AB1BD009A08EB /* SessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */; };
 		24AF74272D2D0550009A08EB /* ClassicSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */; };
+		24BA51B42DAAEB11008AF972 /* SessionConfigurationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA51B32DAAEAFA008AF972 /* SessionConfigurationInfoView.swift */; };
 		24C018EB2C8DEBDA006A4118 /* TodayGoalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */; };
 		24D7E80A2D8A07510078DA84 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E8092D8A07460078DA84 /* SessionContainer.swift */; };
 		24D7E80C2D8F30020078DA84 /* AddNewSessionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */; };
@@ -127,6 +128,7 @@
 		24AF74212D2A9609009A08EB /* FixedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSession.swift; sourceTree = "<group>"; };
 		24AF74232D2AB1B5009A08EB /* SessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProtocol.swift; sourceTree = "<group>"; };
 		24AF74262D2D0545009A08EB /* ClassicSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSessionTests.swift; sourceTree = "<group>"; };
+		24BA51B32DAAEAFA008AF972 /* SessionConfigurationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfigurationInfoView.swift; sourceTree = "<group>"; };
 		24C018E92C8DE9BA006A4118 /* TodayGoalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalList.swift; sourceTree = "<group>"; };
 		24D7E8092D8A07460078DA84 /* SessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionContainer.swift; sourceTree = "<group>"; };
 		24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSessionSheet.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		246D6C312A4C015B00E5B39B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				24BA51B32DAAEAFA008AF972 /* SessionConfigurationInfoView.swift */,
 				24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */,
 				24DF72162CCACF3D00195BD5 /* AddNewSession.swift */,
 				2406EB2C2A7FE72000E3FF6A /* RequestNotificationView.swift */,
@@ -685,6 +688,7 @@
 				24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
+				24BA51B42DAAEB11008AF972 /* SessionConfigurationInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

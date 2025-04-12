@@ -15,7 +15,12 @@ struct AddNewSessionSheet: View {
     @FocusState private var focusSessionGoalInput: Bool
     
     @Binding var sessionGoal: String
+    var flexSettings: (limit: Int, factor: Double) = (0, 0)
+    var fixedSettings: (focus: Int, pause: Int) = (0, 0)
+    
     var onStartSession: (SessionType) -> Void
+
+    
     
     var body: some View {
         NavigationStack {
@@ -44,20 +49,31 @@ struct AddNewSessionSheet: View {
             .onTapGesture {
                 focusSessionGoalInput = true
             }
-            .safeAreaInset(edge: .bottom, alignment: .trailing) {
-                Button {
-                    onStartSession(selectedSessionVariant)
-                    dismiss()
-                } label: {
-                    Text("Start")
-                        .font(.body)
-                        .foregroundStyle(.white)
-                        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                        .background(.primary)
+            .safeAreaInset(edge: .bottom, alignment: .center) {
+                HStack(alignment: .center) {
+                    SessionConfigurationInfoView(
+                        selectedSessionVariant: selectedSessionVariant,
+                        flexSettings: flexSettings,
+                        fixedSettings: fixedSettings
+                    )
+                    
+                    Spacer()
+                    
+                    Button {
+                        onStartSession(selectedSessionVariant)
+                        dismiss()
+                    } label: {
+                        Text("Start")
+                            .font(.body)
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                            .foregroundStyle(.white)
+                            .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                            .background(.primary)
+                    }
+                    .clipShape(.capsule)
+                    .defaultShadow()
                 }
-                .clipShape(.capsule)
-                .defaultShadow()
-                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 24))
+                .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -80,11 +96,11 @@ struct AddNewSessionSheet: View {
 
 
 #Preview {
-    Text("Preview")
-        .sheet(isPresented: .constant(true)) {
+//    Text("Preview")
+//        .sheet(isPresented: .constant(true)) {
             AddNewSessionSheet(sessionGoal: .constant(""),
                                onStartSession: {_ in })
             .presentationDetents([.medium])
-        }
+//        }
     
 }
