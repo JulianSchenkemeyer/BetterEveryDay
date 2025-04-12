@@ -51,22 +51,11 @@ struct AddNewSessionSheet: View {
             }
             .safeAreaInset(edge: .bottom, alignment: .center) {
                 HStack(alignment: .center) {
-                    VStack(alignment: .leading) {
-                        switch selectedSessionVariant {
-                        case .fixed:
-                            Text("Focus: \(fixedSettings.focus) minutes")
-                            Text("Pause: \(fixedSettings.pause) minutes")
-                        case .flexible:
-                            Text("Faktor: x / \(flexSettings.factor, format: .number)")
-                            Text(flexSettings.limit > 0 ? "Limit: \(flexSettings.limit / 60) minutes" : "")
-                        }
-                    }
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                    .padding(EdgeInsets(top: 10, leading: 32, bottom: 10, trailing: 32))
-                    .background(.thickMaterial)
-                    .clipShape(.capsule)
+                    SessionConfigurationInfoView(
+                        selectedSessionVariant: selectedSessionVariant,
+                        flexSettings: flexSettings,
+                        fixedSettings: fixedSettings
+                    )
                     
                     Spacer()
                     
