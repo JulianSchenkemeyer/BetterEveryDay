@@ -62,6 +62,11 @@ struct AddNewSessionSheet: View {
                         }
                     }
                     .font(.caption)
+                    .fontWeight(.semibold)
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    .padding(EdgeInsets(top: 10, leading: 32, bottom: 10, trailing: 32))
+                    .background(.thickMaterial)
+                    .clipShape(.capsule)
                     
                     Spacer()
                     
@@ -71,6 +76,7 @@ struct AddNewSessionSheet: View {
                     } label: {
                         Text("Start")
                             .font(.body)
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .foregroundStyle(.white)
                             .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
                             .background(.primary)
