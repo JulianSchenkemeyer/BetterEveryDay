@@ -298,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				2408FDDA2D5BF4B20094FDD4 /* Factories */,
-				24F3F2942B1A3994008063B2 /* Data */,
+				24F3F2942B1A3994008063B2 /* Persistence */,
 				24DF29802AA4D2EE00DC40D6 /* Session */,
 				2406EB1E2A76BE2300E3FF6A /* Notifications */,
 			);
@@ -403,13 +403,13 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		24F3F2942B1A3994008063B2 /* Data */ = {
+		24F3F2942B1A3994008063B2 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
 				248571322D5D3A8800309D86 /* SessionSegmentData.swift */,
 				24F3F2952B1A39C8008063B2 /* SessionData.swift */,
 			);
-			path = Data;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		B9C4799C2A16742900C0CE3E = {
