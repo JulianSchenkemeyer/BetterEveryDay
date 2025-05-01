@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayTimeDistribution: View {
-    var todaysSessions: [SessionData] = []
+    var todaysSessions: [SessionSnapshot] = []
     
     var chartData: (work: Double, pause: Double) {
         var totalDuration = 0.0
@@ -45,5 +45,5 @@ struct TodayTimeDistribution: View {
 }
 
 #Preview {
-    TodayTimeDistribution(todaysSessions: Mockdata.sessionDataArray)
+    TodayTimeDistribution(todaysSessions: Mockdata.sessionDataArray.map { $0.snapshot })
 }

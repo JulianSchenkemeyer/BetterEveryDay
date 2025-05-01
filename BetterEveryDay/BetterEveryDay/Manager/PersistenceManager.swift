@@ -34,12 +34,12 @@ protocol PersistenceManagerProtocol: Observable {
     
     /// Get the latest running session from the persistence layer
     /// - Returns: the latest running session or nil if non could be found
-    func getLatestRunningSession() async -> SessionData?
+    func getLatestRunningSession() async -> SessionSnapshot?
     
     /// Get all finished session which were started today
     /// - Parameter date: Date for which the finished session shall be loaded
     /// - Returns: array of ``SessionData``
-    func getFinishedSessions(for date: Date) async -> [SessionData]
+    func getFinishedSessions(for date: Date) async -> [SessionSnapshot]
 }
 
 /// Mock implementation of ``PersistenceManagerProtocol`` for use in Previews or tests
@@ -48,8 +48,8 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
     func updateSession(with availableBreaktime: TimeInterval, segment: SessionSegment) { }
     func updateSession(with segments: [SessionSegment]) { }
     func finishSession(with session: SessionProtocol) { }
-    func getLatestRunningSession() -> SessionData? { nil }
-    func getFinishedSessions(for date: Date) async -> [SessionData] { Mockdata.sessionDataArray }
+    func getLatestRunningSession() -> SessionSnapshot? { nil }
+    func getFinishedSessions(for date: Date) async -> [SessionSnapshot] { Mockdata.sessionDataArray.map { $0.snapshot } }
 }
 
 /// SwiftData implementation of ``PersistenceManagerProtocol``
@@ -172,7 +172,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         try modelContext.save()
     }
     
-    func getLatestRunningSession() async -> SessionData? {
+    func getLatestRunningSession() async -> SessionSnapshot? {
         let running = SessionState.RUNNING.rawValue
         let predicate = #Predicate<SessionData> { session in
             session.state == running
@@ -187,14 +187,14 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
             
             currentSession = unfinishedSession
             
-            return unfinishedSession
+            return unfinishedSession.snapshot
         } catch {
             print("")
             return nil
         }
     }
     
-    func getFinishedSessions(for date: Date) async -> [SessionData] {
+    func getFinishedSessions(for date: Date) async -> [SessionSnapshot] {
         let finished = SessionState.FINISHED.rawValue
         let (start, end) = date.getStartAndEndOfDay()
         let predicate = #Predicate<SessionData>{ session in
@@ -206,7 +206,7 @@ final class PersistenceManagerMock: PersistenceManagerProtocol {
         
         do {
             let todaysSessions = try modelContext.fetch(fetchDescribtor)
-            return todaysSessions
+            return todaysSessions.map { $0.snapshot }
         } catch {
             print("❌")
             return []

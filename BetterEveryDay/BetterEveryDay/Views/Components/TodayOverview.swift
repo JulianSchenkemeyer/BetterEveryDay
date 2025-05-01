@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct TodayOverview: View {
-    var todaysSessions: [SessionData] = []
+    var todaysSessions: [SessionSnapshot] = []
     
     var body: some View {
         Card {
@@ -43,5 +43,5 @@ struct TodayOverview: View {
 }
 
 #Preview {
-    TodayOverview(todaysSessions: Mockdata.sessionDataArray)
+    TodayOverview(todaysSessions: Mockdata.sessionDataArray.map { $0.snapshot })
 }

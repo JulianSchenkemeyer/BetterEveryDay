@@ -20,7 +20,7 @@ struct PrepareSessionScreen: View {
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
-    @State private var todaysFinishedSessions: [SessionData] = []
+    @State private var todaysFinishedSessions: [SessionSnapshot] = []
     
     @State private var showNewTaskModal: Bool = false
     @State private var today: Date = .now
