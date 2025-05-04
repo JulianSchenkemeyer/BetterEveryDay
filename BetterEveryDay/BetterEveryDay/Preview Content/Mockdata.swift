@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Mockdata {
-    static let sessionData: SessionData = .init(type: "flexible",
+    nonisolated(unsafe) static let sessionData: SessionData = .init(type: "flexible",
                                                 state: "Finished",
                                                 goal: "mock entry",
                                                 started: .now,
@@ -22,7 +22,7 @@ struct Mockdata {
                                                 timeSpendPause: 500,
                                                 segments: [])
     
-    static let sessionDataArray : [SessionData] = [.init(type: "flexible",
+    nonisolated(unsafe) static let sessionDataArray : [SessionData] = [.init(type: "flexible",
                                                          state: "Finished",
                                                          goal: "Work on Cell",
                                                          started: .now,
