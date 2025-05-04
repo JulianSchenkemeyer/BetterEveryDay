@@ -118,7 +118,9 @@ struct FlexibleSessionScreen: View {
     private func goOvertimeTimer() async {
         if viewModel.availableBreak > 0 {
             self.timer = Timer.scheduledTimer(withTimeInterval: viewModel.availableBreak, repeats: false, block: { _ in
+                Task { @MainActor in
                 goneOvertime = true
+                }
             })
         } else {
             goneOvertime = true
