@@ -7,7 +7,6 @@
 import Foundation
 
 protocol SessionSegmentProtocol {
-    var session: SessionData? { get set }
     var category: SegmentCategory.RawValue { get set }
     var startedAt: Date { get set }
     var finishedAt: Date? { get set }
@@ -37,8 +36,7 @@ extension SessionSegmentData: SessionSegmentProtocol, Convertible {
     }
 }
 
-struct SessionSegmentSnapshot: SessionSegmentSnapshotProtocol {
-    var session: SessionData?
+struct SessionSegmentSnapshot: SessionSegmentSnapshotProtocol, Sendable {
     var category: SegmentCategory.RawValue
     var startedAt: Date
     var finishedAt: Date?

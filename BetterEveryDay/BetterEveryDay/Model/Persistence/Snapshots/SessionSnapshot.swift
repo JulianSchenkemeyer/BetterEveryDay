@@ -6,7 +6,7 @@
 //
 import Foundation
 
-protocol SessionProperties {
+protocol SessionDataProperties {
     var type: SessionType.RawValue { get set }
     var state: SessionState.RawValue { get set }
     var goal: String { get set }
@@ -25,10 +25,10 @@ protocol SessionSegmentOwner {
     var segments: [SegmentType] { get set }
 }
 
-protocol SessionModelProtocol: AnyObject, SessionProperties, SessionSegmentOwner
+protocol SessionModelProtocol: AnyObject, SessionDataProperties, SessionSegmentOwner
     where SegmentType == SessionSegmentData { }
 
-protocol SessionSnapshotProtocol: SessionProperties, SessionSegmentOwner
+protocol SessionSnapshotProtocol: SessionDataProperties, SessionSegmentOwner, Sendable
     where SegmentType == SessionSegmentSnapshot { }
 
 extension SessionData: SessionModelProtocol, Convertible {
@@ -52,7 +52,7 @@ extension SessionData: SessionModelProtocol, Convertible {
 }
 
 struct SessionSnapshot: SessionSnapshotProtocol, Identifiable {
-    var id: ObjectIdentifier
+    var id: ObjectIdentifier?
     
     var type: SessionType.RawValue
     var state: SessionState.RawValue
