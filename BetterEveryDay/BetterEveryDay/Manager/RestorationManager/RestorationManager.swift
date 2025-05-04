@@ -10,7 +10,7 @@ import Foundation
 typealias RunningSessionData = (goal: String, started: Date, session: SessionProtocol, state: SessionState)
 
 /// Protocol describing the methods needed to be impelemented by a RestorationManager, which oversees the restoration of a Session..
-protocol RestorationManagerProtocol {
+@MainActor protocol RestorationManagerProtocol {
     
     /// Transforms the given data into a tuple (``RunningSessionData``) containing the session data
     /// - Parameters:
@@ -18,14 +18,14 @@ protocol RestorationManagerProtocol {
     ///   - onRestoredSegments: Optional closure, which can be used to process restored segments. Can be used for example
     ///   to persist currently untracked segments.
     /// - Returns: Tuple containing the session data
-    func restoreSessions(from data: SessionSnapshot, onRestoredSegments: (([SessionSegment]) async -> Void)?) async -> RunningSessionData
+    func restoreSessions(from data: SessionSnapshot, onRestoredSegments: (@Sendable ([SessionSegment]) async -> Void)?) async -> RunningSessionData
 }
 
 /// ``RestorationManagerProtocol`` implementation
-final class RestorationManager: RestorationManagerProtocol {
-    private var factory = SessionRestoratorFactory()
+@MainActor final class RestorationManager: RestorationManagerProtocol {
+    private let factory = SessionRestoratorFactory()
     
-    func restoreSessions(from data: SessionSnapshot, onRestoredSegments: (([SessionSegment]) async -> Void)? = nil) async -> RunningSessionData {
+    func restoreSessions(from data: SessionSnapshot, onRestoredSegments: (@Sendable ([SessionSegment]) async -> Void)? = nil) async -> RunningSessionData {
         let type = identifySessionType(data)
         let restorator = factory.createRestorator(for: type)
         

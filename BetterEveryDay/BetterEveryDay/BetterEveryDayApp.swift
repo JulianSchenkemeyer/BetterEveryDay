@@ -36,7 +36,7 @@ enum EnvironmentManager {
         SwiftDataPersistenceManager()
     }
     
-    static func setupRestorationManager() -> RestorationManager {
+    @MainActor static func setupRestorationManager() -> RestorationManager {
         RestorationManager()
     }
 }

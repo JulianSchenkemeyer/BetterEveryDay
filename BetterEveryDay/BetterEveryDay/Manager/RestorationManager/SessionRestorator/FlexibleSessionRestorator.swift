@@ -8,7 +8,7 @@
 
 /// SessionRestorator implementation for a ``FlexibleSession``
 final class FlexibleSessionRestorator: SessionRestoratorProtocol {
-    func restore(_ data: SessionSnapshot, onRestoredSegments: (([SessionSegment]) async -> Void)? = nil) -> RunningSessionData {
+    func restore(_ data: SessionSnapshot, onRestoredSegments: (@Sendable ([SessionSegment]) async -> Void)? = nil) -> RunningSessionData {
         var segments = restoreSegments(data)
         
         if let last = segments.last, let finishedAt = last.finishedAt {
