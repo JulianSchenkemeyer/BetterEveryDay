@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayGoalList: View {
-    var todaysSessions: [SessionData] = []
+    var todaysSessions: [SessionSnapshot] = []
     let motivationalQuotes = ["Stay hungry, stay foolish.",
                               "Every day is a new beginning.",
                               "Small steps every day.",
@@ -48,6 +48,6 @@ struct TodayGoalList: View {
 }
 
 #Preview {
-    TodayGoalList(todaysSessions: Mockdata.sessionDataArray)
+    TodayGoalList(todaysSessions: Mockdata.sessionDataArray.map { $0.snapshot })
     TodayGoalList(todaysSessions: [])
 }

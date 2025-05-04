@@ -16,7 +16,7 @@ protocol SessionRestoratorProtocol {
     ///   - onRestoredSegments: Optional closure, which can be used to process restored segments. Can be used for example
     ///   to persist currently untracked segments.
     /// - Returns: ``RunningSessionData``
-    func restore(_ data: SessionData, onRestoredSegments: (([SessionSegment]) async -> Void)?) -> RunningSessionData
+    func restore(_ data: SessionSnapshot, onRestoredSegments: (@Sendable ([SessionSegment]) async -> Void)?) -> RunningSessionData
 }
 
 extension SessionRestoratorProtocol {
@@ -24,7 +24,7 @@ extension SessionRestoratorProtocol {
     /// Method to restore segments from ``SessionData``. Default implementation provided through ``SessionRestoratorProtocol``
     /// - Parameter data: ``SessionData``
     /// - Returns: ``SessionSegment`` Array
-    func restoreSegments(_ data: SessionData) -> [SessionSegment] {
+    func restoreSegments(_ data: SessionSnapshot) -> [SessionSegment] {
         data.segments
             .map { SessionSegment(category: SegmentCategory(rawValue: $0.category)!, startedAt: $0.startedAt, finishedAt: $0.finishedAt) }
             .sorted(using: [KeyPathComparator(\.startedAt, order: .forward)])

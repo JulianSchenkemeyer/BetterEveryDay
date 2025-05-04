@@ -20,7 +20,7 @@ struct PrepareSessionScreen: View {
     
     @State private var sessionIsInProgress = false
     @State private var viewModel = SessionController()
-    @State private var todaysFinishedSessions: [SessionData] = []
+    @State private var todaysFinishedSessions: [SessionSnapshot] = []
     
     @State private var showNewTaskModal: Bool = false
     @State private var today: Date = .now
@@ -102,7 +102,13 @@ struct PrepareSessionScreen: View {
         
         if persistenceManager != nil {
             Task {
-                try await persistenceManager?.insertSession(from: viewModel, configuration: sessionConfiguration)
+                try await persistenceManager?.insertSession(
+                    state: viewModel.state.rawValue,
+                    goal: viewModel.goal,
+                    started: viewModel.started,
+                    availableBreak: viewModel.session.availableBreak,
+                    configuration: sessionConfiguration
+                )
             }
         }
         viewModel.session.next(onFinishingSegment: nil)
@@ -124,7 +130,10 @@ struct PrepareSessionScreen: View {
     private func finishSession() {
         viewModel.finish()
         Task {
-            try? await persistenceManager?.finishSession(with: viewModel.session)
+            try? await persistenceManager?.finishSession(
+                with: viewModel.session.availableBreak,
+                segments: viewModel.session.segments
+            )
             
             viewModel.reset()
             
@@ -152,7 +161,8 @@ struct PrepareSessionScreen: View {
         viewModel.restore(state: restored.state,
                           goal: restored.goal,
                           started: restored.started,
-                          session: restored.session)
+                          session: restored.session
+        )
         
         sessionIsInProgress = true
     }

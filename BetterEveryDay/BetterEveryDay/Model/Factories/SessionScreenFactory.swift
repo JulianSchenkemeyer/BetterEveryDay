@@ -15,7 +15,7 @@ struct SessionFactory {
     ///   - session: The session conforming to `SessionProtocol`.
     ///   - goal: A string representing the session's goal.
     /// - Returns: A SwiftUI view representing the session.
-    func createSessionView(with session: SessionProtocol, goal: String) -> some View {
+    @MainActor func createSessionView(with session: SessionProtocol, goal: String) -> some View {
         switch session.type {
         case .flexible:
             AnyView(FlexibleSessionScreen(goal: goal, viewModel: session))

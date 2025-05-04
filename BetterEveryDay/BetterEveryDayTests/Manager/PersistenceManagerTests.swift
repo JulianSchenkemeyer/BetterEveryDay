@@ -25,8 +25,6 @@ import Foundation
     }
     
     @Test func initPersistencManager() throws {
-        #expect(persistenceManager.modelContainer != nil)
-        
         let results = fetchAll()
         #expect(results.isEmpty)
     }
@@ -37,7 +35,13 @@ import Foundation
                                                         focustimeLimit: 0,
                                                         breaktimeLimit: 0,
                                                         breaktimeFactor: 0)
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
         
         let results = fetchAll()
         
@@ -50,7 +54,13 @@ import Foundation
                                                         focustimeLimit: 0,
                                                         breaktimeLimit: 0,
                                                         breaktimeFactor: 0)
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
         
         let now = Date.now
         let inFiveMinutes = Calendar.current.date(byAdding: .minute, value: 5, to: now)
@@ -71,7 +81,13 @@ import Foundation
                                                         focustimeLimit: 0,
                                                         breaktimeLimit: 0,
                                                         breaktimeFactor: 0)
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
         
         let now = Date.now
         let inSixMinutes = Calendar.current.date(byAdding: .minute, value: 6, to: now)!
@@ -99,7 +115,13 @@ import Foundation
                                                         focustimeLimit: 0,
                                                         breaktimeLimit: 0,
                                                         breaktimeFactor: 0)
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
         
         let now = Date.now
         let inFiveMinutes = Calendar.current.date(byAdding: .minute, value: 5, to: now)
@@ -107,7 +129,7 @@ import Foundation
         session.segments.append(segment)
 
         try await persistenceManager.updateSession(with: 0.0, segment: segment)
-        try await persistenceManager.finishSession(with: session)
+        try await persistenceManager.finishSession(with: session.availableBreak, segments: session.segments)
         
         let results = fetchAll()
         
@@ -125,12 +147,30 @@ import Foundation
         
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date.now)!
         let sessionControllerPreviousDay = SessionController(started: yesterday)
-        try await persistenceManager.insertSession(from: sessionControllerPreviousDay, configuration: sessionConfiguration)
-        try await persistenceManager.finishSession(with: sessionControllerPreviousDay.session)
+        try await persistenceManager.insertSession(
+            state: sessionControllerPreviousDay.state.rawValue,
+            goal: sessionControllerPreviousDay.goal,
+            started: sessionControllerPreviousDay.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
+        try await persistenceManager.finishSession(
+                with: sessionControllerPreviousDay.session.availableBreak,
+                segments: sessionControllerPreviousDay.session.segments
+            )
         
         let sessionController = SessionController()
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
-        try await persistenceManager.finishSession(with: sessionController.session)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
+        try await persistenceManager.finishSession(
+            with: sessionController.session.availableBreak,
+            segments: sessionController.session.segments
+        )
         
         let allResults = fetchAll()
         let todaysResults = await persistenceManager.getFinishedSessions(for: .now)
@@ -148,11 +188,20 @@ import Foundation
                                                         breaktimeLimit: 3,
                                                         breaktimeFactor: 1.0)
         sessionController.start(with: sessionConfiguration)
-        try await persistenceManager.insertSession(from: sessionController, configuration: sessionConfiguration)
+        try await persistenceManager.insertSession(
+            state: sessionController.state.rawValue,
+            goal: sessionController.goal,
+            started: sessionController.started,
+            availableBreak: 0,
+            configuration: sessionConfiguration
+        )
         
         #expect(await persistenceManager.getLatestRunningSession() != nil)
         
-        try await persistenceManager.finishSession(with: sessionController.session)
+        try await persistenceManager.finishSession(
+            with: sessionController.session.availableBreak,
+            segments: sessionController.session.segments
+        )
         #expect(await persistenceManager.getLatestRunningSession() == nil)
     }
 }
