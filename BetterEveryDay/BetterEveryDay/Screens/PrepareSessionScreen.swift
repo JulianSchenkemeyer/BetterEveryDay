@@ -41,6 +41,7 @@ struct PrepareSessionScreen: View {
         .blur(radius: showNewTaskModal ? 1.5 : 0)
         .safeAreaInset(edge: .bottom, alignment: .trailing) {
             AddNewSession(showNewTaskModal: $showNewTaskModal)
+                .padding(20)
         }
         .sheet(isPresented: $showNewTaskModal, onDismiss: {
             guard viewModel.state == .PREPARING else { return }

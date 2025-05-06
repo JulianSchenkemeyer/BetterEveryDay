@@ -21,11 +21,12 @@ struct AddNewSession: View {
                 .foregroundStyle(.white)
                 .padding()
                 .frame(width: 50, height: 50)
-                .background(.primary)
-                .clipShape(.circle)
+                .background(
+                    Circle()
+                        .fill(.primary)
+                        .defaultShadow()
+                )
         }
-        .defaultShadow()
-        .padding(20)
     }
 }
 

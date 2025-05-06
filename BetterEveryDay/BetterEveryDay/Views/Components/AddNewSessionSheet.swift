@@ -68,10 +68,13 @@ struct AddNewSessionSheet: View {
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .foregroundStyle(.white)
                             .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                            .background(.primary)
+                            .background(
+                                Capsule()
+                                    .fill(.primary)
+                                    .defaultShadow()
+                            )
                     }
                     .clipShape(.capsule)
-                    .defaultShadow()
                 }
                 .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
             }
