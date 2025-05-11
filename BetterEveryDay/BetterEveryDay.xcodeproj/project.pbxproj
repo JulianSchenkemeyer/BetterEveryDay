@@ -61,6 +61,7 @@
 		24E924322A44D2C6002CA7F8 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */; };
 		24E924342A457AB8002CA7F8 /* ButtonLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */; };
 		24E924362A457B8D002CA7F8 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E924352A457B8D002CA7F8 /* PrimaryButton.swift */; };
+		24EAD4752DCDD5E900EF46D1 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAD4742DCDD5DD00EF46D1 /* Icons.swift */; };
 		24F3F2932B19F766008063B2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2922B19F766008063B2 /* PersistenceManager.swift */; };
 		24F3F2962B1A39C8008063B2 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F2952B1A39C8008063B2 /* SessionData.swift */; };
 		24F53FA72C6899DA00C6A666 /* SegmentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F53FA62C6899DA00C6A666 /* SegmentCategory.swift */; };
@@ -147,6 +148,7 @@
 		24E924312A44D2C6002CA7F8 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		24E924332A457AB8002CA7F8 /* ButtonLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelStyle.swift; sourceTree = "<group>"; };
 		24E924352A457B8D002CA7F8 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		24EAD4742DCDD5DD00EF46D1 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		24F3F2922B19F766008063B2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		24F3F2952B1A39C8008063B2 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		24F53FA62C6899DA00C6A666 /* SegmentCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCategory.swift; sourceTree = "<group>"; };
@@ -419,6 +421,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		24EAD4732DCDD5B400EF46D1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				24EAD4742DCDD5DD00EF46D1 /* Icons.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		24F3F2942B1A3994008063B2 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +462,7 @@
 		B9C479A72A16742900C0CE3E /* BetterEveryDay */ = {
 			isa = PBXGroup;
 			children = (
+				24EAD4732DCDD5B400EF46D1 /* Constants */,
 				24912E552B9F5F6E001AB4C7 /* Animations */,
 				247FD1272B72B978009CEB88 /* Extensions */,
 				2406EB262A76ECDD00E3FF6A /* Manager */,
@@ -677,6 +688,7 @@
 				242517892D51F5650034273F /* RestorationManager.swift in Sources */,
 				24F53FA72C6899DA00C6A666 /* SegmentCategory.swift in Sources */,
 				247FC7AF2C84401C00B72733 /* EnvironmentValues+Ext.swift in Sources */,
+				24EAD4752DCDD5E900EF46D1 /* Icons.swift in Sources */,
 				24D7E8112D9808990078DA84 /* DefaultShadow.swift in Sources */,
 				2406EB2D2A7FE72000E3FF6A /* RequestNotificationView.swift in Sources */,
 				24912E5D2BAA2DBE001AB4C7 /* FlexibleSessionScreen.swift in Sources */,
