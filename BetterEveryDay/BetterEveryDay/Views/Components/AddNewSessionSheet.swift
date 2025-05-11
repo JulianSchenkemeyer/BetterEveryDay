@@ -26,8 +26,8 @@ struct AddNewSessionSheet: View {
         NavigationStack {
             VStack {
                 Picker("Select Session Type", selection: $selectedSessionVariant) {
-                    Text("Flexible").tag(SessionType.flexible)
-                    Text("Fixed").tag(SessionType.fixed)
+                    Label("Flexible", systemImage: "arrowshape.zigzag.right").tag(SessionType.flexible)
+                    Label("Fixed", systemImage: "repeat").tag(SessionType.fixed)
                 }
                 .pickerStyle(.segmented)
                 
@@ -73,8 +73,9 @@ struct AddNewSessionSheet: View {
                                     .fill(.primary)
                                     .defaultShadow()
                             )
+                            
                     }
-                    .clipShape(.capsule)
+                    
                 }
                 .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
             }

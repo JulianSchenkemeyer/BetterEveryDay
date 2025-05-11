@@ -26,10 +26,16 @@ struct TodayGoalList: View {
                 
                 if todaysSessions.isEmpty {
                     ContentUnavailableView(motivationalQuotes.randomElement()!,
-                                           systemImage: "list.bullet")
+                                           systemImage: Icons.todaysSessionsEmpty)
                 } else {
                     ForEach(todaysSessions.prefix(5)) { session in
                         HStack(alignment: .bottom) {
+                            if session.type == SessionType.flexible.rawValue {
+                                Image(systemName: Icons.flexibleSession)
+                            } else {
+                                Image(systemName: Icons.fixedSession)
+                            }
+                            
                             Text(session.goal)
                                 .lineLimit(1)
                                 .font(.body)
