@@ -37,13 +37,13 @@ struct SettingsView: View {
                     
                 }
             } header: {
-                Text("Fixed Session")
+                Text("Flexible Session")
             }
             .padding(.vertical, 10)
             
             Section {
                 
-                Stepper(value: $fixedFocusLimit, in: 20...60, step: 5) {
+                Stepper(value: $fixedFocusLimit, in: 5...60, step: 5) {
                     Text("Limit Focus to \(fixedFocusLimit) minutes")
                 }
 
@@ -51,7 +51,7 @@ struct SettingsView: View {
                     Text("Limit Break to \(fixedBreakLimit) minutes")
                 }
             } header: {
-                Text("Flexible Session")
+                Text("Fixed Session")
             }
             .padding(.vertical, 10)
             
