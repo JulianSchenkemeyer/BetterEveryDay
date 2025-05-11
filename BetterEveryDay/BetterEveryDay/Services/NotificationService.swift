@@ -16,8 +16,10 @@ protocol NotificationServiceProtocol {
     /// Remove a specific notification
     /// - Parameter notification: Notification to be removed
     func remove(notification: any BEDNotification)
-    /// Remove all delivered notification, so they are no longer displayed in the NotificationCenter
+    /// Remove all delivered notifications, so they are no longer displayed in the NotificationCenter
     func removeDeliveredNotifications()
+    /// Remove all pending notifications
+    func removePendingNotifications()
 }
 
 /// NotificationService for local notifications
@@ -45,6 +47,10 @@ final class NotificationService: NotificationServiceProtocol {
     func removeDeliveredNotifications() {
         notificationCenter.removeAllDeliveredNotifications()
     }
+    
+    func removePendingNotifications() {
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
 }
 
 /// Mock implementation for the NotificationService
@@ -56,4 +62,6 @@ final class NotificationServiceMock: NotificationServiceProtocol {
     func remove(notification: any BEDNotification) { }
     
     func removeDeliveredNotifications() { }
+    
+    func removePendingNotifications() { }
 }

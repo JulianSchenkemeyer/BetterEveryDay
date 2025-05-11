@@ -39,9 +39,7 @@ protocol NotificationManagerProtocol {
     }
     
     func removeScheduledNotifications() {
-        for scheduledNotification in scheduledNotifications {
-            notificationService.remove(notification: scheduledNotification)
-        }
+        notificationService.removePendingNotifications()
         scheduledNotifications = []
     }
 }

@@ -24,6 +24,7 @@ extension BEDNotification {
         notification.title = title
         notification.subtitle = subtitle
         notification.body = body
+        notification.sound = UNNotificationSound.default
         
         return notification
     }
