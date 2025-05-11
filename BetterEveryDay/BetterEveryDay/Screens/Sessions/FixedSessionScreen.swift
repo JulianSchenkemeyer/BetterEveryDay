@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct FixedSessionScreen: View {
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismiss) private var dismiss
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(\.persistenceManager) var persistenceManager
@@ -39,6 +40,11 @@ struct FixedSessionScreen: View {
                     removeScheduledNotifications()
                     scheduleNotifications(startingWith: newValue)
                     
+                    resetTimer()
+                    scheduleSessionChange()
+                }
+                .onChange(of: scenePhase) { oldValue, newValue in
+                    guard oldValue == .inactive && newValue == .active else { return }
                     resetTimer()
                     scheduleSessionChange()
                 }
