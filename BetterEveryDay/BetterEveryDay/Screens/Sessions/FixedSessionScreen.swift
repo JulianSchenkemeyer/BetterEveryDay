@@ -16,14 +16,15 @@ struct FixedSessionScreen: View {
     @Environment(\.persistenceManager) var persistenceManager
     
     @State private var timer: Timer?
+    @State private var showSessionController = true
     
     var goal: String
     var viewModel: SessionProtocol
     
     
     var body: some View {
-        SessionContainer(goal: goal, onFinishSession: finishSession) {
-            if let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt {
+        if let segment = viewModel.getCurrent(), let finishedAt = segment.finishedAt {
+            SessionContainer(goal: goal, showSheet: $showSessionController) {
                 VStack {
                     if segment.category == .Focus {
                         TimerLabelView(date: finishedAt)
@@ -52,20 +53,51 @@ struct FixedSessionScreen: View {
                     scheduleSessionChange()
                     scheduleNotifications(startingWith: segment.category)
                 }
-            }
-            
-            Spacer()
-            
-            Card {
+                
+                Spacer()
+                
+                
+            } interactionSection: {
+//                VStack {
+//                    Text(ceil(Double(viewModel.segments.count / 2)).formatted())
+//                        .font(.largeTitle)
+//                    
+//                    Text("Focus segments completed")
+//                }
+//                .font(.body)
+//                .padding()
                 VStack {
-                    Text(ceil(Double(viewModel.segments.count / 2)).formatted())
-                        .font(.largeTitle)
-                    
-                    Text("Focus segments completed")
+                    HStack(spacing: 10) {
+                        Button {
+                            createNextSegment()
+                        } label: {
+                            Label("Skip", systemImage: "forward.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.black.gradient)
+                                .clipShape(Capsule())
+                        }
+                        
+                        Button {
+                            showSessionController = false
+                            finishSession()
+                        } label: {
+                            Label("Finish", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.gray.gradient)
+                                .clipShape(Capsule())
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 40)
                 }
-                .font(.body)
-                .padding()
-            }.padding([.bottom, .horizontal], 40)
+                .frame(maxHeight: .infinity, alignment: .top)
+            }
         }
     }
     
@@ -73,6 +105,7 @@ struct FixedSessionScreen: View {
     private func createNextSegment() {
         viewModel.next() { breaktime, segment in
             Task {
+                print(breaktime)
                 try await persistenceManager?.updateSession(with: breaktime, segment: segment)
             }
         }

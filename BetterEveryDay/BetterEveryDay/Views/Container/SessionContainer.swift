@@ -7,11 +7,13 @@
 
 import SwiftUI
 
-struct SessionContainer<Content: View>: View {
+struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
     let goal: String
-    let onFinishSession: () -> Void
+    @Binding var showSheet: Bool
     
-    @ViewBuilder var content: () -> Content
+    @ViewBuilder var timerSection: () -> TimerSection
+    @ViewBuilder var interactionSection: () -> InteractionSection
+    
     
     var body: some View {
         VStack {
@@ -25,24 +27,26 @@ struct SessionContainer<Content: View>: View {
             .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
             .padding(20)
             
-            content()
+            timerSection()
+            
+            
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    onFinishSession()
-                } label: {
-                    Text("Finish")
-                }
-            }
+        .sheet(isPresented: $showSheet) {
+            interactionSection()
+                .background(.ultraThinMaterial)
+                .presentationDetents([.fraction(0.2), .medium])
+                .interactiveDismissDisabled()
+                .presentationBackgroundInteraction(.enabled)
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        SessionContainer(goal: "Do 10 pushups", onFinishSession: { print("Finished!") } ) {
+        SessionContainer(goal: "Do 10 pushups", showSheet: .constant(true)) {
             Text("Hello World.")
+        } interactionSection: {
+            Text("Cancel")
         }
     }
 }
