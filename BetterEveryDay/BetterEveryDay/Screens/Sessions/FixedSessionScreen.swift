@@ -58,14 +58,6 @@ struct FixedSessionScreen: View {
                 
                 
             } interactionSection: {
-//                VStack {
-//                    Text(ceil(Double(viewModel.segments.count / 2)).formatted())
-//                        .font(.largeTitle)
-//                    
-//                    Text("Focus segments completed")
-//                }
-//                .font(.body)
-//                .padding()
                 VStack {
                     HStack(spacing: 10) {
                         Button {
@@ -79,6 +71,7 @@ struct FixedSessionScreen: View {
                                 .background(Color.black.gradient)
                                 .clipShape(Capsule())
                         }
+                        .disabled(true)
                         
                         Button {
                             showSessionController = false
@@ -89,12 +82,15 @@ struct FixedSessionScreen: View {
                                 .font(.body)
                                 .foregroundStyle(.white.opacity(0.9))
                                 .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                                .background(Color.gray.gradient)
+                                .background(Color.red.gradient)
                                 .clipShape(Capsule())
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical, 40)
+                    
+                    Text(ceil(Double(viewModel.segments.count / 2)).formatted())
+                        .font(.largeTitle)
+                    Text("Focus segments completed")
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
             }

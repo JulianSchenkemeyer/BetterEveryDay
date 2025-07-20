@@ -85,11 +85,91 @@ struct FlexibleSessionScreen: View {
                                 .font(.body)
                                 .foregroundStyle(.white.opacity(0.9))
                                 .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                                .background(Color.gray.gradient)
+                                .background(Color.red.gradient)
                                 .clipShape(Capsule())
                         }
                     }
-                    .padding(.top, 40)
+                    
+                    HStack(spacing: 10) {
+                        Button {
+                            createNextSegment()
+                        } label: {
+                            Label(segment.category == .Focus ? "Pause" : "Focus", systemImage: segment.category == .Focus ? "pause.fill" : "play.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.black.gradient)
+                                .clipShape(Capsule())
+                        }
+                        
+                        Button {
+                            showSessionController = false
+                            finishSession()
+                        } label: {
+                            Label("Finish", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.red.gradient)
+                                .clipShape(Capsule())
+                        }
+                    }
+                    
+                    HStack(spacing: 10) {
+                        Button {
+                            createNextSegment()
+                        } label: {
+                            Label(segment.category == .Focus ? "Pause" : "Focus", systemImage: segment.category == .Focus ? "pause.fill" : "play.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.black.gradient)
+                                .clipShape(Capsule())
+                        }
+                        
+                        Button {
+                            showSessionController = false
+                            finishSession()
+                        } label: {
+                            Label("Finish", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.red.gradient)
+                                .clipShape(Capsule())
+                        }
+                    }
+                    
+                    HStack(spacing: 10) {
+                        Button {
+                            createNextSegment()
+                        } label: {
+                            Label(segment.category == .Focus ? "Pause" : "Focus", systemImage: segment.category == .Focus ? "pause.fill" : "play.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.black.gradient)
+                                .clipShape(Capsule())
+                        }
+                        
+                        Button {
+                            showSessionController = false
+                            finishSession()
+                        } label: {
+                            Label("Finish", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.red.gradient)
+                                .clipShape(Capsule())
+                        }
+                    }
                 }
                 .padding(.horizontal, 20)
                 .frame(maxHeight: .infinity, alignment: .top)

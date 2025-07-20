@@ -32,11 +32,15 @@ struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
             
         }
         .sheet(isPresented: $showSheet) {
-            interactionSection()
-                .background(.ultraThinMaterial)
-                .presentationDetents([.fraction(0.2), .medium])
-                .interactiveDismissDisabled()
-                .presentationBackgroundInteraction(.enabled)
+            ScrollView{
+                interactionSection()
+                    .padding(.top, 40)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            .background(.ultraThinMaterial)
+            .presentationDetents([.fraction(0.2), .medium])
+            .interactiveDismissDisabled()
+            .presentationBackgroundInteraction(.enabled)
         }
     }
 }
