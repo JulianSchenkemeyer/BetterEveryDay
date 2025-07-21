@@ -54,6 +54,7 @@
 		24D7E80C2D8F30020078DA84 /* AddNewSessionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */; };
 		24D7E8112D9808990078DA84 /* DefaultShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E8102D98087E0078DA84 /* DefaultShadow.swift */; };
 		24D825162C9223DA006681D4 /* TodayTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */; };
+		24DB87252E2D328900773058 /* SessionProgressChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB87242E2D327100773058 /* SessionProgressChartView.swift */; };
 		24DBA2372C61624F00860171 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2362C61624F00860171 /* SessionController.swift */; };
 		24DBA2392C61E73300860171 /* SessionSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */; };
 		24DF29862AA5E3B400DC40D6 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF29852AA5E3B400DC40D6 /* SessionState.swift */; };
@@ -141,6 +142,7 @@
 		24D7E80B2D8F2FF20078DA84 /* AddNewSessionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSessionSheet.swift; sourceTree = "<group>"; };
 		24D7E8102D98087E0078DA84 /* DefaultShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultShadow.swift; sourceTree = "<group>"; };
 		24D825152C9223DA006681D4 /* TodayTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimeDistribution.swift; sourceTree = "<group>"; };
+		24DB87242E2D327100773058 /* SessionProgressChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProgressChartView.swift; sourceTree = "<group>"; };
 		24DBA2362C61624F00860171 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		24DBA2382C61E73300860171 /* SessionSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSegmentsTests.swift; sourceTree = "<group>"; };
 		24DF29852AA5E3B400DC40D6 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		2406EB182A70F39300E3FF6A /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				24DB87242E2D327100773058 /* SessionProgressChartView.swift */,
 				2406EB192A70F3AD00E3FF6A /* TimeDistributionChartView.swift */,
 			);
 			path = Charts;
@@ -720,6 +723,7 @@
 				24BA51B92DB81DB4008AF972 /* SessionSnapshot.swift in Sources */,
 				B9C479A92A16742900C0CE3E /* BetterEveryDayApp.swift in Sources */,
 				2433A0962AAFA54200621188 /* SettingsView.swift in Sources */,
+				24DB87252E2D328900773058 /* SessionProgressChartView.swift in Sources */,
 				24BA51B42DAAEB11008AF972 /* SessionConfigurationInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
