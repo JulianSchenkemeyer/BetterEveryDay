@@ -63,6 +63,7 @@ struct FlexibleSessionScreen: View {
                 
             } interactionSection: {
                 VStack(spacing: 16) {
+                    SessionProgressChartView(data: SessionProgress(segments: viewModel.segments))
                     
                     HStack(spacing: 10) {
                         Button {
