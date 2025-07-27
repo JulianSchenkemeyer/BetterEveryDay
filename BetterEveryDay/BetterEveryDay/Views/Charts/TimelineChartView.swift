@@ -11,6 +11,7 @@ import Charts
 
 struct TimelineChartView: View {
     var data: [SessionSegment]
+    var isExpanded = false
     
     
     var body: some View {
@@ -47,13 +48,17 @@ struct TimelineChartView: View {
 //            }
 //            Text("Segments: \(data.last?.duration.description ?? "_")")
 //        }
-        .frame(height: 24)
+        .frame(height: isExpanded ? 48 : 24)
     }
 }
 
 
-struct SessionProgressChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimelineChartView(data: [])
+#Preview {
+    @Previewable @State var expand = true
+    
+    TimelineChartView(data: [], isExpanded: expand)
+    
+    Button("Toggle expanded") {
+        expand.toggle()
     }
 }
