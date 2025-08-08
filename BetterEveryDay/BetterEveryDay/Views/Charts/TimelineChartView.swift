@@ -11,7 +11,6 @@ import Charts
 
 struct TimelineChartView: View {
     var data: [SessionSegment]
-    var isExpanded = false
     
     
     var body: some View {
@@ -26,8 +25,6 @@ struct TimelineChartView: View {
                         .foregroundStyle(by: .value("Category", segment.category.rawValue))
                 }
             }
-            .animation(.easeIn(duration: 0.5), value: context.date)
-
         }
         .chartPlotStyle { plotArea in
             plotArea
@@ -48,17 +45,11 @@ struct TimelineChartView: View {
 //            }
 //            Text("Segments: \(data.last?.duration.description ?? "_")")
 //        }
-        .frame(height: isExpanded ? 48 : 24)
+        .frame(height: 36)
     }
 }
 
 
 #Preview {
-    @Previewable @State var expand = true
-    
-    TimelineChartView(data: [], isExpanded: expand)
-    
-    Button("Toggle expanded") {
-        expand.toggle()
-    }
+    TimelineChartView(data: [])
 }
