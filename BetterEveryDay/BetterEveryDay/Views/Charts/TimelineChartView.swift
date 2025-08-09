@@ -56,21 +56,27 @@ struct TimelineChartView: View {
                 if let plotFrame = proxy.plotFrame, let segment = selectedSegement {
                     let frame = geometry[plotFrame]
                     
-                    TooltionTipView(duration: segment.duration)
+                    TooltionTipView(category: segment.category.rawValue, duration: segment.duration)
                         .position(x: frame.midX,
                                   y: frame.minY - 16)
                 }
             }
+        }
+        .sensoryFeedback(.selection, trigger: selectedSegement) { oldValue, newValue in
+            guard let old = oldValue?.id, let new = newValue?.id else { return false
+            }
+            return old != new
         }
         .frame(height: 32)
     }
 }
 
 private struct TooltionTipView: View {
+    var category: String
     var duration: TimeInterval
     
     var body: some View {
-        Text("\(Duration.seconds(duration), format: .units(allowed: [.minutes, .seconds], width: .narrow))")
+        Text("\(category): \(Duration.seconds(duration), format: .units(allowed: [.minutes, .seconds], width: .narrow))")
             .padding(.horizontal ,8)
             .padding(.vertical, 4)
             .background {
@@ -85,6 +91,6 @@ private struct TooltionTipView: View {
     VStack {
         TimelineChartView(data: [], sessionStarted: Date())
         
-        TooltionTipView(duration: 156)
+        TooltionTipView(category: "Focus",duration: 156)
     }
 }
