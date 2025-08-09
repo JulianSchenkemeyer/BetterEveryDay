@@ -25,6 +25,9 @@ struct TimelineChartView: View {
         }
     }
     
+    func isSelected(_ segment: SessionSegment) -> Bool {
+            selectedSegement == nil || selectedSegement?.id == segment.id
+        }
     
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1.0)) { context in
@@ -36,6 +39,7 @@ struct TimelineChartView: View {
                 Plot {
                     BarMark(x: .value("Time", duration))
                         .foregroundStyle(by: .value("Category", segment.category.rawValue))
+                        .opacity(isSelected(segment) ? 1 : 0.4)
                 }
             }
         }
@@ -63,7 +67,8 @@ struct TimelineChartView: View {
             }
         }
         .sensoryFeedback(.selection, trigger: selectedSegement) { oldValue, newValue in
-            guard let old = oldValue?.id, let new = newValue?.id else { return false
+            guard let old = oldValue?.id, let new = newValue?.id else {
+                return false
             }
             return old != new
         }
