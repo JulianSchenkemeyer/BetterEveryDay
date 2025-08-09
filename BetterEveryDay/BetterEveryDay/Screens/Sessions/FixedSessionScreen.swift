@@ -57,7 +57,7 @@ struct FixedSessionScreen: View {
                 Spacer()
                 
                 
-            } interactionSection: {
+            } interactionSection: { selectedDetent in 
                 VStack {
                     HStack(spacing: 10) {
                         Button {

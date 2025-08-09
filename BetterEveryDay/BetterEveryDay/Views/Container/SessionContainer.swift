@@ -9,10 +9,12 @@ import SwiftUI
 
 struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
     let goal: String
+    @State private var selectedDetent: PresentationDetent = .fraction(0.2)
+    
     @Binding var showSheet: Bool
     
     @ViewBuilder var timerSection: () -> TimerSection
-    @ViewBuilder var interactionSection: () -> InteractionSection
+    @ViewBuilder var interactionSection: (_ selectedDetent: PresentationDetent) -> InteractionSection
     
     
     var body: some View {
@@ -33,12 +35,12 @@ struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
         }
         .sheet(isPresented: $showSheet) {
             ScrollView{
-                interactionSection()
-                    .padding(.top, 40)
+                interactionSection(selectedDetent)
+                    .padding(.top, 48)
             }
             .scrollBounceBehavior(.basedOnSize)
             .background(.ultraThinMaterial)
-            .presentationDetents([.fraction(0.2), .medium])
+            .presentationDetents([.fraction(0.2), .medium], selection: $selectedDetent)
             .interactiveDismissDisabled()
             .presentationBackgroundInteraction(.enabled)
         }
@@ -49,7 +51,7 @@ struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
     NavigationStack {
         SessionContainer(goal: "Do 10 pushups", showSheet: .constant(true)) {
             Text("Hello World.")
-        } interactionSection: {
+        } interactionSection: { _ in 
             Text("Cancel")
         }
     }

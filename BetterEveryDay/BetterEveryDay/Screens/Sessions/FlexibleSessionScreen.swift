@@ -61,8 +61,9 @@ struct FlexibleSessionScreen: View {
                 
                 
                 
-            } interactionSection: {
+            } interactionSection: { selectedDetent in
                 VStack(spacing: 16) {
+                    TimelineChartView(data: viewModel.segments)
                     
                     HStack(spacing: 10) {
                         Button {
