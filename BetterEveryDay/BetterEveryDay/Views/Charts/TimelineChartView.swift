@@ -12,9 +12,9 @@ import Charts
 struct TimelineChartView: View {
     var data: [SessionSegment]
     var sessionStarted: Date = .now
-
+    
     @State private var selected: TimeInterval? = nil
-
+    
     var selectedSegement: SessionSegment? {
         guard let selected else { return nil }
         guard let startedAt = data.first?.startedAt else { return nil }
@@ -51,16 +51,40 @@ struct TimelineChartView: View {
         .chartXSelection(value: $selected)
         .chartXAxis(.hidden)
         .chartLegend(.hidden)
-        .frame(height: 36)
-        
-        if let selected {
-            Text("\(selected)")
-            Text("\(selectedSegement?.duration)")
+        .chartOverlay { proxy in
+            GeometryReader { geometry in
+                if let plotFrame = proxy.plotFrame, let segment = selectedSegement {
+                    let frame = geometry[plotFrame]
+                    
+                    TooltionTipView(duration: segment.duration)
+                        .position(x: frame.midX,
+                                  y: frame.minY - 16)
+                }
+            }
         }
+        .frame(height: 32)
+    }
+}
+
+private struct TooltionTipView: View {
+    var duration: TimeInterval
+    
+    var body: some View {
+        Text("\(Duration.seconds(duration), format: .units(allowed: [.minutes, .seconds], width: .narrow))")
+            .padding(.horizontal ,8)
+            .padding(.vertical, 4)
+            .background {
+                RoundedRectangle(cornerRadius: 12.0)
+                    .stroke(lineWidth: 1)
+            }
     }
 }
 
 
 #Preview {
-    TimelineChartView(data: [], sessionStarted: Date())
+    VStack {
+        TimelineChartView(data: [], sessionStarted: Date())
+        
+        TooltionTipView(duration: 156)
+    }
 }
