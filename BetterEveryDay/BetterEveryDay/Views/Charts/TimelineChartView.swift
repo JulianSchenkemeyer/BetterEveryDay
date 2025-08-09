@@ -11,6 +11,19 @@ import Charts
 
 struct TimelineChartView: View {
     var data: [SessionSegment]
+    var sessionStarted: Date = .now
+
+    @State private var selected: TimeInterval? = nil
+
+    var selectedSegement: SessionSegment? {
+        guard let selected else { return nil }
+        guard let startedAt = data.first?.startedAt else { return nil }
+        let time = startedAt.addingTimeInterval(selected)
+        
+        return data.first {
+            $0.startedAt <= time && time <= $0.finishedAt ?? .now
+        }
+    }
     
     
     var body: some View {
@@ -35,6 +48,7 @@ struct TimelineChartView: View {
             "Focus": .blue,
             "Pause": .blue.opacity(0.5),
         ])
+        .chartXSelection(value: $selected)
         .chartXAxis(.hidden)
         .chartLegend(.hidden)
 //        .chartLegend(alignment: .center) {
@@ -46,10 +60,15 @@ struct TimelineChartView: View {
 //            Text("Segments: \(data.last?.duration.description ?? "_")")
 //        }
         .frame(height: 36)
+        
+        if let selected {
+            Text("\(selected)")
+            Text("\(selectedSegement?.duration)")
+        }
     }
 }
 
 
 #Preview {
-    TimelineChartView(data: [])
+    TimelineChartView(data: [], sessionStarted: Date())
 }
