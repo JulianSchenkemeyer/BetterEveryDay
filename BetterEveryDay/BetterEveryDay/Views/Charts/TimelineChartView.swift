@@ -39,7 +39,7 @@ struct TimelineChartView: View {
                 Plot {
                     BarMark(x: .value("Time", duration))
                         .foregroundStyle(by: .value("Category", segment.category.rawValue))
-                        .opacity(isSelected(segment) ? 1 : 0.4)
+                        .opacity(isSelected(segment) ? 1 : 0.3)
                 }
             }
         }

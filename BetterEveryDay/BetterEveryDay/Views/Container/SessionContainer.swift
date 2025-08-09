@@ -36,7 +36,7 @@ struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
         .sheet(isPresented: $showSheet) {
             ScrollView{
                 interactionSection(selectedDetent)
-                    .padding(.top, 40)
+                    .padding(.top, 48)
             }
             .scrollBounceBehavior(.basedOnSize)
             .background(.ultraThinMaterial)
