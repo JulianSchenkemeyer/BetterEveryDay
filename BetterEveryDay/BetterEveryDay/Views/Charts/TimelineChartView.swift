@@ -51,14 +51,6 @@ struct TimelineChartView: View {
         .chartXSelection(value: $selected)
         .chartXAxis(.hidden)
         .chartLegend(.hidden)
-//        .chartLegend(alignment: .center) {
-//            HStack(spacing: 30) {
-//                LegendEntry(title: "Work", value: totalWorkTime, color: .blue)
-//                
-//                LegendEntry(title: "Pause", value: totalPauseTime, color: .blue.opacity(0.5))
-//            }
-//            Text("Segments: \(data.last?.duration.description ?? "_")")
-//        }
         .frame(height: 36)
         
         if let selected {
