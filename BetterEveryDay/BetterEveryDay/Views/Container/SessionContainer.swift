@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct SessionContainer<Content: View>: View {
+struct SessionContainer<TimerSection: View, InteractionSection: View>: View {
     let goal: String
-    let onFinishSession: () -> Void
+    @State private var selectedDetent: PresentationDetent = .fraction(0.2)
     
-    @ViewBuilder var content: () -> Content
+    @Binding var showSheet: Bool
+    
+    @ViewBuilder var timerSection: () -> TimerSection
+    @ViewBuilder var interactionSection: (_ selectedDetent: PresentationDetent) -> InteractionSection
+    
     
     var body: some View {
         VStack {
@@ -25,24 +29,30 @@ struct SessionContainer<Content: View>: View {
             .frame(maxWidth: .infinity, minHeight: 150, alignment: .topLeading)
             .padding(20)
             
-            content()
+            timerSection()
+            
+            
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    onFinishSession()
-                } label: {
-                    Text("Finish")
-                }
+        .sheet(isPresented: $showSheet) {
+            ScrollView{
+                interactionSection(selectedDetent)
+                    .padding(.top, 48)
             }
+            .scrollBounceBehavior(.basedOnSize)
+            .background(.ultraThinMaterial)
+            .presentationDetents([.fraction(0.2), .medium], selection: $selectedDetent)
+            .interactiveDismissDisabled()
+            .presentationBackgroundInteraction(.enabled)
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        SessionContainer(goal: "Do 10 pushups", onFinishSession: { print("Finished!") } ) {
+        SessionContainer(goal: "Do 10 pushups", showSheet: .constant(true)) {
             Text("Hello World.")
+        } interactionSection: { _ in 
+            Text("Cancel")
         }
     }
 }

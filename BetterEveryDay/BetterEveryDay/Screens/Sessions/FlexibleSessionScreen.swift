@@ -16,14 +16,16 @@ struct FlexibleSessionScreen: View {
     
     @State private var goneOvertime = false
     @State private var timer: Timer?
+    @State private var showSessionController = true
     
     var goal: String
     var viewModel: SessionProtocol
     
     
     var body: some View {
-        SessionContainer(goal: goal, onFinishSession: finishSession) {
-            if let segment = viewModel.getCurrent() {
+        if let segment = viewModel.getCurrent() {
+            
+            SessionContainer(goal: goal, showSheet: $showSessionController) {
                 VStack {
                     if segment.category == .Focus {
                         TimerLabelView(date: segment.startedAt)
@@ -57,21 +59,43 @@ struct FlexibleSessionScreen: View {
                 
                 Spacer()
                 
-                Button {
-                    createNextSegment()
-                } label: {
-                    Text(segment.category == .Focus ? "Pause" : "Focus")
-                        .font(.body)
-                        .foregroundStyle(.white)
-                        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
-                        .background(.primary)
+                
+                
+            } interactionSection: { selectedDetent in
+                VStack(spacing: 16) {
+                    TimelineChartView(data: viewModel.segments)
+                    
+                    HStack(spacing: 10) {
+                        Button {
+                            createNextSegment()
+                        } label: {
+                            Label(segment.category == .Focus ? "Pause" : "Focus", systemImage: segment.category == .Focus ? "pause.fill" : "play.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.black.gradient)
+                                .clipShape(Capsule())
+                        }
                         
+                        Button {
+                            showSessionController = false
+                            finishSession()
+                        } label: {
+                            Label("Finish", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
+                                .foregroundStyle(.white.opacity(0.9))
+                                .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24))
+                                .background(Color.red.gradient)
+                                .clipShape(Capsule())
+                        }
+                    }
+                    
                 }
-                .clipShape(.capsule)
-                .defaultShadow()
-                .padding([.bottom, .horizontal], 40)
+                .padding(.horizontal, 20)
+                .frame(maxHeight: .infinity, alignment: .top)
             }
-            
         }
     }
     
@@ -119,7 +143,7 @@ struct FlexibleSessionScreen: View {
         if viewModel.availableBreak > 0 {
             self.timer = Timer.scheduledTimer(withTimeInterval: viewModel.availableBreak, repeats: false, block: { _ in
                 Task { @MainActor in
-                goneOvertime = true
+                    goneOvertime = true
                 }
             })
         } else {

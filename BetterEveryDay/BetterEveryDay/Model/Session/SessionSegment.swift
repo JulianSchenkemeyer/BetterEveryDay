@@ -8,7 +8,8 @@ import Foundation
 
 
 /// Describes on part of a session
-struct SessionSegment: Equatable {
+struct SessionSegment: Hashable, Equatable, Identifiable {
+    let id = UUID()
     let category: SegmentCategory
     let startedAt: Date
     var finishedAt: Date?
