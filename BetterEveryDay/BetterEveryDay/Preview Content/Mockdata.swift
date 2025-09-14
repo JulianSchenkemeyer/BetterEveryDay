@@ -22,6 +22,32 @@ struct Mockdata {
                                                 timeSpendPause: 500,
                                                 segments: [])
     
+    nonisolated(unsafe) static var sessionSegments: [SessionSegment] {
+                let now = Date()
+                return [
+                    SessionSegment(
+                        category: .Focus,
+                        startedAt: now.addingTimeInterval(-3600),   // 1h ago
+                        finishedAt: now.addingTimeInterval(-1800)   // 30m ago
+                    ),
+                    SessionSegment(
+                        category: .Pause,
+                        startedAt: now.addingTimeInterval(-1800),   // 30m ago
+                        finishedAt: now.addingTimeInterval(-1500)   // 25m ago
+                    ),
+                    SessionSegment(
+                        category: .Focus,
+                        startedAt: now.addingTimeInterval(-600),    // 10m ago
+                        finishedAt: now.addingTimeInterval(-300)    // 5m ago
+                    ),
+                    SessionSegment(
+                        category: .Pause,
+                        startedAt: now.addingTimeInterval(-300),    // 5m ago
+                    )
+                ]
+            }
+                                                                      
+    
     nonisolated(unsafe) static let sessionDataArray : [SessionData] = [.init(type: "flexible",
                                                          state: "Finished",
                                                          goal: "Work on Cell",

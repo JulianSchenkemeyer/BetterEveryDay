@@ -62,7 +62,7 @@ struct FlexibleSessionScreen: View {
                 
                 
             } interactionSection: { selectedDetent in
-                VStack(spacing: 16) {
+                VStack(spacing: 24) {
                     TimelineChartView(data: viewModel.segments)
                     
                     HStack(spacing: 10) {
@@ -92,6 +92,13 @@ struct FlexibleSessionScreen: View {
                         }
                     }
                     
+                    if selectedDetent == .medium {
+                        SessionOverviewChartView(data: viewModel.segments)
+                        
+                        VStack {
+                            Text("Available Breaktimes: \(Duration.seconds(viewModel.availableBreak), format: .units(allowed: [.minutes, .seconds], width: .narrow))")
+                        }
+                    }
                 }
                 .padding(.horizontal, 20)
                 .frame(maxHeight: .infinity, alignment: .top)
